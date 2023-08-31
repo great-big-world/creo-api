@@ -1,0 +1,17 @@
+pluginManagement {
+    repositories {
+        maven {
+            name = 'Fabric'
+            url = 'https://maven.fabricmc.net/'
+        }
+        gradlePluginPortal()
+    }
+}
+
+include "creo-advancement-api"
+include "creo-content-modification-api"
+include "creo-convention-tags"
+include "creo-entity-attributes"
+include "creo-events"
+include "creo-trade-injection-api"
+include "creo-worldgen"

@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "creo-content-modification-api",
+  "version": "${version}",
+  "name": "Creo Content Modification API",
+  "description": "Utilities to modify vanilla content such as blocks, items, and entities.",
+  "authors": [
+    "creoii"
+  ],
+  "contact": {
+    "repo": "https://github.com/jackr/creo-api"
+  },
+  "license": "All-Rights-Reserved",
+  "icon": "assets/creo-content-modification-api/icon.png",
+  "environment": "*",
+  "entrypoints": {},
+  "accessWidener": "creo-content-modification-api.accesswidener",
+  "mixins": [
+    "creo-content-modification-api.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  },
+  "custom": {
+    "modmenu": {
+      "badges": [
+        "library"
+      ]
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "creo-api",
+  "version": "${version}",
+  "name": "Creo API",
+  "description": "A multi-purpose api for Minecraft mod and datapack development.",
+  "authors": [
+    "creoii"
+  ],
+  "contact": {
+    "repo": "https://github.com/jackr/creo-api"
+  },
+  "license": "All-Rights-Reserved",
+  "icon": "assets/creo-api/icon.png",
+  "environment": "*",
+  "entrypoints": {},
+  "mixins": [
+    "creo-api.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  },
+  "custom": {
+    "modmenu": {
+      "badges": [
+        "library"
+      ]
+    }
+  }
+}

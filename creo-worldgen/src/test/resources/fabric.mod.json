@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "creo-worldgen-test",
+  "version": "${version}",
+  "name": "Creo Worldgen Test",
+  "description": "Test mod for Creo Worldgen.",
+  "authors": [
+    "creoii"
+  ],
+  "contact": {
+    "repo": "https://github.com/jackr/creo-api"
+  },
+  "license": "All-Rights-Reserved",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "dev.creoii.creoapi.api.worldgen.CreoWorldgen"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  },
+  "custom": {
+    "modmenu": {
+      "badges": [
+        "library"
+      ]
+    }
+  }
+}

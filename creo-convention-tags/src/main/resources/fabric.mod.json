@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "creo-worldgen",
+  "version": "${version}",
+  "name": "Creo Convention Tags",
+  "description": "Many new tags bringing easy functionality to blocks, items, entity types, biomes, and more.",
+  "authors": [
+    "creoii"
+  ],
+  "contact": {
+    "repo": "https://github.com/jackr/creo-api"
+  },
+  "license": "All-Rights-Reserved",
+  "icon": "assets/creo-convention-tags/icon.png",
+  "environment": "*",
+  "entrypoints": {},
+  "mixins": [
+    "creo-convention-tags.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  },
+  "custom": {
+    "modmenu": {
+      "badges": [
+        "library"
+      ]
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "creo-trade-injection-api",
+  "version": "${version}",
+  "name": "Creo Trade Injection API",
+  "description": "Features, surface rules, density functions, noise, and more to improve worldgen capabilities.",
+  "authors": [
+    "creoii"
+  ],
+  "contact": {
+    "repo": "https://github.com/jackr/creo-api"
+  },
+  "license": "All-Rights-Reserved",
+  "icon": "assets/creo-trade-injection-api/icon.png",
+  "environment": "*",
+  "entrypoints": {},
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  },
+  "custom": {
+    "modmenu": {
+      "badges": [
+        "library"
+      ]
+    }
+  }
+}

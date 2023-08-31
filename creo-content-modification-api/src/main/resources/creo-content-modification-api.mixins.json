@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.creoii.creoapi.mixin.modification",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "AbstractBlockAccessor",
+    "BlockSettingsAccessor",
+    "AbstractBlockStateAccessor",
+    "AbstractBlockStateMixin",
+    "BlockMixin",
+    "ItemAccessor"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

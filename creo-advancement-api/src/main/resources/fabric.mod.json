@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "creo-advancement-api",
+  "version": "${version}",
+  "name": "Creo Advancement API",
+  "description": "Utilities to modify advancements and improve advancement capabilities.",
+  "authors": [
+    "creoii"
+  ],
+  "contact": {
+    "repo": "https://github.com/jackr/creo-api"
+  },
+  "license": "All-Rights-Reserved",
+  "icon": "assets/creo-advancement-api/icon.png",
+  "environment": "*",
+  "entrypoints": {},
+  "accessWidener": "creo-advancement-api.accesswidener",
+  "mixins": [
+    "creo-advancement-api.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  },
+  "custom": {
+    "modmenu": {
+      "badges": [
+        "library"
+      ]
+    }
+  }
+}

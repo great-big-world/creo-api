@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "creo-worldgen",
+  "version": "${version}",
+  "name": "Creo Worldgen",
+  "description": "Features, surface rules, density functions, noise, and more to improve worldgen capabilities.",
+  "authors": [
+    "creoii"
+  ],
+  "contact": {
+    "repo": "https://github.com/jackr/creo-api"
+  },
+  "license": "All-Rights-Reserved",
+  "icon": "assets/creo-worldgen/icon.png",
+  "environment": "*",
+  "entrypoints": {},
+  "accessWidener": "creo-worldgen.accesswidener",
+  "mixins": [
+    "creo-worldgen.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  },
+  "custom": {
+    "modmenu": {
+      "badges": [
+        "library"
+      ]
+    }
+  }
+}

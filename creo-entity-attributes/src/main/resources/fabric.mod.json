@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "creo-entity-attributes",
+  "version": "${version}",
+  "name": "Creo Entity Attributes",
+  "description": "Many new entity attributes for control over various entity systems.",
+  "authors": [
+    "creoii"
+  ],
+  "contact": {
+    "repo": "https://github.com/jackr/creo-api"
+  },
+  "license": "All-Rights-Reserved",
+  "icon": "assets/creo-entity-attributes/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "dev.creoii.creoapi.api.attribute.CreoEntityAttributes"
+    ]
+  },
+  "mixins": [
+    "creo-entity-attributes.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  },
+  "custom": {
+    "modmenu": {
+      "badges": [
+        "library"
+      ]
+    }
+  }
+}
