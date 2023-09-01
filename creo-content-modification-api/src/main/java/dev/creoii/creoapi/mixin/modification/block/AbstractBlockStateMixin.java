@@ -1,8 +1,8 @@
-package dev.creoii.creoapi.mixin.modification;
+package dev.creoii.creoapi.mixin.modification.block;
 
 import net.minecraft.block.AbstractBlock;
 import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(AbstractBlock.AbstractBlockState.class)
-public interface AbstractBlockStateAccessor {
+public class AbstractBlockStateMixin {
 }

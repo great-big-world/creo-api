@@ -17,3 +17,9 @@ mutable field net/minecraft/item/Item maxDamage I
 mutable field net/minecraft/item/Item fireproof Z
 mutable field net/minecraft/item/Item recipeRemainder Lnet/minecraft/item/Item;
 mutable field net/minecraft/item/Item foodComponent Lnet/minecraft/item/FoodComponent;
+accessible field net/minecraft/entity/EntityType spawnGroup Lnet/minecraft/entity/SpawnGroup;
+accessible field net/minecraft/entity/EntityType summonable Z
+accessible field net/minecraft/entity/EntityType fireImmune Z
+accessible field net/minecraft/entity/EntityType spawnableFarFromPlayer Z
+accessible field net/minecraft/entity/EntityType lootTableId Lnet/minecraft/util/Identifier;
+accessible field net/minecraft/entity/EntityType dimensions Lnet/minecraft/entity/EntityDimensions;

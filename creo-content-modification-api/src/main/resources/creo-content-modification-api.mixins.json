@@ -4,12 +4,14 @@
   "package": "dev.creoii.creoapi.mixin.modification",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "AbstractBlockAccessor",
-    "BlockSettingsAccessor",
-    "AbstractBlockStateAccessor",
-    "AbstractBlockStateMixin",
-    "BlockMixin",
-    "ItemAccessor"
+    "EntityTypeAccessor",
+    "ItemAccessor",
+    "block.AbstractBlockAccessor",
+    "block.AbstractBlockMixin",
+    "block.AbstractBlockStateAccessor",
+    "block.AbstractBlockStateMixin",
+    "block.BlockMixin",
+    "block.BlockSettingsAccessor"
   ],
   "client": [
   ],
