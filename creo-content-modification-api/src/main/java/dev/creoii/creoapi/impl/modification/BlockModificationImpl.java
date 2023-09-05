@@ -32,6 +32,11 @@ public class BlockModificationImpl implements BlockModification {
     }
 
     @Override
+    public float getHardness(BlockState state) {
+        return ((AbstractBlockStateAccessor) state).getHardness();
+    }
+
+    @Override
     public void setResistance(Block block, float resistance) {
         ((AbstractBlockAccessor) block).setResistance(resistance);
     }
@@ -45,6 +50,11 @@ public class BlockModificationImpl implements BlockModification {
     public void setStrength(Block block, float hardness, float resistance) {
         setHardness(block, hardness);
         setResistance(block, resistance);
+    }
+
+    @Override
+    public void setStrength(Block block, float strength) {
+        setStrength(block, strength, strength);
     }
 
     @Override
@@ -79,7 +89,12 @@ public class BlockModificationImpl implements BlockModification {
 
     @Override
     public int getLuminance(Block block) {
-        return ((AbstractBlockStateAccessor) block.getDefaultState()).getLuminance();
+        return getLuminance(block.getDefaultState());
+    }
+
+    @Override
+    public int getLuminance(BlockState state) {
+        return ((AbstractBlockStateAccessor) state).getLuminance();
     }
 
     @Override
@@ -94,7 +109,12 @@ public class BlockModificationImpl implements BlockModification {
 
     @Override
     public MapColor getMapColor(Block block) {
-        return ((AbstractBlockStateAccessor) block.getDefaultState()).getMapColor();
+        return getMapColor(block.getDefaultState());
+    }
+
+    @Override
+    public MapColor getMapColor(BlockState state) {
+        return ((AbstractBlockStateAccessor) state).getMapColor();
     }
 
     @Override
