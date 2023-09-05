@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "creo-events-test",
+  "version": "${version}",
+  "name": "Creo Events Test",
+  "description": "Test mod for Creo Events.",
+  "authors": [
+    "creoii"
+  ],
+  "contact": {
+    "repo": "https://github.com/jackr/creo-api"
+  },
+  "license": "All-Rights-Reserved",
+  "icon": "assets/creo-events/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "dev.creoii.creoapi.test.EventsTest"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  },
+  "custom": {
+    "modmenu": {
+      "badges": [
+        "library"
+      ]
+    }
+  }
+}
