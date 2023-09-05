@@ -12,23 +12,23 @@ public interface ItemModification {
 
     Rarity getRarity(Item item);
 
-    void setMaxCount(Item item, int rarity);
+    void setMaxCount(Item item, int maxCount);
 
     int getMaxCount(Item item);
 
-    void setMaxDamage(Item item, int rarity);
+    void setMaxDamage(Item item, int maxDamage);
 
     int getMaxDamage(Item item);
 
-    void setFireproof(Item item, boolean rarity);
+    void setFireproof(Item item, boolean fireproof);
 
     boolean isFireproof(Item item);
 
-    void setRecipeRemainder(Item item, Item rarity);
+    void setRecipeRemainder(Item item, Item recipeRemainder);
 
     Item getRecipeRemainder(Item item);
 
-    void setFoodComponent(Item item, FoodComponent rarity);
+    void setFoodComponent(Item item, FoodComponent foodComponent);
 
     FoodComponent getFoodComponent(Item item);
 }

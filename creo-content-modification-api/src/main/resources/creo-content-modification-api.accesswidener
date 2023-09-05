@@ -11,6 +11,13 @@ mutable field net/minecraft/block/AbstractBlock dynamicBounds Z
 mutable field net/minecraft/block/AbstractBlock$AbstractBlockState luminance I
 mutable field net/minecraft/block/AbstractBlock$AbstractBlockState mapColor Lnet/minecraft/block/MapColor;
 mutable field net/minecraft/block/AbstractBlock$AbstractBlockState hardness F
+mutable field net/minecraft/block/AbstractBlock$AbstractBlockState pistonBehavior Lnet/minecraft/block/piston/PistonBehavior;
+mutable field net/minecraft/block/AbstractBlock$AbstractBlockState toolRequired Z
+mutable field net/minecraft/block/AbstractBlock$AbstractBlockState opaque Z
+mutable field net/minecraft/block/AbstractBlock$AbstractBlockState blockBreakParticles Z
+mutable field net/minecraft/block/AbstractBlock$AbstractBlockState instrument Lnet/minecraft/block/enums/Instrument;
+mutable field net/minecraft/block/AbstractBlock$AbstractBlockState replaceable Z
+mutable field net/minecraft/block/AbstractBlock$AbstractBlockState burnable Z
 mutable field net/minecraft/item/Item rarity Lnet/minecraft/util/Rarity;
 mutable field net/minecraft/item/Item maxCount I
 mutable field net/minecraft/item/Item maxDamage I

@@ -11,9 +11,6 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 
-import java.util.function.Function;
-import java.util.function.ToIntFunction;
-
 public interface BlockModification {
     BlockModification INSTANCE = new BlockModificationImpl();
 
@@ -37,15 +34,11 @@ public interface BlockModification {
 
     void setLuminance(Block block, int luminance);
 
-    void setLuminance(Block block, ToIntFunction<BlockState> luminance);
-
-    ToIntFunction<BlockState> getLuminance(Block block);
+    int getLuminance(Block block);
 
     void setMapColor(Block block, MapColor mapColor);
 
-    void setMapColor(Block block, Function<BlockState, MapColor> mapColor);
-
-    Function<BlockState, MapColor> getMapColor(Block block);
+    MapColor getMapColor(Block block);
 
     void setVelocityMultiplier(Block block, float velocityMultiplier);
 
@@ -71,12 +64,11 @@ public interface BlockModification {
 
     boolean isOpaque(Block block);
 
-    void setAir(Block block, boolean air);
-
-    boolean isAir(Block block);
-
     void setBurnable(Block block, boolean burnable);
 
+    /**
+     * @return Whether Lava can light the block on fire.
+     */
     boolean isBurnable(Block block);
 
     void setPistonBehavior(Block block, PistonBehavior pistonBehavior);
@@ -102,10 +94,6 @@ public interface BlockModification {
     void setPostProcessing(Block block, boolean postProcessing);
 
     boolean hasPostProcessing(BlockState state, BlockView world, BlockPos pos);
-
-    void setDynamicBounds(Block block, boolean dynamicBounds);
-
-    boolean hasDynamicBounds(Block block);
 
     void setBlocksVision(Block block, boolean blocksVision);
 

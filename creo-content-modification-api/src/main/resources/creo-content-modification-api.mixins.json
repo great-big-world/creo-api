@@ -5,13 +5,10 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "EntityTypeAccessor",
-    "ItemAccessor",
     "block.AbstractBlockAccessor",
-    "block.AbstractBlockMixin",
     "block.AbstractBlockStateAccessor",
-    "block.AbstractBlockStateMixin",
-    "block.BlockMixin",
-    "block.BlockSettingsAccessor"
+    "block.BlockSettingsAccessor",
+    "item.ItemAccessor"
   ],
   "client": [
   ],

@@ -9,48 +9,63 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 
 @Mixin(AbstractBlock.AbstractBlockState.class)
 public interface AbstractBlockStateAccessor {
+    @Accessor("hardness")
+    float getHardness();
+
+    @Accessor("hardness")
+    void setHardness(float hardness);
+
     @Accessor("luminance")
     int getLuminance();
 
-    @Accessor("isAir")
-    boolean isAir();
-
-    @Accessor("burnable")
-    boolean isBurnable();
-
-    @Accessor("pistonBehavior")
-    PistonBehavior getPistonBehavior();
+    @Accessor("luminance")
+    void setLuminance(int luminance);
 
     @Accessor("mapColor")
     MapColor getMapColor();
 
-    @Accessor("hardness")
-    float getHardness();
+    @Accessor("mapColor")
+    void setMapColor(MapColor mapColor);
 
     @Accessor("toolRequired")
     boolean isToolRequired();
 
+    @Accessor("toolRequired")
+    void setToolRequired(boolean toolRequired);
+
     @Accessor("opaque")
     boolean isOpaque();
 
-    @Accessor("suffocationPredicate")
-    AbstractBlock.ContextPredicate getSuffocation();
+    @Accessor("opaque")
+    void setOpaque(boolean opaque);
 
-    @Accessor("blockVisionPredicate")
-    AbstractBlock.ContextPredicate getBlocksVision();
+    @Accessor("burnable")
+    boolean isBurnable();
 
-    @Accessor("postProcessPredicate")
-    AbstractBlock.ContextPredicate getPostProcess();
+    @Accessor("burnable")
+    void setBurnable(boolean burnable);
 
-    @Accessor("emissiveLightingPredicate")
-    AbstractBlock.ContextPredicate getEmissiveLighting();
+    @Accessor("pistonBehavior")
+    PistonBehavior getPistonBehavior();
 
-    @Accessor("blockBreakParticles")
-    boolean hasBlockBreakParticles();
+    @Accessor("pistonBehavior")
+    void setPistonBehavior(PistonBehavior pistonBehavior);
 
     @Accessor("instrument")
     Instrument getInstrument();
 
+    @Accessor("instrument")
+    void setInstrument(Instrument instrument);
+
     @Accessor("replaceable")
     boolean isReplaceable();
+
+    @Accessor("replaceable")
+    void setReplaceable(boolean replaceable);
+
+    @Accessor("blockBreakParticles")
+    boolean hasBlockBreakParticles();
+
+    @Accessor("blockBreakParticles")
+    void setBlockBreakParticles(boolean blockBreakParticles);
 }

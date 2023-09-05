@@ -12,9 +12,6 @@ public interface AbstractBlockAccessor {
     AbstractBlock.Settings getSettings();
 
     @Accessor("resistance")
-    float getResistance();
-
-    @Accessor("resistance")
     void setResistance(float resistance);
 
     @Accessor("randomTicks")
@@ -30,21 +27,12 @@ public interface AbstractBlockAccessor {
     void setSoundGroup(BlockSoundGroup soundGroup);
 
     @Accessor("slipperiness")
-    float getSlipperiness();
-
-    @Accessor("slipperiness")
     void setSlipperiness(float slipperiness);
 
     @Accessor("velocityMultiplier")
-    float getVelocityMultiplier();
-
-    @Accessor("slipperiness")
     void setVelocityMultiplier(float velocityMultiplier);
 
     @Accessor("jumpVelocityMultiplier")
-    float getJumpVelocityMultiplier();
-
-    @Accessor("slipperiness")
     void setJumpVelocityMultiplier(float jumpVelocityMultiplier);
 
     @Accessor("lootTableId")

@@ -14,7 +14,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "dev.creoii.creoapi.test.AdvanvementApiTest"
+      "dev.creoii.creoapi.test.AdvancementApiTest"
     ]
   },
   "depends": {
