@@ -18,7 +18,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class BlockModificationImpl implements BlockModification {
     @Override
     public void setHardness(Block block, float hardness) {
-        ((AbstractBlockStateAccessor) (block.getDefaultState())).setHardness(hardness);
+        setHardness(block.getDefaultState(), hardness);
+    }
+
+    @Override
+    public void setHardness(BlockState state, float hardness) {
+        ((AbstractBlockStateAccessor) state).setHardness(hardness);
     }
 
     @Override
@@ -64,7 +69,12 @@ public class BlockModificationImpl implements BlockModification {
 
     @Override
     public void setLuminance(Block block, int luminance) {
-        ((AbstractBlockStateAccessor) (block.getDefaultState())).setLuminance(luminance);
+        setLuminance(block.getDefaultState(), luminance);
+    }
+
+    @Override
+    public void setLuminance(BlockState state, int luminance) {
+        ((AbstractBlockStateAccessor) state).setLuminance(luminance);
     }
 
     @Override
@@ -74,7 +84,12 @@ public class BlockModificationImpl implements BlockModification {
 
     @Override
     public void setMapColor(Block block, MapColor mapColor) {
-        ((AbstractBlockStateAccessor) (block.getDefaultState())).setMapColor(mapColor);
+        setMapColor(block.getDefaultState(), mapColor);
+    }
+
+    @Override
+    public void setMapColor(BlockState state, MapColor mapColor) {
+        ((AbstractBlockStateAccessor) state).setMapColor(mapColor);
     }
 
     @Override
@@ -114,7 +129,12 @@ public class BlockModificationImpl implements BlockModification {
 
     @Override
     public void setToolRequired(Block block, boolean toolRequired) {
-        ((AbstractBlockStateAccessor) (block.getDefaultState())).setToolRequired(toolRequired);
+        setToolRequired(block.getDefaultState(), toolRequired);
+    }
+
+    @Override
+    public void setToolRequired(BlockState state, boolean toolRequired) {
+        ((AbstractBlockStateAccessor) state).setToolRequired(toolRequired);
     }
 
     @Override
@@ -134,7 +154,12 @@ public class BlockModificationImpl implements BlockModification {
 
     @Override
     public void setOpaque(Block block, boolean opaque) {
-        ((AbstractBlockStateAccessor) (block.getDefaultState())).setOpaque(opaque);
+        setOpaque(block.getDefaultState(), opaque);
+    }
+
+    @Override
+    public void setOpaque(BlockState state, boolean opaque) {
+        ((AbstractBlockStateAccessor) state).setOpaque(opaque);
     }
 
     @Override
@@ -144,7 +169,12 @@ public class BlockModificationImpl implements BlockModification {
 
     @Override
     public void setBurnable(Block block, boolean burnable) {
-        ((AbstractBlockStateAccessor) (block.getDefaultState())).setBurnable(burnable);
+        setBurnable(block.getDefaultState(), burnable);
+    }
+
+    @Override
+    public void setBurnable(BlockState state, boolean burnable) {
+        ((AbstractBlockStateAccessor) state).setBurnable(burnable);
     }
 
     @Override
@@ -154,7 +184,12 @@ public class BlockModificationImpl implements BlockModification {
 
     @Override
     public void setPistonBehavior(Block block, PistonBehavior pistonBehavior) {
-        ((AbstractBlockStateAccessor) (block.getDefaultState())).setPistonBehavior(pistonBehavior);
+        setPistonBehavior(block.getDefaultState(), pistonBehavior);
+    }
+
+    @Override
+    public void setPistonBehavior(BlockState state, PistonBehavior pistonBehavior) {
+        ((AbstractBlockStateAccessor) state).setPistonBehavior(pistonBehavior);
     }
 
     @Override
@@ -164,7 +199,12 @@ public class BlockModificationImpl implements BlockModification {
 
     @Override
     public void setInstrument(Block block, Instrument instrument) {
-        ((AbstractBlockStateAccessor) (block.getDefaultState())).setInstrument(instrument);
+        setInstrument(block.getDefaultState(), instrument);
+    }
+
+    @Override
+    public void setInstrument(BlockState state, Instrument instrument) {
+        ((AbstractBlockStateAccessor) state).setInstrument(instrument);
     }
 
     @Override
@@ -174,7 +214,12 @@ public class BlockModificationImpl implements BlockModification {
 
     @Override
     public void setBlockBreakParticles(Block block, boolean blockBreakParticles) {
-        ((AbstractBlockStateAccessor) (block.getDefaultState())).setBlockBreakParticles(blockBreakParticles);
+        setBlockBreakParticles(block.getDefaultState(), blockBreakParticles);
+    }
+
+    @Override
+    public void setBlockBreakParticles(BlockState state, boolean blockBreakParticles) {
+        ((AbstractBlockStateAccessor) state).setBlockBreakParticles(blockBreakParticles);
     }
 
     @Override
@@ -184,7 +229,12 @@ public class BlockModificationImpl implements BlockModification {
 
     @Override
     public void setReplaceable(Block block, boolean replaceable) {
-        ((AbstractBlockStateAccessor) (block.getDefaultState())).setReplaceable(replaceable);
+        setReplaceable(block.getDefaultState(), replaceable);
+    }
+
+    @Override
+    public void setReplaceable(BlockState state, boolean replaceable) {
+        ((AbstractBlockStateAccessor) state).setReplaceable(replaceable);
     }
 
     @Override

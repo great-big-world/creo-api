@@ -16,6 +16,8 @@ public interface BlockModification {
 
     void setHardness(Block block, float hardness);
 
+    void setHardness(BlockState state, float hardness);
+
     float getHardness(Block block);
 
     void setResistance(Block block, float resistance);
@@ -34,9 +36,13 @@ public interface BlockModification {
 
     void setLuminance(Block block, int luminance);
 
+    void setLuminance(BlockState state, int luminance);
+
     int getLuminance(Block block);
 
     void setMapColor(Block block, MapColor mapColor);
+
+    void setMapColor(BlockState state, MapColor mapColor);
 
     MapColor getMapColor(Block block);
 
@@ -54,6 +60,8 @@ public interface BlockModification {
 
     void setToolRequired(Block block, boolean toolRequired);
 
+    void setToolRequired(BlockState state, boolean toolRequired);
+
     boolean isToolRequired(Block block);
 
     void setLootTableId(Block block, Identifier lootTableId);
@@ -62,9 +70,13 @@ public interface BlockModification {
 
     void setOpaque(Block block, boolean opaque);
 
+    void setOpaque(BlockState state, boolean opaque);
+
     boolean isOpaque(Block block);
 
     void setBurnable(Block block, boolean burnable);
+
+    void setBurnable(BlockState state, boolean burnable);
 
     /**
      * @return Whether Lava can light the block on fire.
@@ -73,17 +85,25 @@ public interface BlockModification {
 
     void setPistonBehavior(Block block, PistonBehavior pistonBehavior);
 
+    void setPistonBehavior(BlockState state, PistonBehavior pistonBehavior);
+
     PistonBehavior getPistonBehavior(Block block);
 
     void setInstrument(Block block, Instrument instrument);
+
+    void setInstrument(BlockState state, Instrument instrument);
 
     Instrument getInstrument(Block block);
 
     void setBlockBreakParticles(Block block, boolean blockBreakParticles);
 
+    void setBlockBreakParticles(BlockState state, boolean blockBreakParticles);
+
     boolean hasBlockBreakParticles(Block block);
 
     void setReplaceable(Block block, boolean replaceable);
+
+    void setReplaceable(BlockState state, boolean replaceable);
 
     boolean isReplaceable(Block block);
 
