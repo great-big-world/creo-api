@@ -1,12 +1,11 @@
 package dev.creoii.creoapi.api.tag;
 
-import dev.creoii.creoapi.impl.CreoConventionTags;
 import net.minecraft.item.Item;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 
-public final class CItemTags {
+public final class CreoItemTags {
     public static final TagKey<Item> GLINTED = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "glinted"));
     public static final TagKey<Item> EXPLOSION_IMMUNE = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "explosion_immune"));
     public static final TagKey<Item> CACTUS_IMMUNE = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "cactus_immune"));

@@ -1,4 +1,4 @@
-package dev.creoii.creoapi.impl;
+package dev.creoii.creoapi.api.tag;
 
 import com.llamalad7.mixinextras.MixinExtrasBootstrap;
 import org.objectweb.asm.tree.ClassNode;

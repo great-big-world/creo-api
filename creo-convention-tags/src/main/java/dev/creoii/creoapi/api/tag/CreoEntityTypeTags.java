@@ -1,12 +1,11 @@
 package dev.creoii.creoapi.api.tag;
 
-import dev.creoii.creoapi.impl.CreoConventionTags;
 import net.minecraft.entity.EntityType;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 
-public final class CEntityTypeTags {
+public final class CreoEntityTypeTags {
     public static final TagKey<EntityType<?>> NO_CLIPPING_ENTITIES = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "no_clipping_entities"));
     public static final TagKey<EntityType<?>> CACTUS_IMMUNE = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "damage_immune/cactus"));
     public static final TagKey<EntityType<?>> SWEET_BERRY_BUSH_IMMUNE = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "damage_immune/sweet_berry_bush"));
