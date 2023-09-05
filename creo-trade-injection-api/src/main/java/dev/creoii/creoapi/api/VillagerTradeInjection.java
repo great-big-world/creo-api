@@ -1,11 +1,11 @@
 package dev.creoii.creoapi.api;
 
-import dev.creoii.creoapi.impl.VillagerTradesInjectionImpl;
+import dev.creoii.creoapi.impl.VillagerTradeInjectionImpl;
 import net.minecraft.village.TradeOffers;
 import net.minecraft.village.VillagerProfession;
 
-public interface VillagerTradesInjector {
-    VillagerTradesInjector INSTANCE = new VillagerTradesInjectionImpl();
+public interface VillagerTradeInjection {
+    VillagerTradeInjection INSTANCE = new VillagerTradeInjectionImpl();
 
     /**
      * @param profession The {@link VillagerProfession} to inject into.
