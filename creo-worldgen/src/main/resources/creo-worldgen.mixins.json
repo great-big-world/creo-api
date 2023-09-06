@@ -4,8 +4,7 @@
   "package": "dev.creoii.creoapi.mixin.worldgen",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "ChunkGeneratorMixin",
-    "StructurePlacementMixin"
+    "ChunkGeneratorMixin"
   ],
   "client": [
   ],
