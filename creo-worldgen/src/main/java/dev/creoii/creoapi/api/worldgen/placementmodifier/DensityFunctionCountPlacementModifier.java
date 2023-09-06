@@ -2,7 +2,7 @@ package dev.creoii.creoapi.api.worldgen.placementmodifier;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import dev.creoii.creoapi.api.worldgen.CPlacementModifierTypes;
+import dev.creoii.creoapi.api.worldgen.CreoPlacementModifierTypes;
 import dev.creoii.creoapi.api.worldgen.CreoDensityFunctionVisitor;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
@@ -52,7 +52,7 @@ public class DensityFunctionCountPlacementModifier extends PlacementModifier {
 
     @Override
     public PlacementModifierType<?> getType() {
-        return CPlacementModifierTypes.DENSITY_FUNCTION_COUNT;
+        return CreoPlacementModifierTypes.DENSITY_FUNCTION_COUNT;
     }
 
     @Override
@@ -60,9 +60,9 @@ public class DensityFunctionCountPlacementModifier extends PlacementModifier {
         StructureWorldAccess world = context.getWorld();
         if (!densityFunction.hasKeyAndValue() || world.isClient()) return Stream.of();
 
-        if (!DensityFunctionPlacementModifier.CACHED_NOISE_CONFIGS.containsKey(world)) {
+        if (!DensityFunctionPlacementModifier.CACHED_NOISE_CONFIGS.containsKey(world.getSeed())) {
             ChunkGeneratorSettings settings = context.getChunkGenerator() instanceof NoiseChunkGenerator noiseChunkGenerator ? noiseChunkGenerator.getSettings().value() : ChunkGeneratorSettings.createMissingSettings();
-            DensityFunctionPlacementModifier.CACHED_NOISE_CONFIGS.put(world, NoiseConfig.create(settings, world.getRegistryManager().getWrapperOrThrow(RegistryKeys.NOISE_PARAMETERS), world.getSeed()));
+            DensityFunctionPlacementModifier.CACHED_NOISE_CONFIGS.put(world.getSeed(), NoiseConfig.create(settings, world.getRegistryManager().getWrapperOrThrow(RegistryKeys.NOISE_PARAMETERS), world.getSeed()));
         }
 
         double value = densityFunction.value().apply(new CreoDensityFunctionVisitor(DensityFunctionPlacementModifier.CACHED_NOISE_CONFIGS.get(world))).sample(new DensityFunction.UnblendedNoisePos(pos.getX(), pos.getY(), pos.getZ()));

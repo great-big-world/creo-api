@@ -2,7 +2,7 @@ package dev.creoii.creoapi.api.worldgen.placementmodifier;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import dev.creoii.creoapi.api.worldgen.CPlacementModifierTypes;
+import dev.creoii.creoapi.api.worldgen.CreoPlacementModifierTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -25,7 +25,7 @@ public class DistanceFromZeroPlacementModifier extends AbstractConditionalPlacem
 
     @Override
     public PlacementModifierType<?> getType() {
-        return CPlacementModifierTypes.DISTANCE_FROM_ZERO;
+        return CreoPlacementModifierTypes.DISTANCE_FROM_ZERO;
     }
 
     @Override

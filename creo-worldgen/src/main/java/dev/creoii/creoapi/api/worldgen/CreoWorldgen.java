@@ -7,6 +7,6 @@ public class CreoWorldgen implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        CPlacementModifierTypes.register();
+        CreoPlacementModifierTypes.register();
     }
 }

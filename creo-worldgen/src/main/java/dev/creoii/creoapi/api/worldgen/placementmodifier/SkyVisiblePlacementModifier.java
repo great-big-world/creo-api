@@ -2,7 +2,7 @@ package dev.creoii.creoapi.api.worldgen.placementmodifier;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import dev.creoii.creoapi.api.worldgen.CPlacementModifierTypes;
+import dev.creoii.creoapi.api.worldgen.CreoPlacementModifierTypes;
 import net.minecraft.block.Block;
 import net.minecraft.registry.RegistryCodecs;
 import net.minecraft.registry.RegistryKeys;
@@ -28,7 +28,7 @@ public class SkyVisiblePlacementModifier extends AbstractConditionalPlacementMod
 
     @Override
     public PlacementModifierType<?> getType() {
-        return CPlacementModifierTypes.SKY_VISIBLE;
+        return CreoPlacementModifierTypes.SKY_VISIBLE;
     }
 
     @Override

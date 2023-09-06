@@ -6,7 +6,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.gen.placementmodifier.PlacementModifierType;
 
-public final class CPlacementModifierTypes {
+public final class CreoPlacementModifierTypes {
     /**
      * Conditional placement modifier that places if the noise value at the position is within a range.
      */

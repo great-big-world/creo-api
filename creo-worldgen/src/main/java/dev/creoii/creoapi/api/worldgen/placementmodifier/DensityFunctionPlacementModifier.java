@@ -2,7 +2,7 @@ package dev.creoii.creoapi.api.worldgen.placementmodifier;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import dev.creoii.creoapi.api.worldgen.CPlacementModifierTypes;
+import dev.creoii.creoapi.api.worldgen.CreoPlacementModifierTypes;
 import dev.creoii.creoapi.api.worldgen.CreoDensityFunctionVisitor;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
@@ -30,7 +30,7 @@ public class DensityFunctionPlacementModifier extends AbstractConditionalPlaceme
             return predicate.max;
         })).apply(instance, DensityFunctionPlacementModifier::new);
     });
-    protected static final Map<StructureWorldAccess, NoiseConfig> CACHED_NOISE_CONFIGS = new HashMap<>();
+    protected static final Map<Long, NoiseConfig> CACHED_NOISE_CONFIGS = new HashMap<>();
     private final RegistryEntry<DensityFunction> densityFunction;
     private final double min;
     private final double max;
@@ -43,7 +43,7 @@ public class DensityFunctionPlacementModifier extends AbstractConditionalPlaceme
 
     @Override
     public PlacementModifierType<?> getType() {
-        return CPlacementModifierTypes.DENSITY_FUNCTION;
+        return CreoPlacementModifierTypes.DENSITY_FUNCTION;
     }
 
     @Override
@@ -51,9 +51,9 @@ public class DensityFunctionPlacementModifier extends AbstractConditionalPlaceme
         StructureWorldAccess world = context.getWorld();
         if (!densityFunction.hasKeyAndValue() || world.isClient()) return false;
 
-        if (!CACHED_NOISE_CONFIGS.containsKey(world)) {
+        if (!CACHED_NOISE_CONFIGS.containsKey(world.getSeed())) {
             ChunkGeneratorSettings settings = context.getChunkGenerator() instanceof NoiseChunkGenerator noiseChunkGenerator ? noiseChunkGenerator.getSettings().value() : ChunkGeneratorSettings.createMissingSettings();
-            CACHED_NOISE_CONFIGS.put(world, NoiseConfig.create(settings, world.getRegistryManager().getWrapperOrThrow(RegistryKeys.NOISE_PARAMETERS), world.getSeed()));
+            CACHED_NOISE_CONFIGS.put(world.getSeed(), NoiseConfig.create(settings, world.getRegistryManager().getWrapperOrThrow(RegistryKeys.NOISE_PARAMETERS), world.getSeed()));
         }
 
         double value = densityFunction.value().apply(new CreoDensityFunctionVisitor(CACHED_NOISE_CONFIGS.get(world))).sample(new DensityFunction.UnblendedNoisePos(pos.getX(), pos.getY(), pos.getZ()));

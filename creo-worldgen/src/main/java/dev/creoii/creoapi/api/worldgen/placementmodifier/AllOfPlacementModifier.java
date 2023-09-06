@@ -2,7 +2,7 @@ package dev.creoii.creoapi.api.worldgen.placementmodifier;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import dev.creoii.creoapi.api.worldgen.CPlacementModifierTypes;
+import dev.creoii.creoapi.api.worldgen.CreoPlacementModifierTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.gen.feature.FeaturePlacementContext;
@@ -26,7 +26,7 @@ public class AllOfPlacementModifier extends AbstractConditionalPlacementModifier
 
     @Override
     public PlacementModifierType<?> getType() {
-        return CPlacementModifierTypes.ALL_OF;
+        return CreoPlacementModifierTypes.ALL_OF;
     }
 
     @Override

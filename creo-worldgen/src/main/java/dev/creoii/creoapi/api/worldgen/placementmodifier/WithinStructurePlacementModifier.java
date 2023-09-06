@@ -2,7 +2,7 @@ package dev.creoii.creoapi.api.worldgen.placementmodifier;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import dev.creoii.creoapi.api.worldgen.CPlacementModifierTypes;
+import dev.creoii.creoapi.api.worldgen.CreoPlacementModifierTypes;
 import net.minecraft.registry.RegistryCodecs;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
@@ -29,7 +29,7 @@ public class WithinStructurePlacementModifier extends AbstractConditionalPlaceme
 
     @Override
     public PlacementModifierType<?> getType() {
-        return CPlacementModifierTypes.WITHIN_STRUCTURE;
+        return CreoPlacementModifierTypes.WITHIN_STRUCTURE;
     }
 
     @Override

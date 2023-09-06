@@ -2,7 +2,7 @@ package dev.creoii.creoapi.api.worldgen.placementmodifier;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import dev.creoii.creoapi.api.worldgen.CPlacementModifierTypes;
+import dev.creoii.creoapi.api.worldgen.CreoPlacementModifierTypes;
 import it.unimi.dsi.fastutil.longs.LongSet;
 import net.minecraft.registry.RegistryCodecs;
 import net.minecraft.registry.RegistryKeys;
@@ -41,7 +41,7 @@ public class NearStructurePlacementModifier extends AbstractConditionalPlacement
 
     @Override
     public PlacementModifierType<?> getType() {
-        return CPlacementModifierTypes.NEAR_STRUCTURE;
+        return CreoPlacementModifierTypes.NEAR_STRUCTURE;
     }
 
     @Override

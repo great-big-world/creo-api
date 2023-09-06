@@ -2,7 +2,7 @@ package dev.creoii.creoapi.api.worldgen.placementmodifier;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import dev.creoii.creoapi.api.worldgen.CPlacementModifierTypes;
+import dev.creoii.creoapi.api.worldgen.CreoPlacementModifierTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.Heightmap;
@@ -25,7 +25,7 @@ public class SteepPlacementModifier extends AbstractConditionalPlacementModifier
 
     @Override
     public PlacementModifierType<?> getType() {
-        return CPlacementModifierTypes.STEEP;
+        return CreoPlacementModifierTypes.STEEP;
     }
 
     @Override
@@ -39,9 +39,9 @@ public class SteepPlacementModifier extends AbstractConditionalPlacementModifier
         if (n >= chunk.sampleHeightmap(Heightmap.Type.WORLD_SURFACE_WG, i, k) + steepness) {
             return true;
         }
-        int o = Math.max(i - 1, 0);
-        int p = Math.min(i + 1, 15);
-        int q = chunk.sampleHeightmap(Heightmap.Type.WORLD_SURFACE_WG, o, j);
-        return q >= chunk.sampleHeightmap(Heightmap.Type.WORLD_SURFACE_WG, p, j) + steepness;
+        k = Math.max(i - 1, 0);
+        l = Math.min(i + 1, 15);
+        n = chunk.sampleHeightmap(Heightmap.Type.WORLD_SURFACE_WG, k, j);
+        return n >= chunk.sampleHeightmap(Heightmap.Type.WORLD_SURFACE_WG, l, j) + steepness;
     }
 }

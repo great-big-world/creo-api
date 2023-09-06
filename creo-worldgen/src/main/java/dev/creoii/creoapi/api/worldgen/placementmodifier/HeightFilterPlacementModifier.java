@@ -2,7 +2,7 @@ package dev.creoii.creoapi.api.worldgen.placementmodifier;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import dev.creoii.creoapi.api.worldgen.CPlacementModifierTypes;
+import dev.creoii.creoapi.api.worldgen.CreoPlacementModifierTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.Heightmap;
@@ -33,7 +33,7 @@ public class HeightFilterPlacementModifier extends AbstractConditionalPlacementM
 
     @Override
     public PlacementModifierType<?> getType() {
-        return CPlacementModifierTypes.HEIGHT_FILTER;
+        return CreoPlacementModifierTypes.HEIGHT_FILTER;
     }
 
     @Override
