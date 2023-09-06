@@ -12,9 +12,15 @@
     "block.CoralParentBlockMixin",
     "block.FarmlandBlockMixin",
     "block.NetherWartBlockMixin",
+    "block.PointedDripstoneBlockMixin",
     "block.RespawnAnchorBlockMixin",
     "block.TripwireBlockMixin",
-    "entity.FallingBlockEntityMixin"
+    "block.entity.BeaconBlockEntityMixin",
+    "block.entity.ConduitBlockEntityMixin",
+    "block.entity.HopperBlockEntityMixin",
+    "entity.FallingBlockEntityMixin",
+    "entity.RavagerEntityMixin",
+    "entity.ShulkerEntityMixin"
   ],
   "client": [
   ],

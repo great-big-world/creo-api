@@ -17,4 +17,9 @@ public final class ItemTagImpl {
         if (stack.isIn(CreoItemTags.RESPAWN_ANCHOR_CHARGES))
             cir.setReturnValue(true);
     }
+
+    public static void applyHopperIgnores(ItemStack stack, CallbackInfoReturnable<ItemStack> cir) {
+        if (stack.isIn(CreoItemTags.HOPPER_IGNORES))
+            cir.setReturnValue(stack);
+    }
 }

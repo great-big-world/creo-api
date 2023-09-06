@@ -1,6 +1,6 @@
-package dev.creoii.creoapi.api.mixin.event.entity;
+package dev.creoii.creoapi.mixin.event.entity;
 
-import dev.creoii.creoapi.api.event.entity.MobInitializeCallback;
+import dev.creoii.creoapi.impl.event.EntityEventImpl;
 import net.minecraft.entity.EntityData;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.mob.MobEntity;
@@ -16,10 +16,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class MobEntityMixin {
     @Inject(method = "initialize", at = @At("HEAD"), cancellable = true)
     private void creo_mobInitializeCallback(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, EntityData entityData, NbtCompound entityNbt, CallbackInfoReturnable<EntityData> cir) {
-        EntityData result = MobInitializeCallback.EVENT.invoker().initialize(world, (MobEntity) (Object) this, difficulty, spawnReason, entityData, entityNbt);
-
-        if (result != null) {
-            cir.setReturnValue(result);
-        }
+        EntityEventImpl.applyMobInitializeCallback(world, (MobEntity) (Object) this, difficulty, spawnReason, entityData, entityNbt, cir);
     }
 }

@@ -1,6 +1,6 @@
-package dev.creoii.creoapi.api.mixin.event.world;
+package dev.creoii.creoapi.mixin.event.world;
 
-import dev.creoii.creoapi.api.event.entity.EntitySpawnCallback;
+import dev.creoii.creoapi.impl.event.EntityEventImpl;
 import net.minecraft.entity.Entity;
 import net.minecraft.server.world.ServerWorld;
 import org.spongepowered.asm.mixin.Mixin;
@@ -12,9 +12,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class ServerWorldMixin {
     @Inject(method = "spawnEntity", at = @At("HEAD"), cancellable = true)
     private void creo_entitySpawnCallback(Entity entity, CallbackInfoReturnable<Boolean> cir) {
-        boolean result = EntitySpawnCallback.EVENT.invoker().spawn((ServerWorld) (Object) this, entity);
-
-        if (!result)
-            cir.cancel();
+        EntityEventImpl.applyEntitySpawnCallback((ServerWorld) (Object) this, entity, cir);
     }
 }
