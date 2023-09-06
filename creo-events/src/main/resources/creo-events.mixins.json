@@ -4,7 +4,9 @@
   "package": "dev.creoii.creoapi.mixin.event",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "entity.AnimalEntityMixin",
     "entity.EntityMixin",
+    "entity.LivingEntityMixin",
     "entity.MobEntityMixin",
     "world.ServerWorldMixin"
   ],

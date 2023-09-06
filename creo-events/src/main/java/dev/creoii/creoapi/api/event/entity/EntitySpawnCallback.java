@@ -7,8 +7,8 @@ import net.minecraft.server.world.ServerWorld;
 
 /**
  * Callback for when an entity is added to a world. Is called on the server.
- *
- * <p>Return false to stop an entity from being added.
+ * <p>
+ * Return false to stop an entity from being added.
  */
 public interface EntitySpawnCallback {
     Event<EntitySpawnCallback> EVENT = EventFactory.createArrayBacked(EntitySpawnCallback.class,
