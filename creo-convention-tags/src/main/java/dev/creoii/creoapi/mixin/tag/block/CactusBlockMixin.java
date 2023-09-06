@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(CactusBlock.class)
 public class CactusBlockMixin {
-    @Inject(method = "canPlaceAt", at = @At("RETURN"), cancellable = true)
+    @Inject(method = "canPlaceAt", at = @At(value = "RETURN", ordinal = 1), cancellable = true)
     private void creo_cactusPlantableOn(BlockState state, WorldView world, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
         BlockTagImpl.applyCactusPlantableOn(state, world, pos, cir);
     }

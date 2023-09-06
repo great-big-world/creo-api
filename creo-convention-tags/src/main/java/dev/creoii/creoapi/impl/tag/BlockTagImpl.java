@@ -15,13 +15,13 @@ public final class BlockTagImpl {
     }
 
     public static void applyCocoaBeansPlantableOn(BlockState state, CallbackInfoReturnable<Boolean> cir) {
-        if (state.isIn(CreoBlockTags.COCOA_PLANTABLE_ON))
+        if (state.isIn(CreoBlockTags.COCOA_BEANS_PLANTABLE_ON))
             cir.setReturnValue(true);
     }
 
     public static void applyCactusPlantableOn(BlockState state, WorldView world, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
         if (!world.getBlockState(pos.up()).isLiquid()) {
-            if (state.isIn(CreoBlockTags.SIGNAL_FIRE_BASE_BLOCKS))
+            if (state.isIn(CreoBlockTags.CACTUS_PLANTABLE_ON))
                 cir.setReturnValue(true);
         }
     }
@@ -37,8 +37,12 @@ public final class BlockTagImpl {
     }
 
     public static void applyKeepsCoralAlive(BlockView world, BlockPos pos, Direction direction, CallbackInfoReturnable<Boolean> cir) {
-        if (world.getBlockState(pos.offset(direction)).isIn(CreoBlockTags.KEEPS_CORAL_ALIVE)) {
+        if (world.getBlockState(pos.offset(direction)).isIn(CreoBlockTags.KEEPS_CORAL_ALIVE))
             cir.setReturnValue(true);
-        }
+    }
+
+    public static void applyAnvilSofteners(BlockView world, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
+        if (world.getBlockState(pos.down()).isIn(CreoBlockTags.ANVIL_SOFTENERS))
+            cir.setReturnValue(false);
     }
 }

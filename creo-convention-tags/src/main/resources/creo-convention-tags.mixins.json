@@ -13,7 +13,8 @@
     "block.FarmlandBlockMixin",
     "block.NetherWartBlockMixin",
     "block.RespawnAnchorBlockMixin",
-    "block.TripwireBlockMixin"
+    "block.TripwireBlockMixin",
+    "entity.FallingBlockEntityMixin"
   ],
   "client": [
   ],
