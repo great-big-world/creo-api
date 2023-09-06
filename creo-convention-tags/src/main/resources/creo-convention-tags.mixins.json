@@ -18,7 +18,11 @@
     "block.entity.BeaconBlockEntityMixin",
     "block.entity.ConduitBlockEntityMixin",
     "block.entity.HopperBlockEntityMixin",
+    "entity.AllayEntityMixin",
+    "entity.DolphinEntityMixin",
     "entity.FallingBlockEntityMixin",
+    "entity.FurnaceMinecartEntityMixin",
+    "entity.IronGolemEntityMixin",
     "entity.RavagerEntityMixin",
     "entity.ShulkerEntityMixin"
   ],

@@ -20,9 +20,9 @@ public final class CreoItemTags {
     public static final TagKey<Item> DISABLES_SHIELD = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "disables_shield"));
     public static final TagKey<Item> ENCHANTMENT_FUEL = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "enchantment_fuel"));
     public static final TagKey<Item> BREWING_FUEL = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "brewing_fuel"));
-    public static final TagKey<Item> REPAIRS_IRON_GOLEM = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "repairs_iron_golem"));
+    public static final TagKey<Item> REPAIRS_IRON_GOLEMS = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "repairs_iron_golems"));
     public static final TagKey<Item> RESPAWN_ANCHOR_CHARGES = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "respawn_anchor_charges"));
-    public static final TagKey<Item> FURNACE_MINECART_FUEL = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "furnace_minecart_fuel"));
+    public static final TagKey<Item> FUELS_FURNACE_MINECARTS = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "fuels_furnace_minecarts"));
     public static final TagKey<Item> BREEDS_SHEEP = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "breeds/sheep"));
     public static final TagKey<Item> BREEDS_COW = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "breeds/cow"));
     public static final TagKey<Item> BREEDS_PIG = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "breeds/pig"));
