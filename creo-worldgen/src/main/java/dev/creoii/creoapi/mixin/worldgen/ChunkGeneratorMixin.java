@@ -1,11 +1,12 @@
 package dev.creoii.creoapi.mixin.worldgen;
 
-import dev.creoii.creoapi.impl.worldgen.StructurePlacementExtension;
+import dev.creoii.creoapi.impl.worldgen.ExtraAware;
 import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.structure.StructureTemplateManager;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.StructureAccessor;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
+import net.minecraft.world.gen.chunk.placement.StructurePlacement;
 import net.minecraft.world.gen.chunk.placement.StructurePlacementCalculator;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -18,8 +19,11 @@ public class ChunkGeneratorMixin {
     private void creo_extendStructurePlacements(DynamicRegistryManager registryManager, StructurePlacementCalculator placementCalculator, StructureAccessor structureAccessor, Chunk chunk, StructureTemplateManager structureTemplateManager, CallbackInfo ci) {
         placementCalculator.getStructureSets().forEach(entry -> {
             if (entry.hasKeyAndValue()) {
-                ((StructurePlacementExtension) entry.value().placement()).creo_setChunkGenerator((ChunkGenerator) (Object) this);
-                ((StructurePlacementExtension) entry.value().placement()).creo_setRegistryManager(registryManager);
+                StructurePlacement placement = entry.value().placement();
+                if (placement instanceof ExtraAware extraAware) {
+                    extraAware.creo_setChunkGenerator((ChunkGenerator) (Object) this);
+                    extraAware.creo_setRegistryManager(registryManager);
+                }
             }
         });
     }

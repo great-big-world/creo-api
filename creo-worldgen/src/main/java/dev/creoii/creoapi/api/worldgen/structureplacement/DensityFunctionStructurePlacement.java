@@ -4,7 +4,6 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import dev.creoii.creoapi.api.worldgen.CreoDensityFunctionVisitor;
 import dev.creoii.creoapi.api.worldgen.CreoStructurePlacementTypes;
-import dev.creoii.creoapi.impl.worldgen.StructurePlacementExtension;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.dynamic.Codecs;
@@ -25,7 +24,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-public class DensityFunctionStructurePlacement extends RandomSpreadStructurePlacement {
+public class DensityFunctionStructurePlacement extends ExtraAwareStructurePlacement {
     public static final Codec<DensityFunctionStructurePlacement> CODEC = RecordCodecBuilder.create(instance -> {
         return instance.group(DensityFunction.REGISTRY_ENTRY_CODEC.fieldOf("density_function").forGetter(predicate -> {
             return predicate.densityFunction;
@@ -65,10 +64,10 @@ public class DensityFunctionStructurePlacement extends RandomSpreadStructurePlac
     protected boolean isStartChunk(StructurePlacementCalculator calculator, int chunkX, int chunkZ) {
         if (!densityFunction.hasKeyAndValue()) return false;
 
-        ChunkGenerator chunkGenerator = ((StructurePlacementExtension) this).creo_getChunkGenerator();
+        ChunkGenerator chunkGenerator = creo_getChunkGenerator();
         if (!CACHED_NOISE_CONFIGS.containsKey(chunkGenerator)) {
             ChunkGeneratorSettings settings = chunkGenerator instanceof NoiseChunkGenerator noiseChunkGenerator ? noiseChunkGenerator.getSettings().value() : ChunkGeneratorSettings.createMissingSettings();
-            CACHED_NOISE_CONFIGS.put(chunkGenerator, NoiseConfig.create(settings, ((StructurePlacementExtension) this).creo_getRegistryManager().getWrapperOrThrow(RegistryKeys.NOISE_PARAMETERS), calculator.getStructureSeed()));
+            CACHED_NOISE_CONFIGS.put(chunkGenerator, NoiseConfig.create(settings, creo_getRegistryManager().getWrapperOrThrow(RegistryKeys.NOISE_PARAMETERS), calculator.getStructureSeed()));
         }
 
         BlockPos pos = getLocatePos(new ChunkPos(chunkX, chunkZ));
