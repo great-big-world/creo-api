@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "creo-mod-compatibility-test",
+  "version": "${version}",
+  "name": "Creo Mod Compatibility Test",
+  "description": "Test mod for Creo Mod Compatibility.",
+  "authors": [
+    "creoii"
+  ],
+  "contact": {
+    "repo": "https://github.com/jackr/creo-api"
+  },
+  "license": "All-Rights-Reserved",
+  "icon": "assets/creo-mod-compatibility/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "dev.creoii.creoapi.test.ModCompatibilityTest"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  },
+  "custom": {
+    "modmenu": {
+      "badges": [
+        "library"
+      ]
+    }
+  }
+}

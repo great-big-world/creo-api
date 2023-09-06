@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "creo-food-component-api",
+  "version": "${version}",
+  "name": "Creo Food Component API",
+  "description": "Extensions to the vanilla food component system.",
+  "authors": [
+    "creoii"
+  ],
+  "contact": {
+    "repo": "https://github.com/jackr/creo-api"
+  },
+  "license": "All-Rights-Reserved",
+  "icon": "assets/creo-events/icon.png",
+  "environment": "*",
+  "entrypoints": {},
+  "mixins": [
+    "creo-food-component-api.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  },
+  "custom": {
+    "modmenu": {
+      "badges": [
+        "library"
+      ]
+    }
+  }
+}

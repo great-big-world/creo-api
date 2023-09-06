@@ -1,7 +1,5 @@
 package dev.creoii.creoapi.mixin.event.entity;
 
-import dev.creoii.creoapi.api.event.entity.LivingDropLootCallback;
-import dev.creoii.creoapi.api.event.entity.LivingEquipStackCallback;
 import dev.creoii.creoapi.impl.event.EntityEventImpl;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
