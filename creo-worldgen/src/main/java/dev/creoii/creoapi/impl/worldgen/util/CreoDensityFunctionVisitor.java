@@ -1,4 +1,4 @@
-package dev.creoii.creoapi.api.worldgen;
+package dev.creoii.creoapi.impl.worldgen.util;
 
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.math.noise.DoublePerlinNoiseSampler;

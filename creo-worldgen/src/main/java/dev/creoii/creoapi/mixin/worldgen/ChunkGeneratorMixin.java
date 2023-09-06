@@ -1,6 +1,6 @@
 package dev.creoii.creoapi.mixin.worldgen;
 
-import dev.creoii.creoapi.impl.worldgen.ExtraAware;
+import dev.creoii.creoapi.impl.worldgen.util.ExtraAware;
 import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.structure.StructureTemplateManager;
 import net.minecraft.world.chunk.Chunk;

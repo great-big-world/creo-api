@@ -2,7 +2,7 @@ package dev.creoii.creoapi.api.worldgen.placementmodifier;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import dev.creoii.creoapi.api.worldgen.CreoDensityFunctionVisitor;
+import dev.creoii.creoapi.impl.worldgen.util.CreoDensityFunctionVisitor;
 import dev.creoii.creoapi.api.worldgen.CreoPlacementModifierTypes;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;

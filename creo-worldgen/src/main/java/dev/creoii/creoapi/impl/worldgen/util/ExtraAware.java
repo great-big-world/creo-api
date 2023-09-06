@@ -1,4 +1,4 @@
-package dev.creoii.creoapi.impl.worldgen;
+package dev.creoii.creoapi.impl.worldgen.util;
 
 import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
@@ -11,5 +11,4 @@ public interface ExtraAware {
     DynamicRegistryManager creo_getRegistryManager();
 
     void creo_setRegistryManager(DynamicRegistryManager chunkGenerator);
-
 }
