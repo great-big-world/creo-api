@@ -1,4 +1,4 @@
-package dev.creoii.creoapi.api.event;
+package dev.creoii.creoapi.api.event.entity;
 
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;

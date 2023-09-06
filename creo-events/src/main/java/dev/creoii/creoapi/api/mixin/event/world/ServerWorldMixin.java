@@ -1,6 +1,6 @@
-package dev.creoii.creoapi.api.mixin.event;
+package dev.creoii.creoapi.api.mixin.event.world;
 
-import dev.creoii.creoapi.api.event.EntitySpawnCallback;
+import dev.creoii.creoapi.api.event.entity.EntitySpawnCallback;
 import net.minecraft.entity.Entity;
 import net.minecraft.server.world.ServerWorld;
 import org.spongepowered.asm.mixin.Mixin;

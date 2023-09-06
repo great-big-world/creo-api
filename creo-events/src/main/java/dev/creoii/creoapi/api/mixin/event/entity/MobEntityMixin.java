@@ -1,6 +1,6 @@
-package dev.creoii.creoapi.api.mixin.event;
+package dev.creoii.creoapi.api.mixin.event.entity;
 
-import dev.creoii.creoapi.api.event.MobInitializeCallback;
+import dev.creoii.creoapi.api.event.entity.MobInitializeCallback;
 import net.minecraft.entity.EntityData;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.mob.MobEntity;

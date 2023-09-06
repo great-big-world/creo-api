@@ -4,8 +4,10 @@
   "package": "dev.creoii.creoapi.api.mixin.event",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "MobEntityMixin",
-    "ServerWorldMixin"
+    "entity.EntityMixin",
+    "entity.MobEntityMixin",
+    "world.ExplosionMixin",
+    "world.ServerWorldMixin"
   ],
   "client": [
   ],
