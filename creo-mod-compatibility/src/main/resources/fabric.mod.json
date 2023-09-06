@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "creo-mod-compatibility",
+  "version": "${version}",
+  "name": "Creo Mod Compatibility",
+  "description": "Utilities to improve compatibility between mods.",
+  "authors": [
+    "creoii"
+  ],
+  "contact": {
+    "repo": "https://github.com/jackr/creo-api"
+  },
+  "license": "All-Rights-Reserved",
+  "icon": "assets/creo-mod-compatibility/icon.png",
+  "environment": "*",
+  "entrypoints": {},
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  },
+  "custom": {
+    "modmenu": {
+      "badges": [
+        "library"
+      ]
+    }
+  }
+}
