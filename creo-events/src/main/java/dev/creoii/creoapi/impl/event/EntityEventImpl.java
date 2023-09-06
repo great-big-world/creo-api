@@ -70,4 +70,8 @@ public final class EntityEventImpl {
         if (!result)
             ci.cancel();
     }
+
+    public static void applyLivingEatFoodCallback(World world, LivingEntity livingEntity, ItemStack stack, CallbackInfoReturnable<ItemStack> cir) {
+        cir.setReturnValue(LivingEatFoodCallback.EVENT.invoker().eatFood(world, livingEntity, stack));
+    }
 }

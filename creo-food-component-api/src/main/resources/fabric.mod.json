@@ -11,9 +11,10 @@
     "repo": "https://github.com/jackr/creo-api"
   },
   "license": "All-Rights-Reserved",
-  "icon": "assets/creo-events/icon.png",
+  "icon": "assets/creo-food-component-api/icon.png",
   "environment": "*",
   "entrypoints": {},
+  "accessWidener": "creo-food-component-api.accesswidener",
   "mixins": [
     "creo-food-component-api.mixins.json"
   ],
