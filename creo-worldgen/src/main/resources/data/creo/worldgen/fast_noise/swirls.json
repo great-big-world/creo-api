@@ -7,6 +7,5 @@
   "noise_type": "open_simplex_2s",
   "octaves": 3,
   "rotation_type_3d": "none",
-  "seed": 1337,
   "weighted_strength": 0.5
 }

@@ -38,7 +38,10 @@ public class FastNoisePlacementModifier extends AbstractConditionalPlacementModi
 
     @Override
     public boolean shouldPlace(FeaturePlacementContext context, Random random, BlockPos pos) {
-        double noiseValue = noise.value().getNoise(pos.getX(), pos.getY(), pos.getZ());
+        if (!noise.hasKeyAndValue())
+            return false;
+        FastNoiseLite fastNoiseLite = noise.value().seed(context.getWorld().getSeed());
+        double noiseValue = fastNoiseLite.getNoise(pos.getX(), pos.getY(), pos.getZ());
         return noiseValue >= minThreshold && noiseValue < maxThreshold;
     }
 }

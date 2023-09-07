@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import dev.creoii.creoapi.api.worldgen.fastnoise.FastNoiseParameters;
 import dev.creoii.creoapi.api.worldgen.fastnoise.FastNoiseLite;
+import dev.creoii.creoapi.impl.worldgen.util.AwareNoiseConfig;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.dynamic.CodecHolder;
 import net.minecraft.world.Heightmap;
@@ -39,7 +40,8 @@ public record FastNoiseMaterialCondition(RegistryEntry<FastNoiseLite> noise, dou
         protected boolean test() {
             if (!noise.hasKeyAndValue())
                 return false;
-            double value = noise.value().getNoise(context.blockX, context.chunk.sampleHeightmap(Heightmap.Type.WORLD_SURFACE_WG, context.blockX, context.blockZ), context.blockZ);
+            FastNoiseLite fastNoiseLite = noise.value().seed(((AwareNoiseConfig) context.noiseConfig).creo_getWorld().getSeed());
+            double value = fastNoiseLite.getNoise(context.blockX, context.chunk.sampleHeightmap(Heightmap.Type.WORLD_SURFACE_WG, context.blockX, context.blockZ), context.blockZ);
             return value >= FastNoiseMaterialCondition.this.minThreshold && value <= FastNoiseMaterialCondition.this.maxThreshold;
         }
     }

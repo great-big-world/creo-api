@@ -7,6 +7,5 @@
   "lacunarity": 2.0,
   "gain": 0.9,
   "rotation_type_3d": "none",
-  "seed": 1337,
   "weighted_strength": 0.5
 }

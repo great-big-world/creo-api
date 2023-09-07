@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import dev.creoii.creoapi.api.worldgen.CreoStructurePlacementTypes;
 import dev.creoii.creoapi.api.worldgen.fastnoise.FastNoiseLite;
+import dev.creoii.creoapi.impl.worldgen.util.AwareNoiseConfig;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.dynamic.Codecs;
 import net.minecraft.util.math.BlockPos;
@@ -53,9 +54,12 @@ public class FastNoiseStructurePlacement extends RandomSpreadStructurePlacement 
     }
 
     protected boolean isStartChunk(StructurePlacementCalculator calculator, int chunkX, int chunkZ) {
+        if (!noise.hasKeyAndValue())
+            return false;
         ChunkPos chunkPos = getStartChunk(calculator.getStructureSeed(), chunkX, chunkZ);
         BlockPos pos = getLocatePos(new ChunkPos(chunkX, chunkZ));
-        double noiseValue = noise.value().getNoise(pos.getX(), 0f, pos.getZ());
+        FastNoiseLite fastNoiseLite = noise.value().seed(((AwareNoiseConfig) calculator.getNoiseConfig()).creo_getWorld().getSeed());
+        double noiseValue = fastNoiseLite.getNoise(pos.getX(), 0f, pos.getZ());
         if (noiseValue >= minThreshold && noiseValue < maxThreshold) {
             return chunkPos.x == chunkX && chunkPos.z == chunkZ;
         }
