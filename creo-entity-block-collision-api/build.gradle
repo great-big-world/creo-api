@@ -1,2 +1,13 @@
 version = project.mod_version
 archivesBaseName = project.archives_base_name
+
+repositories {
+    maven {
+        url = uri "https://api.modrinth.com/maven"
+        content { includeGroup "maven.modrinth" }
+    }
+}
+
+dependencies {
+    modCompileOnly "maven.modrinth:lithium:mc${project.minecraft_version}-${project.lithium_version}"
+}

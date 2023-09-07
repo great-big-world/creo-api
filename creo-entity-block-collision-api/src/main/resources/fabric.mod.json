@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "creo-entity-attributes",
+  "version": "${version}",
+  "name": "Creo Entity-Block Collision API",
+  "description": "Modify collision interactions between entities and blocks.",
+  "authors": [
+    "creoii"
+  ],
+  "contact": {
+    "repo": "https://github.com/jackr/creo-api"
+  },
+  "license": "All-Rights-Reserved",
+  "icon": "assets/creo-entity-block-collision-api/icon.png",
+  "environment": "*",
+  "entrypoints": {},
+  "mixins": [
+    "creo-entity-attributes.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  },
+  "custom": {
+    "modmenu": {
+      "badges": [
+        "library"
+      ]
+    }
+  }
+}
