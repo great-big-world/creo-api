@@ -1,7 +1,6 @@
 package dev.creoii.creoapi.mixin.collision;
 
-import dev.creoii.creoapi.api.collision.EntityBlockCollision;
-import dev.creoii.creoapi.impl.collision.util.EntityBlockCollisionSpliterator;
+import dev.creoii.creoapi.impl.collision.EntityBlockCollisionImpl;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.shape.VoxelShape;
@@ -16,11 +15,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public interface CollisionViewMixin {
     @Inject(method = "getBlockCollisions", at = @At("HEAD"), cancellable = true)
     private void creo_entityBlockCollisions(@Nullable Entity entity, Box box, CallbackInfoReturnable<Iterable<VoxelShape>> cir) {
-        if (entity != null) {
-            if (EntityBlockCollision.getInteractions().containsKey(entity.getType())) {
-                EntityBlockCollision collision = EntityBlockCollision.getInteractions().get(entity.getType());
-                cir.setReturnValue(() -> new EntityBlockCollisionSpliterator((CollisionView) this, entity, box, collision.getPredicate()));
-            }
-        }
+        EntityBlockCollisionImpl.applyEntityBlockCollision((CollisionView) this, entity, box, cir);
     }
 }

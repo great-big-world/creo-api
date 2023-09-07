@@ -1,7 +1,6 @@
 package dev.creoii.creoapi.mixin.collision.compat;
 
-import dev.creoii.creoapi.api.collision.EntityBlockCollision;
-import dev.creoii.creoapi.impl.collision.util.EntityBlockCollisionSpliterator;
+import dev.creoii.creoapi.impl.collision.EntityBlockCollisionImpl;
 import me.jellysquid.mods.lithium.common.entity.LithiumEntityCollisions;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.Box;
@@ -18,11 +17,6 @@ import java.util.List;
 public class LithiumEntityCollisionsMixin {
     @Inject(method = "getBlockCollisions(Lnet/minecraft/world/World;Lnet/minecraft/entity/Entity;Lnet/minecraft/util/math/Box;)Ljava/util/List;", at = @At("HEAD"), cancellable = true)
     private static void creo_lithiumCollisionCompat(World world, Entity entity, Box box, CallbackInfoReturnable<List<VoxelShape>> cir) {
-        if (entity != null) {
-            if (EntityBlockCollision.getInteractions().containsKey(entity.getType())) {
-                EntityBlockCollision collision = EntityBlockCollision.getInteractions().get(entity.getType());
-                cir.setReturnValue(new EntityBlockCollisionSpliterator(world, entity, box, collision.getPredicate()).collectAll());
-            }
-        }
+        EntityBlockCollisionImpl.applyEntityBlockCollisionLithium(world, entity, box, cir);
     }
 }
