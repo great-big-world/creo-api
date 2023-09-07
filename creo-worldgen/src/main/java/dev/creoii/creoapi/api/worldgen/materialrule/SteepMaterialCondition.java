@@ -9,15 +9,19 @@ import net.minecraft.world.gen.surfacebuilder.MaterialRules;
 
 public class SteepMaterialCondition implements MaterialRules.MaterialCondition {
     public static final Codec<SteepMaterialCondition> CODEC = RecordCodecBuilder.create(instance -> {
-        return instance.group(Codec.intRange(1, 16).fieldOf("steepness").forGetter(predicate -> {
-            return predicate.steepness;
+        return instance.group(Codec.intRange(1, 16).fieldOf("min_steepness").forGetter(predicate -> {
+            return predicate.minSteepness;
+        }), Codec.intRange(1, 16).fieldOf("max_steepness").forGetter(predicate -> {
+            return predicate.maxSteepness;
         })).apply(instance, SteepMaterialCondition::new);
     });
     public static final CodecHolder<SteepMaterialCondition> CODEC_HOLDER = CodecHolder.of(CODEC);
-    private final int steepness;
+    private final int minSteepness;
+    private final int maxSteepness;
 
-    public SteepMaterialCondition(int steepness) {
-        this.steepness = steepness;
+    public SteepMaterialCondition(int minSteepness, int maxSteepness) {
+        this.minSteepness = minSteepness;
+        this.maxSteepness = Math.max(maxSteepness, minSteepness);
     }
 
     @Override
@@ -27,18 +31,22 @@ public class SteepMaterialCondition implements MaterialRules.MaterialCondition {
 
     @Override
     public MaterialRules.BooleanSupplier apply(final MaterialRules.MaterialRuleContext context) {
-        int i = context.blockX & 0xf;
-        int j = context.blockZ & 0xf;
-        int k = Math.max(j - 1, 0);
-        int l = Math.min(j + 1, 15);
+        int x = context.blockX & 0xf;
+        int z = context.blockZ & 0xf;
         Chunk chunk = context.chunk;
-        int n = chunk.sampleHeightmap(Heightmap.Type.WORLD_SURFACE_WG, i, l);
-        if (n >= chunk.sampleHeightmap(Heightmap.Type.WORLD_SURFACE_WG, i, k) + steepness) {
+
+        int max = chunk.sampleHeightmap(Heightmap.Type.WORLD_SURFACE_WG, x, Math.max(z - 1, 0));
+        int min = chunk.sampleHeightmap(Heightmap.Type.WORLD_SURFACE_WG, x, Math.min(z + 1, 15));
+        int steepness = Math.abs(min - max);
+        if (steepness >= minSteepness && steepness <= maxSteepness) {
             return () -> true;
         }
-        int o = Math.max(i - 1, 0);
-        int p = Math.min(i + 1, 15);
-        int q = chunk.sampleHeightmap(Heightmap.Type.WORLD_SURFACE_WG, o, j);
-        return () -> q >= chunk.sampleHeightmap(Heightmap.Type.WORLD_SURFACE_WG, p, j) + steepness;
+
+        max = chunk.sampleHeightmap(Heightmap.Type.WORLD_SURFACE_WG, Math.max(x - 1, 0), z);
+        min = chunk.sampleHeightmap(Heightmap.Type.WORLD_SURFACE_WG, Math.min(x + 1, 15), z);
+        steepness = Math.abs(max - min);
+        if (steepness >= minSteepness && steepness <= maxSteepness)
+            return () -> true;
+        return () -> false;
     }
 }

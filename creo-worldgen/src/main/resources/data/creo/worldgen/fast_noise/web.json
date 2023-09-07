@@ -5,7 +5,7 @@
   "domain_warp_amp": 1.0,
   "domain_warp_type": "open_simplex_2_reduced",
   "fractal_type": "none",
-  "frequency": 0.05,
+  "frequency": 0.075,
   "noise_type": "cellular",
   "rotation_type_3d": "none"
 }
