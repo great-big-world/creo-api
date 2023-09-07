@@ -22,22 +22,22 @@ public class NoiseCountPlacementModifier extends PlacementModifier {
             return predicate.noise;
         }), Codec.DOUBLE.fieldOf("multiplier").forGetter(predicate -> {
             return predicate.multiplier;
-        }), Codec.DOUBLE.optionalFieldOf("min", Double.MIN_VALUE).forGetter(predicate -> {
-            return predicate.min;
-        }), Codec.DOUBLE.optionalFieldOf("max", Double.MAX_VALUE).forGetter(predicate -> {
-            return predicate.max;
+        }), Codec.DOUBLE.optionalFieldOf("min_threshold", Double.MIN_VALUE).forGetter(predicate -> {
+            return predicate.minThreshold;
+        }), Codec.DOUBLE.optionalFieldOf("max_threshold", Double.MAX_VALUE).forGetter(predicate -> {
+            return predicate.maxThreshold;
         })).apply(instance, NoiseCountPlacementModifier::new);
     });
     private final RegistryKey<DoublePerlinNoiseSampler.NoiseParameters> noise;
     private final double multiplier;
-    private final double min;
-    private final double max;
+    private final double minThreshold;
+    private final double maxThreshold;
 
-    public NoiseCountPlacementModifier(RegistryKey<DoublePerlinNoiseSampler.NoiseParameters> noise, double multiplier, double min, double max) {
+    public NoiseCountPlacementModifier(RegistryKey<DoublePerlinNoiseSampler.NoiseParameters> noise, double multiplier, double minThreshold, double maxThreshold) {
         this.noise = noise;
         this.multiplier = multiplier;
-        this.min = min;
-        this.max = max;
+        this.minThreshold = minThreshold;
+        this.maxThreshold = maxThreshold;
     }
 
     @Override
@@ -50,7 +50,7 @@ public class NoiseCountPlacementModifier extends PlacementModifier {
         if (context.getWorld().getChunkManager() instanceof ServerChunkManager chunkManager) {
             DoublePerlinNoiseSampler sampler = chunkManager.getNoiseConfig().getOrCreateSampler(noise);
             double noiseValue = sampler.sample(pos.getX(), pos.getY(), pos.getZ()) * multiplier;
-            if (noiseValue >= min && noiseValue < max)
+            if (noiseValue >= minThreshold && noiseValue < maxThreshold)
                 return IntStream.range(0, (int) (noiseValue * multiplier)).mapToObj(i -> pos);
         }
         return Stream.of();

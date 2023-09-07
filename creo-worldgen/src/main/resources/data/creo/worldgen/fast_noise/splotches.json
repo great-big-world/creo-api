@@ -1,0 +1,14 @@
+{
+  "cellular_distance_function": "hybrid",
+  "cellular_jitter_modifier": 1.0,
+  "cellular_return_type": "distance",
+  "domain_warp_type": "open_simplex_2",
+  "fractal_type": "domain_warp_independent",
+  "domain_warp_amp": 100,
+  "frequency": 0.01,
+  "noise_type": "cellular",
+  "octaves": 3,
+  "rotation_type_3d": "none",
+  "seed": 1337,
+  "weighted_strength": 0.5
+}

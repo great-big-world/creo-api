@@ -2,6 +2,7 @@ package dev.creoii.creoapi.api.worldgen.structureplacement;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import dev.creoii.creoapi.impl.worldgen.util.AwareNoiseConfig;
 import dev.creoii.creoapi.impl.worldgen.util.CreoDensityFunctionVisitor;
 import dev.creoii.creoapi.api.worldgen.CreoStructurePlacementTypes;
 import net.minecraft.registry.RegistryKeys;
@@ -10,6 +11,7 @@ import net.minecraft.util.dynamic.Codecs;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.Vec3i;
+import net.minecraft.world.World;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.chunk.ChunkGeneratorSettings;
 import net.minecraft.world.gen.chunk.NoiseChunkGenerator;
@@ -24,7 +26,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-public class DensityFunctionStructurePlacement extends ExtraAwareStructurePlacement {
+public class DensityFunctionStructurePlacement extends RandomSpreadStructurePlacement {
     public static final Codec<DensityFunctionStructurePlacement> CODEC = RecordCodecBuilder.create(instance -> {
         return instance.group(DensityFunction.REGISTRY_ENTRY_CODEC.fieldOf("density_function").forGetter(predicate -> {
             return predicate.densityFunction;
@@ -44,7 +46,7 @@ public class DensityFunctionStructurePlacement extends ExtraAwareStructurePlacem
             return predicate.getExclusionZone();
         }), Codec.intRange(0, 4096).fieldOf("spacing").forGetter(RandomSpreadStructurePlacement::getSpacing), Codec.intRange(0, 4096).fieldOf("separation").forGetter(RandomSpreadStructurePlacement::getSeparation), SpreadType.CODEC.optionalFieldOf("spread_type", SpreadType.LINEAR).forGetter(RandomSpreadStructurePlacement::getSpreadType)).apply(instance, DensityFunctionStructurePlacement::new);
     });
-    protected static final Map<ChunkGenerator, NoiseConfig> CACHED_NOISE_CONFIGS = new HashMap<>();
+    protected static final Map<Long, NoiseConfig> CACHED_NOISE_CONFIGS = new HashMap<>();
     private final RegistryEntry<DensityFunction> densityFunction;
     private final double min;
     private final double max;
@@ -62,16 +64,18 @@ public class DensityFunctionStructurePlacement extends ExtraAwareStructurePlacem
     }
 
     protected boolean isStartChunk(StructurePlacementCalculator calculator, int chunkX, int chunkZ) {
-        if (!densityFunction.hasKeyAndValue()) return false;
+        if (!densityFunction.hasKeyAndValue())
+            return false;
 
-        ChunkGenerator chunkGenerator = creo_getChunkGenerator();
-        if (!CACHED_NOISE_CONFIGS.containsKey(chunkGenerator)) {
+        long seed = ((AwareNoiseConfig) calculator.getNoiseConfig()).creo_getWorld().getSeed();
+        if (!CACHED_NOISE_CONFIGS.containsKey(seed)) {
+            ChunkGenerator chunkGenerator = ((AwareNoiseConfig) calculator.getNoiseConfig()).creo_getChunkGenerator();
             ChunkGeneratorSettings settings = chunkGenerator instanceof NoiseChunkGenerator noiseChunkGenerator ? noiseChunkGenerator.getSettings().value() : ChunkGeneratorSettings.createMissingSettings();
-            CACHED_NOISE_CONFIGS.put(chunkGenerator, NoiseConfig.create(settings, creo_getRegistryManager().getWrapperOrThrow(RegistryKeys.NOISE_PARAMETERS), calculator.getStructureSeed()));
+            CACHED_NOISE_CONFIGS.put(seed, NoiseConfig.create(settings, ((AwareNoiseConfig) calculator.getNoiseConfig()).creo_getWorld().getRegistryManager().getWrapperOrThrow(RegistryKeys.NOISE_PARAMETERS), seed));
         }
 
         BlockPos pos = getLocatePos(new ChunkPos(chunkX, chunkZ));
-        double value = densityFunction.value().apply(new CreoDensityFunctionVisitor(CACHED_NOISE_CONFIGS.get(chunkGenerator))).sample(new DensityFunction.UnblendedNoisePos(pos.getX(), pos.getY(), pos.getZ()));
+        double value = densityFunction.value().apply(new CreoDensityFunctionVisitor(CACHED_NOISE_CONFIGS.get(seed))).sample(new DensityFunction.UnblendedNoisePos(pos.getX(), pos.getY(), pos.getZ()));
         return value >= min && value < max;
     }
 

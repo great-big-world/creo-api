@@ -1,3 +1,12 @@
 accessWidener v2 named
 
+accessible field net/minecraft/world/gen/surfacebuilder/MaterialRules$MaterialRuleContext blockX I
+accessible field net/minecraft/world/gen/surfacebuilder/MaterialRules$MaterialRuleContext blockZ I
+accessible field net/minecraft/world/gen/surfacebuilder/MaterialRules$MaterialRuleContext chunk Lnet/minecraft/world/chunk/Chunk;
+accessible field net/minecraft/world/gen/surfacebuilder/MaterialRules$MaterialRuleContext noiseConfig Lnet/minecraft/world/gen/noise/NoiseConfig;
+
 accessible method net/minecraft/world/gen/placementmodifier/AbstractConditionalPlacementModifier shouldPlace (Lnet/minecraft/world/gen/feature/FeaturePlacementContext;Lnet/minecraft/util/math/random/Random;Lnet/minecraft/util/math/BlockPos;)Z
+
+accessible class net/minecraft/world/gen/surfacebuilder/MaterialRules$BooleanSupplier
+accessible class net/minecraft/world/gen/surfacebuilder/MaterialRules$MaterialRuleContext
+accessible class net/minecraft/world/gen/surfacebuilder/MaterialRules$HorizontalLazyAbstractPredicate

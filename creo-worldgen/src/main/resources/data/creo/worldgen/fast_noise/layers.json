@@ -1,0 +1,12 @@
+{
+  "domain_warp_type": "none",
+  "fractal_type": "ridged",
+  "frequency": 0.01,
+  "noise_type": "cellular",
+  "octaves": 3,
+  "lacunarity": 2.0,
+  "gain": 0.9,
+  "rotation_type_3d": "none",
+  "seed": 1337,
+  "weighted_strength": 0.5
+}

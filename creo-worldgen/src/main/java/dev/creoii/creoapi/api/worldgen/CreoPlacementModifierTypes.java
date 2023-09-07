@@ -16,6 +16,10 @@ public final class CreoPlacementModifierTypes {
      */
     public static final PlacementModifierType<NoiseCountPlacementModifier> NOISE_COUNT = () -> NoiseCountPlacementModifier.CODEC;
     /**
+     * Conditional placement modifier that places if the fast noise value at the position is within a range.
+     */
+    public static final PlacementModifierType<FastNoisePlacementModifier> FAST_NOISE = () -> FastNoisePlacementModifier.CODEC;
+    /**
      * Conditional placement modifier that places if the position is as steep or steeper than the steepness value.
      */
     public static final PlacementModifierType<SteepPlacementModifier> STEEP = () -> SteepPlacementModifier.CODEC;
@@ -71,6 +75,7 @@ public final class CreoPlacementModifierTypes {
     static void register() {
         Registry.register(Registries.PLACEMENT_MODIFIER_TYPE, new Identifier(CreoWorldgen.NAMESPACE, "noise"), NOISE);
         Registry.register(Registries.PLACEMENT_MODIFIER_TYPE, new Identifier(CreoWorldgen.NAMESPACE, "noise_count"), NOISE_COUNT);
+        Registry.register(Registries.PLACEMENT_MODIFIER_TYPE, new Identifier(CreoWorldgen.NAMESPACE, "fast_noise"), FAST_NOISE);
         Registry.register(Registries.PLACEMENT_MODIFIER_TYPE, new Identifier(CreoWorldgen.NAMESPACE, "steep"), STEEP);
         Registry.register(Registries.PLACEMENT_MODIFIER_TYPE, new Identifier(CreoWorldgen.NAMESPACE, "offset"), OFFSET);
         Registry.register(Registries.PLACEMENT_MODIFIER_TYPE, new Identifier(CreoWorldgen.NAMESPACE, "density_function"), DENSITY_FUNCTION);

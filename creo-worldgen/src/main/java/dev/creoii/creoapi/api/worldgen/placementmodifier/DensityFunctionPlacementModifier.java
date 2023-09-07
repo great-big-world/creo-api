@@ -24,21 +24,21 @@ public class DensityFunctionPlacementModifier extends AbstractConditionalPlaceme
     public static final Codec<DensityFunctionPlacementModifier> CODEC = RecordCodecBuilder.create(instance -> {
         return instance.group(DensityFunction.REGISTRY_ENTRY_CODEC.fieldOf("density_function").forGetter(predicate -> {
             return predicate.densityFunction;
-        }), Codec.DOUBLE.optionalFieldOf("min", -1d).forGetter(predicate -> {
-            return predicate.min;
-        }), Codec.DOUBLE.optionalFieldOf("max", 1d).forGetter(predicate -> {
-            return predicate.max;
+        }), Codec.DOUBLE.optionalFieldOf("min_threshold", -1d).forGetter(predicate -> {
+            return predicate.minThreshold;
+        }), Codec.DOUBLE.optionalFieldOf("max_threshold", 1d).forGetter(predicate -> {
+            return predicate.maxThreshold;
         })).apply(instance, DensityFunctionPlacementModifier::new);
     });
     protected static final Map<Long, NoiseConfig> CACHED_NOISE_CONFIGS = new HashMap<>();
     private final RegistryEntry<DensityFunction> densityFunction;
-    private final double min;
-    private final double max;
+    private final double minThreshold;
+    private final double maxThreshold;
 
-    public DensityFunctionPlacementModifier(RegistryEntry<DensityFunction> densityFunction, double min, double max) {
+    public DensityFunctionPlacementModifier(RegistryEntry<DensityFunction> densityFunction, double minThreshold, double maxThreshold) {
         this.densityFunction = densityFunction;
-        this.min = min;
-        this.max = max;
+        this.minThreshold = minThreshold;
+        this.maxThreshold = maxThreshold;
     }
 
     @Override
@@ -51,12 +51,13 @@ public class DensityFunctionPlacementModifier extends AbstractConditionalPlaceme
         StructureWorldAccess world = context.getWorld();
         if (!densityFunction.hasKeyAndValue() || world.isClient()) return false;
 
-        if (!CACHED_NOISE_CONFIGS.containsKey(world.getSeed())) {
+        long seed = world.getSeed();
+        if (!CACHED_NOISE_CONFIGS.containsKey(seed)) {
             ChunkGeneratorSettings settings = context.getChunkGenerator() instanceof NoiseChunkGenerator noiseChunkGenerator ? noiseChunkGenerator.getSettings().value() : ChunkGeneratorSettings.createMissingSettings();
-            CACHED_NOISE_CONFIGS.put(world.getSeed(), NoiseConfig.create(settings, world.getRegistryManager().getWrapperOrThrow(RegistryKeys.NOISE_PARAMETERS), world.getSeed()));
+            CACHED_NOISE_CONFIGS.put(seed, NoiseConfig.create(settings, world.getRegistryManager().getWrapperOrThrow(RegistryKeys.NOISE_PARAMETERS), seed));
         }
 
-        double value = densityFunction.value().apply(new CreoDensityFunctionVisitor(CACHED_NOISE_CONFIGS.get(world))).sample(new DensityFunction.UnblendedNoisePos(pos.getX(), pos.getY(), pos.getZ()));
-        return value >= min && value < max;
+        double value = densityFunction.value().apply(new CreoDensityFunctionVisitor(CACHED_NOISE_CONFIGS.get(seed))).sample(new DensityFunction.UnblendedNoisePos(pos.getX(), pos.getY(), pos.getZ()));
+        return value >= minThreshold && value < maxThreshold;
     }
 }

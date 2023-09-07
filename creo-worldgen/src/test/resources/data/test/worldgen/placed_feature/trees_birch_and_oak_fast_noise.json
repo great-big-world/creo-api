@@ -21,10 +21,10 @@
       "type": "minecraft:in_square"
     },
     {
-      "type": "creo:noise",
-      "noise": "minecraft:iceberg_surface",
-      "min_threshold": 0.0,
-      "max_threshold": 1.0
+      "type": "creo:fast_noise",
+      "noise": "creo:honeycomb",
+      "min_threshold": -0.5,
+      "max_threshold": 0.5
     },
     {
       "type": "minecraft:surface_water_depth_filter",

@@ -26,28 +26,28 @@ public class DensityFunctionCountPlacementModifier extends PlacementModifier {
             return predicate.densityFunction;
         }), Codec.DOUBLE.fieldOf("multiplier").forGetter(predicate -> {
             return predicate.multiplier;
-        }), Codec.DOUBLE.optionalFieldOf("min", Double.MIN_VALUE).forGetter(predicate -> {
-            return predicate.min;
-        }), Codec.DOUBLE.optionalFieldOf("max", Double.MAX_VALUE).forGetter(predicate -> {
-            return predicate.max;
+        }), Codec.DOUBLE.optionalFieldOf("min_threshold", Double.MIN_VALUE).forGetter(predicate -> {
+            return predicate.minThreshold;
+        }), Codec.DOUBLE.optionalFieldOf("max_threshold", Double.MAX_VALUE).forGetter(predicate -> {
+            return predicate.maxThreshold;
         })).apply(instance, DensityFunctionCountPlacementModifier::new);
     });
     private final RegistryEntry<DensityFunction> densityFunction;
     private final double multiplier;
-    private final double min;
-    private final double max;
+    private final double minThreshold;
+    private final double maxThreshold;
 
-    public DensityFunctionCountPlacementModifier(RegistryEntry<DensityFunction> densityFunction, double multiplier, double min, double max) {
+    public DensityFunctionCountPlacementModifier(RegistryEntry<DensityFunction> densityFunction, double multiplier, double minThreshold, double maxThreshold) {
         this.densityFunction = densityFunction;
         this.multiplier = multiplier;
 
-        if (max == Double.MAX_VALUE && densityFunction.hasKeyAndValue())
-            this.max = densityFunction.value().maxValue();
-        else this.max = max;
+        if (maxThreshold == Double.MAX_VALUE && densityFunction.hasKeyAndValue())
+            this.maxThreshold = densityFunction.value().maxValue();
+        else this.maxThreshold = maxThreshold;
 
-        if (min == Double.MIN_VALUE && densityFunction.hasKeyAndValue())
-            this.min = densityFunction.value().minValue();
-        else this.min = min;
+        if (minThreshold == Double.MIN_VALUE && densityFunction.hasKeyAndValue())
+            this.minThreshold = densityFunction.value().minValue();
+        else this.minThreshold = minThreshold;
     }
 
     @Override
@@ -60,13 +60,14 @@ public class DensityFunctionCountPlacementModifier extends PlacementModifier {
         StructureWorldAccess world = context.getWorld();
         if (!densityFunction.hasKeyAndValue() || world.isClient()) return Stream.of();
 
-        if (!DensityFunctionPlacementModifier.CACHED_NOISE_CONFIGS.containsKey(world.getSeed())) {
+        long seed = world.getSeed();
+        if (!DensityFunctionPlacementModifier.CACHED_NOISE_CONFIGS.containsKey(seed)) {
             ChunkGeneratorSettings settings = context.getChunkGenerator() instanceof NoiseChunkGenerator noiseChunkGenerator ? noiseChunkGenerator.getSettings().value() : ChunkGeneratorSettings.createMissingSettings();
-            DensityFunctionPlacementModifier.CACHED_NOISE_CONFIGS.put(world.getSeed(), NoiseConfig.create(settings, world.getRegistryManager().getWrapperOrThrow(RegistryKeys.NOISE_PARAMETERS), world.getSeed()));
+            DensityFunctionPlacementModifier.CACHED_NOISE_CONFIGS.put(seed, NoiseConfig.create(settings, world.getRegistryManager().getWrapperOrThrow(RegistryKeys.NOISE_PARAMETERS), seed));
         }
 
-        double value = densityFunction.value().apply(new CreoDensityFunctionVisitor(DensityFunctionPlacementModifier.CACHED_NOISE_CONFIGS.get(world))).sample(new DensityFunction.UnblendedNoisePos(pos.getX(), pos.getY(), pos.getZ()));
-        if (value >= min && value < max)
+        double value = densityFunction.value().apply(new CreoDensityFunctionVisitor(DensityFunctionPlacementModifier.CACHED_NOISE_CONFIGS.get(seed))).sample(new DensityFunction.UnblendedNoisePos(pos.getX(), pos.getY(), pos.getZ()));
+        if (value >= minThreshold && value < maxThreshold)
             return IntStream.range(0, (int) (value * multiplier)).mapToObj(i -> pos);
         return Stream.of();
     }

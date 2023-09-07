@@ -185,7 +185,7 @@
     [
       "minecraft:glow_lichen",
       "minecraft:forest_flowers",
-      "test:trees_birch_and_oak_near_structure",
+      "test:trees_birch_and_oak_fast_noise",
       "minecraft:flower_default",
       "minecraft:patch_grass_forest",
       "minecraft:brown_mushroom_normal",

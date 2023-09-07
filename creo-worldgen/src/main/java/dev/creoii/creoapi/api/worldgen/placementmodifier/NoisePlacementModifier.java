@@ -17,20 +17,20 @@ public class NoisePlacementModifier extends AbstractConditionalPlacementModifier
     public static final Codec<NoisePlacementModifier> CODEC = RecordCodecBuilder.create(instance -> {
         return instance.group(RegistryKey.createCodec(RegistryKeys.NOISE_PARAMETERS).fieldOf("noise").forGetter(predicate -> {
             return predicate.noise;
-        }), Codec.DOUBLE.optionalFieldOf("min", -1d).forGetter(predicate -> {
-            return predicate.min;
-        }), Codec.DOUBLE.optionalFieldOf("max", 1d).forGetter(predicate -> {
-            return predicate.max;
+        }), Codec.DOUBLE.optionalFieldOf("min_threshold", -1d).forGetter(predicate -> {
+            return predicate.minThreshold;
+        }), Codec.DOUBLE.optionalFieldOf("max_threshold", 1d).forGetter(predicate -> {
+            return predicate.maxThreshold;
         })).apply(instance, NoisePlacementModifier::new);
     });
     private final RegistryKey<DoublePerlinNoiseSampler.NoiseParameters> noise;
-    private final double min;
-    private final double max;
+    private final double minThreshold;
+    private final double maxThreshold;
 
-    public NoisePlacementModifier(RegistryKey<DoublePerlinNoiseSampler.NoiseParameters> noise, double min, double max) {
+    public NoisePlacementModifier(RegistryKey<DoublePerlinNoiseSampler.NoiseParameters> noise, double minThreshold, double maxThreshold) {
         this.noise = noise;
-        this.min = min;
-        this.max = max;
+        this.minThreshold = minThreshold;
+        this.maxThreshold = maxThreshold;
     }
 
     @Override
@@ -43,7 +43,7 @@ public class NoisePlacementModifier extends AbstractConditionalPlacementModifier
         if (context.getWorld().getChunkManager() instanceof ServerChunkManager chunkManager) {
             DoublePerlinNoiseSampler sampler = chunkManager.getNoiseConfig().getOrCreateSampler(noise);
             double noiseValue = sampler.sample(pos.getX(), pos.getY(), pos.getZ());
-            return noiseValue >= min && noiseValue < max;
+            return noiseValue >= minThreshold && noiseValue < maxThreshold;
         }
         return false;
     }
