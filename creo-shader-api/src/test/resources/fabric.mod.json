@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "creo-shader-api-test",
+  "version": "${version}",
+  "name": "Creo Shader API Test",
+  "description": "Test mod for the Creo Shader API.",
+  "authors": [
+    "creoii"
+  ],
+  "contact": {
+    "repo": "https://github.com/jackr/creo-api"
+  },
+  "license": "All-Rights-Reserved",
+  "icon": "assets/creo-shader-api/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "dev.creoii.creoapi.test.ShaderTest"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  },
+  "custom": {
+    "modmenu": {
+      "badges": [
+        "library"
+      ]
+    }
+  }
+}

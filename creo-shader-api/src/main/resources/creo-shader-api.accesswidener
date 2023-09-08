@@ -1,0 +1,7 @@
+accessWidener v2 named
+
+accessible method net/minecraft/client/render/GameRenderer loadPostProcessor (Lnet/minecraft/util/Identifier;)V
+accessible method net/minecraft/client/gl/PostEffectProcessor getTarget (Ljava/lang/String;)Lnet/minecraft/client/gl/Framebuffer;
+
+accessible field net/minecraft/client/gl/PostEffectPass projectionMatrix Lorg/joml/Matrix4f;
+mutable field net/minecraft/client/gl/PostEffectProcessor passes Ljava/util/List;

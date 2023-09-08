@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "creo-shader-api",
+  "version": "${version}",
+  "name": "Creo Shader API",
+  "description": "Interaction with vanilla shaders.",
+  "authors": [
+    "creoii"
+  ],
+  "contact": {
+    "repo": "https://github.com/jackr/creo-api"
+  },
+  "license": "All-Rights-Reserved",
+  "icon": "assets/creo-shader-api/icon.png",
+  "environment": "*",
+  "entrypoints": {},
+  "accessWidener": "creo-shader-api.accesswidener",
+  "mixins": [
+    "creo-shader-api.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  },
+  "custom": {
+    "modmenu": {
+      "badges": [
+        "library"
+      ]
+    }
+  }
+}
