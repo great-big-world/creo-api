@@ -1,6 +1,6 @@
 package dev.creoii.creoapi.test;
 
-import dev.creoii.creoapi.api.VillagerTradeInjection;
+import dev.creoii.creoapi.api.tradeinjection.VillagerTradeInjection;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.block.Blocks;
 import net.minecraft.village.TradeOffers;

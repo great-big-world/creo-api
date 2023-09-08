@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "creo-block-injection-api",
+  "version": "${version}",
+  "name": "Creo Block Injection API",
+  "description": "",
+  "authors": [
+    "creoii"
+  ],
+  "contact": {
+    "repo": "https://github.com/jackr/creo-api"
+  },
+  "license": "All-Rights-Reserved",
+  "icon": "assets/creo-block-injection-api/icon.png",
+  "environment": "*",
+  "entrypoints": {},
+  "accessWidener": "creo-block-injection-api.accesswidener",
+  "mixins": [
+    "creo-block-injection-api.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  },
+  "custom": {
+    "modmenu": {
+      "badges": [
+        "library"
+      ]
+    }
+  }
+}

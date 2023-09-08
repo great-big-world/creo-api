@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "creo-block-injection-api-test",
+  "version": "${version}",
+  "name": "Creo Block Injection API Test",
+  "description": "Test mod for the Creo Block Injection API.",
+  "authors": [
+    "creoii"
+  ],
+  "contact": {
+    "repo": "https://github.com/jackr/creo-api"
+  },
+  "license": "All-Rights-Reserved",
+  "icon": "assets/creo-block-injection-api-test/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "dev.creoii.creoapi.test.BlockInjectionTest"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  },
+  "custom": {
+    "modmenu": {
+      "badges": [
+        "library"
+      ]
+    }
+  }
+}

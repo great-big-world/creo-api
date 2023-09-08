@@ -9,6 +9,8 @@ pluginManagement {
 }
 
 include "creo-advancement-api"
+include "creo-block-api"
+include "creo-block-injection-api"
 include "creo-content-modification-api"
 include "creo-convention-tags"
 include "creo-entity-attributes"

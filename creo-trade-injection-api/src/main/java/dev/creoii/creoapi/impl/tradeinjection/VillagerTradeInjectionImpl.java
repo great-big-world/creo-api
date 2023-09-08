@@ -1,6 +1,6 @@
-package dev.creoii.creoapi.impl;
+package dev.creoii.creoapi.impl.tradeinjection;
 
-import dev.creoii.creoapi.api.VillagerTradeInjection;
+import dev.creoii.creoapi.api.tradeinjection.VillagerTradeInjection;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.village.TradeOffers;
 import net.minecraft.village.VillagerProfession;
