@@ -1,11 +1,12 @@
-package dev.creoii.creoapi.api.advancement;
+package dev.creoii.creoapi.api.advancement.injector;
 
+import dev.creoii.creoapi.api.advancement.AdvancementInjectorRegistry;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class ParentInjector extends AdvancementInjector.Injector {
+public class ParentInjector extends AdvancementInjectorRegistry.Injector {
     @Nullable
     private final Identifier parentId;
     @Nullable
@@ -22,8 +23,8 @@ public class ParentInjector extends AdvancementInjector.Injector {
     }
 
     @Override
-    public AdvancementInjector.Type getType() {
-        return AdvancementInjector.Type.PARENT;
+    public AdvancementInjectorRegistry.Type getType() {
+        return AdvancementInjectorRegistry.Type.PARENT;
     }
 
     @Nullable

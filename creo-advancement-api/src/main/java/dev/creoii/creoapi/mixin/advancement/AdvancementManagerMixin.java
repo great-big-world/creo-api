@@ -1,6 +1,7 @@
 package dev.creoii.creoapi.mixin.advancement;
 
 import dev.creoii.creoapi.api.advancement.*;
+import dev.creoii.creoapi.api.advancement.injector.*;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.AdvancementDisplay;
 import net.minecraft.advancement.AdvancementManager;
@@ -19,9 +20,9 @@ import java.util.Map;
 public class AdvancementManagerMixin {
     @Inject(method = "load", at = @At(value = "INVOKE", target = "Lnet/minecraft/advancement/Advancement$Builder;build(Lnet/minecraft/util/Identifier;)Lnet/minecraft/advancement/Advancement;"), locals = LocalCapture.CAPTURE_FAILSOFT)
     private void creo_applyAdvancementInjections(Map<Identifier, Advancement.Builder> advancements, CallbackInfo ci, Map<Identifier, Advancement.Builder> map, boolean bl, Iterator<Map.Entry<Identifier, Advancement.Builder>> iterator, Map.Entry<Identifier, Advancement.Builder> entry, Identifier identifier, Advancement.Builder builder) {
-        AdvancementInjector.getAdvancementInjectors().forEach((id, injectors) -> {
+        AdvancementInjectorRegistry.getAdvancementInjectors().forEach((id, injectors) -> {
             if (identifier.equals(id)) {
-                for (AdvancementInjector.Injector injector : injectors) {
+                for (AdvancementInjectorRegistry.Injector injector : injectors) {
                     switch (injector.getType()) {
                         case CRITERIA -> {
                             CriteriaInjector criteriaInjector = (CriteriaInjector) injector;

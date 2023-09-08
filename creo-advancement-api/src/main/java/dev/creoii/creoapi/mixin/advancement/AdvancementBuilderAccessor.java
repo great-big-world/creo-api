@@ -7,12 +7,12 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 
 @Mixin(Advancement.Builder.class)
 public interface AdvancementBuilderAccessor {
-    @Accessor
+    @Accessor("requirements")
     String[][] getRequirements();
 
-    @Accessor
+    @Accessor("display")
     AdvancementDisplay getDisplay();
 
-    @Accessor
+    @Accessor("requirements")
     void setRequirements(String[][] requirements);
 }

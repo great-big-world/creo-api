@@ -1,9 +1,10 @@
-package dev.creoii.creoapi.api.advancement;
+package dev.creoii.creoapi.api.advancement.injector;
 
+import dev.creoii.creoapi.api.advancement.AdvancementInjectorRegistry;
 import net.minecraft.advancement.AdvancementCriterion;
 import net.minecraft.advancement.criterion.CriterionConditions;
 
-public class CriteriaInjector extends AdvancementInjector.Injector {
+public class CriteriaInjector extends AdvancementInjectorRegistry.Injector {
     private final String name;
     private final AdvancementCriterion criterion;
 
@@ -17,8 +18,8 @@ public class CriteriaInjector extends AdvancementInjector.Injector {
     }
 
     @Override
-    public AdvancementInjector.Type getType() {
-        return AdvancementInjector.Type.CRITERIA;
+    public AdvancementInjectorRegistry.Type getType() {
+        return AdvancementInjectorRegistry.Type.CRITERIA;
     }
 
     public String getName() {

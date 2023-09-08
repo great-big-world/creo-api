@@ -5,7 +5,7 @@ import net.minecraft.util.Identifier;
 import java.util.HashMap;
 import java.util.Map;
 
-public final class AdvancementInjector {
+public final class AdvancementInjectorRegistry {
     private static final Map<Identifier, Injector[]> ADVANCEMENT_INJECTORS = new HashMap<>();
 
     public static void register(Identifier advancementId, Injector injector) {

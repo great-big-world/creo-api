@@ -1,8 +1,9 @@
-package dev.creoii.creoapi.api.advancement;
+package dev.creoii.creoapi.api.advancement.injector;
 
+import dev.creoii.creoapi.api.advancement.AdvancementInjectorRegistry;
 import net.minecraft.advancement.AdvancementRewards;
 
-public class RewardsInjector extends AdvancementInjector.Injector {
+public class RewardsInjector extends AdvancementInjectorRegistry.Injector {
     private final AdvancementRewards rewards;
 
     public RewardsInjector(AdvancementRewards rewards) {
@@ -14,8 +15,8 @@ public class RewardsInjector extends AdvancementInjector.Injector {
     }
 
     @Override
-    public AdvancementInjector.Type getType() {
-        return AdvancementInjector.Type.REWARDS;
+    public AdvancementInjectorRegistry.Type getType() {
+        return AdvancementInjectorRegistry.Type.REWARDS;
     }
 
     public AdvancementRewards getRewards() {

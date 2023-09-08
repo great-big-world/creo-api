@@ -1,5 +1,6 @@
-package dev.creoii.creoapi.api.advancement;
+package dev.creoii.creoapi.api.advancement.injector;
 
+import dev.creoii.creoapi.api.advancement.AdvancementInjectorRegistry;
 import net.minecraft.advancement.AdvancementDisplay;
 import net.minecraft.advancement.AdvancementFrame;
 import net.minecraft.item.ItemConvertible;
@@ -9,7 +10,7 @@ import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class DisplayInjector extends AdvancementInjector.Injector {
+public class DisplayInjector extends AdvancementInjectorRegistry.Injector {
     @Nullable
     private final AdvancementDisplay display;
 
@@ -84,8 +85,8 @@ public class DisplayInjector extends AdvancementInjector.Injector {
     }
 
     @Override
-    public AdvancementInjector.Type getType() {
-        return AdvancementInjector.Type.DISPLAY;
+    public AdvancementInjectorRegistry.Type getType() {
+        return AdvancementInjectorRegistry.Type.DISPLAY;
     }
 
     public @Nullable AdvancementDisplay getDisplay() {

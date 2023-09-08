@@ -10,27 +10,27 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 
 @Mixin(AdvancementDisplay.class)
 public interface AdvancementDisplayAccessor {
-    @Accessor
+    @Accessor("title")
     void setTitle(Text title);
 
-    @Accessor
+    @Accessor("description")
     void setDescription(Text description);
 
-    @Accessor
+    @Accessor("icon")
     void setIcon(ItemStack icon);
 
-    @Accessor
-    void setBackground(Identifier backgroundId);
+    @Accessor("background")
+    void setBackground(Identifier background);
 
-    @Accessor
+    @Accessor("frame")
     void setFrame(AdvancementFrame frame);
 
-    @Accessor
+    @Accessor("showToast")
     void setShowToast(boolean setShowToast);
 
-    @Accessor
+    @Accessor("announceToChat")
     void setAnnounceToChat(boolean announceToChat);
 
-    @Accessor
+    @Accessor("hidden")
     void setHidden(boolean hidden);
 }

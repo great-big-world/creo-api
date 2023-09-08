@@ -25,21 +25,24 @@ public class CompositeFeature extends Feature<CompositeFeatureConfig> {
     public enum FailType implements StringIdentifiable {
         SOFT("soft", (context, entries) -> {
             for (RegistryEntry<PlacedFeature> entry : entries) {
-                if (entry.value().generateUnregistered(context.getWorld(), context.getGenerator(), context.getRandom(), context.getOrigin())) {
+                if (entry.value().generateUnregistered(context.getWorld(), context.getGenerator(), context.getRandom(), context.getOrigin()))
                     return true;
-                }
             }
             return false;
         }),
         HARD("hard", (context, entries) -> {
             for (RegistryEntry<PlacedFeature> entry : entries) {
-                if (!entry.value().generateUnregistered(context.getWorld(), context.getGenerator(), context.getRandom(), context.getOrigin())) {
+                if (!entry.value().generateUnregistered(context.getWorld(), context.getGenerator(), context.getRandom(), context.getOrigin()))
                     return false;
-                }
             }
             return true;
         }),
-        FREE("free", (context, entries) -> true);
+        FREE("free", (context, entries) -> {
+            for (RegistryEntry<PlacedFeature> entry : entries) {
+                entry.value().generateUnregistered(context.getWorld(), context.getGenerator(), context.getRandom(), context.getOrigin());
+            }
+            return true;
+        });
 
         public static final Codec<FailType> CODEC = StringIdentifiable.createCodec(FailType::values);
         private final String id;
