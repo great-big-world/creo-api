@@ -1,7 +1,6 @@
 package dev.creoii.creoapi.mixin.worldgen;
 
 import com.google.common.collect.ImmutableList;
-import dev.creoii.creoapi.api.worldgen.CreoWorldgen;
 import dev.creoii.creoapi.api.worldgen.fastnoise.FastNoiseLite;
 import net.minecraft.registry.RegistryLoader;
 import org.spongepowered.asm.mixin.Final;

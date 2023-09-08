@@ -7,12 +7,12 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.structure.StructureStart;
 
 /**
- * Callback for when the player is within the bounds of a structure. Is called on the server.
+ * Callback for when an entity is within the bounds of a structure. Is called on the server.
  */
-public interface WithinStructureCallback {
-    Event<WithinStructureCallback> EVENT = EventFactory.createArrayBacked(WithinStructureCallback.class,
+public interface EntityWithinStructureCallback {
+    Event<EntityWithinStructureCallback> EVENT = EventFactory.createArrayBacked(EntityWithinStructureCallback.class,
             (listeners) -> (serverWorld, entity, structureStart) -> {
-                for (WithinStructureCallback event : listeners) {
+                for (EntityWithinStructureCallback event : listeners) {
                     event.enter(serverWorld, entity, structureStart);
                 }
             }

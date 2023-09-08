@@ -1,6 +1,5 @@
 package dev.creoii.creoapi.api.worldgen.fastnoise;
 
-import dev.creoii.creoapi.api.worldgen.CreoWorldgen;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.util.Identifier;
 

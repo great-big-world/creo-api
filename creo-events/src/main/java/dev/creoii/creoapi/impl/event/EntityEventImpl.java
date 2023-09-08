@@ -42,7 +42,7 @@ public final class EntityEventImpl {
         ServerWorld serverWorld = (ServerWorld) world;
         for (StructureStart structureStart : serverWorld.getStructureAccessor().getStructureStarts(chunkPos, structure -> true)) {
             if (structureStart.hasChildren() && structureStart.getBoundingBox().contains(pos))
-                WithinStructureCallback.EVENT.invoker().enter(serverWorld, entity, structureStart);
+                EntityWithinStructureCallback.EVENT.invoker().enter(serverWorld, entity, structureStart);
         }
     }
 

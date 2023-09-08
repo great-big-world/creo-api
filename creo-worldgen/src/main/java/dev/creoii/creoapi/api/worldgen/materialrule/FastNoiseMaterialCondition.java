@@ -2,7 +2,6 @@ package dev.creoii.creoapi.api.worldgen.materialrule;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import dev.creoii.creoapi.api.worldgen.fastnoise.FastNoiseParameters;
 import dev.creoii.creoapi.api.worldgen.fastnoise.FastNoiseLite;
 import dev.creoii.creoapi.impl.worldgen.util.AwareNoiseConfig;
 import net.minecraft.registry.entry.RegistryEntry;

@@ -1,6 +1,6 @@
 package dev.creoii.creoapi.mixin.advancement;
 
-import dev.creoii.creoapi.api.advancement.*;
+import dev.creoii.creoapi.api.advancement.AdvancementInjectorRegistry;
 import dev.creoii.creoapi.api.advancement.injector.*;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.AdvancementDisplay;

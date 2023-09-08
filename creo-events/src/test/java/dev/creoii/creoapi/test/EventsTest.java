@@ -41,7 +41,7 @@ public class EventsTest implements ModInitializer {
         }
 
         if (testWithinStructureCallback) {
-            WithinStructureCallback.EVENT.register((serverWorld, entity, structureStart) -> {
+            EntityWithinStructureCallback.EVENT.register((serverWorld, entity, structureStart) -> {
                 System.out.println("Within Structure:");
                 System.out.println("    entity=" + entity.getType().getTranslationKey());
                 System.out.println("    structure=" + structureStart.getStructure().getType().toString());

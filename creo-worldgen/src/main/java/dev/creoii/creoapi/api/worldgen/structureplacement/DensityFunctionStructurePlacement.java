@@ -2,16 +2,15 @@ package dev.creoii.creoapi.api.worldgen.structureplacement;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import dev.creoii.creoapi.api.worldgen.CreoStructurePlacementTypes;
 import dev.creoii.creoapi.impl.worldgen.util.AwareNoiseConfig;
 import dev.creoii.creoapi.impl.worldgen.util.CreoDensityFunctionVisitor;
-import dev.creoii.creoapi.api.worldgen.CreoStructurePlacementTypes;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.dynamic.Codecs;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.Vec3i;
-import net.minecraft.world.World;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.chunk.ChunkGeneratorSettings;
 import net.minecraft.world.gen.chunk.NoiseChunkGenerator;
