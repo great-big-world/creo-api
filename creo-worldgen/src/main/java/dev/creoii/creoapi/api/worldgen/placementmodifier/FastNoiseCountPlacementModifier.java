@@ -40,7 +40,7 @@ public class FastNoiseCountPlacementModifier extends PlacementModifier {
 
     @Override
     public PlacementModifierType<?> getType() {
-        return CreoPlacementModifierTypes.FAST_NOISE;
+        return CreoPlacementModifierTypes.FAST_NOISE_COUNT;
     }
 
     @Override

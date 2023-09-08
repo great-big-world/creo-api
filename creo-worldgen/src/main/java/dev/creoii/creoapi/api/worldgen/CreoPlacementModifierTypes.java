@@ -20,6 +20,10 @@ public final class CreoPlacementModifierTypes {
      */
     public static final PlacementModifierType<FastNoisePlacementModifier> FAST_NOISE = () -> FastNoisePlacementModifier.CODEC;
     /**
+     Count placement modifier that places based on the fast noise value at the position.
+     */
+    public static final PlacementModifierType<FastNoiseCountPlacementModifier> FAST_NOISE_COUNT = () -> FastNoiseCountPlacementModifier.CODEC;
+    /**
      * Conditional placement modifier that places if the position is as steep or steeper than the steepness value.
      */
     public static final PlacementModifierType<SteepPlacementModifier> STEEP = () -> SteepPlacementModifier.CODEC;
