@@ -23,6 +23,7 @@
     "entity.FallingBlockEntityMixin",
     "entity.FurnaceMinecartEntityMixin",
     "entity.IronGolemEntityMixin",
+    "entity.LivingEntityMixin",
     "entity.RavagerEntityMixin",
     "entity.ShulkerEntityMixin"
   ],

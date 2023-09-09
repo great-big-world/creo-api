@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "creo-events",
+  "id": "creo-food-component-api-test",
   "version": "${version}",
-  "name": "Creo Events",
-  "description": "Many new events to hook into vanilla code.",
+  "name": "Creo Food Component API Test",
+  "description": "Test mod for the Creo Food Component API.",
   "authors": [
     "creoii"
   ],
@@ -11,12 +11,13 @@
     "repo": "https://github.com/jackr/creo-api"
   },
   "license": "All-Rights-Reserved",
-  "icon": "assets/creo-events/icon.png",
+  "icon": "assets/creo-food-component-api/icon.png",
   "environment": "*",
-  "entrypoints": {},
-  "mixins": [
-    "creo-events.mixins.json"
-  ],
+  "entrypoints": {
+    "main": [
+      "dev.creoii.creoapi.test.FoodComponentTest"
+    ]
+  },
   "depends": {
     "fabricloader": ">=${loader_version}",
     "fabric": "*",

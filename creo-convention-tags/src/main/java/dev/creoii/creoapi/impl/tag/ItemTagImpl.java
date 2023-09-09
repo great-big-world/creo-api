@@ -3,6 +3,7 @@ package dev.creoii.creoapi.impl.tag;
 import dev.creoii.creoapi.api.tag.CreoItemTags;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -42,5 +43,10 @@ public final class ItemTagImpl {
 
     public static boolean applyRepairsIronGolems(ItemStack stack) {
         return stack.isIn(CreoItemTags.REPAIRS_IRON_GOLEMS);
+    }
+
+    public static void applyDisablesShield(LivingEntity livingEntity, CallbackInfoReturnable<Boolean> cir) {
+        if (livingEntity.getMainHandStack().isIn(CreoItemTags.DISABLES_SHIELD))
+            cir.setReturnValue(true);
     }
 }

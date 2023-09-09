@@ -14,6 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(Item.class)
 public abstract class ItemMixin {
     @Shadow @Nullable public abstract FoodComponent getFoodComponent();
+    @Shadow public abstract boolean isFood();
 
     @Inject(method = "getMaxUseTime", at = @At(value = "RETURN", ordinal = 0), cancellable = true)
     private void creo_applyFoodEatTimes(ItemStack stack, CallbackInfoReturnable<Integer> cir) {
@@ -24,7 +25,7 @@ public abstract class ItemMixin {
 
     @Inject(method = "getMaxDamage", at = @At("HEAD"), cancellable = true)
     private void creo_applyFoodEatDurability(CallbackInfoReturnable<Integer> cir) {
-        if (getFoodComponent() instanceof CreoFoodComponent creoFoodComponent && creoFoodComponent.hasEatDurability()) {
+        if (isFood() && getFoodComponent() instanceof CreoFoodComponent creoFoodComponent && creoFoodComponent.hasEatDurability()) {
             cir.setReturnValue(creoFoodComponent.getEatDurability());
         }
     }
