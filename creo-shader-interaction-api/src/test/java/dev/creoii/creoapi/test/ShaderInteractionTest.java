@@ -1,6 +1,6 @@
 package dev.creoii.creoapi.test;
 
-import dev.creoii.creoapi.api.shader.ShaderUtils;
+import dev.creoii.creoapi.api.shader.ShaderInteractions;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.Block;
@@ -17,7 +17,7 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class ShaderTest implements ModInitializer {
+public class ShaderInteractionTest implements ModInitializer {
     @Override
     public void onInitialize() {
         final Block shaderBlock = Registry.register(Registries.BLOCK, new Identifier("test", "shader_block"), new ShaderBlock());
@@ -34,14 +34,14 @@ public class ShaderTest implements ModInitializer {
         public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
             if (world.isClient) {
                 if (player.isSneaking()) {
-                    Identifier id = ShaderUtils.getCurrentPostProcessor();
+                    Identifier id = ShaderInteractions.getCurrentPostProcessor();
                     if (id != null)
                         System.out.println(id);
                 } else {
                     int i = world.getRandom().nextInt(3);
                     switch (i) {
-                        case 0 -> ShaderUtils.setCurrentPostProcessor(new Identifier("post/creeper"));
-                        case 2 -> ShaderUtils.clearShaders();
+                        case 0 -> ShaderInteractions.setCurrentPostProcessor(new Identifier("post/creeper"));
+                        case 2 -> ShaderInteractions.clearShaders();
                     }
                 }
                 return ActionResult.SUCCESS;

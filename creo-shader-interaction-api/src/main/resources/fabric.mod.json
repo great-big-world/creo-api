@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "creo-shader-api-test",
+  "id": "creo-shader-interaction-api",
   "version": "${version}",
-  "name": "Creo Shader API Test",
-  "description": "Test mod for the Creo Shader API.",
+  "name": "Creo Shader Interaction API",
+  "description": "Interaction with vanilla shaders.",
   "authors": [
     "creoii"
   ],
@@ -11,13 +11,13 @@
     "repo": "https://github.com/jackr/creo-api"
   },
   "license": "All-Rights-Reserved",
-  "icon": "assets/creo-shader-api/icon.png",
+  "icon": "assets/creo-shader-interaction-api/icon.png",
   "environment": "*",
-  "entrypoints": {
-    "main": [
-      "dev.creoii.creoapi.test.ShaderTest"
-    ]
-  },
+  "entrypoints": {},
+  "accessWidener": "creo-shader-interaction-api.accesswidener",
+  "mixins": [
+    "creo-shader-interaction-api.mixins.json"
+  ],
   "depends": {
     "fabricloader": ">=${loader_version}",
     "fabric": "*",

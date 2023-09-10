@@ -7,7 +7,7 @@ import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
 
 @Environment(EnvType.CLIENT)
-public final class ShaderUtilsImpl {
+public final class ShaderInteractionImpl {
     private static final MinecraftClient CLIENT = MinecraftClient.getInstance();
 
     @Nullable

@@ -1,20 +1,20 @@
 package dev.creoii.creoapi.api.shader;
 
-import dev.creoii.creoapi.impl.shader.ShaderUtilsImpl;
+import dev.creoii.creoapi.impl.shader.ShaderInteractionImpl;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
 
 @Environment(EnvType.CLIENT)
-public final class ShaderUtils {
+public final class ShaderInteractions {
     /**
      * Get the {@link Identifier} of the current post processor.
      * @return The identifier of the current post processor.
      */
     @Nullable
     public static Identifier getCurrentPostProcessor() {
-        return ShaderUtilsImpl.getCurrentPostProcessorInternal();
+        return ShaderInteractionImpl.getCurrentPostProcessorInternal();
     }
 
     /**
@@ -22,18 +22,18 @@ public final class ShaderUtils {
      * @param id The {@link Identifier} of the new post processor.
      */
     public static void setCurrentPostProcessor(Identifier id) {
-        ShaderUtilsImpl.setCurrentPostProcessorInternal(id);
+        ShaderInteractionImpl.setCurrentPostProcessorInternal(id);
     }
 
     public static void addPostProcessPass(Identifier id) {
-        ShaderUtilsImpl.addPostProcessPassInternal(id);
+        ShaderInteractionImpl.addPostProcessPassInternal(id);
     }
 
     public static void removePostProcessPass(Identifier id) {
-        ShaderUtilsImpl.removePostProcessPassInternal(id);
+        ShaderInteractionImpl.removePostProcessPassInternal(id);
     }
 
     public static void clearShaders() {
-        ShaderUtilsImpl.clearPostProcessorsInternal();
+        ShaderInteractionImpl.clearPostProcessorsInternal();
     }
 }
