@@ -1,6 +1,7 @@
 package dev.creoii.creoapi.test;
 
 import dev.creoii.creoapi.api.shader.ShaderInteractions;
+import dev.creoii.creoapi.api.shader.Shaders;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.Block;
@@ -38,10 +39,12 @@ public class ShaderInteractionTest implements ModInitializer {
                     if (id != null)
                         System.out.println(id);
                 } else {
-                    int i = world.getRandom().nextInt(3);
+                    int i = world.getRandom().nextInt(4);
                     switch (i) {
-                        case 0 -> ShaderInteractions.setCurrentPostProcessor(new Identifier("post/creeper"));
-                        case 2 -> ShaderInteractions.clearShaders();
+                        case 0 -> ShaderInteractions.setCurrentPostProcessor(Shaders.POST_CREEPER);
+                        case 1 -> ShaderInteractions.addPostProcessPass(Shaders.POST_ART);
+                        case 2 -> ShaderInteractions.removePostProcessPass(Shaders.POST_ART);
+                        case 3 -> ShaderInteractions.clearPostProcessors();
                     }
                 }
                 return ActionResult.SUCCESS;

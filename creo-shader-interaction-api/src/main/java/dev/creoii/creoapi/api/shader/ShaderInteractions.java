@@ -33,7 +33,10 @@ public final class ShaderInteractions {
         ShaderInteractionImpl.removePostProcessPassInternal(id);
     }
 
-    public static void clearShaders() {
+    /**
+     * Clears all post processors from the screen.
+     */
+    public static void clearPostProcessors() {
         ShaderInteractionImpl.clearPostProcessorsInternal();
     }
 }

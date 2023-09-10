@@ -33,11 +33,10 @@ public final class GameRendererImpl {
             try {
                 PostEffectPass prevPass = accessor.getPasses().get(accessor.getPasses().size() - 1);
                 PostEffectPass newPass = new PostEffectPass(client.getResourceManager(), id.getPath().replace("shaders/post/", "").replace(".json", ""), prevPass.input, prevPass.output);
-                System.out.println(prevPass.getName() + " " + newPass.getName());
                 if (prevPass.getName().equals(newPass.getName()))
                     return false;
                 newPass.setProjectionMatrix(accessor.getProjectionMatrix());
-                accessor.getPasses().add(accessor.getPasses().size(), newPass);
+                accessor.setPasses(copyWith(accessor.getPasses(), newPass));
                 return true;
             } catch (IOException e) {
                 e.printStackTrace();
@@ -50,17 +49,28 @@ public final class GameRendererImpl {
         MutableBoolean success = new MutableBoolean(true);
         if (postProcessor == null)
             return false;
-        PostEffectProcessorAccessor accessor = ((PostEffectProcessorAccessor) postProcessor);
-        List<PostEffectPass> newPasses = new ArrayList<>();
-        for (PostEffectPass postEffectPass : accessor.getPasses()) {
-            if (!id.getPath().contains(postEffectPass.getName()))
-                newPasses.add(postEffectPass);
-        }
-        accessor.setPasses(newPasses);
+        PostEffectProcessorAccessor accessor = (PostEffectProcessorAccessor) postProcessor;
+        accessor.setPasses(copyWithout(accessor.getPasses(), id));
         return success.booleanValue();
     }
 
     public static void clearPostProcessors(GameRenderer gameRenderer) {
         gameRenderer.disablePostProcessor();
+    }
+
+    private static List<PostEffectPass> copyWithout(List<PostEffectPass> list, Identifier id) {
+        List<PostEffectPass> newList = new ArrayList<>();
+        for (PostEffectPass pass : list) {
+            if (!id.getPath().contains(pass.getName())) {
+                newList.add(pass);
+            }
+        }
+        return newList;
+    }
+
+    private static List<PostEffectPass> copyWith(List<PostEffectPass> list, PostEffectPass newPass) {
+        List<PostEffectPass> newList = new ArrayList<>(list);
+        newList.add(newPass);
+        return newList;
     }
 }
