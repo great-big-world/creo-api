@@ -25,7 +25,9 @@
     "entity.IronGolemEntityMixin",
     "entity.LivingEntityMixin",
     "entity.RavagerEntityMixin",
-    "entity.ShulkerEntityMixin"
+    "entity.ShulkerEntityMixin",
+    "entity.goal.EatGrassGoalMixin",
+    "item.ShearsItemMixin"
   ],
   "client": [
   ],

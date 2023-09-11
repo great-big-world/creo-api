@@ -2,7 +2,9 @@ package dev.creoii.creoapi.impl.tag;
 
 import dev.creoii.creoapi.api.tag.CreoBlockTags;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.ai.goal.EatGrassGoal;
 import net.minecraft.entity.mob.RavagerEntity;
+import net.minecraft.predicate.block.BlockStatePredicate;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
@@ -11,6 +13,9 @@ import net.minecraft.world.WorldView;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Predicate;
 
 public final class BlockTagImpl {
     public static void applySignalFireBaseBlocks(BlockState state, CallbackInfoReturnable<Boolean> cir) {
@@ -75,5 +80,16 @@ public final class BlockTagImpl {
             bl = world.breakBlock(pos, true, ravager) || bl;
             ravager.setOnGround(false);
         }
+    }
+
+    public static void applyEatenBySheep(Runnable runnable) {
+        runnable.run();
+    }
+
+    public static void applyShearsMineables(BlockState state, CallbackInfoReturnable<Float> cir) {
+        if (state.isIn(CreoBlockTags.SHEARS_VERY_EFFICIENT))
+            cir.setReturnValue(15f);
+        else if (state.isIn(CreoBlockTags.SHEARS_LESS_EFFICIENT))
+            cir.setReturnValue(2f);
     }
 }

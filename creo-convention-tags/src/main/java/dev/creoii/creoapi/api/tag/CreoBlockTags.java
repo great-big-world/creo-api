@@ -30,8 +30,8 @@ public final class CreoBlockTags {
     public static final TagKey<Block> EATEN_BY_SHEEP = TagKey.of(RegistryKeys.BLOCK, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "eaten_by_sheep"));
     public static final TagKey<Block> PROJECTILES_IGNORE = TagKey.of(RegistryKeys.BLOCK, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "projectiles_ignore"));
     public static final TagKey<Block> INVALID_FOR_SHULKER_TELEPORT = TagKey.of(RegistryKeys.BLOCK, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "invalid_for_shulker_teleport"));
-    public static final TagKey<Block> SHEARS_QUICK_MINEABLE = TagKey.of(RegistryKeys.BLOCK, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "mineable/shears_quick"));
-    public static final TagKey<Block> SHEARS_SLOW_MINEABLE = TagKey.of(RegistryKeys.BLOCK, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "mineable/shears_slow"));
+    public static final TagKey<Block> SHEARS_VERY_EFFICIENT = TagKey.of(RegistryKeys.BLOCK, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "shears_very_efficient"));
+    public static final TagKey<Block> SHEARS_LESS_EFFICIENT = TagKey.of(RegistryKeys.BLOCK, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "shears_less_efficient"));
 
     public static final TagKey<Block> FURNACES = TagKey.of(RegistryKeys.BLOCK, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "furnaces"));
     public static final TagKey<Block> CONCRETE = TagKey.of(RegistryKeys.BLOCK, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "concrete"));

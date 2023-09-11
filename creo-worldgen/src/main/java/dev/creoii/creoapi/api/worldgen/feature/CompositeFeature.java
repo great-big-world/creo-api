@@ -7,6 +7,7 @@ import net.minecraft.util.StringIdentifiable;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.PlacedFeature;
 import net.minecraft.world.gen.feature.util.FeatureContext;
+import org.apache.commons.lang3.mutable.MutableBoolean;
 
 import java.util.List;
 import java.util.function.BiPredicate;
@@ -24,11 +25,12 @@ public class CompositeFeature extends Feature<CompositeFeatureConfig> {
 
     public enum FailType implements StringIdentifiable {
         SOFT("soft", (context, entries) -> {
+            MutableBoolean fail = new MutableBoolean(false);
             for (RegistryEntry<PlacedFeature> entry : entries) {
                 if (entry.value().generateUnregistered(context.getWorld(), context.getGenerator(), context.getRandom(), context.getOrigin()))
-                    return true;
+                    fail.setTrue();
             }
-            return false;
+            return fail.booleanValue();
         }),
         HARD("hard", (context, entries) -> {
             for (RegistryEntry<PlacedFeature> entry : entries) {
