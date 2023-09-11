@@ -1,8 +1,8 @@
 package dev.creoii.creoapi.api.advancement.injector;
 
-import dev.creoii.creoapi.api.advancement.AdvancementInjectorRegistry;
+import dev.creoii.creoapi.api.advancement.AdvancementInjectionRegistry;
 
-public class RequirementsInjector extends AdvancementInjectorRegistry.Injector {
+public class RequirementsInjector extends AdvancementInjectionRegistry.Injector {
     private final String[] requirements;
 
     public RequirementsInjector(String... requirements) {
@@ -10,8 +10,8 @@ public class RequirementsInjector extends AdvancementInjectorRegistry.Injector {
     }
 
     @Override
-    public AdvancementInjectorRegistry.Type getType() {
-        return AdvancementInjectorRegistry.Type.REQUIREMENTS;
+    public AdvancementInjectionRegistry.Type getType() {
+        return AdvancementInjectionRegistry.Type.REQUIREMENTS;
     }
 
     public String[] getRequirements() {
