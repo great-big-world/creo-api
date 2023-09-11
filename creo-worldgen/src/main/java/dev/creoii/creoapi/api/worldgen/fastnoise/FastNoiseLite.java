@@ -210,12 +210,12 @@ public class FastNoiseLite {
     private float mFrequency = 0.01f;
     private NoiseType mNoiseType = NoiseType.OPEN_SIMPLEX_2;
     private RotationType3D mRotationType3D = RotationType3D.NONE;
-    private TransformType3D mTransformType3D = TransformType3D.DEFAULT_OPEN_SIMPLEX_2;
 
     private Fractal fractal;
     private Cellular cellular;
     private DomainWarp domainWarp;
 
+    private TransformType3D mTransformType3D = TransformType3D.DEFAULT_OPEN_SIMPLEX_2;
     private float mFractalBounding = 1 / 1.75f;
 
     /// <summary>

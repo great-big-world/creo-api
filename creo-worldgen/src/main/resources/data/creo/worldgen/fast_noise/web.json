@@ -1,11 +1,17 @@
 {
-  "cellular_distance_function": "euclidean",
-  "cellular_jitter_modifier": 1.0,
-  "cellular_return_type": "distance_2_div",
-  "domain_warp_amp": 1.0,
-  "domain_warp_type": "open_simplex_2_reduced",
-  "fractal_type": "none",
   "frequency": 0.075,
   "noise_type": "cellular",
-  "rotation_type_3d": "none"
+  "rotation_type_3d": "none",
+  "fractal": {
+    "type": "none"
+  },
+  "cellular": {
+    "distance_function": "euclidean",
+    "jitter_modifier": 1.0,
+    "return_type": "distance_2_div"
+  },
+  "domain_warp": {
+    "type": "open_simplex_2_reduced",
+    "amplitude": 1.0
+  }
 }
