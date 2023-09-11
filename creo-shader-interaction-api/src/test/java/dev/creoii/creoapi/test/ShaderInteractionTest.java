@@ -16,9 +16,12 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 
 public class ShaderInteractionTest implements ModInitializer {
+    private static final Random RANDOM = Random.create();
+
     @Override
     public void onInitialize() {
         final Block shaderBlock = Registry.register(Registries.BLOCK, new Identifier("test", "shader_block"), new ShaderBlock());
@@ -40,11 +43,14 @@ public class ShaderInteractionTest implements ModInitializer {
                         System.out.println(id);
                 } else {
                     int i = world.getRandom().nextInt(4);
-                    switch (i) {
-                        case 0 -> ShaderInteractions.setCurrentPostProcessor(Shaders.POST_CREEPER);
-                        case 1 -> ShaderInteractions.addPostProcessPass(Shaders.POST_ART);
-                        case 2 -> ShaderInteractions.removePostProcessPass(Shaders.POST_ART);
-                        case 3 -> ShaderInteractions.clearPostProcessors();
+                    if (i == 0) {
+                        ShaderInteractions.clearPostProcessors();
+                    } else {
+                        ShaderInteractions.setCurrentPostProcessor(Shaders.getAll().toArray(new Identifier[0])[RANDOM.nextInt(Shaders.getAll().size() - 1)]);
+
+                        Identifier id = ShaderInteractions.getCurrentPostProcessor();
+                        if (id != null)
+                            System.out.println(id);
                     }
                 }
                 return ActionResult.SUCCESS;

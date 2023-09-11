@@ -25,14 +25,6 @@ public final class ShaderInteractions {
         ShaderInteractionImpl.setCurrentPostProcessorInternal(id);
     }
 
-    public static void addPostProcessPass(Identifier id) {
-        ShaderInteractionImpl.addPostProcessPassInternal(id);
-    }
-
-    public static void removePostProcessPass(Identifier id) {
-        ShaderInteractionImpl.removePostProcessPassInternal(id);
-    }
-
     /**
      * Clears all post processors from the screen.
      */

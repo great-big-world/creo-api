@@ -22,16 +22,6 @@ public final class ShaderInteractionImpl {
             ((PostProcessorInteraction) CLIENT.gameRenderer).creo_setCurrentPostProcessor(fixId(id));
     }
 
-    public static void addPostProcessPassInternal(Identifier id) {
-        /*if (checkSafe())
-            ((PostProcessorInteraction) CLIENT.gameRenderer).creo_addPostProcessPass(fixId(id));*/
-    }
-
-    public static void removePostProcessPassInternal(Identifier id) {
-        /*if (checkSafe())
-            ((PostProcessorInteraction) CLIENT.gameRenderer).creo_removePostProcessPass(fixId(id));*/
-    }
-
     public static void clearPostProcessorsInternal() {
         if (checkSafe())
             ((PostProcessorInteraction) CLIENT.gameRenderer).creo_clearPostProcessors();
