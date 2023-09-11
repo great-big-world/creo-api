@@ -212,27 +212,131 @@ public class FastNoiseLite {
     private RotationType3D mRotationType3D = RotationType3D.NONE;
     private TransformType3D mTransformType3D = TransformType3D.DEFAULT_OPEN_SIMPLEX_2;
 
-    private FractalType mFractalType = FractalType.NONE;
-    private int mOctaves = 3;
-    private float mLacunarity = 2.0f;
-    private float mGain = 0.5f;
-    private float mWeightedStrength = 0.0f;
-    private float mPingPongStrength = 2.0f;
+    private Fractal fractal;
+    private Cellular cellular;
+    private DomainWarp domainWarp;
 
     private float mFractalBounding = 1 / 1.75f;
-
-    private CellularDistanceFunction mCellularDistanceFunction = CellularDistanceFunction.EUCLIDEAN_SQ;
-    private CellularReturnType mCellularReturnType = CellularReturnType.DISTANCE;
-    private float mCellularJitterModifier = 1.0f;
-
-    private DomainWarpType mDomainWarpType = DomainWarpType.OPEN_SIMPLEX_2;
-    private TransformType3D mWarpTransformType3D = TransformType3D.DEFAULT_OPEN_SIMPLEX_2;
-    private float mDomainWarpAmp = 1.0f;
 
     /// <summary>
     /// Create new FastNoise object with default seed
     /// </summary>
     public FastNoiseLite() { }
+
+    public static class Fractal {
+        public static final Codec<FastNoiseLite.Fractal> CODEC = RecordCodecBuilder.create(instance -> {
+            return instance.group(FractalType.CODEC.fieldOf("type").orElse(FractalType.NONE).forGetter(fractal -> {
+                return fractal.type;
+            }), Codec.INT.fieldOf("octaves").orElse(3).forGetter(fractal -> {
+                return fractal.octaves;
+            }), Codec.FLOAT.fieldOf("lacunarity").orElse(2f).forGetter(fractal -> {
+                return fractal.lacunarity;
+            }), Codec.FLOAT.fieldOf("gain").orElse(.5f).forGetter(fractal -> {
+                return fractal.gain;
+            }), Codec.FLOAT.fieldOf("weighted_strength").orElse(0f).forGetter(fractal -> {
+                return fractal.weightedStrength;
+            }), Codec.FLOAT.fieldOf("ping_pong_strength").orElse(2f).forGetter(fractal -> {
+                return fractal.pingPongStrength;
+            })).apply(instance, Fractal::new);
+        });
+        private FractalType type;
+        private int octaves;
+        private float lacunarity;
+        private float gain;
+        private float weightedStrength;
+        private float pingPongStrength;
+
+        public Fractal(FractalType type, int octaves, float lacunarity, float gain, float weightedStrength, float pingPongStrength) {
+            this.type = type;
+            this.octaves = octaves;
+            this.lacunarity = lacunarity;
+            this.gain = gain;
+            this.weightedStrength = weightedStrength;
+            this.pingPongStrength = pingPongStrength;
+        }
+
+        public void setType(FractalType type) {
+            this.type = type;
+        }
+
+        public void setOctaves(int octaves) {
+            this.octaves = octaves;
+        }
+
+        public void setLacunarity(float lacunarity) {
+            this.lacunarity = lacunarity;
+        }
+
+        public void setGain(float gain) {
+            this.gain = gain;
+        }
+
+        public void setWeightedStrength(float weightedStrength) {
+            this.weightedStrength = weightedStrength;
+        }
+
+        public void setPingPongStrength(float pingPongStrength) {
+            this.pingPongStrength = pingPongStrength;
+        }
+    }
+
+    public static class Cellular {
+        public static final Codec<FastNoiseLite.Cellular> CODEC = RecordCodecBuilder.create(instance -> {
+            return instance.group(CellularDistanceFunction.CODEC.fieldOf("distance_function").orElse(CellularDistanceFunction.EUCLIDEAN_SQ).forGetter(fastNoiseLite -> {
+                return fastNoiseLite.distanceFunction;
+            }), CellularReturnType.CODEC.fieldOf("return_type").orElse(CellularReturnType.DISTANCE).forGetter(fastNoiseLite -> {
+                return fastNoiseLite.returnType;
+            }), Codec.FLOAT.fieldOf("jitter_modifier").orElse(1f).forGetter(fastNoiseLite -> {
+                return fastNoiseLite.jitterModifier;
+            })).apply(instance, Cellular::new);
+        });
+        private CellularDistanceFunction distanceFunction;
+        private CellularReturnType returnType;
+        private float jitterModifier;
+
+        public Cellular(CellularDistanceFunction distanceFunction, CellularReturnType returnType, float jitterModifier) {
+            this.distanceFunction = distanceFunction;
+            this.returnType = returnType;
+            this.jitterModifier = jitterModifier;
+        }
+
+        public void setDistanceFunction(CellularDistanceFunction distanceFunction) {
+            this.distanceFunction = distanceFunction;
+        }
+
+        public void setReturnType(CellularReturnType returnType) {
+            this.returnType = returnType;
+        }
+
+        public void setJitterModifier(float jitterModifier) {
+            this.jitterModifier = jitterModifier;
+        }
+    }
+
+    public static class DomainWarp {
+        public static final Codec<FastNoiseLite.DomainWarp> CODEC = RecordCodecBuilder.create(instance -> {
+            return instance.group(FastNoiseLite.DomainWarpType.CODEC.fieldOf("type").orElse(FastNoiseLite.DomainWarpType.OPEN_SIMPLEX_2).forGetter(fastNoiseLite -> {
+                return fastNoiseLite.type;
+            }), Codec.FLOAT.fieldOf("amplitude").orElse(1f).forGetter(fastNoiseLite -> {
+                return fastNoiseLite.amplitude;
+            })).apply(instance, FastNoiseLite.DomainWarp::new);
+        });
+        private DomainWarpType type;
+        private float amplitude;
+
+        public DomainWarp(DomainWarpType type, float amplitude) {
+            this.type = type;
+            this.amplitude = amplitude;
+        }
+
+        public void setType(DomainWarpType type) {
+            this.type = type;
+        }
+
+        public void setAmplitude(float amplitude) {
+            this.amplitude = amplitude;
+        }
+    }
 
     public static final Codec<FastNoiseLite> CODEC = RecordCodecBuilder.create(instance -> {
         return instance.group(Codec.LONG.optionalFieldOf("seed", RANDOM.nextLong()).forGetter(fastNoiseLite -> {
@@ -243,52 +347,26 @@ public class FastNoiseLite {
             return fastNoiseLite.mNoiseType;
         }), RotationType3D.CODEC.fieldOf("rotation_type_3d").orElse(RotationType3D.NONE).forGetter(fastNoiseLite -> {
             return fastNoiseLite.mRotationType3D;
-        }), FractalType.CODEC.fieldOf("fractal_type").orElse(FractalType.NONE).forGetter(fastNoiseLite -> {
-            return fastNoiseLite.mFractalType;
-        }), Codec.INT.fieldOf("octaves").orElse(3).forGetter(fastNoiseLite -> {
-            return fastNoiseLite.mOctaves;
-        }), Codec.FLOAT.fieldOf("lacunarity").orElse(2f).forGetter(fastNoiseLite -> {
-            return fastNoiseLite.mLacunarity;
-        }), Codec.FLOAT.fieldOf("gain").orElse(.5f).forGetter(fastNoiseLite -> {
-            return fastNoiseLite.mGain;
-        }), Codec.FLOAT.fieldOf("weighted_strength").orElse(0f).forGetter(fastNoiseLite -> {
-            return fastNoiseLite.mWeightedStrength;
-        }), Codec.FLOAT.fieldOf("ping_pong_strength").orElse(2f).forGetter(fastNoiseLite -> {
-            return fastNoiseLite.mPingPongStrength;
-        }), CellularDistanceFunction.CODEC.fieldOf("cellular_distance_function").orElse(CellularDistanceFunction.EUCLIDEAN_SQ).forGetter(fastNoiseLite -> {
-            return fastNoiseLite.mCellularDistanceFunction;
-        }), CellularReturnType.CODEC.fieldOf("cellular_return_type").orElse(CellularReturnType.DISTANCE).forGetter(fastNoiseLite -> {
-            return fastNoiseLite.mCellularReturnType;
-        }), Codec.FLOAT.fieldOf("cellular_jitter_modifier").orElse(1f).forGetter(fastNoiseLite -> {
-            return fastNoiseLite.mCellularJitterModifier;
-        }), DomainWarpType.CODEC.fieldOf("domain_warp_type").orElse(DomainWarpType.OPEN_SIMPLEX_2).forGetter(fastNoiseLite -> {
-            return fastNoiseLite.mDomainWarpType;
-        }), Codec.FLOAT.fieldOf("domain_warp_amp").orElse(1f).forGetter(fastNoiseLite -> {
-            return fastNoiseLite.mDomainWarpAmp;
+        }), Fractal.CODEC.fieldOf("fractal").forGetter(fastNoiseLite -> {
+            return fastNoiseLite.fractal;
+        }), Cellular.CODEC.fieldOf("cellular").forGetter(fastNoiseLite -> {
+            return fastNoiseLite.cellular;
+        }), DomainWarp.CODEC.fieldOf("domain_warp").forGetter(fastNoiseLite -> {
+            return fastNoiseLite.domainWarp;
         })).apply(instance, FastNoiseLite::new);
     });
 
     public FastNoiseLite(long seed,
                          float frequency, NoiseType noiseType, RotationType3D rotationType3D,
-                         FractalType fractalType, int octaves, float lacunarity, float gain, float weightedStrength, float pingPongStrength,
-                         CellularDistanceFunction cellularDistanceFunction, CellularReturnType cellularReturnType, float cellularJitter,
-                         DomainWarpType domainWarpType, float domainWarpAmp
+                         Fractal fractal, Cellular cellular, DomainWarp domainWarp
     ) {
         seed(seed);
         frequency(frequency);
         noiseType(noiseType);
         rotationType3D(rotationType3D);
-        fractalType(fractalType);
-        fractalOctaves(octaves);
-        fractalLacunarity(lacunarity);
-        fractalGain(gain);
-        fractalWeightedStrength(weightedStrength);
-        fractalPingPongStrength(pingPongStrength);
-        cellularDistanceFunction(cellularDistanceFunction);
-        cellularReturnType(cellularReturnType);
-        cellularJitter(cellularJitter);
-        domainWarpType(domainWarpType);
-        domainWarpAmp(domainWarpAmp);
+        this.fractal = fractal;
+        this.cellular = cellular;
+        this.domainWarp = domainWarp;
     }
 
     /// <summary>
@@ -355,7 +433,7 @@ public class FastNoiseLite {
     /// Note: FractalType.DomainWarp... only affects DomainWarp(...)
     /// </remarks>
     public FastNoiseLite fractalType(FractalType fractalType) {
-        mFractalType = fractalType;
+        fractal.setType(fractalType);
         return this;
     }
 
@@ -366,7 +444,7 @@ public class FastNoiseLite {
     /// Default: 3
     /// </remarks>
     public FastNoiseLite fractalOctaves(int octaves) {
-        mOctaves = octaves;
+        fractal.setOctaves(octaves);
         calculateFractalBounding();
         return this;
     }
@@ -378,7 +456,7 @@ public class FastNoiseLite {
     /// Default: 2.0
     /// </remarks>
     public FastNoiseLite fractalLacunarity(float lacunarity) {
-        mLacunarity = lacunarity;
+        fractal.setLacunarity(lacunarity);
         return this;
     }
 
@@ -389,7 +467,7 @@ public class FastNoiseLite {
     /// Default: 0.5
     /// </remarks>
     public FastNoiseLite fractalGain(float gain) {
-        mGain = gain;
+        fractal.setGain(gain);
         calculateFractalBounding();
         return this;
     }
@@ -402,7 +480,7 @@ public class FastNoiseLite {
     /// Note: Keep between 0...1 to maintain -1...1 output bounding
     /// </remarks>
     public FastNoiseLite fractalWeightedStrength(float weightedStrength) {
-        mWeightedStrength = weightedStrength;
+        fractal.setWeightedStrength(weightedStrength);
         return this;
     }
 
@@ -413,7 +491,7 @@ public class FastNoiseLite {
     /// Default: 2.0
     /// </remarks>
     public FastNoiseLite fractalPingPongStrength(float pingPongStrength) {
-        mPingPongStrength = pingPongStrength;
+        fractal.setPingPongStrength(pingPongStrength);
         return this;
     }
 
@@ -425,7 +503,7 @@ public class FastNoiseLite {
     /// Default: Distance
     /// </remarks>
     public FastNoiseLite cellularDistanceFunction(CellularDistanceFunction cellularDistanceFunction) {
-        mCellularDistanceFunction = cellularDistanceFunction;
+        cellular.setDistanceFunction(cellularDistanceFunction);
         return this;
     }
 
@@ -436,7 +514,7 @@ public class FastNoiseLite {
     /// Default: EuclideanSq
     /// </remarks>
     public FastNoiseLite cellularReturnType(CellularReturnType cellularReturnType) {
-        mCellularReturnType = cellularReturnType;
+        cellular.setReturnType(cellularReturnType);
         return this;
     }
 
@@ -448,7 +526,7 @@ public class FastNoiseLite {
     /// Note: Setting this higher than 1 will cause artifacts
     /// </remarks>
     public FastNoiseLite cellularJitter(float cellularJitter) {
-        mCellularJitterModifier = cellularJitter;
+        cellular.setJitterModifier(cellularJitter);
         return this;
     }
 
@@ -460,7 +538,7 @@ public class FastNoiseLite {
     /// Default: OpenSimplex2
     /// </remarks>
     public FastNoiseLite domainWarpType(DomainWarpType domainWarpType) {
-        mDomainWarpType = domainWarpType;
+        domainWarp.type = domainWarpType;
         updateWarpTransformType3D();
         return this;
     }
@@ -473,7 +551,7 @@ public class FastNoiseLite {
     /// Default: 1.0
     /// </remarks>
     public FastNoiseLite domainWarpAmp(float domainWarpAmp) {
-        mDomainWarpAmp = domainWarpAmp;
+        domainWarp.amplitude = domainWarpAmp;
         return this;
     }
 
@@ -498,7 +576,7 @@ public class FastNoiseLite {
             }
         }
 
-        return switch (mFractalType) {
+        return switch (fractal.type) {
             default -> genNoiseSingle(mSeed, x, y);
             case F_BM -> genFractalFBm(x, y);
             case RIDGED -> genFractalRidged(x, y);
@@ -548,7 +626,7 @@ public class FastNoiseLite {
             }
         }
 
-        return switch (mFractalType) {
+        return switch (fractal.type) {
             default -> genNoiseSingle(mSeed, x, y, z);
             case F_BM -> genFractalfFBm(x, y, z);
             case RIDGED -> genFractalRidged(x, y, z);
@@ -566,7 +644,7 @@ public class FastNoiseLite {
     /// noise = GetNoise(x, y)</code>
     /// </example>
     public void DomainWarp(Vector2 coord) {
-        switch (mFractalType) {
+        switch (fractal.type) {
             default -> DomainWarpSingle(coord);
             case DOMAIN_WARP_PROGRESSIVE -> DomainWarpFractalProgressive(coord);
             case DOMAIN_WARP_INDEPENDENT -> DomainWarpFractalIndependent(coord);
@@ -582,7 +660,7 @@ public class FastNoiseLite {
     /// noise = GetNoise(x, y, z)</code>
     /// </example>
     public void DomainWarp(Vector3 coord) {
-        switch (mFractalType) {
+        switch (fractal.type) {
             default -> DomainWarpSingle(coord);
             case DOMAIN_WARP_PROGRESSIVE -> DomainWarpFractalProgressive(coord);
             case DOMAIN_WARP_INDEPENDENT -> DomainWarpFractalIndependent(coord);
@@ -743,10 +821,10 @@ public class FastNoiseLite {
     }
 
     private void calculateFractalBounding() {
-        float gain = fastAbs(mGain);
+        float gain = fastAbs(fractal.gain);
         float amp = gain;
         float ampFractal = 1.0f;
-        for (int i = 1; i < mOctaves; i++) {
+        for (int i = 1; i < fractal.octaves; i++) {
             ampFractal += amp;
             amp *= gain;
         }
@@ -854,13 +932,13 @@ public class FastNoiseLite {
 
     private void updateWarpTransformType3D() {
         switch (mRotationType3D) {
-            case IMPROVE_XY_PLANES -> mWarpTransformType3D = TransformType3D.IMPROVE_XY_PLANES;
-            case IMPROVE_XZ_PLANES -> mWarpTransformType3D = TransformType3D.IMPROVE_XZ_PLANES;
+            case IMPROVE_XY_PLANES -> mTransformType3D = TransformType3D.IMPROVE_XY_PLANES;
+            case IMPROVE_XZ_PLANES -> mTransformType3D = TransformType3D.IMPROVE_XZ_PLANES;
             default -> {
-                switch (mDomainWarpType) {
+                switch (domainWarp.type) {
                     case OPEN_SIMPLEX_2, OPEN_SIMPLEX_2_REDUCED ->
-                            mWarpTransformType3D = TransformType3D.DEFAULT_OPEN_SIMPLEX_2;
-                    default -> mWarpTransformType3D = TransformType3D.NONE;
+                            mTransformType3D = TransformType3D.DEFAULT_OPEN_SIMPLEX_2;
+                    default -> mTransformType3D = TransformType3D.NONE;
                 }
             }
         }
@@ -874,14 +952,14 @@ public class FastNoiseLite {
         float sum = 0;
         float amp = mFractalBounding;
 
-        for (int i = 0; i < mOctaves; i++) {
+        for (int i = 0; i < fractal.octaves; i++) {
             float noise = genNoiseSingle(seed++, x, y);
             sum += noise * amp;
-            amp *= lerp(1.0f, fastMin(noise + 1, 2) * 0.5f, mWeightedStrength);
+            amp *= lerp(1.0f, fastMin(noise + 1, 2) * 0.5f, fractal.weightedStrength);
 
-            x *= mLacunarity;
-            y *= mLacunarity;
-            amp *= mGain;
+            x *= fractal.lacunarity;
+            y *= fractal.lacunarity;
+            amp *= fractal.gain;
         }
 
         return sum;
@@ -892,15 +970,15 @@ public class FastNoiseLite {
         float sum = 0;
         float amp = mFractalBounding;
 
-        for (int i = 0; i < mOctaves; i++) {
+        for (int i = 0; i < fractal.octaves; i++) {
             float noise = genNoiseSingle(seed++, x, y, z);
             sum += noise * amp;
-            amp *= lerp(1.0f, (noise + 1) * 0.5f, mWeightedStrength);
+            amp *= lerp(1.0f, (noise + 1) * 0.5f, fractal.weightedStrength);
 
-            x *= mLacunarity;
-            y *= mLacunarity;
-            z *= mLacunarity;
-            amp *= mGain;
+            x *= fractal.lacunarity;
+            y *= fractal.lacunarity;
+            z *= fractal.lacunarity;
+            amp *= fractal.gain;
         }
 
         return sum;
@@ -914,14 +992,14 @@ public class FastNoiseLite {
         float sum = 0;
         float amp = mFractalBounding;
 
-        for (int i = 0; i < mOctaves; i++) {
+        for (int i = 0; i < fractal.octaves; i++) {
             float noise = fastAbs(genNoiseSingle(seed++, x, y));
             sum += (noise * -2 + 1) * amp;
-            amp *= lerp(1.0f, 1 - noise, mWeightedStrength);
+            amp *= lerp(1.0f, 1 - noise, fractal.weightedStrength);
 
-            x *= mLacunarity;
-            y *= mLacunarity;
-            amp *= mGain;
+            x *= fractal.lacunarity;
+            y *= fractal.lacunarity;
+            amp *= fractal.gain;
         }
 
         return sum;
@@ -932,15 +1010,15 @@ public class FastNoiseLite {
         float sum = 0;
         float amp = mFractalBounding;
 
-        for (int i = 0; i < mOctaves; i++) {
+        for (int i = 0; i < fractal.octaves; i++) {
             float noise = fastAbs(genNoiseSingle(seed++, x, y, z));
             sum += (noise * -2 + 1) * amp;
-            amp *= lerp(1.0f, 1 - noise, mWeightedStrength);
+            amp *= lerp(1.0f, 1 - noise, fractal.weightedStrength);
 
-            x *= mLacunarity;
-            y *= mLacunarity;
-            z *= mLacunarity;
-            amp *= mGain;
+            x *= fractal.lacunarity;
+            y *= fractal.lacunarity;
+            z *= fractal.lacunarity;
+            amp *= fractal.gain;
         }
 
         return sum;
@@ -954,14 +1032,14 @@ public class FastNoiseLite {
         float sum = 0;
         float amp = mFractalBounding;
 
-        for (int i = 0; i < mOctaves; i++) {
-            float noise = pingPong((genNoiseSingle(seed++, x, y) + 1) * mPingPongStrength);
+        for (int i = 0; i < fractal.octaves; i++) {
+            float noise = pingPong((genNoiseSingle(seed++, x, y) + 1) * fractal.pingPongStrength);
             sum += (noise - 0.5f) * 2 * amp;
-            amp *= lerp(1.0f, noise, mWeightedStrength);
+            amp *= lerp(1.0f, noise, fractal.weightedStrength);
 
-            x *= mLacunarity;
-            y *= mLacunarity;
-            amp *= mGain;
+            x *= fractal.lacunarity;
+            y *= fractal.lacunarity;
+            amp *= fractal.gain;
         }
 
         return sum;
@@ -972,15 +1050,15 @@ public class FastNoiseLite {
         float sum = 0;
         float amp = mFractalBounding;
 
-        for (int i = 0; i < mOctaves; i++) {
-            float noise = pingPong((genNoiseSingle(seed++, x, y, z) + 1) * mPingPongStrength);
+        for (int i = 0; i < fractal.octaves; i++) {
+            float noise = pingPong((genNoiseSingle(seed++, x, y, z) + 1) * fractal.pingPongStrength);
             sum += (noise - 0.5f) * 2 * amp;
-            amp *= lerp(1.0f, noise, mWeightedStrength);
+            amp *= lerp(1.0f, noise, fractal.weightedStrength);
 
-            x *= mLacunarity;
-            y *= mLacunarity;
-            z *= mLacunarity;
-            amp *= mGain;
+            x *= fractal.lacunarity;
+            y *= fractal.lacunarity;
+            z *= fractal.lacunarity;
+            amp *= fractal.gain;
         }
 
         return sum;
@@ -1397,12 +1475,12 @@ public class FastNoiseLite {
         float distance1 = Float.MAX_VALUE;
         int closestHash = 0;
 
-        float cellularJitter = 0.43701595f * mCellularJitterModifier;
+        float cellularJitter = 0.43701595f * cellular.jitterModifier;
 
         int xPrimed = (xr - 1) * PRIME_X;
         int yPrimedBase = (yr - 1) * PRIME_Y;
 
-        switch (mCellularDistanceFunction) {
+        switch (cellular.distanceFunction) {
             case EUCLIDEAN, EUCLIDEAN_SQ -> {
                 for (int xi = xr - 1; xi <= xr + 1; xi++) {
                     int yPrimed = yPrimedBase;
@@ -1474,15 +1552,15 @@ public class FastNoiseLite {
             }
         }
 
-        if (mCellularDistanceFunction == CellularDistanceFunction.EUCLIDEAN && mCellularReturnType != CellularReturnType.CELL_VALUE) {
+        if (cellular.distanceFunction == CellularDistanceFunction.EUCLIDEAN && cellular.returnType != CellularReturnType.CELL_VALUE) {
             distance0 = fastSqrt(distance0);
 
-            if (mCellularReturnType != CellularReturnType.DISTANCE) {
+            if (cellular.returnType != CellularReturnType.DISTANCE) {
                 distance1 = fastSqrt(distance1);
             }
         }
 
-        return switch (mCellularReturnType) {
+        return switch (cellular.returnType) {
             case CELL_VALUE -> closestHash * (1 / 2147483648.0f);
             case DISTANCE -> distance0 - 1;
             case DISTANCE_2 -> distance1 - 1;
@@ -1502,13 +1580,13 @@ public class FastNoiseLite {
         float distance1 = Float.MAX_VALUE;
         int closestHash = 0;
 
-        float cellularJitter = 0.39614353f * mCellularJitterModifier;
+        float cellularJitter = 0.39614353f * cellular.jitterModifier;
 
         int xPrimed = (xr - 1) * PRIME_X;
         int yPrimedBase = (yr - 1) * PRIME_Y;
         int zPrimedBase = (zr - 1) * PRIME_Z;
 
-        switch (mCellularDistanceFunction) {
+        switch (cellular.distanceFunction) {
             case EUCLIDEAN, EUCLIDEAN_SQ -> {
                 for (int xi = xr - 1; xi <= xr + 1; xi++) {
                     int yPrimed = yPrimedBase;
@@ -1598,15 +1676,15 @@ public class FastNoiseLite {
             }
         }
 
-        if (mCellularDistanceFunction == CellularDistanceFunction.EUCLIDEAN && mCellularReturnType != CellularReturnType.CELL_VALUE) {
+        if (cellular.distanceFunction == CellularDistanceFunction.EUCLIDEAN && cellular.returnType != CellularReturnType.CELL_VALUE) {
             distance0 = fastSqrt(distance0);
 
-            if (mCellularReturnType != CellularReturnType.DISTANCE) {
+            if (cellular.returnType != CellularReturnType.DISTANCE) {
                 distance1 = fastSqrt(distance1);
             }
         }
 
-        return switch (mCellularReturnType) {
+        return switch (cellular.returnType) {
             case CELL_VALUE -> closestHash * (1 / 2147483648.0f);
             case DISTANCE -> distance0 - 1;
             case DISTANCE_2 -> distance1 - 1;
@@ -1810,7 +1888,7 @@ public class FastNoiseLite {
     // Domain Warp
 
     private void DoSingleDomainWarp(long seed, float amp, float freq, /*FNLfloat*/ float x, /*FNLfloat*/ float y, Vector2 coord) {
-        switch (mDomainWarpType) {
+        switch (domainWarp.type) {
             case OPEN_SIMPLEX_2 -> SingleDomainWarpSimplexGradient(seed, amp * 38.283687591552734375f, freq, x, y, coord, false);
             case OPEN_SIMPLEX_2_REDUCED -> SingleDomainWarpSimplexGradient(seed, amp * 16.0f, freq, x, y, coord, true);
             case BASIC_GRID -> SingleDomainWarpBasicGrid(seed, amp, freq, x, y, coord);
@@ -1818,7 +1896,7 @@ public class FastNoiseLite {
     }
 
     private void DoSingleDomainWarp(long seed, float amp, float freq, /*FNLfloat*/ float x, /*FNLfloat*/ float y, /*FNLfloat*/ float z, Vector3 coord) {
-        switch (mDomainWarpType) {
+        switch (domainWarp.type) {
             case OPEN_SIMPLEX_2 ->
                     SingleDomainWarpOpenSimplex2Gradient(seed, amp * 32.69428253173828125f, freq, x, y, z, coord, false);
             case OPEN_SIMPLEX_2_REDUCED ->
@@ -1830,15 +1908,15 @@ public class FastNoiseLite {
     // Domain Warp Single Wrapper
     private void DomainWarpSingle(Vector2 coord) {
         long seed = mSeed;
-        float amp = mDomainWarpAmp * mFractalBounding;
+        float amp = domainWarp.amplitude * mFractalBounding;
         float freq = mFrequency;
 
         float xs = coord.x;
         float ys = coord.y;
-        switch (mDomainWarpType) {
+        switch (domainWarp.type) {
             case OPEN_SIMPLEX_2, OPEN_SIMPLEX_2_REDUCED -> {
-                final float SQRT3 = (float) 1.7320508075688772935274463415059;
-                final float F2 = 0.5f * (SQRT3 - 1);
+                final float SQRT3 = (float) 1.7320508075688772935274463415059d;
+                final float F2 = .5f * (SQRT3 - 1);
                 float t = (xs + ys) * F2;
                 xs += t;
                 ys += t;
@@ -1850,31 +1928,31 @@ public class FastNoiseLite {
 
     private void DomainWarpSingle(Vector3 coord) {
         long seed = mSeed;
-        float amp = mDomainWarpAmp * mFractalBounding;
+        float amp = domainWarp.amplitude * mFractalBounding;
         float freq = mFrequency;
 
         float xs = coord.x;
         float ys = coord.y;
         float zs = coord.z;
-        switch (mWarpTransformType3D) {
+        switch (mTransformType3D) {
             case IMPROVE_XY_PLANES -> {
                 float xy = xs + ys;
-                float s2 = xy * -(float) 0.211324865405187;
-                zs *= (float) 0.577350269189626;
+                float s2 = xy * -(float) 0.211324865405187d;
+                zs *= (float) 0.577350269189626d;
                 xs += s2 - zs;
                 ys = ys + s2 - zs;
-                zs += xy * (float) 0.577350269189626;
+                zs += xy * (float) 0.577350269189626d;
             }
             case IMPROVE_XZ_PLANES -> {
                 float xz = xs + zs;
-                float s2 = xz * -(float) 0.211324865405187;
-                ys *= (float) 0.577350269189626;
+                float s2 = xz * -(float) 0.211324865405187d;
+                ys *= (float) 0.577350269189626d;
                 xs += s2 - ys;
                 zs += s2 - ys;
-                ys += xz * (float) 0.577350269189626;
+                ys += xz * (float) 0.577350269189626d;
             }
             case DEFAULT_OPEN_SIMPLEX_2 -> {
-                final float R3 = (float) (2.0 / 3.0);
+                final float R3 = (float) (2d / 3d);
                 float r = (xs + ys + zs) * R3; // Rotation, not skew
                 xs = r - xs;
                 ys = r - ys;
@@ -1891,13 +1969,13 @@ public class FastNoiseLite {
     // Domain Warp Fractal Progressive
     private void DomainWarpFractalProgressive(Vector2 coord) {
         long seed = mSeed;
-        float amp = mDomainWarpAmp * mFractalBounding;
+        float amp = domainWarp.amplitude * mFractalBounding;
         float freq = mFrequency;
 
-        for (int i = 0; i < mOctaves; i++) {
+        for (int i = 0; i < fractal.octaves; i++) {
             float xs = coord.x;
             float ys = coord.y;
-            switch (mDomainWarpType) {
+            switch (domainWarp.type) {
                 case OPEN_SIMPLEX_2, OPEN_SIMPLEX_2_REDUCED -> {
                     final float SQRT3 = (float) 1.7320508075688772935274463415059;
                     final float F2 = 0.5f * (SQRT3 - 1);
@@ -1912,21 +1990,21 @@ public class FastNoiseLite {
             DoSingleDomainWarp(seed, amp, freq, xs, ys, coord);
 
             seed++;
-            amp *= mGain;
-            freq *= mLacunarity;
+            amp *= fractal.gain;
+            freq *= fractal.lacunarity;
         }
     }
 
     private void DomainWarpFractalProgressive(Vector3 coord) {
         long seed = mSeed;
-        float amp = mDomainWarpAmp * mFractalBounding;
+        float amp = domainWarp.amplitude * mFractalBounding;
         float freq = mFrequency;
 
-        for (int i = 0; i < mOctaves; i++) {
+        for (int i = 0; i < fractal.octaves; i++) {
             float xs = coord.x;
             float ys = coord.y;
             float zs = coord.z;
-            switch (mWarpTransformType3D) {
+            switch (mTransformType3D) {
                 case IMPROVE_XY_PLANES -> {
                     float xy = xs + ys;
                     float s2 = xy * -(float) 0.211324865405187;
@@ -1956,8 +2034,8 @@ public class FastNoiseLite {
             DoSingleDomainWarp(seed, amp, freq, xs, ys, zs, coord);
 
             seed++;
-            amp *= mGain;
-            freq *= mLacunarity;
+            amp *= fractal.gain;
+            freq *= fractal.lacunarity;
         }
     }
 
@@ -1965,7 +2043,7 @@ public class FastNoiseLite {
     private void DomainWarpFractalIndependent(Vector2 coord) {
         float xs = coord.x;
         float ys = coord.y;
-        switch (mDomainWarpType) {
+        switch (domainWarp.type) {
             case OPEN_SIMPLEX_2, OPEN_SIMPLEX_2_REDUCED -> {
                 final float SQRT3 = (float) 1.7320508075688772935274463415059;
                 final float F2 = 0.5f * (SQRT3 - 1);
@@ -1976,15 +2054,15 @@ public class FastNoiseLite {
         }
 
         long seed = mSeed;
-        float amp = mDomainWarpAmp * mFractalBounding;
+        float amp = domainWarp.amplitude * mFractalBounding;
         float freq = mFrequency;
 
-        for (int i = 0; i < mOctaves; i++) {
+        for (int i = 0; i < fractal.octaves; i++) {
             DoSingleDomainWarp(seed, amp, freq, xs, ys, coord);
 
             seed++;
-            amp *= mGain;
-            freq *= mLacunarity;
+            amp *= fractal.gain;
+            freq *= fractal.lacunarity;
         }
     }
 
@@ -1992,7 +2070,7 @@ public class FastNoiseLite {
         float xs = coord.x;
         float ys = coord.y;
         float zs = coord.z;
-        switch (mWarpTransformType3D) {
+        switch (mTransformType3D) {
             case IMPROVE_XY_PLANES -> {
                 float xy = xs + ys;
                 float s2 = xy * -(float) 0.211324865405187;
@@ -2019,15 +2097,15 @@ public class FastNoiseLite {
         }
 
         long seed = mSeed;
-        float amp = mDomainWarpAmp * mFractalBounding;
+        float amp = domainWarp.amplitude * mFractalBounding;
         float freq = mFrequency;
 
-        for (int i = 0; i < mOctaves; i++) {
+        for (int i = 0; i < fractal.octaves; i++) {
             DoSingleDomainWarp(seed, amp, freq, xs, ys, zs, coord);
 
             seed++;
-            amp *= mGain;
-            freq *= mLacunarity;
+            amp *= fractal.gain;
+            freq *= fractal.lacunarity;
         }
     }
 
