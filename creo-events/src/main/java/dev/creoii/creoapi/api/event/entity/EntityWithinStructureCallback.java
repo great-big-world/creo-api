@@ -13,10 +13,10 @@ public interface EntityWithinStructureCallback {
     Event<EntityWithinStructureCallback> EVENT = EventFactory.createArrayBacked(EntityWithinStructureCallback.class,
             (listeners) -> (serverWorld, entity, structureStart) -> {
                 for (EntityWithinStructureCallback event : listeners) {
-                    event.enter(serverWorld, entity, structureStart);
+                    event.withinStructure(serverWorld, entity, structureStart);
                 }
             }
     );
 
-    void enter(ServerWorld serverWorld, Entity entity, StructureStart structureStart);
+    void withinStructure(ServerWorld serverWorld, Entity entity, StructureStart structureStart);
 }

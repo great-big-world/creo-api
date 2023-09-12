@@ -38,11 +38,12 @@ public final class EntityEventImpl {
     }
 
     public static void applyWithinStructureCallback(World world, Entity entity, BlockPos pos, ChunkPos chunkPos) {
-        if (entity.age % 10 != 0 || world.isClient) return;
+        if (entity.age % 10 != 0 || world.isClient)
+            return;
         ServerWorld serverWorld = (ServerWorld) world;
         for (StructureStart structureStart : serverWorld.getStructureAccessor().getStructureStarts(chunkPos, structure -> true)) {
             if (structureStart.hasChildren() && structureStart.getBoundingBox().contains(pos))
-                EntityWithinStructureCallback.EVENT.invoker().enter(serverWorld, entity, structureStart);
+                EntityWithinStructureCallback.EVENT.invoker().withinStructure(serverWorld, entity, structureStart);
         }
     }
 
