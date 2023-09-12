@@ -1,0 +1,6 @@
+accessWidener v2 named
+
+accessible method net/minecraft/item/FoodComponent <init> (IFZZZLjava/util/List;)V
+
+accessible field net/minecraft/item/Item maxDamage I
+mutable field net/minecraft/item/Item maxDamage I

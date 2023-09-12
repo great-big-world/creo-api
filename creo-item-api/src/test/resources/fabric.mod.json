@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "creo-item-api-test",
+  "version": "${version}",
+  "name": "Creo Item API Test",
+  "description": "Test mod for the Creo Item API.",
+  "authors": [
+    "creoii"
+  ],
+  "contact": {
+    "repo": "https://github.com/jackr/creo-api"
+  },
+  "license": "All-Rights-Reserved",
+  "icon": "assets/creo-item-api/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "dev.creoii.creoapi.test.ItemTest"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  },
+  "custom": {
+    "modmenu": {
+      "badges": [
+        "library"
+      ]
+    }
+  }
+}

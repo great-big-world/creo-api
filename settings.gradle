@@ -9,7 +9,6 @@ pluginManagement {
 }
 
 include "creo-advancement-api"
-include "creo-block-api"
 include "creo-block-injection-api"
 include "creo-content-modification-api"
 include "creo-convention-tags"
@@ -17,6 +16,7 @@ include "creo-entity-attributes"
 include "creo-entity-block-collision-api"
 include "creo-events"
 include "creo-food-component-api"
+include "creo-item-api"
 include "creo-mod-compatibility"
 include "creo-shader-interaction-api"
 include "creo-trade-injection-api"
