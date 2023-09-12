@@ -15,6 +15,46 @@ public class CreoEntityAttributes implements ModInitializer {
      */
     public static final EntityAttribute GENERIC_GRAVITY = new ClampedEntityAttribute("attribute.name.generic.gravity", .08d, -16d, 16d).setTracked(true);
 
+    /**
+     * Controls movement speed while swimming.
+     */
+    public static final EntityAttribute GENERIC_SWIMMING_SPEED = new ClampedEntityAttribute("attribute.name.generic.swimming_speed", .02d, 0d, 1024d).setTracked(true);
+
+    /**
+     * Controls movement speed while climbing.
+     */
+    public static final EntityAttribute GENERIC_CLIMBING_SPEED = new ClampedEntityAttribute("attribute.name.generic.climbing_speed", .2d, 0d, 512d).setTracked(true);
+
+    /**
+     * Controls movement speed while crouching.
+     */
+    public static final EntityAttribute GENERIC_CROUCHING_SPEED = new ClampedEntityAttribute("attribute.name.generic.crouching_speed", .2d, 0d, 512d).setTracked(true);
+
+    /**
+     * Controls movement speed while flying.
+     */
+    public static final EntityAttribute PLAYER_FLYING_SPEED = new ClampedEntityAttribute("attribute.name.player.flight_speed", .05d, 0d, 1024d).setTracked(true);
+
+    /**
+     * Controls the height of an entity's jump.
+     */
+    public static final EntityAttribute GENERIC_JUMP_STRENGTH = new ClampedEntityAttribute("attribute.name.generic.jump_strength", .42d, 0d, 1024d).setTracked(true);
+
+    /**
+     * Controls maximum air while drowning.
+     */
+    public static final EntityAttribute GENERIC_MAX_AIR = new ClampedEntityAttribute("attribute.name.generic.max_air", 300d, 0d, 1024d).setTracked(true);
+
+    /**
+     * Controls the block placing cooldown.
+     */
+    public static final EntityAttribute PLAYER_BLOCK_PLACE_SPEED = new ClampedEntityAttribute("attribute.name.player.block_place_speed", 4d, 0d, 256d).setTracked(true);
+
+    /**
+     * Controls the block breaking cooldown.
+     */
+    public static final EntityAttribute PLAYER_BLOCK_BREAK_SPEED = new ClampedEntityAttribute("attribute.name.player.block_break_speed", 5d, 0d, 256d).setTracked(true);
+
     @Override
     public void onInitialize() {
         Registry.register(Registries.ATTRIBUTE, new Identifier(CreoEntityAttributes.NAMESPACE, "generic.gravity"), GENERIC_GRAVITY);

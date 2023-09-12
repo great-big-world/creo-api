@@ -18,6 +18,7 @@
       "dev.creoii.creoapi.api.attribute.CreoEntityAttributes"
     ]
   },
+  "accessWidener": "creo-entity-attributes.accesswidener",
   "mixins": [
     "creo-entity-attributes.mixins.json"
   ],
