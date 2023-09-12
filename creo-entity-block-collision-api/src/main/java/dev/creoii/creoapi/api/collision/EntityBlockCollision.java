@@ -11,11 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Predicate;
 
-/**
- * Allows the specification of certain blocks that an {@link EntityType} will not collide with.
- */
 public class EntityBlockCollision {
-    private static final Map<EntityType<?>, EntityBlockCollision> INTERACTIONS = new HashMap<>();
     private final Predicate<EntityBlockCollisionContext> contextPredicate;
 
     private EntityBlockCollision(Predicate<EntityBlockCollisionContext> contextPredicate) {
@@ -23,21 +19,10 @@ public class EntityBlockCollision {
     }
 
     /**
-     * Creates a blacklist via a preset array of blocks.
+     * Creates an block collision interaction.
      */
     public static EntityBlockCollision create(Predicate<EntityBlockCollisionContext> contextPredicate) {
         return new EntityBlockCollision(contextPredicate);
-    }
-
-    /**
-     * Registers a blacklist to the specified entity type.
-     */
-    public static void register(EntityType<?> entityType, EntityBlockCollision blacklist) {
-        INTERACTIONS.put(entityType, blacklist);
-    }
-
-    public static Map<EntityType<?>, EntityBlockCollision> getInteractions() {
-        return INTERACTIONS;
     }
 
     public Predicate<EntityBlockCollisionContext> getPredicate() {
