@@ -15,12 +15,13 @@ allprojects {
     sourceCompatibility = JavaVersion.VERSION_17
     targetCompatibility = JavaVersion.VERSION_17
 
-    tasks.withType(JavaCompile).configureEach {
-        it.options.release.set(17)
-    }
-
     java {
         withSourcesJar()
+        withJavadocJar()
+    }
+
+    tasks.withType(JavaCompile).configureEach {
+        it.options.release.set(17)
     }
 
     dependencies {
@@ -39,6 +40,17 @@ allprojects {
             expand "version": project.version,
                     "loader_version": project.loader_version,
                     "minecraft_version": project.minecraft_version
+        }
+    }
+
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                groupId project.group
+                artifactId project.name
+                version project.version
+                from components.java
+            }
         }
     }
 }
