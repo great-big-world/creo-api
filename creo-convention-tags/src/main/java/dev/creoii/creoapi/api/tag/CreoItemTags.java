@@ -18,7 +18,7 @@ public final class CreoItemTags {
     public static final TagKey<Item> FOX_IGNORES = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "fox_ignores"));
     public static final TagKey<Item> DUPLICATES_ALLAYS = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "duplicates_allays"));
     public static final TagKey<Item> DISABLES_SHIELD = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "disables_shield"));
-    public static final TagKey<Item> ENCHANTMENT_FUEL = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "enchantment_fuel"));
+    public static final TagKey<Item> ENCHANTING_FUEL = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "enchanting_fuel"));
     public static final TagKey<Item> BREWING_FUEL = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "brewing_fuel"));
     public static final TagKey<Item> REPAIRS_IRON_GOLEMS = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "repairs_iron_golems"));
     public static final TagKey<Item> RESPAWN_ANCHOR_CHARGES = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "respawn_anchor_charges"));

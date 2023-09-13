@@ -1,13 +1,6 @@
 version = project.mod_version
 archivesBaseName = project.archives_base_name
 
-repositories {
-    maven {
-        url "https://jitpack.io"
-    }
-}
-
-dependencies {
-    implementation("com.github.LlamaLad7:MixinExtras:${project.mixin_extras_version}")
-    annotationProcessor("com.github.LlamaLad7:MixinExtras:${project.mixin_extras_version}")
+loom {
+    accessWidenerPath = file("src/main/resources/creo-convention-tags.accesswidener")
 }

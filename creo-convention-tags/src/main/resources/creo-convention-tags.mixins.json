@@ -16,18 +16,22 @@
     "block.RespawnAnchorBlockMixin",
     "block.TripwireBlockMixin",
     "block.entity.BeaconBlockEntityMixin",
+    "block.entity.BrewingStandBlockEntityMixin",
     "block.entity.ConduitBlockEntityMixin",
     "block.entity.HopperBlockEntityMixin",
     "entity.AllayEntityMixin",
     "entity.DolphinEntityMixin",
     "entity.FallingBlockEntityMixin",
+    "entity.FoxEntityMixin",
     "entity.FurnaceMinecartEntityMixin",
     "entity.IronGolemEntityMixin",
+    "entity.ItemFrameEntityMixin",
     "entity.LivingEntityMixin",
     "entity.RavagerEntityMixin",
     "entity.ShulkerEntityMixin",
     "entity.goal.EatGrassGoalMixin",
-    "item.ShearsItemMixin"
+    "item.ShearsItemMixin",
+    "screen.EnchantmentScreenHandlerMixin"
   ],
   "client": [
   ],

@@ -4,12 +4,14 @@ import dev.creoii.creoapi.api.tag.CreoItemTags;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
+import net.minecraft.screen.ScreenHandler;
+import net.minecraft.screen.slot.Slot;
+import net.minecraft.util.ActionResult;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-
-import java.util.function.Predicate;
 
 public final class ItemTagImpl {
     public static void applyTripwireIgnores(Entity entity, CallbackInfo ci) {
@@ -31,10 +33,8 @@ public final class ItemTagImpl {
         return Ingredient.fromTag(CreoItemTags.DUPLICATES_ALLAYS);
     }
 
-    public static Predicate<ItemEntity> applyDolphinIgnores() {
-        return itemEntity -> {
-            return !itemEntity.cannotPickup() && itemEntity.isAlive() && itemEntity.isTouchingWater() && !itemEntity.getStack().isIn(CreoItemTags.DOLPHIN_IGNORES);
-        };
+    public static boolean applyDolphinIgnores(ItemEntity itemEntity) {
+        return !itemEntity.cannotPickup() && itemEntity.isAlive() && itemEntity.isTouchingWater() && !itemEntity.getStack().isIn(CreoItemTags.DOLPHIN_IGNORES);
     }
 
     public static Ingredient applyFuelsFurnaceMinecarts() {
@@ -48,5 +48,37 @@ public final class ItemTagImpl {
     public static void applyDisablesShield(LivingEntity livingEntity, CallbackInfoReturnable<Boolean> cir) {
         if (livingEntity.getMainHandStack().isIn(CreoItemTags.DISABLES_SHIELD))
             cir.setReturnValue(true);
+    }
+
+    public static void applyUnframeable(ItemStack stack, CallbackInfoReturnable<ActionResult> cir) {
+        if (stack.isIn(CreoItemTags.UNFRAMEABLE))
+            cir.setReturnValue(ActionResult.PASS);
+    }
+
+    public static boolean applyFoxIgnores(ItemEntity itemEntity) {
+        return !itemEntity.cannotPickup() && itemEntity.isAlive() && !itemEntity.getStack().isIn(CreoItemTags.FOX_IGNORES);
+    }
+
+    public static boolean applyBrewingFuel(ItemStack stack) {
+        return stack.isIn(CreoItemTags.BREWING_FUEL);
+    }
+
+    public static Slot applyEnchantingFuel(ScreenHandler screenHandler, Slot slot) {
+        return screenHandler.addSlot(new EnchantingFuelSlot(slot.inventory, 1, 35, 47));
+    }
+
+    public static boolean applyEnchantingFuelQuickMove(ItemStack stack) {
+        return stack.isIn(CreoItemTags.ENCHANTING_FUEL);
+    }
+
+    public static class EnchantingFuelSlot extends Slot {
+        public EnchantingFuelSlot(Inventory inventory, int index, int x, int y) {
+            super(inventory, index, x, y);
+        }
+
+        @Override
+        public boolean canInsert(ItemStack stack) {
+            return stack.isIn(CreoItemTags.ENCHANTING_FUEL);
+        }
     }
 }
