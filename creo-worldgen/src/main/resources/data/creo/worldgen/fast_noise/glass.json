@@ -6,11 +6,11 @@
   },
   "cellular": {
     "distance_function": "euclidean_sq",
-    "jitter_modifier": 1.0,
-    "return_type": "distance_2_div"
+    "jitter_modifier": 1.5,
+    "return_type": "distance_2_add"
   },
   "domain_warp": {
     "type": "open_simplex_2",
-    "amplitude": 75.0
+    "amplitude": 50.0
   }
 }

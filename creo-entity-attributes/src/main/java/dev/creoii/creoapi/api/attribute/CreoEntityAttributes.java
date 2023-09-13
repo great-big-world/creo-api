@@ -50,6 +50,11 @@ public class CreoEntityAttributes implements ModInitializer {
      */
     public static final EntityAttribute PLAYER_BLOCK_BREAK_SPEED = new ClampedEntityAttribute("attribute.name.player.block_break_speed", 5d, 0d, 512d).setTracked(true);
 
+    /**
+     * Controls the base mining speed of the player.
+     */
+    public static final EntityAttribute PLAYER_MINING_SPEED = new ClampedEntityAttribute("attribute.name.player.mining_speed", 5d, 0d, 512d).setTracked(true);
+
     @Override
     public void onInitialize() {
         Registry.register(Registries.ATTRIBUTE, new Identifier(CreoEntityAttributes.NAMESPACE, "generic.gravity"), GENERIC_GRAVITY);

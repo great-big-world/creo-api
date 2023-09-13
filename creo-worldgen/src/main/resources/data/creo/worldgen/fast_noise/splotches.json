@@ -1,7 +1,6 @@
 {
   "noise_type": "cellular",
-  "frequency": 0.01,
-  "rotation_type_3d": "none",
+  "frequency": 0.03,
   "fractal": {
     "type": "domain_warp_independent",
     "octaves": 3,

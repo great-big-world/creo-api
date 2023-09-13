@@ -1,7 +1,6 @@
 {
-  "frequency": 0.005,
   "noise_type": "value",
-  "rotation_type_3d": "none",
+  "frequency": 0.03,
   "fractal": {
     "type": "domain_warp_progressive",
     "octaves": 3,

@@ -1,0 +1,12 @@
+{
+  "noise_type": "value",
+  "frequency": 0.03,
+  "fractal": {
+    "type": "ping_pong",
+    "octaves": 3,
+    "lacunarity": 2.0,
+    "gain": 0.25,
+    "weighted_strength": 0.0,
+    "ping_pong_strength": 2.5
+  }
+}

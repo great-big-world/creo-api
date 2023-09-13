@@ -1,7 +1,6 @@
 {
-  "frequency": 0.075,
+  "frequency": 0.03,
   "noise_type": "cellular",
-  "rotation_type_3d": "none",
   "fractal": {
     "type": "none"
   },
@@ -11,7 +10,6 @@
     "return_type": "distance_2_div"
   },
   "domain_warp": {
-    "type": "open_simplex_2_reduced",
-    "amplitude": 1.0
+    "type": "open_simplex_2_reduced"
   }
 }

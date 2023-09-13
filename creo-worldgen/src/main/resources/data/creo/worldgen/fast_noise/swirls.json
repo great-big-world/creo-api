@@ -1,7 +1,6 @@
 {
   "noise_type": "open_simplex_2s",
-  "frequency": 0.01,
-  "rotation_type_3d": "none",
+  "frequency": 0.03,
   "fractal": {
     "type": "ridged",
     "octaves": 3,

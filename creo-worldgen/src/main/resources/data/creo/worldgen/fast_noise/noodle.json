@@ -1,7 +1,6 @@
 {
-  "frequency": 0.01,
   "noise_type": "open_simplex_2s",
-  "rotation_type_3d": "none",
+  "frequency": 0.03,
   "fractal": {
     "type": "ping_pong",
     "octaves": 3,
@@ -16,7 +15,6 @@
     "return_type": "distance"
   },
   "domain_warp": {
-    "type": "open_simplex_2",
-    "amplitude": 1.0
+    "type": "open_simplex_2"
   }
 }

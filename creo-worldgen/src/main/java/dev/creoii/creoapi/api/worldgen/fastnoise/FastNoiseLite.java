@@ -317,16 +317,20 @@ public class FastNoiseLite {
         public static final Codec<FastNoiseLite.DomainWarp> CODEC = RecordCodecBuilder.create(instance -> {
             return instance.group(FastNoiseLite.DomainWarpType.CODEC.fieldOf("type").orElse(FastNoiseLite.DomainWarpType.OPEN_SIMPLEX_2).forGetter(fastNoiseLite -> {
                 return fastNoiseLite.type;
-            }), Codec.FLOAT.fieldOf("amplitude").orElse(1f).forGetter(fastNoiseLite -> {
+            }), Codec.FLOAT.fieldOf("amplitude").orElse(30f).forGetter(fastNoiseLite -> {
                 return fastNoiseLite.amplitude;
+            }), Codec.FLOAT.fieldOf("frequency").orElse(.005f).forGetter(fastNoiseLite -> {
+                return fastNoiseLite.frequency;
             })).apply(instance, FastNoiseLite.DomainWarp::new);
         });
         private DomainWarpType type;
         private float amplitude;
+        private float frequency;
 
-        public DomainWarp(DomainWarpType type, float amplitude) {
+        public DomainWarp(DomainWarpType type, float amplitude, float frequency) {
             this.type = type;
             this.amplitude = amplitude;
+            this.frequency = frequency;
         }
 
         public void setType(DomainWarpType type) {
@@ -335,6 +339,10 @@ public class FastNoiseLite {
 
         public void setAmplitude(float amplitude) {
             this.amplitude = amplitude;
+        }
+
+        public void setFrequency(float frequency) {
+            this.frequency = frequency;
         }
     }
 
@@ -1909,7 +1917,7 @@ public class FastNoiseLite {
     private void DomainWarpSingle(Vector2 coord) {
         long seed = mSeed;
         float amp = domainWarp.amplitude * mFractalBounding;
-        float freq = mFrequency;
+        float freq = domainWarp.frequency;
 
         float xs = coord.x;
         float ys = coord.y;
@@ -1929,7 +1937,7 @@ public class FastNoiseLite {
     private void DomainWarpSingle(Vector3 coord) {
         long seed = mSeed;
         float amp = domainWarp.amplitude * mFractalBounding;
-        float freq = mFrequency;
+        float freq = domainWarp.frequency;
 
         float xs = coord.x;
         float ys = coord.y;
@@ -1970,7 +1978,7 @@ public class FastNoiseLite {
     private void DomainWarpFractalProgressive(Vector2 coord) {
         long seed = mSeed;
         float amp = domainWarp.amplitude * mFractalBounding;
-        float freq = mFrequency;
+        float freq = domainWarp.frequency;
 
         for (int i = 0; i < fractal.octaves; i++) {
             float xs = coord.x;
@@ -1998,7 +2006,7 @@ public class FastNoiseLite {
     private void DomainWarpFractalProgressive(Vector3 coord) {
         long seed = mSeed;
         float amp = domainWarp.amplitude * mFractalBounding;
-        float freq = mFrequency;
+        float freq = domainWarp.frequency;
 
         for (int i = 0; i < fractal.octaves; i++) {
             float xs = coord.x;
@@ -2055,7 +2063,7 @@ public class FastNoiseLite {
 
         long seed = mSeed;
         float amp = domainWarp.amplitude * mFractalBounding;
-        float freq = mFrequency;
+        float freq = domainWarp.frequency;
 
         for (int i = 0; i < fractal.octaves; i++) {
             DoSingleDomainWarp(seed, amp, freq, xs, ys, coord);
@@ -2098,7 +2106,7 @@ public class FastNoiseLite {
 
         long seed = mSeed;
         float amp = domainWarp.amplitude * mFractalBounding;
-        float freq = mFrequency;
+        float freq = domainWarp.frequency;
 
         for (int i = 0; i < fractal.octaves; i++) {
             DoSingleDomainWarp(seed, amp, freq, xs, ys, zs, coord);

@@ -1,13 +1,13 @@
 {
-  "frequency": 0.03,
   "noise_type": "cellular",
+  "frequency": 0.03,
   "fractal": {
     "type": "none"
   },
   "cellular": {
     "distance_function": "euclidean",
-    "jitter_modifier": 0.0,
-    "return_type": "cell_value"
+    "return_type": "cell_value",
+    "jitter_modifier": 1.0
   },
   "domain_warp": {
     "type": "open_simplex_2"

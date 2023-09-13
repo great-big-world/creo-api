@@ -11,6 +11,7 @@
   },
   "domain_warp": {
     "type": "open_simplex_2",
-    "amplitude": 75.0
+    "amplitude": 50.0,
+    "frequency": 0.075
   }
 }
