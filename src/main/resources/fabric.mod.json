@@ -14,9 +14,6 @@
   "icon": "assets/creo-api/icon.png",
   "environment": "*",
   "entrypoints": {},
-  "mixins": [
-    "creo-api.mixins.json"
-  ],
   "depends": {
     "fabricloader": ">=${loader_version}",
     "fabric": "*",

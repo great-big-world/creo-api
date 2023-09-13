@@ -4,8 +4,7 @@
   "package": "dev.creoii.creoapi.mixin.blockinjection",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "BlockEntityTypeAccessor",
-    "PointOfInterestTypesAccessor"
+    "BlockEntityTypeAccessor"
   ],
   "client": [
   ],
