@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 public class MovementSpeedAttributeImpl {
     public static void addLivingAttributes(CallbackInfoReturnable<DefaultAttributeContainer.Builder> cir) {
-        cir.getReturnValue().add(CreoEntityAttributes.GENERIC_SWIMMING_SPEED).add(CreoEntityAttributes.GENERIC_CROUCHING_SPEED).add(CreoEntityAttributes.GENERIC_CLIMBING_SPEED);
+        cir.getReturnValue().add(CreoEntityAttributes.GENERIC_SWIMMING_SPEED).add(CreoEntityAttributes.GENERIC_CLIMBING_SPEED);
     }
 
     public static void addPlayerAttributes(CallbackInfoReturnable<DefaultAttributeContainer.Builder> cir) {
@@ -36,10 +36,6 @@ public class MovementSpeedAttributeImpl {
     public static void applySpectatorFlyingSpeed(ClientPlayerEntity player) {
         if (!player.isSpectator())
             player.getAbilities().setFlySpeed((float) player.getAttributeValue(CreoEntityAttributes.PLAYER_FLYING_SPEED));
-    }
-
-    public static double applyCrouchingSpeed(PlayerEntity player) {
-        return player.getAttributeValue(CreoEntityAttributes.GENERIC_CROUCHING_SPEED);
     }
 
     public static double applyClimbingSpeed(LivingEntity livingEntity) {

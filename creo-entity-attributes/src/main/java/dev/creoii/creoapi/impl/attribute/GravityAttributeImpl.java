@@ -1,7 +1,6 @@
 package dev.creoii.creoapi.impl.attribute;
 
 import dev.creoii.creoapi.api.attribute.CreoEntityAttributes;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
@@ -19,50 +18,45 @@ public final class GravityAttributeImpl {
         cir.getReturnValue().add(CreoEntityAttributes.GENERIC_GRAVITY);
     }
 
-    public static double modifyGravity(Entity entity, double d) {
-        if (entity instanceof LivingEntity livingEntity && livingEntity instanceof Gravity gravity) {
-            gravity.creo_setGravity(livingEntity.getAttributeInstance(CreoEntityAttributes.GENERIC_GRAVITY));
-            return gravity.creo_getGravity().getValue();
+    public static double modifyGravity(LivingEntity livingEntity, double d) {
+        if (canModifyGravity(livingEntity)) {
+            return livingEntity.getAttributeInstance(CreoEntityAttributes.GENERIC_GRAVITY).getValue();
         }
         return d;
     }
 
-    public static double modifySlowFallingGravity(Entity entity, double d) {
-        if (entity instanceof Gravity gravity && canModifyGravity(gravity) && !gravity.creo_getGravity().hasModifier(SLOW_FALLING_MODIFIER)) {
-            gravity.creo_getGravity().addTemporaryModifier(SLOW_FALLING_MODIFIER);
-            return gravity.creo_getGravity().getValue();
+    public static double modifySlowFallingGravity(LivingEntity livingEntity, double d) {
+        EntityAttributeInstance gravity = livingEntity.getAttributeInstance(CreoEntityAttributes.GENERIC_GRAVITY);
+        if (canModifyGravity(livingEntity) && !gravity.hasModifier(SLOW_FALLING_MODIFIER)) {
+            gravity.addTemporaryModifier(SLOW_FALLING_MODIFIER);
+            return gravity.getValue();
         }
         return d;
     }
 
-    public static void removeSlowFallingModifier(Entity entity) {
-        if (entity instanceof Gravity gravity && canModifyGravity(gravity)) {
-            if (gravity.creo_getGravity().hasModifier(GravityAttributeImpl.SLOW_FALLING_MODIFIER))
-                gravity.creo_getGravity().removeModifier(GravityAttributeImpl.SLOW_FALLING_MODIFIER);
+    public static void removeSlowFallingModifier(LivingEntity livingEntity) {
+        if (canModifyGravity(livingEntity)) {
+            EntityAttributeInstance gravity = livingEntity.getAttributeInstance(CreoEntityAttributes.GENERIC_GRAVITY);
+            if (gravity.hasModifier(GravityAttributeImpl.SLOW_FALLING_MODIFIER))
+                gravity.removeModifier(GravityAttributeImpl.SLOW_FALLING_MODIFIER);
         }
     }
 
-    public static float adjustFallDamage(Entity entity, float value) {
-        if (entity instanceof Gravity gravity && canModifyGravity(gravity)) {
-            return value * (float) (((LivingEntity) entity).getAttributeValue(CreoEntityAttributes.GENERIC_GRAVITY) * 12.5f);
+    public static float adjustFallDamage(LivingEntity livingEntity, float value) {
+        if (canModifyGravity(livingEntity)) {
+            return value * (float) (livingEntity.getAttributeValue(CreoEntityAttributes.GENERIC_GRAVITY) * 12.5f);
         }
         return value;
     }
 
-    public static void knockDownwards(Entity entity, CallbackInfo ci) {
-        if (entity instanceof Gravity gravity && canModifyGravity(gravity)) {
-            entity.setVelocity(entity.getVelocity().add(0d, -.03999999910593033d * ((LivingEntity) entity).getAttributeValue(CreoEntityAttributes.GENERIC_GRAVITY), 0d));
+    public static void knockDownwards(LivingEntity livingEntity, CallbackInfo ci) {
+        if (canModifyGravity(livingEntity)) {
+            livingEntity.setVelocity(livingEntity.getVelocity().add(0d, -.03999999910593033d * livingEntity.getAttributeValue(CreoEntityAttributes.GENERIC_GRAVITY), 0d));
             ci.cancel();
         }
     }
 
-    private static boolean canModifyGravity(Gravity gravity) {
-        return gravity.creo_getGravity() != null;
-    }
-
-    public interface Gravity {
-        EntityAttributeInstance creo_getGravity();
-
-        void creo_setGravity(EntityAttributeInstance instance);
+    private static boolean canModifyGravity(LivingEntity livingEntity) {
+        return livingEntity.getAttributes() != null && livingEntity.getAttributeInstance(CreoEntityAttributes.GENERIC_GRAVITY) != null;
     }
 }

@@ -12,7 +12,7 @@ public final class MaxAirAttributeImpl {
     }
 
     public static void applyMaxAir(Entity entity, CallbackInfoReturnable<Integer> cir) {
-        if (entity instanceof LivingEntity livingEntity) {
+        if (entity instanceof LivingEntity livingEntity && livingEntity.getAttributes() != null) {
             cir.setReturnValue((int) livingEntity.getAttributeValue(CreoEntityAttributes.GENERIC_MAX_AIR));
         }
     }
