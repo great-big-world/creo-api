@@ -4,12 +4,16 @@ import dev.creoii.creoapi.api.tag.CreoBlockTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.ai.goal.EatGrassGoal;
 import net.minecraft.entity.mob.RavagerEntity;
+import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.predicate.block.BlockStatePredicate;
+import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
@@ -91,5 +95,11 @@ public final class BlockTagImpl {
             cir.setReturnValue(15f);
         else if (state.isIn(CreoBlockTags.SHEARS_LESS_EFFICIENT))
             cir.setReturnValue(2f);
+    }
+
+    public static void applyProjectilesIgnore(ProjectileEntity projectile, HitResult hitResult, CallbackInfo ci) {
+        if (hitResult.getType() == HitResult.Type.BLOCK) {
+            if (projectile.getWorld().getBlockState(((BlockHitResult) hitResult).getBlockPos()).isIn(CreoBlockTags.PROJECTILES_IGNORE)) ci.cancel();
+        }
     }
 }
