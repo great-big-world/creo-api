@@ -3,7 +3,7 @@
   "id": "creo-events",
   "version": "${version}",
   "name": "Creo Events",
-  "description": "Many new events to hook into vanilla code.",
+  "description": "Event callbacks to hook into vanilla code.",
   "authors": [
     "creoii"
   ],

@@ -5,8 +5,11 @@ pluginManagement {
             url = 'https://maven.fabricmc.net/'
         }
         gradlePluginPortal()
+        mavenLocal()
     }
 }
+
+rootProject.name = "creo-api"
 
 include "creo-advancement-api"
 include "creo-block-injection-api"
