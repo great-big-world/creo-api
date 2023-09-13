@@ -1,4 +1,6 @@
 plugins {
+    id 'java'
+    id 'idea'
     id 'fabric-loom' version '1.3-SNAPSHOT'
     id 'maven-publish'
 }
@@ -6,9 +8,22 @@ plugins {
 version = project.mod_version
 archivesBaseName = project.archives_base_name
 
+dependencies {
+    afterEvaluate {
+        subprojects.each {
+            if (!it.name.startsWith("creo"))
+                return
+            implementation project(path: "${it.name}", configuration: "dev")
+            include project("${it.name}:")
+        }
+    }
+}
+
 allprojects {
     group = project.maven_group
 
+    apply plugin: 'java'
+    apply plugin: 'idea'
     apply plugin: 'fabric-loom'
     apply plugin: 'maven-publish'
 
@@ -22,6 +37,7 @@ allprojects {
 
     tasks.withType(JavaCompile).configureEach {
         it.options.release.set(17)
+        it.options.encoding = "UTF-8"
     }
 
     dependencies {
@@ -53,4 +69,15 @@ allprojects {
             }
         }
     }
+}
+
+configurations {
+    dev {
+        canBeResolved = false
+        canBeConsumed = true
+    }
+}
+
+artifacts {
+    dev jar
 }
