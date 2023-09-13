@@ -14,7 +14,6 @@
   "icon": "assets/creo-advancement-api/icon.png",
   "environment": "*",
   "entrypoints": {},
-  "accessWidener": "creo-advancement-api.accesswidener",
   "mixins": [
     "creo-advancement-api.mixins.json"
   ],

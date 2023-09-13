@@ -3,7 +3,7 @@
   "id": "creo-item-api",
   "version": "${version}",
   "name": "Creo Item API",
-  "description": "",
+  "description": "Extensions giving items more functionality.",
   "authors": [
     "creoii"
   ],
