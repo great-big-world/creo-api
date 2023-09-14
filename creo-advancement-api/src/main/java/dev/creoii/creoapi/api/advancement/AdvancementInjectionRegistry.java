@@ -1,5 +1,6 @@
 package dev.creoii.creoapi.api.advancement;
 
+import dev.creoii.creoapi.api.advancement.injector.Injector;
 import net.minecraft.util.Identifier;
 
 import java.util.HashMap;
@@ -18,17 +19,5 @@ public final class AdvancementInjectionRegistry {
 
     public static Map<Identifier, Injector[]> getAdvancementInjectors() {
         return ADVANCEMENT_INJECTORS;
-    }
-
-    public static abstract class Injector {
-        public abstract Type getType();
-    }
-
-    public enum Type {
-        CRITERIA,
-        PARENT,
-        REQUIREMENTS,
-        REWARDS,
-        DISPLAY
     }
 }

@@ -14,20 +14,20 @@ public class AdvancementImpl {
     public static void applyAdvancementInjections(Identifier identifier, Advancement.Builder builder) {
         AdvancementInjectionRegistry.getAdvancementInjectors().forEach((id, injectors) -> {
             if (identifier.equals(id)) {
-                for (AdvancementInjectionRegistry.Injector injector : injectors) {
+                for (Injector injector : injectors) {
                     switch (injector.getType()) {
                         case CRITERIA -> {
                             CriteriaInjector criteriaInjector = (CriteriaInjector) injector;
-                            builder.criterion(criteriaInjector.getName(), criteriaInjector.getCriterion());
+                            builder.criterion(criteriaInjector.name(), criteriaInjector.criterion());
                         }
                         case REQUIREMENTS -> {
                             AdvancementBuilderAccessor accessor = ((AdvancementBuilderAccessor) builder);
                             String[][] oldReqs = accessor.getRequirements();
                             String[][] newReqs = Arrays.copyOf(oldReqs, oldReqs.length + 1);
-                            newReqs[newReqs.length - 1] = ((RequirementsInjector) injector).getRequirements();
+                            newReqs[newReqs.length - 1] = ((RequirementsInjector) injector).requirements();
                             accessor.setRequirements(newReqs);
                         }
-                        case REWARDS -> builder.rewards(((RewardsInjector) injector).getRewards());
+                        case REWARDS -> builder.rewards(((RewardsInjector) injector).rewards());
                         case DISPLAY -> {
                             AdvancementDisplayAccessor accessor = (AdvancementDisplayAccessor) ((AdvancementBuilderAccessor) builder).getDisplay();
                             DisplayInjector displayInjector = ((DisplayInjector) injector);
