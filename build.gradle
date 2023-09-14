@@ -11,10 +11,10 @@ archivesBaseName = project.archives_base_name
 dependencies {
     afterEvaluate {
         subprojects.each {
-            if (!it.name.startsWith("creo"))
-                return
-            implementation project(path: "${it.name}", configuration: "dev")
-            include project("${it.name}:")
+            if (it.name.startsWith("creo")) {
+                implementation project(path: ":${it.name}", configuration: "dev")
+                include project(":${it.name}")
+            }
         }
     }
 }
@@ -30,6 +30,12 @@ allprojects {
     sourceCompatibility = JavaVersion.VERSION_17
     targetCompatibility = JavaVersion.VERSION_17
 
+    repositories {
+        maven {
+            url 'https://jitpack.io'
+        }
+    }
+
     java {
         withSourcesJar()
         withJavadocJar()
@@ -43,7 +49,7 @@ allprojects {
     dependencies {
         minecraft "com.mojang:minecraft:${rootProject.minecraft_version}"
         mappings "net.fabricmc:yarn:${rootProject.yarn_mappings}:v2"
-        modImplementation  "net.fabricmc:fabric-loader:${rootProject.loader_version}"
+        modImplementation "net.fabricmc:fabric-loader:${rootProject.loader_version}"
         modImplementation "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_version}"
     }
 
@@ -69,15 +75,12 @@ allprojects {
             }
         }
     }
-}
 
-configurations {
-    dev {
-        canBeResolved = false
-        canBeConsumed = true
+    configurations {
+        dev
     }
-}
 
-artifacts {
-    dev jar
+    artifacts {
+        dev jar
+    }
 }

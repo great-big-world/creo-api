@@ -32,6 +32,7 @@ public final class BlockTagImpl {
             cir.setReturnValue(true);
     }
 
+    @SuppressWarnings("deprecation")
     public static void applyCactusPlantableOn(BlockState state, WorldView world, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
         if (!world.getBlockState(pos.up()).isLiquid()) {
             if (state.isIn(CreoBlockTags.CACTUS_PLANTABLE_ON))
@@ -63,7 +64,7 @@ public final class BlockTagImpl {
         return state.isIn(CreoBlockTags.BEACON_BEAM_IGNORES);
     }
 
-    public static void applyConduitFrameBaseBlocks(BlockState state, BlockPos pos, List<BlockPos> activatingBlocks, CallbackInfoReturnable<Boolean> cir) {
+    public static void applyConduitFrameBaseBlocks(BlockState state, BlockPos pos, List<BlockPos> activatingBlocks) {
         if (state.isIn(CreoBlockTags.CONDUIT_FRAME_BASE_BLOCKS)) {
             activatingBlocks.add(pos);
         }

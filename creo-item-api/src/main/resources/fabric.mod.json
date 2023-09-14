@@ -18,15 +18,24 @@
     "creo-item-api.mixins.json"
   ],
   "depends": {
+    "minecraft": "${minecraft_version}",
     "fabricloader": ">=${loader_version}",
-    "fabric": "*",
-    "minecraft": "${minecraft_version}"
+    "fabric-item-api-v1": "*"
   },
   "custom": {
     "modmenu": {
       "badges": [
         "library"
-      ]
+      ],
+      "parent": {
+        "id": "creo-api",
+        "name": "Creo API",
+        "description": "A multi-purpose api for Minecraft mod and datapack development.",
+        "icon": "assets/creo-item-api/icon.png",
+        "badges": [
+          "library"
+        ]
+      }
     }
   }
 }

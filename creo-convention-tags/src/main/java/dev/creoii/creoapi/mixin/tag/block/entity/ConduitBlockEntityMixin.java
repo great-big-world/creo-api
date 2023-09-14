@@ -18,7 +18,7 @@ import java.util.List;
 public class ConduitBlockEntityMixin {
     @Inject(method = "updateActivatingBlocks", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;getBlockState(Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/block/BlockState;", shift = At.Shift.BY, by = 2), locals = LocalCapture.CAPTURE_FAILSOFT)
     private static void creo_applyConduitFrameBaseBlocks(World world, BlockPos pos, List<BlockPos> activatingBlocks, CallbackInfoReturnable<Boolean> cir, int i, int j, int k, int l, int m, int n, BlockPos blockPos2, BlockState blockState) {
-        BlockTagImpl.applyConduitFrameBaseBlocks(blockState, blockPos2, activatingBlocks, cir);
+        BlockTagImpl.applyConduitFrameBaseBlocks(blockState, blockPos2, activatingBlocks);
     }
 
     @Redirect(method = "updateActivatingBlocks", at = @At(value = "INVOKE", target = "Ljava/util/List;add(Ljava/lang/Object;)Z"))

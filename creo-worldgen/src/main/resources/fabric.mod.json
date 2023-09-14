@@ -20,14 +20,22 @@
   ],
   "depends": {
     "fabricloader": ">=${loader_version}",
-    "fabric": "*",
     "minecraft": "${minecraft_version}"
   },
   "custom": {
     "modmenu": {
       "badges": [
         "library"
-      ]
+      ],
+      "parent": {
+        "id": "creo-api",
+        "name": "Creo API",
+        "description": "A multi-purpose api for Minecraft mod and datapack development.",
+        "icon": "assets/creo-worldgen/icon.png",
+        "badges": [
+          "library"
+        ]
+      }
     },
     "loom:injected_interfaces": {
       "net/minecraft/class_7138": [

@@ -15,7 +15,7 @@
   "environment": "*",
   "entrypoints": {},
   "mixins": [
-    "creo-entity-attributes.mixins.json"
+    "creo-entity-block-collision-api.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=${loader_version}",
@@ -26,7 +26,16 @@
     "modmenu": {
       "badges": [
         "library"
-      ]
+      ],
+      "parent": {
+        "id": "creo-api",
+        "name": "Creo API",
+        "description": "A multi-purpose api for Minecraft mod and datapack development.",
+        "icon": "assets/creo-entity-block-collision-api/icon.png",
+        "badges": [
+          "library"
+        ]
+      }
     }
   }
 }
