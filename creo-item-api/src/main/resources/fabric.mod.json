@@ -8,7 +8,9 @@
     "creoii"
   ],
   "contact": {
-    "repo": "https://github.com/jackr/creo-api"
+    "homepage": "https://www.creoii.dev",
+    "sources": "https://github.com/great-big-world/creo-api/tree/master/creo-item-api",
+    "issues": "https://github.com/great-big-world/creo-api/issues"
   },
   "license": "All-Rights-Reserved",
   "icon": "assets/creo-item-api/icon.png",

@@ -3,12 +3,14 @@
   "id": "creo-block-injection-api",
   "version": "${version}",
   "name": "Creo Block Injection API",
-  "description": "",
+  "description": "Injection utilities related to blocks.",
   "authors": [
     "creoii"
   ],
   "contact": {
-    "repo": "https://github.com/jackr/creo-api"
+    "homepage": "https://www.creoii.dev",
+    "sources": "https://github.com/great-big-world/creo-api/tree/master/creo-block-injection-api",
+    "issues": "https://github.com/great-big-world/creo-api/issues"
   },
   "license": "All-Rights-Reserved",
   "icon": "assets/creo-block-injection-api/icon.png",
