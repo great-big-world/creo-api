@@ -16,8 +16,8 @@ import java.util.List;
 public class EntityBlockCollisionImpl {
     public static void applyEntityBlockCollision(CollisionView collisionView, @Nullable Entity entity, Box box, CallbackInfoReturnable<Iterable<VoxelShape>> cir) {
         if (entity != null) {
-            if (EntityBlockCollisionRegistry.getInteractions().containsKey(entity.getType())) {
-                EntityBlockCollision collision = EntityBlockCollisionRegistry.getInteractions().get(entity.getType());
+            EntityBlockCollision collision = EntityBlockCollisionRegistry.getCollisionOfType(entity.getType());
+            if (collision != null) {
                 cir.setReturnValue(() -> new EntityBlockCollisionSpliterator(collisionView, entity, box, collision.getPredicate()));
             }
         }
@@ -25,8 +25,8 @@ public class EntityBlockCollisionImpl {
 
     public static void applyEntityBlockCollisionLithium(World world, @Nullable Entity entity, Box box, CallbackInfoReturnable<List<VoxelShape>> cir) {
         if (entity != null) {
-            if (EntityBlockCollisionRegistry.getInteractions().containsKey(entity.getType())) {
-                EntityBlockCollision collision = EntityBlockCollisionRegistry.getInteractions().get(entity.getType());
+            EntityBlockCollision collision = EntityBlockCollisionRegistry.getCollisionOfType(entity.getType());
+            if (collision != null) {
                 cir.setReturnValue(new EntityBlockCollisionSpliterator(world, entity, box, collision.getPredicate()).collectAll());
             }
         }
