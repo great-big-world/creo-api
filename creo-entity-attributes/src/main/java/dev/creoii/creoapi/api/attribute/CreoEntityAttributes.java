@@ -53,7 +53,7 @@ public class CreoEntityAttributes implements ModInitializer {
     /**
      * Controls the base mining speed of the player.
      */
-    public static final EntityAttribute PLAYER_MINING_SPEED = new ClampedEntityAttribute("attribute.name.player.mining_speed", 5d, 0d, 512d).setTracked(true);
+    public static final EntityAttribute PLAYER_MINING_SPEED = new ClampedEntityAttribute("attribute.name.player.mining_speed", 1d, 0d, 512d).setTracked(true);
 
     @Override
     public void onInitialize() {
@@ -65,5 +65,6 @@ public class CreoEntityAttributes implements ModInitializer {
         Registry.register(Registries.ATTRIBUTE, new Identifier(CreoEntityAttributes.NAMESPACE, "generic.max_air"), GENERIC_MAX_AIR);
         Registry.register(Registries.ATTRIBUTE, new Identifier(CreoEntityAttributes.NAMESPACE, "player.block_place_speed"), PLAYER_BLOCK_PLACE_SPEED);
         Registry.register(Registries.ATTRIBUTE, new Identifier(CreoEntityAttributes.NAMESPACE, "player.block_break_speed"), PLAYER_BLOCK_BREAK_SPEED);
+        Registry.register(Registries.ATTRIBUTE, new Identifier(CreoEntityAttributes.NAMESPACE, "player.mining_speed"), PLAYER_MINING_SPEED);
     }
 }
