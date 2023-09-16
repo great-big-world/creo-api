@@ -9,18 +9,18 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 public final class BlockCooldownAttributeImpl {
     public static void addAttributes(CallbackInfoReturnable<DefaultAttributeContainer.Builder> cir) {
-        cir.getReturnValue().add(CreoEntityAttributes.PLAYER_BLOCK_PLACE_SPEED).add(CreoEntityAttributes.PLAYER_BLOCK_BREAK_SPEED);
+        cir.getReturnValue().add(CreoEntityAttributes.PLACE_COOLDOWN).add(CreoEntityAttributes.BREAK_COOLDOWN);
     }
 
     public static void applyBlockPlaceSpeed(MinecraftClient client, ItemStack stack) {
         if (stack.getItem() instanceof BlockItem && client.player != null) {
-            client.itemUseCooldown = (int) client.player.getAttributeValue(CreoEntityAttributes.PLAYER_BLOCK_PLACE_SPEED);
+            client.itemUseCooldown = (int) client.player.getAttributeValue(CreoEntityAttributes.PLACE_COOLDOWN);
         }
     }
 
     public static int applyBlockBreakSpeed(MinecraftClient client) {
         if (client.player != null) {
-            return (int) client.player.getAttributeValue(CreoEntityAttributes.PLAYER_BLOCK_BREAK_SPEED);
+            return (int) client.player.getAttributeValue(CreoEntityAttributes.BREAK_COOLDOWN);
         }
         return 5;
     }

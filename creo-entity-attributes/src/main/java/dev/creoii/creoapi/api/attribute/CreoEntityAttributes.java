@@ -38,17 +38,17 @@ public class CreoEntityAttributes implements ModInitializer {
     /**
      * Controls maximum air while drowning.
      */
-    public static final EntityAttribute GENERIC_MAX_AIR = new ClampedEntityAttribute("attribute.name.generic.max_air", 300d, 0d, 4096d).setTracked(true);
+    public static final EntityAttribute GENERIC_MAX_AIR = new ClampedEntityAttribute("attribute.name.generic.max_air", 30d, 0d, 1024d).setTracked(true);
 
     /**
      * Controls the block placing cooldown.
      */
-    public static final EntityAttribute PLAYER_BLOCK_PLACE_SPEED = new ClampedEntityAttribute("attribute.name.player.block_place_speed", 4d, 0d, 512d).setTracked(true);
+    public static final EntityAttribute PLACE_COOLDOWN = new ClampedEntityAttribute("attribute.name.player.place_cooldown", 4d, 0d, 1024d).setTracked(true);
 
     /**
      * Controls the block breaking cooldown.
      */
-    public static final EntityAttribute PLAYER_BLOCK_BREAK_SPEED = new ClampedEntityAttribute("attribute.name.player.block_break_speed", 5d, 0d, 512d).setTracked(true);
+    public static final EntityAttribute BREAK_COOLDOWN = new ClampedEntityAttribute("attribute.name.player.break_cooldown", 5d, 0d, 1024d).setTracked(true);
 
     /**
      * Controls the base mining speed of the player.
@@ -63,8 +63,8 @@ public class CreoEntityAttributes implements ModInitializer {
         Registry.register(Registries.ATTRIBUTE, new Identifier(CreoEntityAttributes.NAMESPACE, "player.flying_speed"), PLAYER_FLYING_SPEED);
         Registry.register(Registries.ATTRIBUTE, new Identifier(CreoEntityAttributes.NAMESPACE, "generic.jump_strength"), GENERIC_JUMP_STRENGTH);
         Registry.register(Registries.ATTRIBUTE, new Identifier(CreoEntityAttributes.NAMESPACE, "generic.max_air"), GENERIC_MAX_AIR);
-        Registry.register(Registries.ATTRIBUTE, new Identifier(CreoEntityAttributes.NAMESPACE, "player.block_place_speed"), PLAYER_BLOCK_PLACE_SPEED);
-        Registry.register(Registries.ATTRIBUTE, new Identifier(CreoEntityAttributes.NAMESPACE, "player.block_break_speed"), PLAYER_BLOCK_BREAK_SPEED);
+        Registry.register(Registries.ATTRIBUTE, new Identifier(CreoEntityAttributes.NAMESPACE, "player.place_cooldown"), PLACE_COOLDOWN);
+        Registry.register(Registries.ATTRIBUTE, new Identifier(CreoEntityAttributes.NAMESPACE, "player.break_cooldown"), BREAK_COOLDOWN);
         Registry.register(Registries.ATTRIBUTE, new Identifier(CreoEntityAttributes.NAMESPACE, "player.mining_speed"), PLAYER_MINING_SPEED);
     }
 }
