@@ -5,6 +5,7 @@ import dev.creoii.creoapi.impl.item.AccessibleItem;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.entry.RegistryEntryList;
 import net.minecraft.screen.AbstractFurnaceScreenHandler;
 import net.minecraft.screen.AbstractRecipeScreenHandler;
 import net.minecraft.screen.ScreenHandlerType;
@@ -33,7 +34,7 @@ public abstract class AbstractFurnaceScreenHandlerMixin extends AbstractRecipeSc
             public boolean canInsert(ItemStack stack) {
                 Item.Settings settings = ((AccessibleItem) stack.getItem()).creo_getItemSettings();
                 if (settings instanceof CreoItemSettings creoItemSettings) {
-                    Item[] requiredFuels = creoItemSettings.getRequiredFuels();
+                    RegistryEntryList<Item> requiredFuels = creoItemSettings.getRequiredFuels();
                     if (requiredFuels != null) {
                         return isRequiredFuel(requiredFuels, inventory.getStack(1));
                     }
@@ -48,7 +49,7 @@ public abstract class AbstractFurnaceScreenHandlerMixin extends AbstractRecipeSc
     private void creo_applyItemRequiredFuels(ItemStack itemStack, CallbackInfoReturnable<Boolean> cir) {
         Item.Settings settings = ((AccessibleItem) itemStack.getItem()).creo_getItemSettings();
         if (settings instanceof CreoItemSettings creoItemSettings) {
-            Item[] requiredFuels = creoItemSettings.getRequiredFuels();
+            RegistryEntryList<Item> requiredFuels = creoItemSettings.getRequiredFuels();
             if (requiredFuels != null) {
                 cir.setReturnValue(isRequiredFuel(requiredFuels, inventory.getStack(1)));
             }
@@ -56,10 +57,7 @@ public abstract class AbstractFurnaceScreenHandlerMixin extends AbstractRecipeSc
     }
 
     @Unique
-    private boolean isRequiredFuel(Item[] required, ItemStack fuel) {
-        for (Item item : required) {
-            if (fuel.isOf(item)) return true;
-        }
-        return false;
+    private boolean isRequiredFuel(RegistryEntryList<Item> items, ItemStack fuel) {
+        return items.contains(fuel.getRegistryEntry());
     }
 }

@@ -5,6 +5,7 @@ import dev.creoii.creoapi.impl.item.AccessibleItem;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.entry.RegistryEntryList;
 import net.minecraft.screen.slot.FurnaceFuelSlot;
 import net.minecraft.screen.slot.Slot;
 import org.spongepowered.asm.mixin.Mixin;
@@ -23,7 +24,7 @@ public abstract class FurnaceFuelSlotMixin extends Slot {
     private void creo_dontInsertRestrictedFuel(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
         Item.Settings settings = ((AccessibleItem) inventory.getStack(0).getItem()).creo_getItemSettings();
         if (settings instanceof CreoItemSettings creoItemSettings) {
-            Item[] requiredFuels = creoItemSettings.getRequiredFuels();
+            RegistryEntryList<Item> requiredFuels = creoItemSettings.getRequiredFuels();
             if (requiredFuels != null) {
                 cir.setReturnValue(isRequiredFuel(requiredFuels, stack));
             }
@@ -31,10 +32,7 @@ public abstract class FurnaceFuelSlotMixin extends Slot {
     }
 
     @Unique
-    private boolean isRequiredFuel(Item[] required, ItemStack fuel) {
-        for (Item item : required) {
-            if (fuel.isOf(item)) return true;
-        }
-        return false;
+    private boolean isRequiredFuel(RegistryEntryList<Item> required, ItemStack fuel) {
+        return required.contains(fuel.getRegistryEntry());
     }
 }

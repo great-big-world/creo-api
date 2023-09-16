@@ -77,32 +77,28 @@ public class ModStorage {
 
     @Nullable
     public BooleanModProperty getBooleanProperty(String propertyName) {
-        ModProperty<?> property = getProperty(propertyName);
-        if (property instanceof BooleanModProperty booleanModProperty)
+        if (getProperty(propertyName) instanceof BooleanModProperty booleanModProperty)
             return booleanModProperty;
         return null;
     }
 
     @Nullable
     public IntegerModProperty getIntegerProperty(String propertyName) {
-        ModProperty<?> property = getProperty(propertyName);
-        if (property instanceof IntegerModProperty integerModProperty)
+        if (getProperty(propertyName) instanceof IntegerModProperty integerModProperty)
             return integerModProperty;
         return null;
     }
 
     @Nullable
     public DoubleModProperty getDoubleProperty(String propertyName) {
-        ModProperty<?> property = getProperty(propertyName);
-        if (property instanceof DoubleModProperty doubleModProperty)
+        if (getProperty(propertyName) instanceof DoubleModProperty doubleModProperty)
             return doubleModProperty;
         return null;
     }
 
     @Nullable
     public StringModProperty getStringProperty(String propertyName) {
-        ModProperty<?> property = getProperty(propertyName);
-        if (property instanceof StringModProperty stringModProperty)
+        if (getProperty(propertyName) instanceof StringModProperty stringModProperty)
             return stringModProperty;
         return null;
     }

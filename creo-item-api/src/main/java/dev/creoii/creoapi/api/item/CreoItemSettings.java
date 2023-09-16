@@ -6,15 +6,22 @@ import net.fabricmc.fabric.api.item.v1.EquipmentSlotProvider;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.registry.entry.RegistryEntryList;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.resource.featuretoggle.FeatureFlag;
 import net.minecraft.util.Rarity;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class CreoItemSettings extends FabricItemSettings {
     private int pickupDelay = 10;
     private int despawnTime = 6000;
     private boolean buoyant = true;
     private double gravity = -.04d;
-    private Item[] requiredFuels;
+    private RegistryEntryList<Item> requiredFuels;
 
     public static CreoItemSettings copyOf(Item.Settings settings) {
         ItemSettingsAccessor accessor = (ItemSettingsAccessor) settings;
@@ -141,8 +148,23 @@ public class CreoItemSettings extends FabricItemSettings {
         return this;
     }
 
-    public CreoItemSettings requiredFuels(Item... requiredFuels) {
+    public CreoItemSettings requiredFuels(RegistryEntryList<Item> requiredFuels) {
         this.requiredFuels = requiredFuels;
+        return this;
+    }
+
+    @SuppressWarnings("deprecation")
+    public CreoItemSettings requiredFuels(TagKey<Item> requiredFuels) {
+        this.requiredFuels = RegistryEntryList.of(Registries.ITEM.getEntryOwner(), requiredFuels);
+        return this;
+    }
+
+    public CreoItemSettings requiredFuels(Item[] requiredFuels) {
+        List<RegistryEntry<Item>> entries = new LinkedList<>();
+        for (Item item : requiredFuels) {
+            entries.add(item.getDefaultStack().getRegistryEntry());
+        }
+        this.requiredFuels = RegistryEntryList.of(entries);
         return this;
     }
 
@@ -162,7 +184,7 @@ public class CreoItemSettings extends FabricItemSettings {
         return gravity;
     }
 
-    public Item[] getRequiredFuels() {
+    public RegistryEntryList<Item> getRequiredFuels() {
         return requiredFuels;
     }
 
@@ -182,7 +204,7 @@ public class CreoItemSettings extends FabricItemSettings {
         this.gravity = gravity;
     }
 
-    public void setRequiredFuels(Item[] requiredFuels) {
+    public void setRequiredFuels(RegistryEntryList<Item> requiredFuels) {
         this.requiredFuels = requiredFuels;
     }
 }
