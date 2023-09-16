@@ -2,3 +2,5 @@ accessWidener v2 named
 
 mutable field net/minecraft/block/entity/BlockEntityType blocks Ljava/util/Set;
 accessible field net/minecraft/world/poi/PointOfInterestTypes POI_STATES_TO_TYPE Ljava/util/Map;
+mutable field net/minecraft/block/Block stateManager Lnet/minecraft/state/StateManager;
+mutable field net/minecraft/state/StateManager properties Lcom/google/common/collect/ImmutableSortedMap;
