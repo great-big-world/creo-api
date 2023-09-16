@@ -1,3 +1,11 @@
 {
-  "attribute.name.generic.gravity": "Gravità"
+  "attribute.name.generic.gravity": "Gravità",
+  "attribute.name.generic.swimming_speed": "Velocità di nuoto",
+  "attribute.name.generic.climbing_speed": "Velocità di salita",
+  "attribute.name.player.flying_speed": "Velocità di volo",
+  "attribute.name.generic.jump_strength": "Forza di salto",
+  "attribute.name.generic.max_air": "Aria massima",
+  "attribute.name.player.place_cooldown": "Rinfrescare il posto",
+  "attribute.name.player.break_cooldown": "Rinfresca la pausa",
+  "attribute.name.player.mining_speed": "Velocità di estrazione"
 }
