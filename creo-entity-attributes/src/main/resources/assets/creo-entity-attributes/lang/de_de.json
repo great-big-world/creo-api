@@ -1,3 +1,11 @@
 {
-  "attribute.name.generic.gravity": "Schwere"
+  "attribute.name.generic.gravity": "Schwere",
+  "attribute.name.generic.swimming_speed": "Schwimmgeschwindigkeit",
+  "attribute.name.generic.climbing_speed": "Steiggeschwindigkeit",
+  "attribute.name.player.flying_speed": "Fluggeschwindigkeit",
+  "attribute.name.generic.jump_strength": "Sprungstärke",
+  "attribute.name.generic.max_air": "Maximale Luft",
+  "attribute.name.player.place_cooldown": "Abklingzeit platzieren",
+  "attribute.name.player.break_cooldown": "Abklingzeit unterbrechen",
+  "attribute.name.player.mining_speed": "Bergbaugeschwindigkeit"
 }
