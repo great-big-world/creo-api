@@ -85,6 +85,13 @@ public final class BlockEvents {
     public interface Change {
         /**
          * Called on both the client and server when a blockstate is changed.
+         * Is not called if {@param newState} or {@param oldState} are considered air.
+         *
+         * @param world the world
+         * @param pos the block position
+         * @param newState the state being changed to
+         * @param oldState the state being changed from
+         * @param moved whether this state change was the result of a move
          */
         boolean onChange(World world, BlockPos pos, BlockState newState, BlockState oldState, boolean moved);
     }
