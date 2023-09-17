@@ -2,10 +2,8 @@ package dev.creoii.creoapi.impl.tag;
 
 import dev.creoii.creoapi.api.tag.CreoBlockTags;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.ai.goal.EatGrassGoal;
 import net.minecraft.entity.mob.RavagerEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
-import net.minecraft.predicate.block.BlockStatePredicate;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
@@ -17,9 +15,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
-import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.function.Predicate;
 
 public final class BlockTagImpl {
     public static void applySignalFireBaseBlocks(BlockState state, CallbackInfoReturnable<Boolean> cir) {
