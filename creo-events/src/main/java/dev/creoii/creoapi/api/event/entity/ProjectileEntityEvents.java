@@ -28,7 +28,7 @@ public final class ProjectileEntityEvents {
     public static final Event<Impact> IMPACT = EventFactory.createArrayBacked(Impact.class,
             listeners -> (projectile, hitResult) -> {
                 for (Impact event : listeners) {
-                    return event.shouldImpact(projectile, hitResult);
+                    return event.onImpact(projectile, hitResult);
                 }
 
                 return true;
@@ -55,6 +55,6 @@ public final class ProjectileEntityEvents {
          *
          * @see ProjectileEntity#onCollision(HitResult)
          */
-        boolean shouldImpact(ProjectileEntity projectile, HitResult hitResult);
+        boolean onImpact(ProjectileEntity projectile, HitResult hitResult);
     }
 }

@@ -14,7 +14,7 @@ public final class PlayerEntityEvents {
     public static final Event<LevelUp> LEVEL_UP = EventFactory.createArrayBacked(LevelUp.class,
             listeners -> (player, levels) -> {
                 for (LevelUp event : listeners) {
-                    return event.shouldLevelUp(player, levels);
+                    return event.onLevelUp(player, levels);
                 }
 
                 return true;
@@ -30,6 +30,6 @@ public final class PlayerEntityEvents {
          * @param levels the amount of levels to increase by
          * @return true to level up, or false to stop the level up.
          */
-        boolean shouldLevelUp(PlayerEntity player, int levels);
+        boolean onLevelUp(PlayerEntity player, int levels);
     }
 }

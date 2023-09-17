@@ -13,7 +13,7 @@ public final class ItemEventImpl {
     }
 
     public static void applyItemEnchantEvent(ItemStack stack, Enchantment enchantment, int level, CallbackInfo ci) {
-        boolean result = ItemEvents.ENCHANT.invoker().shouldEnchant(stack, enchantment, level);
+        boolean result = ItemEvents.ENCHANT.invoker().onEnchant(stack, enchantment, level);
 
         if (!result)
             ci.cancel();

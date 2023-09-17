@@ -16,7 +16,7 @@ public final class EntityEvents {
     public static final Event<Spawn> SPAWN = EventFactory.createArrayBacked(Spawn.class,
             listeners -> (world, entity) -> {
                 for (Spawn event : listeners) {
-                    return event.shouldSpawn(world, entity);
+                    return event.onSpawn(world, entity);
                 }
 
                 return true;
@@ -44,7 +44,7 @@ public final class EntityEvents {
          * @param serverWorld the world
          * @param entity the entity
          */
-        boolean shouldSpawn(ServerWorld serverWorld, Entity entity);
+        boolean onSpawn(ServerWorld serverWorld, Entity entity);
     }
 
     @FunctionalInterface

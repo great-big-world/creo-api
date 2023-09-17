@@ -20,7 +20,7 @@ public final class WorldEvents {
     public static final Event<Explode> EXPLODE = EventFactory.createArrayBacked(Explode.class,
             listeners -> (world, explosion, x, y, z, behavior, destructionType, explosionSourceType, power, createFire, particles) -> {
                 for (Explode event : listeners) {
-                    return event.shouldExplode(world, explosion, x, y, z, behavior, destructionType, explosionSourceType, power, createFire, particles);
+                    return event.onExplode(world, explosion, x, y, z, behavior, destructionType, explosionSourceType, power, createFire, particles);
                 }
 
                 return true;
@@ -47,6 +47,6 @@ public final class WorldEvents {
          *
          * @see World#createExplosion(Entity, DamageSource, ExplosionBehavior, double, double, double, float, boolean, World.ExplosionSourceType, boolean)
          */
-        boolean shouldExplode(World world, Explosion explosion, double x, double y, double z, ExplosionBehavior behavior, Explosion.DestructionType destructionType, World.ExplosionSourceType explosionSourceType, float power, boolean createFire, boolean particles);
+        boolean onExplode(World world, Explosion explosion, double x, double y, double z, ExplosionBehavior behavior, Explosion.DestructionType destructionType, World.ExplosionSourceType explosionSourceType, float power, boolean createFire, boolean particles);
     }
 }

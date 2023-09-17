@@ -16,7 +16,7 @@ public final class AnimalEntityEvents {
     public static final Event<Pre> BREED_PRE = EventFactory.createArrayBacked(Pre.class,
             listeners -> (world, animal, other, baby) -> {
                 for (Pre event : listeners) {
-                    return event.shouldBreed(world, animal, other, baby);
+                    return event.onBreed(world, animal, other, baby);
                 }
 
                 return true;
@@ -46,7 +46,7 @@ public final class AnimalEntityEvents {
          * @param other the second animal
          * @param baby the baby
          */
-        boolean shouldBreed(ServerWorld serverWorld, AnimalEntity animal, AnimalEntity other, PassiveEntity baby);
+        boolean onBreed(ServerWorld serverWorld, AnimalEntity animal, AnimalEntity other, PassiveEntity baby);
     }
 
     @FunctionalInterface

@@ -28,7 +28,7 @@ public final class ItemEvents {
     public static final Event<Enchant> ENCHANT = EventFactory.createArrayBacked(Enchant.class,
             listeners -> (stack, enchantment, level) -> {
                 for (Enchant event : listeners) {
-                    return event.shouldEnchant(stack, enchantment, level);
+                    return event.onEnchant(stack, enchantment, level);
                 }
 
                 return true;
@@ -59,6 +59,6 @@ public final class ItemEvents {
          * @param enchantment the enchantment being added
          * @param level the enchantment level
          */
-        boolean shouldEnchant(ItemStack stack, Enchantment enchantment, int level);
+        boolean onEnchant(ItemStack stack, Enchantment enchantment, int level);
     }
 }

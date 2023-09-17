@@ -20,7 +20,7 @@ public final class BlockEvents {
     public static final Event<Place> PLACE = EventFactory.createArrayBacked(Place.class,
             (listeners) -> (block, context) -> {
                 for (Place event : listeners) {
-                    return event.shouldPlace(block, context);
+                    return event.onPlace(block, context);
                 }
 
                 return true;
@@ -33,7 +33,7 @@ public final class BlockEvents {
     public static final Event<Break> BREAK = EventFactory.createArrayBacked(Break.class,
             listeners -> (world, player, state, pos) -> {
                 for (Break event : listeners) {
-                    return event.shouldBreak(world, player, state, pos);
+                    return event.onBreak(world, player, state, pos);
                 }
 
                 return true;
@@ -63,7 +63,7 @@ public final class BlockEvents {
          *
          * @return true to place the block, or false to ignore the placement.
          */
-        boolean shouldPlace(Block block, ItemPlacementContext context);
+        boolean onPlace(Block block, ItemPlacementContext context);
     }
 
     @FunctionalInterface
@@ -78,7 +78,7 @@ public final class BlockEvents {
          *
          * @return true to break the block, or false to keep the block.
          */
-        boolean shouldBreak(ServerWorld world, ServerPlayerEntity player, BlockState state, BlockPos pos);
+        boolean onBreak(ServerWorld world, ServerPlayerEntity player, BlockState state, BlockPos pos);
     }
 
     @FunctionalInterface

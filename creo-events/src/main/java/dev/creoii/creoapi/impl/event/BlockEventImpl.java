@@ -13,14 +13,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 public final class BlockEventImpl {
     public static void applyBlockPlaceEvent(Block block, ItemPlacementContext context, CallbackInfoReturnable<ActionResult> cir) {
-        boolean result = BlockEvents.PLACE.invoker().shouldPlace(block, context);
+        boolean result = BlockEvents.PLACE.invoker().onPlace(block, context);
 
         if (!result)
             cir.setReturnValue(ActionResult.PASS);
     }
 
     public static void applyBlockBreakEvent(ServerWorld world, ServerPlayerEntity player, BlockState state, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
-        boolean result = BlockEvents.BREAK.invoker().shouldBreak(world, player, state, pos);
+        boolean result = BlockEvents.BREAK.invoker().onBreak(world, player, state, pos);
 
         if (!result)
             cir.setReturnValue(false);

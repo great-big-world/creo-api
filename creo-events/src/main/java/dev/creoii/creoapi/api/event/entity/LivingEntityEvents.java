@@ -21,7 +21,7 @@ public final class LivingEntityEvents {
     public static final Event<DropLoot> DROP_LOOT = EventFactory.createArrayBacked(DropLoot.class,
             listeners -> (livingEntity, identifier, lootTable, damageSource, lootContextParameterSet, causedByPlayer) -> {
                 for (DropLoot event : listeners) {
-                    return event.shouldDropLoot(livingEntity, identifier, lootTable, damageSource, lootContextParameterSet, causedByPlayer);
+                    return event.onDropLoot(livingEntity, identifier, lootTable, damageSource, lootContextParameterSet, causedByPlayer);
                 }
 
                 return true;
@@ -34,7 +34,7 @@ public final class LivingEntityEvents {
     public static final Event<EquipStack> EQUIP_STACK = EventFactory.createArrayBacked(EquipStack.class,
             listeners -> (livingEntity, slot, oldStack, newStack) -> {
                 for (EquipStack event : listeners) {
-                    return event.shouldEquipStack(livingEntity, slot, oldStack, newStack);
+                    return event.onEquipStack(livingEntity, slot, oldStack, newStack);
                 }
 
                 return true;
@@ -68,7 +68,7 @@ public final class LivingEntityEvents {
          * @param lootContextParameterSet the loot context parameters
          * @param causedByPlayer whether the death was caused by a player
          */
-        boolean shouldDropLoot(LivingEntity livingEntity, Identifier identifier, LootTable lootTable, DamageSource damageSource, LootContextParameterSet lootContextParameterSet, boolean causedByPlayer);
+        boolean onDropLoot(LivingEntity livingEntity, Identifier identifier, LootTable lootTable, DamageSource damageSource, LootContextParameterSet lootContextParameterSet, boolean causedByPlayer);
     }
 
     @FunctionalInterface
@@ -83,7 +83,7 @@ public final class LivingEntityEvents {
          * @param oldStack the previous itemstack in the slot
          * @param newStack the new itemstack in the slot
          */
-        boolean shouldEquipStack(LivingEntity livingEntity, EquipmentSlot slot, ItemStack oldStack, ItemStack newStack);
+        boolean onEquipStack(LivingEntity livingEntity, EquipmentSlot slot, ItemStack oldStack, ItemStack newStack);
     }
 
     @FunctionalInterface

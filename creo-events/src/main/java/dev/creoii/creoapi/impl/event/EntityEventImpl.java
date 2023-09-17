@@ -26,7 +26,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 public final class EntityEventImpl {
     public static void applyEntitySpawnEvent(ServerWorld serverWorld, Entity entity, CallbackInfoReturnable<Boolean> cir) {
-        boolean result = EntityEvents.SPAWN.invoker().shouldSpawn(serverWorld, entity);
+        boolean result = EntityEvents.SPAWN.invoker().onSpawn(serverWorld, entity);
 
         if (!result)
             cir.cancel();
@@ -50,7 +50,7 @@ public final class EntityEventImpl {
     }
 
     public static void applyAnimalPreBreedEvent(ServerWorld world, AnimalEntity animal, AnimalEntity other, PassiveEntity baby, CallbackInfo ci) {
-        boolean result = AnimalEntityEvents.BREED_PRE.invoker().shouldBreed(world, animal, other, baby);
+        boolean result = AnimalEntityEvents.BREED_PRE.invoker().onBreed(world, animal, other, baby);
 
         if (!result)
             ci.cancel();
@@ -61,14 +61,14 @@ public final class EntityEventImpl {
     }
 
     public static void applyLivingEquipStackEvent(LivingEntity livingEntity, EquipmentSlot slot, ItemStack oldStack, ItemStack newStack, CallbackInfo ci) {
-        boolean result = LivingEntityEvents.EQUIP_STACK.invoker().shouldEquipStack(livingEntity, slot, oldStack, newStack);
+        boolean result = LivingEntityEvents.EQUIP_STACK.invoker().onEquipStack(livingEntity, slot, oldStack, newStack);
 
         if (!result)
             ci.cancel();
     }
 
     public static void applyLivingDropLootEvent(LivingEntity livingEntity, Identifier identifier, LootTable lootTable, DamageSource damageSource, LootContextParameterSet lootContextParameterSet, boolean causedByPlayer, CallbackInfo ci) {
-        boolean result = LivingEntityEvents.DROP_LOOT.invoker().shouldDropLoot(livingEntity, identifier, lootTable, damageSource, lootContextParameterSet, causedByPlayer);
+        boolean result = LivingEntityEvents.DROP_LOOT.invoker().onDropLoot(livingEntity, identifier, lootTable, damageSource, lootContextParameterSet, causedByPlayer);
 
         if (!result)
             ci.cancel();
@@ -82,7 +82,7 @@ public final class EntityEventImpl {
         if (levels <= 0)
             return;
 
-        boolean result = PlayerEntityEvents.LEVEL_UP.invoker().shouldLevelUp(playerEntity, levels);
+        boolean result = PlayerEntityEvents.LEVEL_UP.invoker().onLevelUp(playerEntity, levels);
 
         if (!result)
             ci.cancel();
@@ -93,7 +93,7 @@ public final class EntityEventImpl {
     }
 
     public static void applyProjectileImpactEvent(ProjectileEntity projectile, HitResult hitResult, CallbackInfo ci) {
-        boolean result = ProjectileEntityEvents.IMPACT.invoker().shouldImpact(projectile, hitResult);
+        boolean result = ProjectileEntityEvents.IMPACT.invoker().onImpact(projectile, hitResult);
 
         if (!result)
             ci.cancel();
