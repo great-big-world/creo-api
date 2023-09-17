@@ -4,7 +4,6 @@ import dev.creoii.creoapi.api.tag.CreoBlockTags;
 import dev.creoii.creoapi.impl.tag.BlockTagImpl;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.ai.goal.EatGrassGoal;
-import net.minecraft.predicate.block.BlockStatePredicate;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Mutable;

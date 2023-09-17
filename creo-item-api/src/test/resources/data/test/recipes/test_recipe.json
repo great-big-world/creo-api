@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "test:test_item"
+  },
+  "result": "minecraft:acacia_boat",
+  "cookingtime": 200
+}

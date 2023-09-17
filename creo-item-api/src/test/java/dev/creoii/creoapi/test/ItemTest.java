@@ -5,6 +5,7 @@ import net.fabricmc.api.ModInitializer;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.Identifier;
 
 public class ItemTest implements ModInitializer {
@@ -16,6 +17,7 @@ public class ItemTest implements ModInitializer {
                         .despawnTime(3000)
                         .notBuoyant()
                         .gravity(0d)
+                        .requiredFuels(ItemTags.COALS)
         ));
     }
 }

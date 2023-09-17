@@ -3,10 +3,8 @@ package dev.creoii.creoapi.api.collision;
 import net.minecraft.entity.EntityType;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Allows the specification of certain blocks that an {@link EntityType} will not collide with.

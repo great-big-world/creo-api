@@ -6,10 +6,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
-import java.util.function.Function;
-
 public final class FoodComponentImpl {
     public static void applyFoodMaxEatDurability(Item item) {
         if (item.isFood() && item.getFoodComponent() instanceof CreoFoodComponent creoFoodComponent) {
