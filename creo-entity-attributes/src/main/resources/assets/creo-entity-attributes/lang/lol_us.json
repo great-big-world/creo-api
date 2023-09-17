@@ -1,0 +1,11 @@
+{
+  "attribute.name.generic.gravity": "douwnwrds force",
+  "attribute.name.generic.swimming_speed": "lickwid spede",
+  "attribute.name.generic.climbing_speed": "ladr spede",
+  "attribute.name.player.flying_speed": "fly spede",
+  "attribute.name.generic.jump_strength": "jumpeh strenth",
+  "attribute.name.generic.max_air": "max breth",
+  "attribute.name.player.place_cooldown": "placin cooldown",
+  "attribute.name.player.break_cooldown": "brkin cooldown",
+  "attribute.name.player.mining_speed": "mininging spede"
+}
