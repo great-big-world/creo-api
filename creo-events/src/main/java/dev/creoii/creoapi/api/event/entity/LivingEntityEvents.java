@@ -19,7 +19,7 @@ public final class LivingEntityEvents {
      * An event that is called when a {@link LivingEntity} drops loot.
      */
     public static final Event<DropLoot> DROP_LOOT = EventFactory.createArrayBacked(DropLoot.class,
-            (listeners) -> (livingEntity, identifier, lootTable, damageSource, lootContextParameterSet, causedByPlayer) -> {
+            listeners -> (livingEntity, identifier, lootTable, damageSource, lootContextParameterSet, causedByPlayer) -> {
                 for (DropLoot event : listeners) {
                     return event.shouldDropLoot(livingEntity, identifier, lootTable, damageSource, lootContextParameterSet, causedByPlayer);
                 }
@@ -32,7 +32,7 @@ public final class LivingEntityEvents {
      * An event that is called when a {@link LivingEntity} equips an item to an equipment slot.
      */
     public static final Event<EquipStack> EQUIP_STACK = EventFactory.createArrayBacked(EquipStack.class,
-            (listeners) -> (livingEntity, slot, oldStack, newStack) -> {
+            listeners -> (livingEntity, slot, oldStack, newStack) -> {
                 for (EquipStack event : listeners) {
                     return event.shouldEquipStack(livingEntity, slot, oldStack, newStack);
                 }
@@ -45,7 +45,7 @@ public final class LivingEntityEvents {
      * An event that is called when a {@link LivingEntity} eats food.
      */
     public static final Event<EatFood> EAT_FOOD = EventFactory.createArrayBacked(EatFood.class,
-            (listeners) -> (world, livingEntity, stack) -> {
+            listeners -> (world, livingEntity, stack) -> {
                 for (EatFood event : listeners) {
                     return event.onEatFood(world, livingEntity, stack);
                 }

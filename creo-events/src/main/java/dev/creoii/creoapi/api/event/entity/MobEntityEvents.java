@@ -21,7 +21,7 @@ public final class MobEntityEvents {
      * <p> Return null for default behavior to take effect.
      */
     public static final Event<Initialize> INITIALIZE = EventFactory.createArrayBacked(Initialize.class,
-            (listeners) -> (world, mob, difficulty, spawnReason, entityData, nbt) -> {
+            listeners -> (world, mob, difficulty, spawnReason, entityData, nbt) -> {
                 for (Initialize event : listeners) {
                     EntityData result = event.onInitialize(world, mob, difficulty, spawnReason, entityData, nbt);
 

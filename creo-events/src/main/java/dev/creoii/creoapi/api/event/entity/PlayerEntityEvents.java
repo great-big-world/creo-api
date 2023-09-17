@@ -12,7 +12,7 @@ public final class PlayerEntityEvents {
      * An event called when a {@link PlayerEntity} levels up.
      */
     public static final Event<LevelUp> LEVEL_UP = EventFactory.createArrayBacked(LevelUp.class,
-            (listeners) -> (player, levels) -> {
+            listeners -> (player, levels) -> {
                 for (LevelUp event : listeners) {
                     return event.shouldLevelUp(player, levels);
                 }

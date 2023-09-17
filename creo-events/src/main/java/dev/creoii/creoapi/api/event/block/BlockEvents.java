@@ -31,7 +31,7 @@ public final class BlockEvents {
      * An event called on the server before a block is broken.
      */
     public static final Event<Break> BREAK = EventFactory.createArrayBacked(Break.class,
-            (listeners) -> (world, player, state, pos) -> {
+            listeners -> (world, player, state, pos) -> {
                 for (Break event : listeners) {
                     return event.shouldBreak(world, player, state, pos);
                 }
@@ -44,7 +44,7 @@ public final class BlockEvents {
      * An event called on both the client and server when a blockstate is changed.
      */
     public static final Event<Change> CHANGE = EventFactory.createArrayBacked(Change.class,
-            (listeners) -> (world, pos, newState, oldState, moved) -> {
+            listeners -> (world, pos, newState, oldState, moved) -> {
                 for (Change event : listeners) {
                     return event.onChange(world, pos, newState, oldState, moved);
                 }

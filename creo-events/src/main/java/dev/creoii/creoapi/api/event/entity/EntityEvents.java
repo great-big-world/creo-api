@@ -14,7 +14,7 @@ public final class EntityEvents {
      * An event that is called on the server when an {@link Entity} is added to a world.
      */
     public static final Event<Spawn> SPAWN = EventFactory.createArrayBacked(Spawn.class,
-            (listeners) -> (world, entity) -> {
+            listeners -> (world, entity) -> {
                 for (Spawn event : listeners) {
                     return event.shouldSpawn(world, entity);
                 }
@@ -27,7 +27,7 @@ public final class EntityEvents {
      * Called on the server when an {@link Entity} is within the bounds of a structure.
      */
     public static final Event<WithinStructure> WITHIN_STRUCTURE = EventFactory.createArrayBacked(WithinStructure.class,
-            (listeners) -> (serverWorld, entity, structureStart) -> {
+            listeners -> (serverWorld, entity, structureStart) -> {
                 for (WithinStructure event : listeners) {
                     event.onWithinStructure(serverWorld, entity, structureStart);
                 }

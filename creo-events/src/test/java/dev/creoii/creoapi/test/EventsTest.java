@@ -3,6 +3,7 @@ package dev.creoii.creoapi.test;
 import dev.creoii.creoapi.api.event.block.BlockEvents;
 import dev.creoii.creoapi.api.event.entity.*;
 import dev.creoii.creoapi.api.event.item.ItemEvents;
+import dev.creoii.creoapi.api.event.world.WorldEvents;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.Enchantments;
@@ -20,11 +21,14 @@ public class EventsTest implements ModInitializer {
     private static final boolean testLivingEatFoodEvent = true;
     private static final boolean testLivingDropLootEvent = true;
     private static final boolean testPlayerLevelUpEvent = true;
+    private static final boolean testProjectileFireEvent = true;
+    private static final boolean testProjectileImpactEvent = true;
     private static final boolean testItemCraftEvent = true;
     private static final boolean testItemEnchantEvent = true;
     private static final boolean testBlockPlaceEvent = true;
     private static final boolean testBlockBreakEvent = true;
     private static final boolean testBlockChangeEvent = true;
+    private static final boolean testWorldExplodeEvent = true;
 
     @Override
     public void onInitialize() {
@@ -123,6 +127,24 @@ public class EventsTest implements ModInitializer {
             });
         }
 
+        if (testProjectileFireEvent) {
+            ProjectileEntityEvents.FIRE.register(projectile -> {
+                System.out.println("Projectile Fire:");
+                System.out.println("    projectile=" + projectile.getType().getTranslationKey());
+            });
+        }
+
+        if (testProjectileImpactEvent) {
+            ProjectileEntityEvents.IMPACT.register((projectile, hitResult) -> {
+                System.out.println("Projectile Impact:");
+                System.out.println("    projectile=" + projectile.getType().getTranslationKey());
+                System.out.println("    type=" + hitResult.getType().name());
+                System.out.println("    pos=" + hitResult.getPos());
+
+                return false;
+            });
+        }
+
         if (testItemCraftEvent) {
             ItemEvents.CRAFT.register((world, stack, player, amount) -> {
                 System.out.println("Item Craft:");
@@ -175,6 +197,19 @@ public class EventsTest implements ModInitializer {
                 System.out.println("    moved=" + moved);
 
                 return !(newState.isOf(Blocks.FARMLAND) && oldState.isOf(Blocks.GRASS_BLOCK));
+            });
+        }
+
+        if (testWorldExplodeEvent) {
+            WorldEvents.EXPLODE.register((world, explosion, x, y, z, behavior, destructionType, explosionSourceType, power, createFire, particles) -> {
+                System.out.println("World Explode:");
+                System.out.println("    destruction type=" + destructionType.name());
+                System.out.println("    source type=" + explosionSourceType.name());
+                System.out.println("    power=" + power);
+                System.out.println("    fire=" + createFire);
+                System.out.println("    particles=" + particles);
+
+                return power > 5;
             });
         }
     }

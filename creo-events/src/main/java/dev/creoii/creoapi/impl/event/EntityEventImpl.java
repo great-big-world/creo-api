@@ -7,6 +7,7 @@ import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.context.LootContextParameterSet;
@@ -14,6 +15,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.structure.StructureStart;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.LocalDifficulty;
@@ -81,6 +83,17 @@ public final class EntityEventImpl {
             return;
 
         boolean result = PlayerEntityEvents.LEVEL_UP.invoker().shouldLevelUp(playerEntity, levels);
+
+        if (!result)
+            ci.cancel();
+    }
+
+    public static void applyProjectileFireEvent(ProjectileEntity projectile) {
+        ProjectileEntityEvents.FIRE.invoker().onFire(projectile);
+    }
+
+    public static void applyProjectileImpactEvent(ProjectileEntity projectile, HitResult hitResult, CallbackInfo ci) {
+        boolean result = ProjectileEntityEvents.IMPACT.invoker().shouldImpact(projectile, hitResult);
 
         if (!result)
             ci.cancel();

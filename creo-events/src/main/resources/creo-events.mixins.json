@@ -10,10 +10,12 @@
     "entity.LivingEntityMixin",
     "entity.MobEntityMixin",
     "entity.PlayerEntityMixin",
+    "entity.ProjectileEntityMixin",
     "item.BlockItemMixin",
     "item.ItemStackMixin",
     "world.ServerWorldMixin",
-    "world.WorldChunkMixin"
+    "world.WorldChunkMixin",
+    "world.WorldMixin"
   ],
   "client": [
   ],
