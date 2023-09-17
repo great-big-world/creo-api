@@ -7,8 +7,5 @@
     "lacunarity": 2.0,
     "gain": 0.9,
     "weighted_strength": 0.5
-  },
-  "domain_warp": {
-    "type": "none"
   }
 }

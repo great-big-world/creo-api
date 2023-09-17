@@ -1,9 +1,6 @@
 {
-  "frequency": 0.03,
   "noise_type": "cellular",
-  "fractal": {
-    "type": "none"
-  },
+  "frequency": 0.03,
   "cellular": {
     "distance_function": "euclidean",
     "jitter_modifier": 1.0,

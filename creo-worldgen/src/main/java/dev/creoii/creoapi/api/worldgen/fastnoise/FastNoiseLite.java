@@ -211,9 +211,9 @@ public class FastNoiseLite {
     private NoiseType mNoiseType = NoiseType.OPEN_SIMPLEX_2;
     private RotationType3D mRotationType3D = RotationType3D.NONE;
 
-    private Fractal fractal;
-    private Cellular cellular;
-    private DomainWarp domainWarp;
+    private Fractal fractal = Fractal.DEFAULT;
+    private Cellular cellular = Cellular.DEFAULT;
+    private DomainWarp domainWarp = DomainWarp.DEFAULT;
 
     private TransformType3D mTransformType3D = TransformType3D.DEFAULT_OPEN_SIMPLEX_2;
     private float mFractalBounding = 1 / 1.75f;
@@ -224,6 +224,7 @@ public class FastNoiseLite {
     public FastNoiseLite() { }
 
     public static class Fractal {
+        public static final Fractal DEFAULT = new Fractal(FractalType.NONE, 3, 2f, .5f, 0f, 2f);
         public static final Codec<FastNoiseLite.Fractal> CODEC = RecordCodecBuilder.create(instance -> {
             return instance.group(FractalType.CODEC.fieldOf("type").orElse(FractalType.NONE).forGetter(fractal -> {
                 return fractal.type;
@@ -281,6 +282,7 @@ public class FastNoiseLite {
     }
 
     public static class Cellular {
+        public static final Cellular DEFAULT = new Cellular(CellularDistanceFunction.EUCLIDEAN_SQ, CellularReturnType.DISTANCE, 1);
         public static final Codec<FastNoiseLite.Cellular> CODEC = RecordCodecBuilder.create(instance -> {
             return instance.group(CellularDistanceFunction.CODEC.fieldOf("distance_function").orElse(CellularDistanceFunction.EUCLIDEAN_SQ).forGetter(fastNoiseLite -> {
                 return fastNoiseLite.distanceFunction;
@@ -314,6 +316,7 @@ public class FastNoiseLite {
     }
 
     public static class DomainWarp {
+        public static final DomainWarp DEFAULT = new DomainWarp(DomainWarpType.OPEN_SIMPLEX_2, 30f, .002f);
         public static final Codec<FastNoiseLite.DomainWarp> CODEC = RecordCodecBuilder.create(instance -> {
             return instance.group(FastNoiseLite.DomainWarpType.CODEC.fieldOf("type").orElse(FastNoiseLite.DomainWarpType.OPEN_SIMPLEX_2).forGetter(fastNoiseLite -> {
                 return fastNoiseLite.type;
@@ -355,26 +358,27 @@ public class FastNoiseLite {
             return fastNoiseLite.mNoiseType;
         }), RotationType3D.CODEC.fieldOf("rotation_type_3d").orElse(RotationType3D.NONE).forGetter(fastNoiseLite -> {
             return fastNoiseLite.mRotationType3D;
-        }), Fractal.CODEC.fieldOf("fractal").forGetter(fastNoiseLite -> {
+        }), Fractal.CODEC.fieldOf("fractal").orElse(Fractal.DEFAULT).forGetter(fastNoiseLite -> {
             return fastNoiseLite.fractal;
-        }), Cellular.CODEC.fieldOf("cellular").forGetter(fastNoiseLite -> {
+        }), Cellular.CODEC.fieldOf("cellular").orElse(Cellular.DEFAULT).forGetter(fastNoiseLite -> {
             return fastNoiseLite.cellular;
-        }), DomainWarp.CODEC.fieldOf("domain_warp").forGetter(fastNoiseLite -> {
+        }), DomainWarp.CODEC.fieldOf("domain_warp").orElse(DomainWarp.DEFAULT).forGetter(fastNoiseLite -> {
             return fastNoiseLite.domainWarp;
         })).apply(instance, FastNoiseLite::new);
     });
 
-    public FastNoiseLite(long seed,
-                         float frequency, NoiseType noiseType, RotationType3D rotationType3D,
-                         Fractal fractal, Cellular cellular, DomainWarp domainWarp
-    ) {
+    public FastNoiseLite(long seed, float frequency, NoiseType noiseType, RotationType3D rotationType3D,
+                         Fractal fractal, Cellular cellular, DomainWarp domainWarp) {
         seed(seed);
         frequency(frequency);
         noiseType(noiseType);
         rotationType3D(rotationType3D);
-        this.fractal = fractal;
-        this.cellular = cellular;
-        this.domainWarp = domainWarp;
+        if (fractal != null)
+            this.fractal = fractal;
+        if (cellular != null)
+            this.cellular = cellular;
+        if (domainWarp != null)
+            this.domainWarp = domainWarp;
     }
 
     /// <summary>

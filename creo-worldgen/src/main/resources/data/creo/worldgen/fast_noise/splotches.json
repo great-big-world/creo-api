@@ -12,7 +12,6 @@
     "return_type": "distance"
   },
   "domain_warp": {
-    "type": "open_simplex_2",
     "amplitude": 100
   }
 }

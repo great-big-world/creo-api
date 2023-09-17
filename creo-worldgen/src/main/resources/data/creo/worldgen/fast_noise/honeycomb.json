@@ -13,8 +13,5 @@
     "distance_function": "euclidean_squared",
     "jitter_modifier": 1.0,
     "return_type": "distance"
-  },
-  "domain_warp": {
-    "type": "open_simplex_2"
   }
 }

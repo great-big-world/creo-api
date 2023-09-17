@@ -1,9 +1,6 @@
 {
   "noise_type": "open_simplex_2",
   "frequency": 0.03,
-  "fractal": {
-    "type": "none"
-  },
   "domain_warp": {
     "type": "open_simplex_2_reduced",
     "amplitude": 75.0,
