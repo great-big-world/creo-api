@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import dev.creoii.creoapi.api.worldgen.CreoPlacementModifierTypes;
 import dev.creoii.creoapi.impl.worldgen.util.CreoDensityFunctionVisitor;
+import dev.creoii.creoapi.impl.worldgen.util.DensityFunctionCache;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.math.BlockPos;
@@ -30,7 +31,6 @@ public class DensityFunctionPlacementModifier extends AbstractConditionalPlaceme
             return predicate.maxThreshold;
         })).apply(instance, DensityFunctionPlacementModifier::new);
     });
-    protected static final Map<Long, NoiseConfig> CACHED_NOISE_CONFIGS = new HashMap<>();
     private final RegistryEntry<DensityFunction> densityFunction;
     private final double minThreshold;
     private final double maxThreshold;
@@ -52,12 +52,12 @@ public class DensityFunctionPlacementModifier extends AbstractConditionalPlaceme
         if (!densityFunction.hasKeyAndValue() || world.isClient()) return false;
 
         long seed = world.getSeed();
-        if (!CACHED_NOISE_CONFIGS.containsKey(seed)) {
+        if (!DensityFunctionCache.CACHED_NOISE_CONFIGS.containsKey(seed)) {
             ChunkGeneratorSettings settings = context.getChunkGenerator() instanceof NoiseChunkGenerator noiseChunkGenerator ? noiseChunkGenerator.getSettings().value() : ChunkGeneratorSettings.createMissingSettings();
-            CACHED_NOISE_CONFIGS.put(seed, NoiseConfig.create(settings, world.getRegistryManager().getWrapperOrThrow(RegistryKeys.NOISE_PARAMETERS), seed));
+            DensityFunctionCache.CACHED_NOISE_CONFIGS.put(seed, NoiseConfig.create(settings, world.getRegistryManager().getWrapperOrThrow(RegistryKeys.NOISE_PARAMETERS), seed));
         }
 
-        double value = densityFunction.value().apply(new CreoDensityFunctionVisitor(CACHED_NOISE_CONFIGS.get(seed))).sample(new DensityFunction.UnblendedNoisePos(pos.getX(), pos.getY(), pos.getZ()));
+        double value = densityFunction.value().apply(new CreoDensityFunctionVisitor(DensityFunctionCache.CACHED_NOISE_CONFIGS.get(seed))).sample(new DensityFunction.UnblendedNoisePos(pos.getX(), pos.getY(), pos.getZ()));
         return value >= minThreshold && value < maxThreshold;
     }
 }

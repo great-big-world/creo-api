@@ -2,6 +2,7 @@ package dev.creoii.creoapi.api.worldgen.materialrule;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import dev.creoii.creoapi.impl.worldgen.util.DensityFunctionCache;
 import dev.creoii.creoapi.impl.worldgen.util.WorldAwareNoiseConfig;
 import dev.creoii.creoapi.impl.worldgen.util.CreoDensityFunctionVisitor;
 import net.minecraft.registry.RegistryKeys;
@@ -19,7 +20,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public record DensityFunctionMaterialCondition(RegistryEntry<DensityFunction> densityFunction, double minThreshold, double maxThreshold) implements MaterialRules.MaterialCondition {
-    static final Map<Long, NoiseConfig> CACHED_NOISE_CONFIGS = new HashMap<>();
     public static final CodecHolder<DensityFunctionMaterialCondition> CODEC_HOLDER = CodecHolder.of(RecordCodecBuilder.mapCodec(instance -> {
         return instance.group(DensityFunction.REGISTRY_ENTRY_CODEC.fieldOf("density_function").forGetter(predicate -> {
             return predicate.densityFunction;
@@ -50,13 +50,13 @@ public record DensityFunctionMaterialCondition(RegistryEntry<DensityFunction> de
             if (!densityFunction.hasKeyAndValue()) return false;
 
             long seed = ((WorldAwareNoiseConfig) context.noiseConfig).creo_getWorld().getSeed();
-            if (!CACHED_NOISE_CONFIGS.containsKey(seed)) {
+            if (!DensityFunctionCache.CACHED_NOISE_CONFIGS.containsKey(seed)) {
                 ChunkGenerator chunkGenerator = ((WorldAwareNoiseConfig) context.noiseConfig).creo_getWorld().getChunkManager().getChunkGenerator();
                 ChunkGeneratorSettings settings = chunkGenerator instanceof NoiseChunkGenerator noiseChunkGenerator ? noiseChunkGenerator.getSettings().value() : ChunkGeneratorSettings.createMissingSettings();
-                CACHED_NOISE_CONFIGS.put(seed, NoiseConfig.create(settings, ((WorldAwareNoiseConfig) context.noiseConfig).creo_getWorld().getRegistryManager().getWrapperOrThrow(RegistryKeys.NOISE_PARAMETERS), seed));
+                DensityFunctionCache.CACHED_NOISE_CONFIGS.put(seed, NoiseConfig.create(settings, ((WorldAwareNoiseConfig) context.noiseConfig).creo_getWorld().getRegistryManager().getWrapperOrThrow(RegistryKeys.NOISE_PARAMETERS), seed));
             }
 
-            double value = DensityFunctionMaterialCondition.this.densityFunction.value().apply(new CreoDensityFunctionVisitor(CACHED_NOISE_CONFIGS.get(seed))).sample(new DensityFunction.UnblendedNoisePos(context.blockX, context.chunk.sampleHeightmap(Heightmap.Type.WORLD_SURFACE_WG, context.blockX, context.blockZ), context.blockZ));
+            double value = DensityFunctionMaterialCondition.this.densityFunction.value().apply(new CreoDensityFunctionVisitor(DensityFunctionCache.CACHED_NOISE_CONFIGS.get(seed))).sample(new DensityFunction.UnblendedNoisePos(context.blockX, context.chunk.sampleHeightmap(Heightmap.Type.WORLD_SURFACE_WG, context.blockX, context.blockZ), context.blockZ));
             return value >= DensityFunctionMaterialCondition.this.minThreshold && value <= DensityFunctionMaterialCondition.this.maxThreshold;
         }
     }
