@@ -16,6 +16,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class MobEntityMixin {
     @Inject(method = "initialize", at = @At("HEAD"), cancellable = true)
     private void creo_mobInitializeCallback(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, EntityData entityData, NbtCompound entityNbt, CallbackInfoReturnable<EntityData> cir) {
-        EntityEventImpl.applyMobInitializeCallback(world, (MobEntity) (Object) this, difficulty, spawnReason, entityData, entityNbt, cir);
+        EntityEventImpl.applyMobInitializeEvent(world, (MobEntity) (Object) this, difficulty, spawnReason, entityData, entityNbt, cir);
     }
 }

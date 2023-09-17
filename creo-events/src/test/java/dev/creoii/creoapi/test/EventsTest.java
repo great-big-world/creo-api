@@ -1,24 +1,33 @@
 package dev.creoii.creoapi.test;
 
+import dev.creoii.creoapi.api.event.block.BlockEvents;
 import dev.creoii.creoapi.api.event.entity.*;
+import dev.creoii.creoapi.api.event.item.ItemEvents;
 import net.fabricmc.api.ModInitializer;
+import net.minecraft.block.Blocks;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.mob.AbstractSkeletonEntity;
 import net.minecraft.item.Items;
 
 public class EventsTest implements ModInitializer {
-    private static final boolean testMobInitializeCallback = false;
-    private static final boolean testEntitySpawnCallback = false;
-    private static final boolean testWithinStructureCallback = false;
-    private static final boolean testAnimalBreedCallbackPre = true;
-    private static final boolean testAnimalBreedCallbackPost = true;
-    private static final boolean testLivingEquipStackCallback = true;
-    private static final boolean testLivingEatFoodCallback = true;
-    private static final boolean testLivingDropLootCallback = true;
+    private static final boolean testMobInitializeEvent = false;
+    private static final boolean testEntitySpawnEvent = false;
+    private static final boolean testWithinStructureEvent = false;
+    private static final boolean testAnimalBreedEventPre = true;
+    private static final boolean testAnimalBreedEventPost = true;
+    private static final boolean testLivingEquipStackEvent = true;
+    private static final boolean testLivingEatFoodEvent = true;
+    private static final boolean testLivingDropLootEvent = true;
+    private static final boolean testItemCraftEvent = true;
+    private static final boolean testItemEnchantEvent = true;
+    private static final boolean testBlockPlaceEvent = true;
+    private static final boolean testBlockBreakEvent = true;
+    private static final boolean testBlockChangeEvent = true;
 
     @Override
     public void onInitialize() {
-        if (testMobInitializeCallback) {
+        if (testMobInitializeEvent) {
             MobEvents.INITIALIZE.register((world, mob, difficulty, spawnReason, entityData, entityNbt) -> {
                 System.out.println("Mob Initialize:");
                 System.out.println("    type=" + mob.getType().getTranslationKey());
@@ -33,7 +42,7 @@ public class EventsTest implements ModInitializer {
             });
         }
 
-        if (testEntitySpawnCallback) {
+        if (testEntitySpawnEvent) {
             EntityEvents.SPAWN.register((serverWorld, entity) -> {
                 System.out.println("Entity Spawn:");
                 System.out.println("    type=" + entity.getType().getTranslationKey());
@@ -41,7 +50,7 @@ public class EventsTest implements ModInitializer {
             });
         }
 
-        if (testWithinStructureCallback) {
+        if (testWithinStructureEvent) {
             EntityEvents.WITHIN_STRUCTURE.register((serverWorld, entity, structureStart) -> {
                 System.out.println("Within Structure:");
                 System.out.println("    entity=" + entity.getType().getTranslationKey());
@@ -49,8 +58,8 @@ public class EventsTest implements ModInitializer {
             });
         }
 
-        if (testAnimalBreedCallbackPre) {
-            AnimalBreedEvents.PRE.register((world, animal, other, baby) -> {
+        if (testAnimalBreedEventPre) {
+            AnimalEvents.BREED_PRE.register((world, animal, other, baby) -> {
                 System.out.println("Animal Breed (Pre):");
                 System.out.println("    animal=" + animal.getType().getTranslationKey());
                 System.out.println("    other=" + other.getType().getTranslationKey());
@@ -59,8 +68,8 @@ public class EventsTest implements ModInitializer {
             });
         }
 
-        if (testAnimalBreedCallbackPost) {
-            AnimalBreedEvents.POST.register((world, animal, other, baby) -> {
+        if (testAnimalBreedEventPost) {
+            AnimalEvents.BREED_POST.register((world, animal, other, baby) -> {
                 System.out.println("Animal Breed (Post):");
                 System.out.println("    animal=" + animal.getType().getTranslationKey());
                 System.out.println("    other=" + other.getType().getTranslationKey());
@@ -70,7 +79,7 @@ public class EventsTest implements ModInitializer {
             });
         }
 
-        if (testLivingEquipStackCallback) {
+        if (testLivingEquipStackEvent) {
             LivingEntityEvents.EQUIP_STACK.register((livingEntity, slot, oldStack, newStack) -> {
                 System.out.println("Living Equip Stack:");
                 System.out.println("    living=" + livingEntity.getType().getTranslationKey());
@@ -82,7 +91,7 @@ public class EventsTest implements ModInitializer {
             });
         }
 
-        if (testLivingEatFoodCallback) {
+        if (testLivingEatFoodEvent) {
             LivingEntityEvents.EAT_FOOD.register((world, livingEntity, stack) -> {
                 System.out.println("Living Eat Food:");
                 System.out.println("    living=" + livingEntity.getType().getTranslationKey());
@@ -92,7 +101,7 @@ public class EventsTest implements ModInitializer {
             });
         }
 
-        if (testLivingDropLootCallback) {
+        if (testLivingDropLootEvent) {
             LivingEntityEvents.DROP_LOOT.register((livingEntity, identifier, lootTable, damageSource, lootContextParameterSet, causedByPlayer) -> {
                 System.out.println("Living Drop Loot:");
                 System.out.println("    living=" + livingEntity.getType().getTranslationKey());
@@ -100,6 +109,61 @@ public class EventsTest implements ModInitializer {
                 System.out.println("    damage=" + damageSource.getName());
 
                 return true;
+            });
+        }
+
+        if (testItemCraftEvent) {
+            ItemEvents.CRAFT.register((world, stack, player, amount) -> {
+                System.out.println("Item Craft:");
+                System.out.println("    stack=" + stack.getItem().getTranslationKey());
+                System.out.println("    player=" + player.getDisplayName().getString());
+                System.out.println("    amount=" + amount);
+            });
+        }
+
+        if (testItemEnchantEvent) {
+            ItemEvents.ENCHANT.register((stack, enchantment, level) -> {
+                System.out.println("Item Enchant:");
+                System.out.println("    stack=" + stack.getItem().getTranslationKey());
+                System.out.println("    enchantment=" + enchantment.getTranslationKey());
+                System.out.println("    level=" + level);
+
+                return enchantment != Enchantments.MENDING;
+            });
+        }
+
+        if (testBlockBreakEvent) {
+            BlockEvents.BREAK.register((world, player, state, pos) -> {
+                System.out.println("Block Break:");
+                System.out.println("    player=" + player.getDisplayName().getString());
+                System.out.println("    block=" + state.getBlock().getTranslationKey());
+                System.out.println("    pos=" + pos.toShortString());
+
+                return !state.isOf(Blocks.STONE);
+            });
+        }
+
+        if (testBlockPlaceEvent) {
+            BlockEvents.PLACE.register((block, context) -> {
+                System.out.println("Block Place:");
+                System.out.println("    block=" + block.getTranslationKey());
+
+                return block != Blocks.STONE;
+            });
+        }
+
+        if (testBlockChangeEvent) {
+            BlockEvents.CHANGE.register((world, pos, newState, oldState, moved) -> {
+                if (world.isClient)
+                    return true;
+
+                System.out.println("Block Change:");
+                System.out.println("    pos=" + pos.toShortString());
+                System.out.println("    new state=" + newState.getBlock().getTranslationKey());
+                System.out.println("    old state=" + oldState.getBlock().getTranslationKey());
+                System.out.println("    moved=" + moved);
+
+                return !(newState.isOf(Blocks.FARMLAND) && oldState.isOf(Blocks.GRASS_BLOCK));
             });
         }
     }

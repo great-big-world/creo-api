@@ -19,6 +19,6 @@ public abstract class EntityMixin {
 
     @Inject(method = "tick", at = @At("TAIL"))
     private void creo_enterStructureCallback(CallbackInfo ci) {
-        EntityEventImpl.applyWithinStructureCallback(world, (Entity) (Object) this, getBlockPos(), getChunkPos());
+        EntityEventImpl.applyWithinStructureEvent(world, (Entity) (Object) this, getBlockPos(), getChunkPos());
     }
 }

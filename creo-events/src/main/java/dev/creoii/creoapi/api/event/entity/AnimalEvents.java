@@ -7,18 +7,16 @@ import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.server.world.ServerWorld;
 
 /**
- * Events related to {@link AnimalEntity} breeding.
- *
- * @see AnimalEntity#breed(ServerWorld, AnimalEntity, PassiveEntity)
+ * Events related to {@link AnimalEntity}.
  */
-public final class AnimalBreedEvents {
+public final class AnimalEvents {
     /**
      * An event that is called when two animals have begun breeding, before a baby is born.
      */
-    public static final Event<Pre> PRE = EventFactory.createArrayBacked(Pre.class,
-            (listeners) -> (world, animal, other, baby) -> {
+    public static final Event<Pre> BREED_PRE = EventFactory.createArrayBacked(Pre.class,
+            listeners -> (world, animal, other, baby) -> {
                 for (Pre event : listeners) {
-                    return event.breed(world, animal, other, baby);
+                    return event.shouldBreed(world, animal, other, baby);
                 }
 
                 return true;
@@ -28,10 +26,10 @@ public final class AnimalBreedEvents {
     /**
      * An event that is called when two animals have finished breeding, after a baby is born.
      */
-    public static final Event<Post> POST = EventFactory.createArrayBacked(Post.class,
-            (listeners) -> (world, animal, other, baby) -> {
+    public static final Event<Post> BREED_POST = EventFactory.createArrayBacked(Post.class,
+            listeners -> (world, animal, other, baby) -> {
                 for (Post event : listeners) {
-                    event.breed(world, animal, other, baby);
+                    event.onBreed(world, animal, other, baby);
                 }
             }
     );
@@ -48,7 +46,7 @@ public final class AnimalBreedEvents {
          * @param other the second animal
          * @param baby the baby
          */
-        boolean breed(ServerWorld serverWorld, AnimalEntity animal, AnimalEntity other, PassiveEntity baby);
+        boolean shouldBreed(ServerWorld serverWorld, AnimalEntity animal, AnimalEntity other, PassiveEntity baby);
     }
 
     @FunctionalInterface
@@ -61,6 +59,6 @@ public final class AnimalBreedEvents {
          * @param other the second animal
          * @param baby the baby
          */
-        void breed(ServerWorld serverWorld, AnimalEntity animal, AnimalEntity other, PassiveEntity baby);
+        void onBreed(ServerWorld serverWorld, AnimalEntity animal, AnimalEntity other, PassiveEntity baby);
     }
 }

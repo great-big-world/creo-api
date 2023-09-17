@@ -12,6 +12,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class ServerWorldMixin {
     @Inject(method = "spawnEntity", at = @At("HEAD"), cancellable = true)
     private void creo_entitySpawnCallback(Entity entity, CallbackInfoReturnable<Boolean> cir) {
-        EntityEventImpl.applyEntitySpawnCallback((ServerWorld) (Object) this, entity, cir);
+        EntityEventImpl.applyEntitySpawnEvent((ServerWorld) (Object) this, entity, cir);
     }
 }

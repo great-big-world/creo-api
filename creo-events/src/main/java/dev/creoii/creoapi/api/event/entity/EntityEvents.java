@@ -16,7 +16,7 @@ public final class EntityEvents {
     public static final Event<Spawn> SPAWN = EventFactory.createArrayBacked(Spawn.class,
             (listeners) -> (world, entity) -> {
                 for (Spawn event : listeners) {
-                    return event.spawn(world, entity);
+                    return event.shouldSpawn(world, entity);
                 }
 
                 return true;
@@ -29,7 +29,7 @@ public final class EntityEvents {
     public static final Event<WithinStructure> WITHIN_STRUCTURE = EventFactory.createArrayBacked(WithinStructure.class,
             (listeners) -> (serverWorld, entity, structureStart) -> {
                 for (WithinStructure event : listeners) {
-                    event.withinStructure(serverWorld, entity, structureStart);
+                    event.onWithinStructure(serverWorld, entity, structureStart);
                 }
             }
     );
@@ -44,7 +44,7 @@ public final class EntityEvents {
          * @param serverWorld the world
          * @param entity the entity
          */
-        boolean spawn(ServerWorld serverWorld, Entity entity);
+        boolean shouldSpawn(ServerWorld serverWorld, Entity entity);
     }
 
     @FunctionalInterface
@@ -56,6 +56,6 @@ public final class EntityEvents {
          * @param entity the entity
          * @param structureStart the structure
          */
-        void withinStructure(ServerWorld serverWorld, Entity entity, StructureStart structureStart);
+        void onWithinStructure(ServerWorld serverWorld, Entity entity, StructureStart structureStart);
     }
 }

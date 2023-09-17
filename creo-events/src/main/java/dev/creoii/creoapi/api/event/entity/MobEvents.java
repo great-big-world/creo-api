@@ -23,7 +23,7 @@ public final class MobEvents {
     public static final Event<Initialize> INITIALIZE = EventFactory.createArrayBacked(Initialize.class,
             (listeners) -> (world, mob, difficulty, spawnReason, entityData, nbt) -> {
                 for (Initialize event : listeners) {
-                    EntityData result = event.initialize(world, mob, difficulty, spawnReason, entityData, nbt);
+                    EntityData result = event.onInitialize(world, mob, difficulty, spawnReason, entityData, nbt);
 
                     if (result != null)
                         return result;
@@ -47,6 +47,6 @@ public final class MobEvents {
          * @param entityData the mob's entity data
          * @param entityNbt the mob's nbt
          */
-        EntityData initialize(ServerWorldAccess world, MobEntity mob, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt);
+        EntityData onInitialize(ServerWorldAccess world, MobEntity mob, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt);
     }
 }

@@ -21,7 +21,7 @@ public final class LivingEntityEvents {
     public static final Event<DropLoot> DROP_LOOT = EventFactory.createArrayBacked(DropLoot.class,
             (listeners) -> (livingEntity, identifier, lootTable, damageSource, lootContextParameterSet, causedByPlayer) -> {
                 for (DropLoot event : listeners) {
-                    return event.dropLoot(livingEntity, identifier, lootTable, damageSource, lootContextParameterSet, causedByPlayer);
+                    return event.shouldDropLoot(livingEntity, identifier, lootTable, damageSource, lootContextParameterSet, causedByPlayer);
                 }
 
                 return true;
@@ -34,7 +34,7 @@ public final class LivingEntityEvents {
     public static final Event<EquipStack> EQUIP_STACK = EventFactory.createArrayBacked(EquipStack.class,
             (listeners) -> (livingEntity, slot, oldStack, newStack) -> {
                 for (EquipStack event : listeners) {
-                    return event.equipStack(livingEntity, slot, oldStack, newStack);
+                    return event.shouldEquipStack(livingEntity, slot, oldStack, newStack);
                 }
 
                 return true;
@@ -47,7 +47,7 @@ public final class LivingEntityEvents {
     public static final Event<EatFood> EAT_FOOD = EventFactory.createArrayBacked(EatFood.class,
             (listeners) -> (world, livingEntity, stack) -> {
                 for (EatFood event : listeners) {
-                    return event.eatFood(world, livingEntity, stack);
+                    return event.onEatFood(world, livingEntity, stack);
                 }
 
                 return stack;
@@ -68,7 +68,7 @@ public final class LivingEntityEvents {
          * @param lootContextParameterSet the loot context parameters
          * @param causedByPlayer whether the death was caused by a player
          */
-        boolean dropLoot(LivingEntity livingEntity, Identifier identifier, LootTable lootTable, DamageSource damageSource, LootContextParameterSet lootContextParameterSet, boolean causedByPlayer);
+        boolean shouldDropLoot(LivingEntity livingEntity, Identifier identifier, LootTable lootTable, DamageSource damageSource, LootContextParameterSet lootContextParameterSet, boolean causedByPlayer);
     }
 
     @FunctionalInterface
@@ -83,7 +83,7 @@ public final class LivingEntityEvents {
          * @param oldStack the previous itemstack in the slot
          * @param newStack the new itemstack in the slot
          */
-        boolean equipStack(LivingEntity livingEntity, EquipmentSlot slot, ItemStack oldStack, ItemStack newStack);
+        boolean shouldEquipStack(LivingEntity livingEntity, EquipmentSlot slot, ItemStack oldStack, ItemStack newStack);
     }
 
     @FunctionalInterface
@@ -95,6 +95,6 @@ public final class LivingEntityEvents {
          * @param livingEntity the living entity
          * @param stack the itemstack being eaten
          */
-        ItemStack eatFood(World world, LivingEntity livingEntity, ItemStack stack);
+        ItemStack onEatFood(World world, LivingEntity livingEntity, ItemStack stack);
     }
 }
