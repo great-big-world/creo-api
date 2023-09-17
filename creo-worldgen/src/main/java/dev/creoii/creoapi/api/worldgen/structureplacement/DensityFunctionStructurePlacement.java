@@ -68,7 +68,7 @@ public class DensityFunctionStructurePlacement extends RandomSpreadStructurePlac
 
         long seed = ((AwareNoiseConfig) calculator.getNoiseConfig()).creo_getWorld().getSeed();
         if (!CACHED_NOISE_CONFIGS.containsKey(seed)) {
-            ChunkGenerator chunkGenerator = ((AwareNoiseConfig) calculator.getNoiseConfig()).creo_getChunkGenerator();
+            ChunkGenerator chunkGenerator = ((AwareNoiseConfig) calculator.getNoiseConfig()).creo_getWorld().getChunkManager().getChunkGenerator();
             ChunkGeneratorSettings settings = chunkGenerator instanceof NoiseChunkGenerator noiseChunkGenerator ? noiseChunkGenerator.getSettings().value() : ChunkGeneratorSettings.createMissingSettings();
             CACHED_NOISE_CONFIGS.put(seed, NoiseConfig.create(settings, ((AwareNoiseConfig) calculator.getNoiseConfig()).creo_getWorld().getRegistryManager().getWrapperOrThrow(RegistryKeys.NOISE_PARAMETERS), seed));
         }

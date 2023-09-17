@@ -51,7 +51,7 @@ public record DensityFunctionMaterialCondition(RegistryEntry<DensityFunction> de
 
             long seed = ((AwareNoiseConfig) context.noiseConfig).creo_getWorld().getSeed();
             if (!CACHED_NOISE_CONFIGS.containsKey(seed)) {
-                ChunkGenerator chunkGenerator = ((AwareNoiseConfig) context.noiseConfig).creo_getChunkGenerator();
+                ChunkGenerator chunkGenerator = ((AwareNoiseConfig) context.noiseConfig).creo_getWorld().getChunkManager().getChunkGenerator();
                 ChunkGeneratorSettings settings = chunkGenerator instanceof NoiseChunkGenerator noiseChunkGenerator ? noiseChunkGenerator.getSettings().value() : ChunkGeneratorSettings.createMissingSettings();
                 CACHED_NOISE_CONFIGS.put(seed, NoiseConfig.create(settings, ((AwareNoiseConfig) context.noiseConfig).creo_getWorld().getRegistryManager().getWrapperOrThrow(RegistryKeys.NOISE_PARAMETERS), seed));
             }
