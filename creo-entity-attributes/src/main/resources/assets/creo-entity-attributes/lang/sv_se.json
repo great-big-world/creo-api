@@ -1,3 +1,11 @@
 {
-  "attribute.name.generic.gravity": "allvar"
+  "attribute.name.generic.gravity": "allvar",
+  "attribute.name.generic.swimming_speed": "Simhastighet",
+  "attribute.name.generic.climbing_speed": "Klätterhastighet",
+  "attribute.name.player.flying_speed": "Flyghastighet",
+  "attribute.name.generic.jump_strength": "Hoppkraft",
+  "attribute.name.generic.max_air": "Max luft",
+  "attribute.name.player.place_cooldown": "Placera nedkylning",
+  "attribute.name.player.break_cooldown": "Bryta nedkylning",
+  "attribute.name.player.mining_speed": "Brythastighet"
 }

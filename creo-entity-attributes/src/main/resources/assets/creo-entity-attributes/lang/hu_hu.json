@@ -1,0 +1,11 @@
+{
+  "attribute.name.generic.gravity": "Gravitáció",
+  "attribute.name.generic.swimming_speed": "Úszási sebesség",
+  "attribute.name.generic.climbing_speed": "Hegymászó sebesség",
+  "attribute.name.player.flying_speed": "Repülési sebesség",
+  "attribute.name.generic.jump_strength": "lóugrás-erősség",
+  "attribute.name.generic.max_air": "max. levegő",
+  "attribute.name.player.place_cooldown": "Helyezzen hűtést",
+  "attribute.name.player.break_cooldown": "Törés hűtést",
+  "attribute.name.player.mining_speed": "Bányászati sebesség"
+}
