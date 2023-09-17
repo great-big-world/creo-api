@@ -9,6 +9,7 @@
     "entity.EntityMixin",
     "entity.LivingEntityMixin",
     "entity.MobEntityMixin",
+    "entity.PlayerEntityMixin",
     "item.BlockItemMixin",
     "item.ItemStackMixin",
     "world.ServerWorldMixin",

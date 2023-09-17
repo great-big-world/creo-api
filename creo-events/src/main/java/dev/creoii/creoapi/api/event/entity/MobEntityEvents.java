@@ -13,9 +13,9 @@ import org.jetbrains.annotations.Nullable;
 /**
  * Events related to {@link MobEntity}.
  */
-public final class MobEvents {
+public final class MobEntityEvents {
     /**
-     * Called when a {@link MobEntity} is initialized before being added to a world.
+     * An event called when a {@link MobEntity} is initialized before being added to a world.
      * Examples of this are a Skeleton being given its Bow, or an animal being turned into a baby.
      *
      * <p> Return null for default behavior to take effect.

@@ -6,6 +6,7 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.PassiveEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.context.LootContextParameterSet;
@@ -30,7 +31,7 @@ public final class EntityEventImpl {
     }
 
     public static void applyMobInitializeEvent(ServerWorldAccess world, MobEntity mob, LocalDifficulty difficulty, SpawnReason spawnReason, EntityData entityData, NbtCompound entityNbt, CallbackInfoReturnable<EntityData> cir) {
-        EntityData result = MobEvents.INITIALIZE.invoker().onInitialize(world, mob, difficulty, spawnReason, entityData, entityNbt);
+        EntityData result = MobEntityEvents.INITIALIZE.invoker().onInitialize(world, mob, difficulty, spawnReason, entityData, entityNbt);
 
         if (result != null)
             cir.setReturnValue(result);
@@ -47,14 +48,14 @@ public final class EntityEventImpl {
     }
 
     public static void applyAnimalPreBreedEvent(ServerWorld world, AnimalEntity animal, AnimalEntity other, PassiveEntity baby, CallbackInfo ci) {
-        boolean result = AnimalEvents.BREED_PRE.invoker().shouldBreed(world, animal, other, baby);
+        boolean result = AnimalEntityEvents.BREED_PRE.invoker().shouldBreed(world, animal, other, baby);
 
         if (!result)
             ci.cancel();
     }
 
     public static void applyAnimalPostBreedEvent(ServerWorld world, AnimalEntity animal, AnimalEntity other, PassiveEntity baby, CallbackInfo ci) {
-        AnimalEvents.BREED_POST.invoker().onBreed(world, animal, other, baby);
+        AnimalEntityEvents.BREED_POST.invoker().onBreed(world, animal, other, baby);
     }
 
     public static void applyLivingEquipStackEvent(LivingEntity livingEntity, EquipmentSlot slot, ItemStack oldStack, ItemStack newStack, CallbackInfo ci) {
@@ -73,5 +74,15 @@ public final class EntityEventImpl {
 
     public static void applyLivingEatFoodEvent(World world, LivingEntity livingEntity, ItemStack stack, CallbackInfoReturnable<ItemStack> cir) {
         cir.setReturnValue(LivingEntityEvents.EAT_FOOD.invoker().onEatFood(world, livingEntity, stack));
+    }
+
+    public static void applyPlayerLevelUpEvent(PlayerEntity playerEntity, int levels, CallbackInfo ci) {
+        if (levels <= 0)
+            return;
+
+        boolean result = PlayerEntityEvents.LEVEL_UP.invoker().shouldLevelUp(playerEntity, levels);
+
+        if (!result)
+            ci.cancel();
     }
 }

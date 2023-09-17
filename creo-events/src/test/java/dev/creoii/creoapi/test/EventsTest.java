@@ -19,6 +19,7 @@ public class EventsTest implements ModInitializer {
     private static final boolean testLivingEquipStackEvent = true;
     private static final boolean testLivingEatFoodEvent = true;
     private static final boolean testLivingDropLootEvent = true;
+    private static final boolean testPlayerLevelUpEvent = true;
     private static final boolean testItemCraftEvent = true;
     private static final boolean testItemEnchantEvent = true;
     private static final boolean testBlockPlaceEvent = true;
@@ -28,7 +29,7 @@ public class EventsTest implements ModInitializer {
     @Override
     public void onInitialize() {
         if (testMobInitializeEvent) {
-            MobEvents.INITIALIZE.register((world, mob, difficulty, spawnReason, entityData, entityNbt) -> {
+            MobEntityEvents.INITIALIZE.register((world, mob, difficulty, spawnReason, entityData, entityNbt) -> {
                 System.out.println("Mob Initialize:");
                 System.out.println("    type=" + mob.getType().getTranslationKey());
                 System.out.println("    reason=" + spawnReason);
@@ -59,7 +60,7 @@ public class EventsTest implements ModInitializer {
         }
 
         if (testAnimalBreedEventPre) {
-            AnimalEvents.BREED_PRE.register((world, animal, other, baby) -> {
+            AnimalEntityEvents.BREED_PRE.register((world, animal, other, baby) -> {
                 System.out.println("Animal Breed (Pre):");
                 System.out.println("    animal=" + animal.getType().getTranslationKey());
                 System.out.println("    other=" + other.getType().getTranslationKey());
@@ -69,7 +70,7 @@ public class EventsTest implements ModInitializer {
         }
 
         if (testAnimalBreedEventPost) {
-            AnimalEvents.BREED_POST.register((world, animal, other, baby) -> {
+            AnimalEntityEvents.BREED_POST.register((world, animal, other, baby) -> {
                 System.out.println("Animal Breed (Post):");
                 System.out.println("    animal=" + animal.getType().getTranslationKey());
                 System.out.println("    other=" + other.getType().getTranslationKey());
@@ -109,6 +110,16 @@ public class EventsTest implements ModInitializer {
                 System.out.println("    damage=" + damageSource.getName());
 
                 return true;
+            });
+        }
+
+        if (testPlayerLevelUpEvent) {
+            PlayerEntityEvents.LEVEL_UP.register((player, levels) -> {
+                System.out.println("Player Level Up:");
+                System.out.println("    player=" + player.getDisplayName().getString());
+                System.out.println("    levels=" + levels);
+
+                return player.experienceLevel < 30;
             });
         }
 

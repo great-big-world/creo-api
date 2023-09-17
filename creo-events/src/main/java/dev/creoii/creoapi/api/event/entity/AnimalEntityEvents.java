@@ -9,7 +9,7 @@ import net.minecraft.server.world.ServerWorld;
 /**
  * Events related to {@link AnimalEntity}.
  */
-public final class AnimalEvents {
+public final class AnimalEntityEvents {
     /**
      * An event that is called when two animals have begun breeding, before a baby is born.
      */
