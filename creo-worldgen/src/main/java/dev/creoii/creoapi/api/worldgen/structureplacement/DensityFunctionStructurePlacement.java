@@ -3,7 +3,7 @@ package dev.creoii.creoapi.api.worldgen.structureplacement;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import dev.creoii.creoapi.api.worldgen.CreoStructurePlacementTypes;
-import dev.creoii.creoapi.impl.worldgen.util.AwareNoiseConfig;
+import dev.creoii.creoapi.impl.worldgen.util.WorldAwareNoiseConfig;
 import dev.creoii.creoapi.impl.worldgen.util.CreoDensityFunctionVisitor;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
@@ -66,11 +66,11 @@ public class DensityFunctionStructurePlacement extends RandomSpreadStructurePlac
         if (!densityFunction.hasKeyAndValue())
             return false;
 
-        long seed = ((AwareNoiseConfig) calculator.getNoiseConfig()).creo_getWorld().getSeed();
+        long seed = ((WorldAwareNoiseConfig) calculator.getNoiseConfig()).creo_getWorld().getSeed();
         if (!CACHED_NOISE_CONFIGS.containsKey(seed)) {
-            ChunkGenerator chunkGenerator = ((AwareNoiseConfig) calculator.getNoiseConfig()).creo_getWorld().getChunkManager().getChunkGenerator();
+            ChunkGenerator chunkGenerator = ((WorldAwareNoiseConfig) calculator.getNoiseConfig()).creo_getWorld().getChunkManager().getChunkGenerator();
             ChunkGeneratorSettings settings = chunkGenerator instanceof NoiseChunkGenerator noiseChunkGenerator ? noiseChunkGenerator.getSettings().value() : ChunkGeneratorSettings.createMissingSettings();
-            CACHED_NOISE_CONFIGS.put(seed, NoiseConfig.create(settings, ((AwareNoiseConfig) calculator.getNoiseConfig()).creo_getWorld().getRegistryManager().getWrapperOrThrow(RegistryKeys.NOISE_PARAMETERS), seed));
+            CACHED_NOISE_CONFIGS.put(seed, NoiseConfig.create(settings, ((WorldAwareNoiseConfig) calculator.getNoiseConfig()).creo_getWorld().getRegistryManager().getWrapperOrThrow(RegistryKeys.NOISE_PARAMETERS), seed));
         }
 
         BlockPos pos = getLocatePos(new ChunkPos(chunkX, chunkZ));

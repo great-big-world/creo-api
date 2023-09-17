@@ -41,7 +41,7 @@
     },
     "loom:injected_interfaces": {
       "net/minecraft/class_7138": [
-        "dev/creoii/creoapi/impl/worldgen/util/AwareNoiseConfig"
+        "dev/creoii/creoapi/impl/worldgen/util/WorldAwareNoiseConfig"
       ]
     }
   }

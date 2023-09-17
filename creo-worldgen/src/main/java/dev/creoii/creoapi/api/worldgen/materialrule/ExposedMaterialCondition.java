@@ -2,7 +2,7 @@ package dev.creoii.creoapi.api.worldgen.materialrule;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import dev.creoii.creoapi.impl.worldgen.util.AwareNoiseConfig;
+import dev.creoii.creoapi.impl.worldgen.util.WorldAwareNoiseConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -62,7 +62,7 @@ public class ExposedMaterialCondition implements MaterialRules.MaterialCondition
         @Override
         @SuppressWarnings("deprecation")
         protected boolean test() {
-            World world = ((AwareNoiseConfig) context.noiseConfig).creo_getWorld();
+            World world = ((WorldAwareNoiseConfig) context.noiseConfig).creo_getWorld();
             Chunk chunk = context.chunk;
             BlockPos pos = new BlockPos(context.blockX, chunk.sampleHeightmap(Heightmap.Type.WORLD_SURFACE_WG, context.blockX, context.blockZ), context.blockZ);
 

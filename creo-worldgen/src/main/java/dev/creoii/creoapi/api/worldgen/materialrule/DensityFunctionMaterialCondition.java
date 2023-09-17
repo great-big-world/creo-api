@@ -2,7 +2,7 @@ package dev.creoii.creoapi.api.worldgen.materialrule;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import dev.creoii.creoapi.impl.worldgen.util.AwareNoiseConfig;
+import dev.creoii.creoapi.impl.worldgen.util.WorldAwareNoiseConfig;
 import dev.creoii.creoapi.impl.worldgen.util.CreoDensityFunctionVisitor;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
@@ -49,11 +49,11 @@ public record DensityFunctionMaterialCondition(RegistryEntry<DensityFunction> de
         protected boolean test() {
             if (!densityFunction.hasKeyAndValue()) return false;
 
-            long seed = ((AwareNoiseConfig) context.noiseConfig).creo_getWorld().getSeed();
+            long seed = ((WorldAwareNoiseConfig) context.noiseConfig).creo_getWorld().getSeed();
             if (!CACHED_NOISE_CONFIGS.containsKey(seed)) {
-                ChunkGenerator chunkGenerator = ((AwareNoiseConfig) context.noiseConfig).creo_getWorld().getChunkManager().getChunkGenerator();
+                ChunkGenerator chunkGenerator = ((WorldAwareNoiseConfig) context.noiseConfig).creo_getWorld().getChunkManager().getChunkGenerator();
                 ChunkGeneratorSettings settings = chunkGenerator instanceof NoiseChunkGenerator noiseChunkGenerator ? noiseChunkGenerator.getSettings().value() : ChunkGeneratorSettings.createMissingSettings();
-                CACHED_NOISE_CONFIGS.put(seed, NoiseConfig.create(settings, ((AwareNoiseConfig) context.noiseConfig).creo_getWorld().getRegistryManager().getWrapperOrThrow(RegistryKeys.NOISE_PARAMETERS), seed));
+                CACHED_NOISE_CONFIGS.put(seed, NoiseConfig.create(settings, ((WorldAwareNoiseConfig) context.noiseConfig).creo_getWorld().getRegistryManager().getWrapperOrThrow(RegistryKeys.NOISE_PARAMETERS), seed));
             }
 
             double value = DensityFunctionMaterialCondition.this.densityFunction.value().apply(new CreoDensityFunctionVisitor(CACHED_NOISE_CONFIGS.get(seed))).sample(new DensityFunction.UnblendedNoisePos(context.blockX, context.chunk.sampleHeightmap(Heightmap.Type.WORLD_SURFACE_WG, context.blockX, context.blockZ), context.blockZ));
