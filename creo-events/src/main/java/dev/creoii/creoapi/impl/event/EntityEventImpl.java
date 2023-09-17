@@ -23,18 +23,17 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 public final class EntityEventImpl {
     public static void applyEntitySpawnCallback(ServerWorld serverWorld, Entity entity, CallbackInfoReturnable<Boolean> cir) {
-        boolean result = EntitySpawnCallback.EVENT.invoker().spawn(serverWorld, entity);
+        boolean result = EntityEvents.SPAWN.invoker().spawn(serverWorld, entity);
 
         if (!result)
             cir.cancel();
     }
 
     public static void applyMobInitializeCallback(ServerWorldAccess world, MobEntity mob, LocalDifficulty difficulty, SpawnReason spawnReason, EntityData entityData, NbtCompound entityNbt, CallbackInfoReturnable<EntityData> cir) {
-        EntityData result = MobInitializeCallback.EVENT.invoker().initialize(world, mob, difficulty, spawnReason, entityData, entityNbt);
+        EntityData result = MobEvents.INITIALIZE.invoker().initialize(world, mob, difficulty, spawnReason, entityData, entityNbt);
 
-        if (result != null) {
+        if (result != null)
             cir.setReturnValue(result);
-        }
     }
 
     public static void applyWithinStructureCallback(World world, Entity entity, BlockPos pos, ChunkPos chunkPos) {
@@ -43,36 +42,36 @@ public final class EntityEventImpl {
         ServerWorld serverWorld = (ServerWorld) world;
         for (StructureStart structureStart : serverWorld.getStructureAccessor().getStructureStarts(chunkPos, structure -> true)) {
             if (structureStart.hasChildren() && structureStart.getBoundingBox().contains(pos))
-                EntityWithinStructureCallback.EVENT.invoker().withinStructure(serverWorld, entity, structureStart);
+                EntityEvents.WITHIN_STRUCTURE.invoker().withinStructure(serverWorld, entity, structureStart);
         }
     }
 
     public static void applyAnimalBreedCallbackPre(ServerWorld world, AnimalEntity animal, AnimalEntity other, PassiveEntity baby, CallbackInfo ci) {
-        boolean result = AnimalBreedCallback.Pre.EVENT.invoker().breed(world, animal, other, baby);
+        boolean result = AnimalBreedEvents.PRE.invoker().breed(world, animal, other, baby);
 
         if (!result)
             ci.cancel();
     }
 
     public static void applyAnimalBreedCallbackPost(ServerWorld world, AnimalEntity animal, AnimalEntity other, PassiveEntity baby, CallbackInfo ci) {
-        AnimalBreedCallback.Post.EVENT.invoker().breed(world, animal, other, baby);
+        AnimalBreedEvents.POST.invoker().breed(world, animal, other, baby);
     }
 
     public static void applyLivingEquipStackCallback(LivingEntity livingEntity, EquipmentSlot slot, ItemStack oldStack, ItemStack newStack, CallbackInfo ci) {
-        boolean result = LivingEquipStackCallback.EVENT.invoker().equipStack(livingEntity, slot, oldStack, newStack);
+        boolean result = LivingEntityEvents.EQUIP_STACK.invoker().equipStack(livingEntity, slot, oldStack, newStack);
 
         if (!result)
             ci.cancel();
     }
 
     public static void applyLivingDropLootCallback(LivingEntity livingEntity, Identifier identifier, LootTable lootTable, DamageSource damageSource, LootContextParameterSet lootContextParameterSet, boolean causedByPlayer, CallbackInfo ci) {
-        boolean result = LivingDropLootCallback.EVENT.invoker().dropLoot(livingEntity, identifier, lootTable, damageSource, lootContextParameterSet, causedByPlayer);
+        boolean result = LivingEntityEvents.DROP_LOOT.invoker().dropLoot(livingEntity, identifier, lootTable, damageSource, lootContextParameterSet, causedByPlayer);
 
         if (!result)
             ci.cancel();
     }
 
     public static void applyLivingEatFoodCallback(World world, LivingEntity livingEntity, ItemStack stack, CallbackInfoReturnable<ItemStack> cir) {
-        cir.setReturnValue(LivingEatFoodCallback.EVENT.invoker().eatFood(world, livingEntity, stack));
+        cir.setReturnValue(LivingEntityEvents.EAT_FOOD.invoker().eatFood(world, livingEntity, stack));
     }
 }
