@@ -21,9 +21,11 @@ import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.ApiStatus;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+@ApiStatus.Internal
 public final class EntityEventImpl {
     public static void applyEntitySpawnEvent(ServerWorld serverWorld, Entity entity, CallbackInfoReturnable<Boolean> cir) {
         boolean result = EntityEvents.SPAWN.invoker().onSpawn(serverWorld, entity);

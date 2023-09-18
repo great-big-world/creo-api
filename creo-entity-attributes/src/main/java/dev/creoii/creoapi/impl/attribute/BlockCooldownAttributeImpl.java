@@ -5,8 +5,10 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
+import org.jetbrains.annotations.ApiStatus;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+@ApiStatus.Internal
 public final class BlockCooldownAttributeImpl {
     public static void addAttributes(CallbackInfoReturnable<DefaultAttributeContainer.Builder> cir) {
         cir.getReturnValue().add(CreoEntityAttributes.PLACE_COOLDOWN).add(CreoEntityAttributes.BREAK_COOLDOWN);

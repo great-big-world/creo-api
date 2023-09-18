@@ -9,8 +9,10 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.ApiStatus;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+@ApiStatus.Internal
 public final class BlockEventImpl {
     public static void applyBlockPlaceEvent(Block block, ItemPlacementContext context, CallbackInfoReturnable<ActionResult> cir) {
         boolean result = BlockEvents.PLACE.invoker().onPlace(block, context);

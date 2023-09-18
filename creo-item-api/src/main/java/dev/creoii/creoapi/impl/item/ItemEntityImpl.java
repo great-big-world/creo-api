@@ -5,8 +5,10 @@ import net.minecraft.item.ItemStack;
 import org.apache.commons.lang3.mutable.MutableBoolean;
 import org.apache.commons.lang3.mutable.MutableDouble;
 import org.apache.commons.lang3.mutable.MutableInt;
+import org.jetbrains.annotations.ApiStatus;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+@ApiStatus.Internal
 public final class ItemEntityImpl {
     public static int applyCreoItemSettings(ItemStack stack, MutableInt despawnTime, MutableBoolean buoyant, MutableDouble gravity) {
         if (((AccessibleItem) stack.getItem()).creo_getItemSettings() instanceof CreoItemSettings settings) {

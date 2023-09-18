@@ -7,9 +7,11 @@ import dev.creoii.creoapi.mixin.advancement.AdvancementDisplayAccessor;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.AdvancementDisplay;
 import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.ApiStatus;
 
 import java.util.Arrays;
 
+@ApiStatus.Internal
 public class AdvancementImpl {
     public static void applyAdvancementInjections(Identifier identifier, Advancement.Builder builder) {
         AdvancementInjectionRegistry.getAdvancementInjectors().forEach((id, injectors) -> {

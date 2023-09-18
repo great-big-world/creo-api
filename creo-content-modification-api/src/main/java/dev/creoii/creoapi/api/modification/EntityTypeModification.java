@@ -5,7 +5,9 @@ import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.ApiStatus;
 
+@ApiStatus.NonExtendable
 public interface EntityTypeModification {
     EntityTypeModification INSTANCE = new EntityTypeModificationImpl();
 

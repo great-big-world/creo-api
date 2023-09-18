@@ -4,8 +4,10 @@ import dev.creoii.creoapi.api.food.CreoFoodComponent;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import org.jetbrains.annotations.ApiStatus;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+@ApiStatus.Internal
 public final class FoodComponentImpl {
     public static void applyFoodMaxEatDurability(Item item) {
         if (item.isFood() && item.getFoodComponent() instanceof CreoFoodComponent creoFoodComponent) {

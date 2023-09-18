@@ -8,8 +8,10 @@ import net.minecraft.block.BlockState;
 import net.minecraft.registry.Registries;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.Property;
+import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Nullable;
 
+@ApiStatus.Internal
 public class BlockStatePropertyInjectionImpl {
     public static void inject(Block block, Property<?> property) {
         BlockAccessor accessor = tryInjectProperty(block, property);

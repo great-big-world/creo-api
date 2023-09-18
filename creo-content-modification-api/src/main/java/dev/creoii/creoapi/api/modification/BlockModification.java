@@ -10,10 +10,12 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
+import org.jetbrains.annotations.ApiStatus;
 
 /**
  * Methods to modify a block's {@link net.minecraft.block.AbstractBlock.Settings}.
  */
+@ApiStatus.NonExtendable
 public interface BlockModification {
     BlockModification INSTANCE = new BlockModificationImpl();
 

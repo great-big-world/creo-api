@@ -3,9 +3,11 @@ package dev.creoii.creoapi.impl.attribute;
 import dev.creoii.creoapi.api.attribute.CreoEntityAttributes;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.player.PlayerEntity;
+import org.jetbrains.annotations.ApiStatus;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-public class MiningSpeedAttributeImpl {
+@ApiStatus.Internal
+public final class MiningSpeedAttributeImpl {
     public static void addAttribute(CallbackInfoReturnable<DefaultAttributeContainer.Builder> cir) {
         cir.getReturnValue().add(CreoEntityAttributes.PLAYER_MINING_SPEED);
     }

@@ -5,7 +5,9 @@ import dev.creoii.creoapi.mixin.modification.item.ItemAccessor;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
 import net.minecraft.util.Rarity;
+import org.jetbrains.annotations.ApiStatus;
 
+@ApiStatus.Internal
 public class ItemModificationImpl implements ItemModification {
     @Override
     public void setRarity(Item item, Rarity rarity) {

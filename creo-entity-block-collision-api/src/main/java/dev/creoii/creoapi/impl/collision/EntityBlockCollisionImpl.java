@@ -8,12 +8,14 @@ import net.minecraft.util.math.Box;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.CollisionView;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
 
-public class EntityBlockCollisionImpl {
+@ApiStatus.Internal
+public final class EntityBlockCollisionImpl {
     public static void applyEntityBlockCollision(CollisionView collisionView, @Nullable Entity entity, Box box, CallbackInfoReturnable<Iterable<VoxelShape>> cir) {
         if (entity != null) {
             EntityBlockCollision collision = EntityBlockCollisionRegistry.getCollisionOfType(entity.getType());

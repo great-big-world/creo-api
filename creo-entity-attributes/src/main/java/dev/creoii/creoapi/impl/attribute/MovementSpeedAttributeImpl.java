@@ -5,10 +5,12 @@ import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.player.PlayerEntity;
+import org.jetbrains.annotations.ApiStatus;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-public class MovementSpeedAttributeImpl {
+@ApiStatus.Internal
+public final class MovementSpeedAttributeImpl {
     public static void addLivingAttributes(CallbackInfoReturnable<DefaultAttributeContainer.Builder> cir) {
         cir.getReturnValue().add(CreoEntityAttributes.GENERIC_SWIMMING_SPEED).add(CreoEntityAttributes.GENERIC_CLIMBING_SPEED);
     }

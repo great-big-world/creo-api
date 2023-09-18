@@ -13,12 +13,14 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.CollisionView;
+import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
+@ApiStatus.NonExtendable
 public class EntityBlockCollisionSpliterator extends AbstractIterator<VoxelShape> {
     private final Box box;
     private final Entity entity;

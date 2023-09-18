@@ -5,7 +5,9 @@ import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.ApiStatus;
 
+@ApiStatus.Internal
 public class EntityTypeModificationImpl implements EntityTypeModification {
     @Override
     public void setSpawnGroup(EntityType<?> entityType, SpawnGroup spawnGroup) {

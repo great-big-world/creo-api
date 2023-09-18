@@ -4,7 +4,9 @@ import dev.creoii.creoapi.impl.modification.ItemModificationImpl;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
 import net.minecraft.util.Rarity;
+import org.jetbrains.annotations.ApiStatus;
 
+@ApiStatus.NonExtendable
 public interface ItemModification {
     ItemModification INSTANCE = new ItemModificationImpl();
 

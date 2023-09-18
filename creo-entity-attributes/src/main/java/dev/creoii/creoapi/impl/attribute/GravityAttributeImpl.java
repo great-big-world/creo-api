@@ -5,11 +5,13 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
+import org.jetbrains.annotations.ApiStatus;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.UUID;
 
+@ApiStatus.Internal
 public final class GravityAttributeImpl {
     private static final UUID SLOW_FALLING_MODIFIER_ID = UUID.fromString("A5B6CF2A-2F7C-31EF-9022-7C3E7D5E6ABA");
     public static final EntityAttributeModifier SLOW_FALLING_MODIFIER = new EntityAttributeModifier(SLOW_FALLING_MODIFIER_ID, "Slow falling acceleration reduction", .125d, EntityAttributeModifier.Operation.MULTIPLY_TOTAL);

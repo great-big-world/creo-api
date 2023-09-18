@@ -7,9 +7,11 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.FleeEntityGoal;
 import net.minecraft.entity.ai.goal.GoalSelector;
 import net.minecraft.entity.mob.CreeperEntity;
+import org.jetbrains.annotations.ApiStatus;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+@ApiStatus.Internal
 public final class EntityTypeTagImpl {
     public static void applyTripwireIgnores(Entity entity, CallbackInfo ci) {
         if (entity.getType().isIn(CreoEntityTypeTags.TRIPWIRE_IGNORES))
