@@ -6,6 +6,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.SimpleBlockFeatureConfig;
 
 public final class CreoFeatures {
     public static final Feature<CompositeFeatureConfig> COMPOSITE = new CompositeFeature(CompositeFeatureConfig.CODEC);
@@ -17,6 +18,9 @@ public final class CreoFeatures {
     public static final Feature<SpikeFeatureConfig> SPIKE = new SpikeFeature(SpikeFeatureConfig.CODEC);
     public static final Feature<FancySpikeFeatureConfig> FANCY_SPIKE = new FancySpikeFeature(FancySpikeFeatureConfig.CODEC);
     public static final Feature<BlobSpreadFeatureConfig> BLOB_SPREAD = new BlobSpreadFeature(BlobSpreadFeatureConfig.CODEC);
+    public static final Feature<SimpleBlockFeatureConfig> CORAL_CLAW = new CoralClawFeature(SimpleBlockFeatureConfig.CODEC);
+    public static final Feature<SimpleBlockFeatureConfig> CORAL_MUSHROOM = new CoralMushroomFeature(SimpleBlockFeatureConfig.CODEC);
+    public static final Feature<SimpleBlockFeatureConfig> CORAL_TREE = new CoralTreeFeature(SimpleBlockFeatureConfig.CODEC);
 
     public static void register() {
         Registry.register(Registries.FEATURE, new Identifier(CreoWorldgen.NAMESPACE, "composite"), COMPOSITE);
@@ -28,5 +32,8 @@ public final class CreoFeatures {
         Registry.register(Registries.FEATURE, new Identifier(CreoWorldgen.NAMESPACE, "spike"), SPIKE);
         Registry.register(Registries.FEATURE, new Identifier(CreoWorldgen.NAMESPACE, "fancy_spike"), FANCY_SPIKE);
         Registry.register(Registries.FEATURE, new Identifier(CreoWorldgen.NAMESPACE, "blob_spread"), BLOB_SPREAD);
+        Registry.register(Registries.FEATURE, new Identifier(CreoWorldgen.NAMESPACE, "coral_claw"), CORAL_CLAW);
+        Registry.register(Registries.FEATURE, new Identifier(CreoWorldgen.NAMESPACE, "coral_mushroom"), CORAL_MUSHROOM);
+        Registry.register(Registries.FEATURE, new Identifier(CreoWorldgen.NAMESPACE, "coral_tree"), CORAL_TREE);
     }
 }
