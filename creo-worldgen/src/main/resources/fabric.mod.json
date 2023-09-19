@@ -15,7 +15,11 @@
   "license": "All-Rights-Reserved",
   "icon": "assets/creo-worldgen/icon.png",
   "environment": "*",
-  "entrypoints": {},
+  "entrypoints": {
+    "main": [
+      "dev.creoii.creoapi.api.worldgen.CreoWorldgen"
+    ]
+  },
   "accessWidener": "creo-worldgen.accesswidener",
   "mixins": [
     "creo-worldgen.mixins.json"

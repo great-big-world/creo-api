@@ -18,7 +18,7 @@ public final class BlockEvents {
      * An event called when a block is placed via a {@link net.minecraft.item.BlockItem}.
      */
     public static final Event<Place> PLACE = EventFactory.createArrayBacked(Place.class,
-            (listeners) -> (block, context) -> {
+            listeners -> (block, context) -> {
                 for (Place event : listeners) {
                     return event.onPlace(block, context);
                 }
