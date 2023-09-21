@@ -36,9 +36,11 @@
     "entity.ZoglinEntityMixin",
     "entity.goal.EatGrassGoalMixin",
     "item.ShearsItemMixin",
-    "screen.EnchantmentScreenHandlerMixin"
+    "screen.EnchantmentScreenHandlerMixin",
+    "world.HeightmapTypeMixin"
   ],
   "client": [
+    "client.WorldRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

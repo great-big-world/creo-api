@@ -7,6 +7,7 @@ plugins {
 
 version = project.mod_version
 archivesBaseName = project.archives_base_name
+group = project.maven_group
 
 dependencies {
     afterEvaluate {
@@ -20,8 +21,6 @@ dependencies {
 }
 
 allprojects {
-    group = project.maven_group
-
     apply plugin: 'java'
     apply plugin: 'idea'
     apply plugin: 'fabric-loom'
@@ -83,4 +82,9 @@ allprojects {
     artifacts {
         dev jar
     }
+}
+
+subprojects.forEach {
+    it.group = project.maven_group
+    it.version = it.mod_version
 }

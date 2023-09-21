@@ -1,5 +1,6 @@
 package dev.creoii.creoapi.impl.tag;
 
+import com.mojang.datafixers.util.Function5;
 import dev.creoii.creoapi.api.tag.CreoBlockTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.mob.RavagerEntity;
@@ -9,13 +10,17 @@ import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.Heightmap;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.ApiStatus;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 
 @ApiStatus.Internal
 public final class BlockTagImpl {
@@ -99,5 +104,23 @@ public final class BlockTagImpl {
         if (hitResult.getType() == HitResult.Type.BLOCK) {
             if (projectile.getWorld().getBlockState(((BlockHitResult) hitResult).getBlockPos()).isIn(CreoBlockTags.PROJECTILES_IGNORE)) ci.cancel();
         }
+    }
+
+    public static Heightmap.Type[] addWeatherHeightmap(Heightmap.Type[] values, Function5<String, Integer, String, Heightmap.Purpose, Predicate<BlockState>, Heightmap.Type> constructor) {
+        ArrayList<Heightmap.Type> types = new ArrayList<>(Arrays.asList(values));
+        Heightmap.Type last = types.get(types.size() - 1);
+
+        Heightmap.Type weather = constructor.apply("WEATHER", last.ordinal() + 1, "WEATHER", Heightmap.Purpose.CLIENT, BlockTagImpl::shouldWeatherIgnore);
+        types.add(weather);
+
+        return types.toArray(new Heightmap.Type[0]);
+    }
+
+    private static boolean shouldWeatherIgnore(BlockState state) {
+        return !state.isIn(CreoBlockTags.WEATHER_RENDER_IGNORES) && (state.blocksMovement() || !state.getFluidState().isEmpty());
+    }
+
+    public static int applyWeatherRenderIgnores(World world, int x, int z) {
+        return world.getTopY(Heightmap.Type.valueOf("WEATHER"), x, z);
     }
 }
