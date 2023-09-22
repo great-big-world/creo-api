@@ -3,6 +3,8 @@ package dev.creoii.creoapi.api.event.entity;
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.data.DataTracker;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.structure.StructureStart;
 
@@ -34,6 +36,22 @@ public final class EntityEvents {
             }
     );
 
+    public static final Event<DataTrack> DATA_TRACK = EventFactory.createArrayBacked(DataTrack.class,
+            listeners -> (entity, dataTracker) -> {
+                for (DataTrack event : listeners) {
+                    event.onDataTrack(entity, dataTracker);
+                }
+            }
+    );
+
+    public static final Event<WriteNbt> WRITE_NBT = EventFactory.createArrayBacked(WriteNbt.class,
+            listeners -> (entity, nbt) -> {
+                for (WriteNbt event : listeners) {
+                    event.onWriteNbt(entity, nbt);
+                }
+            }
+    );
+
     @FunctionalInterface
     public interface Spawn {
         /**
@@ -57,5 +75,15 @@ public final class EntityEvents {
          * @param structureStart the structure
          */
         void onWithinStructure(ServerWorld serverWorld, Entity entity, StructureStart structureStart);
+    }
+
+    @FunctionalInterface
+    public interface DataTrack {
+        void onDataTrack(Entity entity, DataTracker dataTracker);
+    }
+
+    @FunctionalInterface
+    public interface WriteNbt {
+        void onWriteNbt(Entity entity, NbtCompound nbt);
     }
 }

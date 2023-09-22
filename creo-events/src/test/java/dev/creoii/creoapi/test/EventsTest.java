@@ -7,28 +7,36 @@ import dev.creoii.creoapi.api.event.world.WorldEvents;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.Enchantments;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.data.DataTracker;
+import net.minecraft.entity.data.TrackedData;
+import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.AbstractSkeletonEntity;
+import net.minecraft.entity.passive.CowEntity;
 import net.minecraft.item.Items;
+import net.minecraft.util.DyeColor;
 
 public class EventsTest implements ModInitializer {
     private static final boolean testMobInitializeEvent = false;
     private static final boolean testEntitySpawnEvent = false;
     private static final boolean testWithinStructureEvent = false;
-    private static final boolean testAnimalBreedEventPre = true;
-    private static final boolean testAnimalBreedEventPost = true;
-    private static final boolean testLivingEquipStackEvent = true;
-    private static final boolean testLivingEatFoodEvent = true;
-    private static final boolean testLivingDropLootEvent = true;
-    private static final boolean testPlayerLevelUpEvent = true;
-    private static final boolean testProjectileFireEvent = true;
-    private static final boolean testProjectileImpactEvent = true;
-    private static final boolean testItemCraftEvent = true;
-    private static final boolean testItemEnchantEvent = true;
-    private static final boolean testBlockPlaceEvent = true;
-    private static final boolean testBlockBreakEvent = true;
-    private static final boolean testBlockChangeEvent = true;
-    private static final boolean testWorldExplodeEvent = true;
+    private static final boolean testEntityWriteNbtEvent = true;
+    private static final boolean testEntityDataTrackEvent = true;
+    private static final boolean testAnimalBreedEventPre = false;
+    private static final boolean testAnimalBreedEventPost = false;
+    private static final boolean testLivingEquipStackEvent = false;
+    private static final boolean testLivingEatFoodEvent = false;
+    private static final boolean testLivingDropLootEvent = false;
+    private static final boolean testPlayerLevelUpEvent = false;
+    private static final boolean testProjectileFireEvent = false;
+    private static final boolean testProjectileImpactEvent = false;
+    private static final boolean testItemCraftEvent = false;
+    private static final boolean testItemEnchantEvent = false;
+    private static final boolean testBlockPlaceEvent = false;
+    private static final boolean testBlockBreakEvent = false;
+    private static final boolean testBlockChangeEvent = false;
+    private static final boolean testWorldExplodeEvent = false;
 
     @Override
     public void onInitialize() {
@@ -60,6 +68,30 @@ public class EventsTest implements ModInitializer {
                 System.out.println("Within Structure:");
                 System.out.println("    entity=" + entity.getType().getTranslationKey());
                 System.out.println("    structure=" + structureStart.getStructure().getType().toString());
+            });
+        }
+
+        TrackedData<Byte> COLOR = DataTracker.registerData(CowEntity.class, TrackedDataHandlerRegistry.BYTE);
+        if (testEntityWriteNbtEvent) {
+            EntityEvents.WRITE_NBT.register((entity, nbt) -> {
+                if (entity.getType() == EntityType.COW) {
+                    nbt.putByte("Color", (byte) DyeColor.byId(entity.getDataTracker().get(COLOR) & 0xf).getId());
+                }
+
+                System.out.println("Write Nbt:");
+                System.out.println("    entity=" + entity.getType().getTranslationKey());
+                System.out.println("    nbt=" + nbt.toString());
+            });
+        }
+
+        if (testEntityDataTrackEvent) {
+            EntityEvents.DATA_TRACK.register((entity, dataTracker) -> {
+                if (entity.getType() == EntityType.COW) {
+                    dataTracker.startTracking(COLOR, (byte) 0);
+                }
+
+                System.out.println("Data Track:");
+                System.out.println("    entity=" + entity.getType().getTranslationKey());
             });
         }
 

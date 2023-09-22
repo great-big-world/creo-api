@@ -3,6 +3,7 @@ package dev.creoii.creoapi.impl.event;
 import dev.creoii.creoapi.api.event.entity.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.PassiveEntity;
@@ -49,6 +50,14 @@ public final class EntityEventImpl {
             if (structureStart.hasChildren() && structureStart.getBoundingBox().contains(pos))
                 EntityEvents.WITHIN_STRUCTURE.invoker().onWithinStructure(serverWorld, entity, structureStart);
         }
+    }
+
+    public static void applyWriteNbtEvent(Entity entity, NbtCompound nbt) {
+        EntityEvents.WRITE_NBT.invoker().onWriteNbt(entity, nbt);
+    }
+
+    public static void applyDataTrackEvent(Entity entity, DataTracker dataTracker) {
+        EntityEvents.DATA_TRACK.invoker().onDataTrack(entity, dataTracker);
     }
 
     public static void applyAnimalPreBreedEvent(ServerWorld world, AnimalEntity animal, AnimalEntity other, PassiveEntity baby, CallbackInfo ci) {
