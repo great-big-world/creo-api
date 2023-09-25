@@ -1,6 +1,6 @@
 package dev.creoii.creoapi.api.worldgen;
 
-import dev.creoii.creoapi.api.worldgen.structureplacement.*;
+import dev.creoii.creoapi.api.worldgen.structure.placement.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;

@@ -1,4 +1,4 @@
-package dev.creoii.creoapi.api.worldgen.structureplacement;
+package dev.creoii.creoapi.api.worldgen.structure.placement;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

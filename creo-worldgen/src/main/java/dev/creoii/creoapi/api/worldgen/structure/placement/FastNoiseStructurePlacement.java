@@ -1,15 +1,15 @@
-package dev.creoii.creoapi.api.worldgen.structureplacement;
+package dev.creoii.creoapi.api.worldgen.structure.placement;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import dev.creoii.creoapi.api.worldgen.CreoStructurePlacementTypes;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
+import dev.creoii.creoapi.api.worldgen.fastnoise.FastNoiseLite;
+import dev.creoii.creoapi.impl.worldgen.util.WorldAwareNoiseConfig;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.dynamic.Codecs;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.Vec3i;
-import net.minecraft.util.math.noise.DoublePerlinNoiseSampler;
 import net.minecraft.world.gen.chunk.placement.RandomSpreadStructurePlacement;
 import net.minecraft.world.gen.chunk.placement.SpreadType;
 import net.minecraft.world.gen.chunk.placement.StructurePlacementCalculator;
@@ -17,9 +17,9 @@ import net.minecraft.world.gen.chunk.placement.StructurePlacementType;
 
 import java.util.Optional;
 
-public class NoiseStructurePlacement extends RandomSpreadStructurePlacement {
-    public static final Codec<NoiseStructurePlacement> CODEC = RecordCodecBuilder.create(instance -> {
-        return instance.group(RegistryKey.createCodec(RegistryKeys.NOISE_PARAMETERS).fieldOf("noise").forGetter(predicate -> {
+public class FastNoiseStructurePlacement extends RandomSpreadStructurePlacement {
+    public static final Codec<FastNoiseStructurePlacement> CODEC = RecordCodecBuilder.create(instance -> {
+        return instance.group(FastNoiseLite.REGISTRY_ENTRY_CODEC.fieldOf("fast_noise").forGetter(predicate -> {
             return predicate.noise;
         }), Codec.DOUBLE.fieldOf("min_threshold").forGetter(predicate -> {
             return predicate.minThreshold;
@@ -35,13 +35,13 @@ public class NoiseStructurePlacement extends RandomSpreadStructurePlacement {
             return predicate.getSalt();
         }), ExclusionZone.CODEC.optionalFieldOf("exclusion_zone").forGetter(predicate -> {
             return predicate.getExclusionZone();
-        }), Codec.intRange(0, 4096).fieldOf("spacing").forGetter(RandomSpreadStructurePlacement::getSpacing), Codec.intRange(0, 4096).fieldOf("separation").forGetter(RandomSpreadStructurePlacement::getSeparation), SpreadType.CODEC.optionalFieldOf("spread_type", SpreadType.LINEAR).forGetter(RandomSpreadStructurePlacement::getSpreadType)).apply(instance, NoiseStructurePlacement::new);
+        }), Codec.intRange(0, 4096).fieldOf("spacing").forGetter(RandomSpreadStructurePlacement::getSpacing), Codec.intRange(0, 4096).fieldOf("separation").forGetter(RandomSpreadStructurePlacement::getSeparation), SpreadType.CODEC.optionalFieldOf("spread_type", SpreadType.LINEAR).forGetter(RandomSpreadStructurePlacement::getSpreadType)).apply(instance, FastNoiseStructurePlacement::new);
     });
-    private final RegistryKey<DoublePerlinNoiseSampler.NoiseParameters> noise;
+    private final RegistryEntry<FastNoiseLite> noise;
     private final double minThreshold;
     private final double maxThreshold;
 
-    public NoiseStructurePlacement(RegistryKey<DoublePerlinNoiseSampler.NoiseParameters> noise, double minThreshold, double maxThreshold, Vec3i locateOffset, FrequencyReductionMethod frequencyReductionMethod, float frequency, int salt, Optional<ExclusionZone> exclusionZone, int spacing, int separation, SpreadType spreadType) {
+    public FastNoiseStructurePlacement(RegistryEntry<FastNoiseLite> noise, double minThreshold, double maxThreshold, Vec3i locateOffset, FrequencyReductionMethod frequencyReductionMethod, float frequency, int salt, Optional<ExclusionZone> exclusionZone, int spacing, int separation, SpreadType spreadType) {
         super(locateOffset, frequencyReductionMethod, frequency, salt, exclusionZone, spacing, separation, spreadType);
         this.noise = noise;
         this.minThreshold = minThreshold;
@@ -50,14 +50,16 @@ public class NoiseStructurePlacement extends RandomSpreadStructurePlacement {
 
     @Override
     public StructurePlacementType<?> getType() {
-        return CreoStructurePlacementTypes.NOISE;
+        return CreoStructurePlacementTypes.FAST_NOISE;
     }
 
     protected boolean isStartChunk(StructurePlacementCalculator calculator, int chunkX, int chunkZ) {
+        if (!noise.hasKeyAndValue())
+            return false;
         ChunkPos chunkPos = getStartChunk(calculator.getStructureSeed(), chunkX, chunkZ);
-        DoublePerlinNoiseSampler sampler = calculator.getNoiseConfig().getOrCreateSampler(noise);
         BlockPos pos = getLocatePos(new ChunkPos(chunkX, chunkZ));
-        double noiseValue = sampler.sample(pos.getX(), 0d, pos.getZ());
+        FastNoiseLite fastNoiseLite = noise.value().seed(((WorldAwareNoiseConfig) calculator.getNoiseConfig()).creo_getWorld().getSeed());
+        double noiseValue = fastNoiseLite.getNoise(pos.getX(), 0f, pos.getZ());
         if (noiseValue >= minThreshold && noiseValue < maxThreshold) {
             return chunkPos.x == chunkX && chunkPos.z == chunkZ;
         }

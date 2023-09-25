@@ -1,9 +1,9 @@
-package dev.creoii.creoapi.api.worldgen.structureplacement;
+package dev.creoii.creoapi.api.worldgen.structure.placement;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import dev.creoii.creoapi.api.worldgen.CreoStructurePlacementTypes;
-import dev.creoii.creoapi.impl.worldgen.util.DensityFunctionCache;
+import dev.creoii.creoapi.impl.worldgen.util.NoiseConfigCache;
 import dev.creoii.creoapi.impl.worldgen.util.WorldAwareNoiseConfig;
 import dev.creoii.creoapi.impl.worldgen.util.CreoDensityFunctionVisitor;
 import net.minecraft.registry.RegistryKeys;
@@ -22,8 +22,6 @@ import net.minecraft.world.gen.chunk.placement.StructurePlacementType;
 import net.minecraft.world.gen.densityfunction.DensityFunction;
 import net.minecraft.world.gen.noise.NoiseConfig;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 
 public class DensityFunctionStructurePlacement extends RandomSpreadStructurePlacement {
@@ -67,14 +65,14 @@ public class DensityFunctionStructurePlacement extends RandomSpreadStructurePlac
             return false;
 
         long seed = ((WorldAwareNoiseConfig) calculator.getNoiseConfig()).creo_getWorld().getSeed();
-        if (!DensityFunctionCache.CACHED_NOISE_CONFIGS.containsKey(seed)) {
+        if (!NoiseConfigCache.getCachedNoiseConfigs().containsKey(seed)) {
             ChunkGenerator chunkGenerator = ((WorldAwareNoiseConfig) calculator.getNoiseConfig()).creo_getWorld().getChunkManager().getChunkGenerator();
             ChunkGeneratorSettings settings = chunkGenerator instanceof NoiseChunkGenerator noiseChunkGenerator ? noiseChunkGenerator.getSettings().value() : ChunkGeneratorSettings.createMissingSettings();
-            DensityFunctionCache.CACHED_NOISE_CONFIGS.put(seed, NoiseConfig.create(settings, ((WorldAwareNoiseConfig) calculator.getNoiseConfig()).creo_getWorld().getRegistryManager().getWrapperOrThrow(RegistryKeys.NOISE_PARAMETERS), seed));
+            NoiseConfigCache.getCachedNoiseConfigs().put(seed, NoiseConfig.create(settings, ((WorldAwareNoiseConfig) calculator.getNoiseConfig()).creo_getWorld().getRegistryManager().getWrapperOrThrow(RegistryKeys.NOISE_PARAMETERS), seed));
         }
 
         BlockPos pos = getLocatePos(new ChunkPos(chunkX, chunkZ));
-        double value = densityFunction.value().apply(new CreoDensityFunctionVisitor(DensityFunctionCache.CACHED_NOISE_CONFIGS.get(seed))).sample(new DensityFunction.UnblendedNoisePos(pos.getX(), pos.getY(), pos.getZ()));
+        double value = densityFunction.value().apply(new CreoDensityFunctionVisitor(NoiseConfigCache.getCachedNoiseConfigs().get(seed))).sample(new DensityFunction.UnblendedNoisePos(pos.getX(), pos.getY(), pos.getZ()));
         return value >= min && value < max;
     }
 

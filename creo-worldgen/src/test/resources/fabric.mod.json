@@ -12,11 +12,7 @@
   },
   "license": "All-Rights-Reserved",
   "environment": "*",
-  "entrypoints": {
-    "main": [
-      "dev.creoii.creoapi.api.worldgen.CreoWorldgen"
-    ]
-  },
+  "entrypoints": {},
   "depends": {
     "fabricloader": ">=${loader_version}",
     "fabric": "*",
