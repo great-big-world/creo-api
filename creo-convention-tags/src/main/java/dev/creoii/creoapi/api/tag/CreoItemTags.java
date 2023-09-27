@@ -10,18 +10,54 @@ public final class CreoItemTags {
     public static final TagKey<Item> EXPLOSION_IMMUNE = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "explosion_immune"));
     public static final TagKey<Item> CACTUS_IMMUNE = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "cactus_immune"));
     public static final TagKey<Item> FIREPROOF = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "fireproof"));
+    /**
+     * Items which cannot be placed in an Item Frame.
+     */
     public static final TagKey<Item> UNFRAMEABLE = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "unframeable"));
     public static final TagKey<Item> GLOWS_SIGN = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "glows_sign"));
+    /**
+     * Items which do not activate Tripwires when on the ground.
+     */
     public static final TagKey<Item> TRIPWIRE_IGNORES = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "tripwire_ignores"));
+    /**
+     * Items which cannot be moved by Hoppers.
+     */
     public static final TagKey<Item> HOPPER_IGNORES = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "hopper_ignores"));
+    /**
+     * Items which cannot be played with by Dolphins.
+     */
     public static final TagKey<Item> DOLPHIN_IGNORES = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "dolphin_ignores"));
+    /**
+     * Items which cannot be picked up by Foxes.
+     */
     public static final TagKey<Item> FOX_IGNORES = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "fox_ignores"));
+    /**
+     * Items which duplicate Allays.
+     */
     public static final TagKey<Item> DUPLICATES_ALLAYS = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "duplicates_allays"));
+    /**
+     * Items which disable Shields on critical hits.
+     */
     public static final TagKey<Item> DISABLES_SHIELD = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "disables_shield"));
+    /**
+     * Items which can be used to fuel enchanting.
+     */
     public static final TagKey<Item> ENCHANTING_FUEL = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "enchanting_fuel"));
+    /**
+     * Items which can be used to fuel brewing.
+     */
     public static final TagKey<Item> BREWING_FUEL = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "brewing_fuel"));
+    /**
+     * Items which repair damaged Iron Golems.
+     */
     public static final TagKey<Item> REPAIRS_IRON_GOLEMS = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "repairs_iron_golems"));
+    /**
+     * Items which can be used to charge a Respawn Anchor.
+     */
     public static final TagKey<Item> RESPAWN_ANCHOR_CHARGES = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "respawn_anchor_charges"));
+    /**
+     * Items which can be used to fuel a Furnace Minecart.
+     */
     public static final TagKey<Item> FUELS_FURNACE_MINECARTS = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "fuels_furnace_minecarts"));
     public static final TagKey<Item> BREEDS_SHEEP = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "breeds/sheep"));
     public static final TagKey<Item> BREEDS_COW = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "breeds/cow"));

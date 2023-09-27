@@ -23,13 +23,31 @@ public final class CreoEntityTypeTags {
     public static final TagKey<EntityType<?>> FALL_IMMUNE = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "damage_immune/fall"));
     public static final TagKey<EntityType<?>> OUT_OF_WORLD_IMMUNE = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "damage_immune/out_of_world"));
     public static final TagKey<EntityType<?>> GENERIC_IMMUNE = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "damage_immune/generic"));
+    /**
+     * Entities that are ignored by Zoglins.
+     */
     public static final TagKey<EntityType<?>> ZOGLIN_IGNORES = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "zoglin_ignores"));
+    /**
+     * Entities that do not activate traps such as Pressure Plates.
+     */
     public static final TagKey<EntityType<?>> AVOIDS_TRAPS = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "avoids_traps"));
+    /**
+     * Entities which projectiles ignore collision with.
+     */
     public static final TagKey<EntityType<?>> PROJECTILES_IGNORE = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "projectiles_ignore"));
     public static final TagKey<EntityType<?>> WALKS_ON_WATER = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "walks_on_water"));
     public static final TagKey<EntityType<?>> WALKS_ON_LAVA = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "walks_on_lava"));
+    /**
+     * Entities which can be stood on like Boats.
+     */
     public static final TagKey<EntityType<?>> COLLIDABLE = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "collidable"));
+    /**
+     * Entities which are ignored by the Warden.
+     */
     public static final TagKey<EntityType<?>> WARDEN_IGNORES = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "warden_ignores"));
+    /**
+     * Entities which Creepers run away from.
+     */
     public static final TagKey<EntityType<?>> SCARES_CREEPERS = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "scares_creepers"));
     public static final TagKey<EntityType<?>> CAN_BREATHE_IN_WATER = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "can_breathe_in_water"));
     public static final TagKey<EntityType<?>> GLINTED = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "glinted"));
@@ -37,8 +55,14 @@ public final class CreoEntityTypeTags {
     public static final TagKey<EntityType<?>> ARTHROPOD = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "arthropod"));
     public static final TagKey<EntityType<?>> AQUATIC = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "aquatic"));
     public static final TagKey<EntityType<?>> ILLAGER = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "illager"));
+    /**
+     * Entities which do not activate Tripwires.
+     */
     public static final TagKey<EntityType<?>> TRIPWIRE_IGNORES = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "tripwire_ignores"));
     public static final TagKey<EntityType<?>> MILKABLE = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "milkable"));
+    /**
+     * Entities which cannot be hooked by a Fishing Rod.
+     */
     public static final TagKey<EntityType<?>> FISHING_ROD_CANNOT_HOOK = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "fishing_rod_cannot_hook"));
 
     public static final TagKey<EntityType<?>> BOSSES = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "bosses"));
