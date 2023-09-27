@@ -11,7 +11,7 @@ public final class CreoStructureProcessorTypes {
     public static final StructureProcessorType<NoiseStructureProcessor> NOISE = () -> NoiseStructureProcessor.CODEC;
     public static final StructureProcessorType<FastNoiseStructureProcessor> FAST_NOISE = () -> FastNoiseStructureProcessor.CODEC;
 
-    public static void register() {
+    static void register() {
         Registry.register(Registries.STRUCTURE_PROCESSOR, new Identifier(CreoWorldgen.NAMESPACE, "noise"), NOISE);
         Registry.register(Registries.STRUCTURE_PROCESSOR, new Identifier(CreoWorldgen.NAMESPACE, "fast_noise"), FAST_NOISE);
     }

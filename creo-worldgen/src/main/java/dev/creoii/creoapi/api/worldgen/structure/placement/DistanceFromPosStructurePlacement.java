@@ -15,10 +15,12 @@ import net.minecraft.world.gen.chunk.placement.StructurePlacementType;
 import java.math.BigDecimal;
 import java.util.Optional;
 
-public class DistanceFromZeroStructurePlacement extends RandomSpreadStructurePlacement {
-    public static final Codec<DistanceFromZeroStructurePlacement> CODEC = RecordCodecBuilder.create(instance -> {
+public class DistanceFromPosStructurePlacement extends RandomSpreadStructurePlacement {
+    public static final Codec<DistanceFromPosStructurePlacement> CODEC = RecordCodecBuilder.create(instance -> {
         return instance.group(Codec.INT.fieldOf("min_squared_distance").forGetter(predicate -> {
             return predicate.minSquaredDistance;
+        }), BlockPos.CODEC.fieldOf("center").forGetter(placement -> {
+            return placement.center;
         }), Vec3i.createOffsetCodec(16).optionalFieldOf("locate_offset", Vec3i.ZERO).forGetter(predicate -> {
             return predicate.getLocateOffset();
         }), FrequencyReductionMethod.CODEC.optionalFieldOf("frequency_reduction_method", FrequencyReductionMethod.DEFAULT).forGetter(predicate -> {
@@ -29,25 +31,27 @@ public class DistanceFromZeroStructurePlacement extends RandomSpreadStructurePla
             return predicate.getSalt();
         }), ExclusionZone.CODEC.optionalFieldOf("exclusion_zone").forGetter(predicate -> {
             return predicate.getExclusionZone();
-        }), Codec.intRange(0, 4096).fieldOf("spacing").forGetter(RandomSpreadStructurePlacement::getSpacing), Codec.intRange(0, 4096).fieldOf("separation").forGetter(RandomSpreadStructurePlacement::getSeparation), SpreadType.CODEC.optionalFieldOf("spread_type", SpreadType.LINEAR).forGetter(RandomSpreadStructurePlacement::getSpreadType)).apply(instance, DistanceFromZeroStructurePlacement::new);
+        }), Codec.intRange(0, 4096).fieldOf("spacing").forGetter(RandomSpreadStructurePlacement::getSpacing), Codec.intRange(0, 4096).fieldOf("separation").forGetter(RandomSpreadStructurePlacement::getSeparation), SpreadType.CODEC.optionalFieldOf("spread_type", SpreadType.LINEAR).forGetter(RandomSpreadStructurePlacement::getSpreadType)).apply(instance, DistanceFromPosStructurePlacement::new);
     });
     private final int minSquaredDistance;
+    private final BlockPos center;
 
-    public DistanceFromZeroStructurePlacement(int minSquaredDistance, Vec3i locateOffset, FrequencyReductionMethod frequencyReductionMethod, float frequency, int salt, Optional<ExclusionZone> exclusionZone, int spacing, int separation, SpreadType spreadType) {
+    public DistanceFromPosStructurePlacement(int minSquaredDistance, BlockPos center, Vec3i locateOffset, FrequencyReductionMethod frequencyReductionMethod, float frequency, int salt, Optional<ExclusionZone> exclusionZone, int spacing, int separation, SpreadType spreadType) {
         super(locateOffset, frequencyReductionMethod, frequency, salt, exclusionZone, spacing, separation, spreadType);
         this.minSquaredDistance = minSquaredDistance;
+        this.center = center;
     }
 
     @Override
     public StructurePlacementType<?> getType() {
-        return CreoStructurePlacementTypes.DISTANCE_FROM_ZERO;
+        return CreoStructurePlacementTypes.DISTANCE_FROM_POS;
     }
 
     @Override
     protected boolean isStartChunk(StructurePlacementCalculator calculator, int chunkX, int chunkZ) {
         ChunkPos chunkPos = getStartChunk(calculator.getStructureSeed(), chunkX, chunkZ);
         BlockPos startPos = chunkPos.getStartPos();
-        long squaredDistance = BigDecimal.valueOf(startPos.getSquaredDistance(0, startPos.getY(), 0)).longValue();
+        long squaredDistance = BigDecimal.valueOf(startPos.getSquaredDistance(center)).longValue();
         if (squaredDistance >= minSquaredDistance) {
             return chunkPos.x == chunkX && chunkPos.z == chunkZ;
         } return false;
