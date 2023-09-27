@@ -9,9 +9,9 @@ import net.minecraft.world.gen.surfacebuilder.MaterialRules;
 
 public class SteepMaterialCondition implements MaterialRules.MaterialCondition {
     public static final Codec<SteepMaterialCondition> CODEC = RecordCodecBuilder.create(instance -> {
-        return instance.group(Codec.intRange(1, 16).fieldOf("min_steepness").forGetter(predicate -> {
+        return instance.group(Codec.intRange(0, 127).fieldOf("min_steepness").forGetter(predicate -> {
             return predicate.minSteepness;
-        }), Codec.intRange(1, 16).fieldOf("max_steepness").forGetter(predicate -> {
+        }), Codec.intRange(1, 128).fieldOf("max_steepness").forGetter(predicate -> {
             return predicate.maxSteepness;
         })).apply(instance, SteepMaterialCondition::new);
     });
