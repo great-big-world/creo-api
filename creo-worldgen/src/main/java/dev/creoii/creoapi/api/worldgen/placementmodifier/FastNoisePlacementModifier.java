@@ -42,6 +42,6 @@ public class FastNoisePlacementModifier extends AbstractConditionalPlacementModi
             return false;
         FastNoiseLite fastNoiseLite = noise.value().seed(context.getWorld().getSeed());
         double noiseValue = fastNoiseLite.getNoise(pos.getX(), pos.getY(), pos.getZ());
-        return noiseValue >= minThreshold && noiseValue < maxThreshold;
+        return noiseValue >= minThreshold && noiseValue <= maxThreshold;
     }
 }

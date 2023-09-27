@@ -49,7 +49,7 @@ public class FastNoiseCountPlacementModifier extends PlacementModifier {
             return Stream.of(pos);
         FastNoiseLite fastNoiseLite = noise.value().seed(context.getWorld().getSeed());
         double noiseValue = fastNoiseLite.getNoise(pos.getX(), pos.getY(), pos.getZ()) * multiplier;
-        if (noiseValue >= minThreshold && noiseValue < maxThreshold)
+        if (noiseValue >= minThreshold && noiseValue <= maxThreshold)
             return IntStream.range(0, (int) (noiseValue * multiplier)).mapToObj(i -> pos);
         return Stream.of();
     }

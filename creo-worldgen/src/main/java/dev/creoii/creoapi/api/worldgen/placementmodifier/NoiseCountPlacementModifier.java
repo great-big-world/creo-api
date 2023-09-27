@@ -50,7 +50,7 @@ public class NoiseCountPlacementModifier extends PlacementModifier {
         if (context.getWorld().getChunkManager() instanceof ServerChunkManager chunkManager) {
             DoublePerlinNoiseSampler sampler = chunkManager.getNoiseConfig().getOrCreateSampler(noise);
             double noiseValue = sampler.sample(pos.getX(), pos.getY(), pos.getZ()) * multiplier;
-            if (noiseValue >= minThreshold && noiseValue < maxThreshold)
+            if (noiseValue >= minThreshold && noiseValue <= maxThreshold)
                 return IntStream.range(0, (int) (noiseValue * multiplier)).mapToObj(i -> pos);
         }
         return Stream.of();

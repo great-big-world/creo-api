@@ -12,5 +12,6 @@ public class CreoWorldgen implements ModInitializer {
         CreoMaterialConditions.register();
         CreoPlacementModifierTypes.register();
         CreoStructurePlacementTypes.register();
+        CreoStructureProcessorTypes.register();
     }
 }

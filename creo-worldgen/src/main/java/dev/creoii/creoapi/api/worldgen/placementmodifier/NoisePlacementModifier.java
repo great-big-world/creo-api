@@ -43,7 +43,7 @@ public class NoisePlacementModifier extends AbstractConditionalPlacementModifier
         if (context.getWorld().getChunkManager() instanceof ServerChunkManager chunkManager) {
             DoublePerlinNoiseSampler sampler = chunkManager.getNoiseConfig().getOrCreateSampler(noise);
             double noiseValue = sampler.sample(pos.getX(), pos.getY(), pos.getZ());
-            return noiseValue >= minThreshold && noiseValue < maxThreshold;
+            return noiseValue >= minThreshold && noiseValue <= maxThreshold;
         }
         return false;
     }

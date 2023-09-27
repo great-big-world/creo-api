@@ -1,0 +1,10 @@
+{
+  "processors": [
+    {
+      "processor_type": "creo:noise",
+      "noise": "test:processor_noise",
+      "min_threshold": 0.1,
+      "max_threshold": 2
+    }
+  ]
+}
