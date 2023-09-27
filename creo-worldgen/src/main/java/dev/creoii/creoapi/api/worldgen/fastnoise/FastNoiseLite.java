@@ -63,6 +63,8 @@ import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.StringIdentifiable;
 import net.minecraft.util.math.random.Random;
+import org.joml.Vector2f;
+import org.joml.Vector3f;
 
 public class FastNoiseLite {
     private static final Random RANDOM = Random.create();
@@ -655,7 +657,7 @@ public class FastNoiseLite {
     /// <code>DomainWarp(coord)
     /// noise = GetNoise(x, y)</code>
     /// </example>
-    public void DomainWarp(Vector2 coord) {
+    public void DomainWarp(Vector2f coord) {
         switch (fractal.type) {
             default -> DomainWarpSingle(coord);
             case DOMAIN_WARP_PROGRESSIVE -> DomainWarpFractalProgressive(coord);
@@ -671,7 +673,7 @@ public class FastNoiseLite {
     /// <code>DomainWarp(coord)
     /// noise = GetNoise(x, y, z)</code>
     /// </example>
-    public void DomainWarp(Vector3 coord) {
+    public void DomainWarp(Vector3f coord) {
         switch (fractal.type) {
             default -> DomainWarpSingle(coord);
             case DOMAIN_WARP_PROGRESSIVE -> DomainWarpFractalProgressive(coord);
@@ -1899,7 +1901,7 @@ public class FastNoiseLite {
 
     // Domain Warp
 
-    private void DoSingleDomainWarp(long seed, float amp, float freq, /*FNLfloat*/ float x, /*FNLfloat*/ float y, Vector2 coord) {
+    private void DoSingleDomainWarp(long seed, float amp, float freq, /*FNLfloat*/ float x, /*FNLfloat*/ float y, Vector2f coord) {
         switch (domainWarp.type) {
             case OPEN_SIMPLEX_2 -> SingleDomainWarpSimplexGradient(seed, amp * 38.283687591552734375f, freq, x, y, coord, false);
             case OPEN_SIMPLEX_2_REDUCED -> SingleDomainWarpSimplexGradient(seed, amp * 16.0f, freq, x, y, coord, true);
@@ -1907,7 +1909,7 @@ public class FastNoiseLite {
         }
     }
 
-    private void DoSingleDomainWarp(long seed, float amp, float freq, /*FNLfloat*/ float x, /*FNLfloat*/ float y, /*FNLfloat*/ float z, Vector3 coord) {
+    private void DoSingleDomainWarp(long seed, float amp, float freq, /*FNLfloat*/ float x, /*FNLfloat*/ float y, /*FNLfloat*/ float z, Vector3f coord) {
         switch (domainWarp.type) {
             case OPEN_SIMPLEX_2 ->
                     SingleDomainWarpOpenSimplex2Gradient(seed, amp * 32.69428253173828125f, freq, x, y, z, coord, false);
@@ -1918,7 +1920,7 @@ public class FastNoiseLite {
     }
 
     // Domain Warp Single Wrapper
-    private void DomainWarpSingle(Vector2 coord) {
+    private void DomainWarpSingle(Vector2f coord) {
         long seed = mSeed;
         float amp = domainWarp.amplitude * mFractalBounding;
         float freq = domainWarp.frequency;
@@ -1938,7 +1940,7 @@ public class FastNoiseLite {
         DoSingleDomainWarp(seed, amp, freq, xs, ys, coord);
     }
 
-    private void DomainWarpSingle(Vector3 coord) {
+    private void DomainWarpSingle(Vector3f coord) {
         long seed = mSeed;
         float amp = domainWarp.amplitude * mFractalBounding;
         float freq = domainWarp.frequency;
@@ -1979,7 +1981,7 @@ public class FastNoiseLite {
 
 
     // Domain Warp Fractal Progressive
-    private void DomainWarpFractalProgressive(Vector2 coord) {
+    private void DomainWarpFractalProgressive(Vector2f coord) {
         long seed = mSeed;
         float amp = domainWarp.amplitude * mFractalBounding;
         float freq = domainWarp.frequency;
@@ -2007,7 +2009,7 @@ public class FastNoiseLite {
         }
     }
 
-    private void DomainWarpFractalProgressive(Vector3 coord) {
+    private void DomainWarpFractalProgressive(Vector3f coord) {
         long seed = mSeed;
         float amp = domainWarp.amplitude * mFractalBounding;
         float freq = domainWarp.frequency;
@@ -2052,7 +2054,7 @@ public class FastNoiseLite {
     }
 
     // Domain Warp Fractal Independant
-    private void DomainWarpFractalIndependent(Vector2 coord) {
+    private void DomainWarpFractalIndependent(Vector2f coord) {
         float xs = coord.x;
         float ys = coord.y;
         switch (domainWarp.type) {
@@ -2078,7 +2080,7 @@ public class FastNoiseLite {
         }
     }
 
-    private void DomainWarpFractalIndependent(Vector3 coord) {
+    private void DomainWarpFractalIndependent(Vector3f coord) {
         float xs = coord.x;
         float ys = coord.y;
         float zs = coord.z;
@@ -2123,7 +2125,7 @@ public class FastNoiseLite {
 
 
     // Domain Warp Basic Grid
-    private void SingleDomainWarpBasicGrid(long seed, float warpAmp, float frequency, float x, float y, Vector2 coord) {
+    private void SingleDomainWarpBasicGrid(long seed, float warpAmp, float frequency, float x, float y, Vector2f coord) {
         float xf = x * frequency;
         float yf = y * frequency;
 
@@ -2154,7 +2156,7 @@ public class FastNoiseLite {
         coord.y += lerp(ly0x, ly1x, ys) * warpAmp;
     }
 
-    private void SingleDomainWarpBasicGrid(long seed, float warpAmp, float frequency, float x, float y, float z, Vector3 coord) {
+    private void SingleDomainWarpBasicGrid(long seed, float warpAmp, float frequency, float x, float y, float z, Vector3f coord) {
         float xf = x * frequency;
         float yf = y * frequency;
         float zf = z * frequency;
@@ -2213,7 +2215,7 @@ public class FastNoiseLite {
 
 
     // Domain Warp Simplex/OpenSimplex2
-    private void SingleDomainWarpSimplexGradient(long seed, float warpAmp, float frequency, /*FNLfloat*/ float x, /*FNLfloat*/ float y, Vector2 coord, boolean outGradOnly) {
+    private void SingleDomainWarpSimplexGradient(long seed, float warpAmp, float frequency, /*FNLfloat*/ float x, /*FNLfloat*/ float y, Vector2f coord, boolean outGradOnly) {
         final float SQRT3 = 1.7320508075688772935274463415059f;
         final float G2 = (3 - SQRT3) / 6;
 
@@ -2343,7 +2345,7 @@ public class FastNoiseLite {
         coord.y += vy * warpAmp;
     }
 
-    private void SingleDomainWarpOpenSimplex2Gradient(long seed, float warpAmp, float frequency, /*FNLfloat*/ float x, /*FNLfloat*/ float y, /*FNLfloat*/ float z, Vector3 coord, boolean outGradOnly) {
+    private void SingleDomainWarpOpenSimplex2Gradient(long seed, float warpAmp, float frequency, /*FNLfloat*/ float x, /*FNLfloat*/ float y, /*FNLfloat*/ float z, Vector3f coord, boolean outGradOnly) {
         x *= frequency;
         y *= frequency;
         z *= frequency;
@@ -2478,25 +2480,5 @@ public class FastNoiseLite {
         coord.x += vx * warpAmp;
         coord.y += vy * warpAmp;
         coord.z += vz * warpAmp;
-    }
-
-    public static class Vector2 {
-        public float x;
-        public float y;
-        public Vector2(float x, float y) {
-            this.x = x;
-            this.y = y;
-        }
-    }
-
-    public static class Vector3 {
-        public float x;
-        public float y;
-        public float z;
-        public Vector3(float x, float y, float z) {
-            this.x = x;
-            this.y = y;
-            this.z = z;
-        }
     }
 }
