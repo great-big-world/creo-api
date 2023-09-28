@@ -10,20 +10,20 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 @Mixin(EntityType.class)
 public interface EntityTypeAccessor {
     @Accessor("spawnGroup")
-    SpawnGroup getSpawnGroup();
+    void setSpawnGroup(SpawnGroup spawnGroup);
 
     @Accessor("summonable")
-    boolean isSummonable();
+    void setSummonable(boolean summonable);
 
     @Accessor("fireImmune")
-    boolean isFireImmune();
+    void setFireImmune(boolean fireImmune);
 
     @Accessor("spawnableFarFromPlayer")
-    boolean isSpawnableFarFromPlayer();
+    void setSpawnableFarFromPlayer(boolean spawnableFarFromPlayer);
 
     @Accessor("lootTableId")
-    Identifier getLootTableId();
+    void setLootTableId(Identifier lootTableId);
 
     @Accessor("dimensions")
-    EntityDimensions getDimensions();
+    void setDimensions(EntityDimensions dimensions);
 }

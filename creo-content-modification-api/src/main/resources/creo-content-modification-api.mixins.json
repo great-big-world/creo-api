@@ -11,7 +11,8 @@
     "block.BlockSettingsAccessor",
     "enchantment.EnchantmentAccessor",
     "enchantment.EnchantmentMixin",
-    "item.ItemAccessor"
+    "item.ItemAccessor",
+    "item.SpawnEggItemAccessor"
   ],
   "client": [
   ],

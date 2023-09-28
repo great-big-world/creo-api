@@ -1,7 +1,6 @@
 package dev.creoii.creoapi.impl.modification;
 
 import dev.creoii.creoapi.api.modification.EnchantmentModification;
-import dev.creoii.creoapi.impl.modification.enchantment.ExtendedEnchantment;
 import dev.creoii.creoapi.mixin.modification.enchantment.EnchantmentAccessor;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.ItemStack;

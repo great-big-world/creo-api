@@ -1,4 +1,4 @@
-package dev.creoii.creoapi.impl.modification.enchantment;
+package dev.creoii.creoapi.impl.modification;
 
 import net.minecraft.item.ItemStack;
 

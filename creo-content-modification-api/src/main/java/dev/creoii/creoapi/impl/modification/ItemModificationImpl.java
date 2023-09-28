@@ -25,18 +25,8 @@ public class ItemModificationImpl implements ItemModification {
     }
 
     @Override
-    public int getMaxCount(Item item) {
-        return item.getMaxCount();
-    }
-
-    @Override
     public void setMaxDamage(Item item, int maxDamage) {
         ((ItemAccessor) item).setMaxDamage(maxDamage);
-    }
-
-    @Override
-    public int getMaxDamage(Item item) {
-        return item.getMaxDamage();
     }
 
     @Override
@@ -45,27 +35,12 @@ public class ItemModificationImpl implements ItemModification {
     }
 
     @Override
-    public boolean isFireproof(Item item) {
-        return item.isFireproof();
-    }
-
-    @Override
     public void setRecipeRemainder(Item item, Item recipeRemainder) {
         ((ItemAccessor) item).setRecipeRemainder(recipeRemainder);
     }
 
     @Override
-    public Item getRecipeRemainder(Item item) {
-        return item.getRecipeRemainder();
-    }
-
-    @Override
     public void setFoodComponent(Item item, FoodComponent foodComponent) {
         ((ItemAccessor) item).setFoodComponent(foodComponent);
-    }
-
-    @Override
-    public FoodComponent getFoodComponent(Item item) {
-        return item.getFoodComponent();
     }
 }
