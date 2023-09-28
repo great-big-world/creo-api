@@ -1,3 +1,8 @@
 accessWidener v2 named
 
 accessible method net/minecraft/screen/ScreenHandler addSlot (Lnet/minecraft/screen/slot/Slot;)Lnet/minecraft/screen/slot/Slot;
+accessible method net/minecraft/entity/LivingEntity onStatusEffectRemoved (Lnet/minecraft/entity/effect/StatusEffectInstance;)V
+
+accessible field net/minecraft/screen/GrindstoneScreenHandler context Lnet/minecraft/screen/ScreenHandlerContext;
+accessible field net/minecraft/screen/GrindstoneScreenHandler result Lnet/minecraft/inventory/Inventory;
+accessible field net/minecraft/screen/GrindstoneScreenHandler input Lnet/minecraft/inventory/Inventory;

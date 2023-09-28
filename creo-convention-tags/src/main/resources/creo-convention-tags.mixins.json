@@ -18,6 +18,7 @@
     "block.entity.BrewingStandBlockEntityMixin",
     "block.entity.ConduitBlockEntityMixin",
     "block.entity.HopperBlockEntityMixin",
+    "enchantment.EnchantmentMixin",
     "entity.AllayEntityMixin",
     "entity.CreeperEntityMixin",
     "entity.DolphinEntityMixin",
@@ -35,8 +36,10 @@
     "entity.WardenEntityMixin",
     "entity.ZoglinEntityMixin",
     "entity.goal.EatGrassGoalMixin",
+    "item.MilkBucketItemMixin",
     "item.ShearsItemMixin",
     "screen.EnchantmentScreenHandlerMixin",
+    "screen.GrindstoneScreenHandlerMixin",
     "world.HeightmapTypeMixin"
   ],
   "client": [
