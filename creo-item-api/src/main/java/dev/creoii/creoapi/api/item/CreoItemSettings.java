@@ -35,26 +35,14 @@ public class CreoItemSettings extends FabricItemSettings {
         if (accessor.isFireproof()) {
             ((ItemSettingsAccessor) copy).setFireproof(true);
         }
-        return copy;
-    }
 
-    public static CreoItemSettings copyOf(CreoItemSettings settings) {
-        ItemSettingsAccessor accessor = (ItemSettingsAccessor) settings;
-        CreoItemSettings copy = new CreoItemSettings();
-        ((ItemSettingsAccessor) copy).setMaxCount(accessor.getMaxCount());
-        ((ItemSettingsAccessor) copy).setMaxDamage(accessor.getMaxDamage());
-        ((ItemSettingsAccessor) copy).setRecipeRemainder(accessor.getRecipeRemainder());
-        ((ItemSettingsAccessor) copy).setRarity(accessor.getRarity());
-        ((ItemSettingsAccessor) copy).setFoodComponent(accessor.getFoodComponent());
-        if (accessor.isFireproof()) {
-            ((ItemSettingsAccessor) copy).setFireproof(true);
+        if (settings instanceof CreoItemSettings creoItemSettings) {
+            copy.setPickupDelay(creoItemSettings.getPickupDelay());
+            copy.setDespawnTime(creoItemSettings.getDespawnTime());
+            copy.setBuoyant(creoItemSettings.isBuoyant());
+            copy.setGravity(creoItemSettings.getGravity());
+            copy.setRequiredFuels(creoItemSettings.getRequiredFuels());
         }
-
-        copy.setPickupDelay(settings.getPickupDelay());
-        copy.setDespawnTime(settings.getDespawnTime());
-        copy.setBuoyant(settings.isBuoyant());
-        copy.setGravity(settings.getGravity());
-        copy.setRequiredFuels(settings.getRequiredFuels());
         return copy;
     }
 
@@ -139,7 +127,7 @@ public class CreoItemSettings extends FabricItemSettings {
     }
 
     public CreoItemSettings notBuoyant() {
-        this.buoyant = false;
+        buoyant = false;
         return this;
     }
 

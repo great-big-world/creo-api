@@ -4,7 +4,6 @@ import dev.creoii.creoapi.impl.modification.EntityTypeModificationImpl;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
-import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.ApiStatus;
 

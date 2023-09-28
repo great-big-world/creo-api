@@ -2,9 +2,9 @@ package dev.creoii.creoapi.api.worldgen.materialrule;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import dev.creoii.creoapi.impl.worldgen.util.CreoDensityFunctionVisitor;
 import dev.creoii.creoapi.impl.worldgen.util.NoiseConfigCache;
 import dev.creoii.creoapi.impl.worldgen.util.WorldAwareNoiseConfig;
-import dev.creoii.creoapi.impl.worldgen.util.CreoDensityFunctionVisitor;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.dynamic.CodecHolder;

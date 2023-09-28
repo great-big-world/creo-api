@@ -1,7 +1,6 @@
 package dev.creoii.creoapi.api.tag;
 
 import net.minecraft.block.Block;
-import net.minecraft.entity.mob.RavagerEntity;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
