@@ -31,3 +31,5 @@ accessible field net/minecraft/entity/EntityType spawnableFarFromPlayer Z
 accessible field net/minecraft/entity/EntityType lootTableId Lnet/minecraft/util/Identifier;
 accessible field net/minecraft/entity/EntityType dimensions Lnet/minecraft/entity/EntityDimensions;
 mutable field net/minecraft/enchantment/Enchantment rarity Lnet/minecraft/enchantment/Enchantment$Rarity;
+accessible field net/minecraft/entity/effect/StatusEffect category Lnet/minecraft/entity/effect/StatusEffectCategory;
+accessible field net/minecraft/entity/effect/StatusEffect color I

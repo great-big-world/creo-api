@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "EntityTypeAccessor",
+    "StatusEffectAccessor",
     "block.AbstractBlockAccessor",
     "block.AbstractBlockStateAccessor",
     "block.BlockSettingsAccessor",
