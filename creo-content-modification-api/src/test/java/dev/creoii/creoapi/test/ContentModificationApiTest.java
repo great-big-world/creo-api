@@ -1,12 +1,15 @@
 package dev.creoii.creoapi.test;
 
 import dev.creoii.creoapi.api.modification.BlockModification;
+import dev.creoii.creoapi.api.modification.EnchantmentModification;
 import dev.creoii.creoapi.api.modification.ItemModification;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.MapColor;
 import net.minecraft.block.enums.Instrument;
 import net.minecraft.block.piston.PistonBehavior;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Items;
 import net.minecraft.sound.BlockSoundGroup;
@@ -159,5 +162,31 @@ public class ContentModificationApiTest implements ModInitializer {
         ItemModification.INSTANCE.setFoodComponent(Items.CARROT_ON_A_STICK, new FoodComponent.Builder().hunger(2).build());
         LOGGER.info(String.valueOf(Items.CARROT_ON_A_STICK.isFood()));
         LOGGER.info("fail");
+
+        LOGGER.info("---------- ENCHANTMENT ----------");
+
+        LOGGER.info("RARITY");
+        LOGGER.info(Enchantments.MENDING.getRarity().name());
+        EnchantmentModification.INSTANCE.setRarity(Enchantments.MENDING, Enchantment.Rarity.COMMON);
+        LOGGER.info(Enchantments.MENDING.getRarity().name());
+        LOGGER.info("???");
+
+        LOGGER.info("ACCEPTABLE ITEM");
+        LOGGER.info(String.valueOf(Enchantments.MENDING.isAcceptableItem(Items.DIAMOND.getDefaultStack())));
+        EnchantmentModification.INSTANCE.setAcceptableItems(Enchantments.MENDING, stack -> stack.isOf(Items.DIAMOND));
+        LOGGER.info(String.valueOf(Enchantments.MENDING.isAcceptableItem(Items.DIAMOND.getDefaultStack())));
+        LOGGER.info("???");
+
+        LOGGER.info("MIN LEVEL");
+        LOGGER.info(String.valueOf(Enchantments.SILK_TOUCH.getMinLevel()));
+        EnchantmentModification.INSTANCE.setMinLevel(Enchantments.SILK_TOUCH, 2);
+        LOGGER.info(String.valueOf(Enchantments.SILK_TOUCH.getMinLevel()));
+        LOGGER.info("???");
+
+        LOGGER.info("MAX LEVEL");
+        LOGGER.info(String.valueOf(Enchantments.SILK_TOUCH.getMaxLevel()));
+        EnchantmentModification.INSTANCE.setMaxLevel(Enchantments.SILK_TOUCH, 3);
+        LOGGER.info(String.valueOf(Enchantments.SILK_TOUCH.getMaxLevel()));
+        LOGGER.info("???");
     }
 }

@@ -19,7 +19,7 @@ public class EntityBlockCollision {
     }
 
     /**
-     * Creates an block collision interaction.
+     * Creates an entity-block collision interaction.
      */
     public static EntityBlockCollision create(EntityType<?> entityType, Predicate<EntityBlockCollisionContext> contextPredicate) {
         return new EntityBlockCollision(entityType, contextPredicate);

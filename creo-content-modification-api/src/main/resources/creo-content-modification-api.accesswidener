@@ -30,3 +30,4 @@ accessible field net/minecraft/entity/EntityType fireImmune Z
 accessible field net/minecraft/entity/EntityType spawnableFarFromPlayer Z
 accessible field net/minecraft/entity/EntityType lootTableId Lnet/minecraft/util/Identifier;
 accessible field net/minecraft/entity/EntityType dimensions Lnet/minecraft/entity/EntityDimensions;
+mutable field net/minecraft/enchantment/Enchantment rarity Lnet/minecraft/enchantment/Enchantment$Rarity;

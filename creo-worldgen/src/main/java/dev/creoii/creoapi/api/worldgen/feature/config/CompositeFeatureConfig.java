@@ -9,12 +9,12 @@ import net.minecraft.world.gen.feature.PlacedFeature;
 
 import java.util.List;
 
-public record CompositeFeatureConfig(List<RegistryEntry<PlacedFeature>> features, CompositeFeature.FailType failType) implements FeatureConfig {
+public record CompositeFeatureConfig(List<RegistryEntry<PlacedFeature>> features, CompositeFeature.Type type) implements FeatureConfig {
     public static final Codec<CompositeFeatureConfig> CODEC = RecordCodecBuilder.create(instance -> {
         return instance.group(PlacedFeature.REGISTRY_CODEC.listOf().fieldOf("features").forGetter(config -> {
             return config.features;
-        }), CompositeFeature.FailType.CODEC.fieldOf("fail_type").orElse(CompositeFeature.FailType.FREE).forGetter(config -> {
-            return config.failType;
+        }), CompositeFeature.Type.CODEC.fieldOf("type").orElse(CompositeFeature.Type.FREE).forGetter(config -> {
+            return config.type;
         })).apply(instance, CompositeFeatureConfig::new);
     });
 }

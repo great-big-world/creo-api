@@ -20,10 +20,10 @@ public class CompositeFeature extends Feature<CompositeFeatureConfig> {
     @Override
     public boolean generate(FeatureContext context) {
         CompositeFeatureConfig config = (CompositeFeatureConfig) context.getConfig();
-        return config.failType().test(context, config.features());
+        return config.type().test(context, config.features());
     }
 
-    public enum FailType implements StringIdentifiable {
+    public enum Type implements StringIdentifiable {
         SOFT("soft", (context, entries) -> {
             MutableBoolean fail = new MutableBoolean(false);
             for (RegistryEntry<PlacedFeature> entry : entries) {
@@ -46,17 +46,17 @@ public class CompositeFeature extends Feature<CompositeFeatureConfig> {
             return true;
         });
 
-        public static final Codec<FailType> CODEC = StringIdentifiable.createCodec(FailType::values);
+        public static final Codec<Type> CODEC = StringIdentifiable.createCodec(Type::values);
         private final String id;
-        private final BiPredicate<FeatureContext<?>, List<RegistryEntry<PlacedFeature>>> failPredicate;
+        private final BiPredicate<FeatureContext<?>, List<RegistryEntry<PlacedFeature>>> typePredicate;
 
-        FailType(String id, BiPredicate<FeatureContext<?>, List<RegistryEntry<PlacedFeature>>> failPredicate) {
+        Type(String id, BiPredicate<FeatureContext<?>, List<RegistryEntry<PlacedFeature>>> typePredicate) {
             this.id = id;
-            this.failPredicate = failPredicate;
+            this.typePredicate = typePredicate;
         }
 
         public boolean test(FeatureContext<?> context, List<RegistryEntry<PlacedFeature>> entries) {
-            return failPredicate.test(context, entries);
+            return typePredicate.test(context, entries);
         }
 
         @Override
