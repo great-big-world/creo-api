@@ -16,9 +16,9 @@ public class BlockInjectionTest implements ModInitializer {
 
         BlockEntityTypeInjection.inject(BlockEntityType.SIGN, Blocks.OAK_FENCE);
 
-        BlockStatePropertyInjection.inject(Blocks.STONE, Properties.POWERED);
-        // error
-        BlockStatePropertyInjection.inject(Blocks.OAK_LOG, Properties.AXIS);
-        BlockStatePropertyInjection.inject(Blocks.OAK_LOG, Properties.POWERED, false);
+        BlockStatePropertyInjection.inject(Properties.POWERED, Blocks.STONE);
+        // error because OAK_LOG already has property AXIS
+        // BlockStatePropertyInjection.inject(Properties.AXIS,Blocks.OAK_LOG);
+        BlockStatePropertyInjection.inject(Properties.POWERED, false, Blocks.OAK_LOG);
     }
 }

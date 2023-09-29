@@ -13,19 +13,15 @@ import org.jetbrains.annotations.Nullable;
 
 @ApiStatus.Internal
 public class BlockStatePropertyInjectionImpl {
-    public static void inject(Block block, Property<?> property) {
+    public static <T extends Comparable<T>> void inject(Block block, Property<T> property, @Nullable T defaultValue) {
         BlockAccessor accessor = tryInjectProperty(block, property);
         if (accessor == null)
             return;
-        accessor.setDefaultState(block.getStateManager().getDefaultState());
-        refreshStateIds(block);
-    }
 
-    public static <T extends Comparable<T>> void inject(Block block, Property<T> property, T defaultValue) {
-        BlockAccessor accessor = tryInjectProperty(block, property);
-        if (accessor == null)
-            return;
-        accessor.setDefaultState(block.getStateManager().getDefaultState().with(property, defaultValue));
+        if (defaultValue == null)
+            accessor.setDefaultState(block.getStateManager().getDefaultState());
+        else
+            accessor.setDefaultState(block.getStateManager().getDefaultState().with(property, defaultValue));
         refreshStateIds(block);
     }
 

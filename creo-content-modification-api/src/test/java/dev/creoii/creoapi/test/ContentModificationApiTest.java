@@ -134,27 +134,27 @@ public class ContentModificationApiTest implements ModInitializer {
         LOGGER.info("pass");
 
         LOGGER.info("MAX COUNT");
-        LOGGER.info(String.valueOf(ItemModification.INSTANCE.getMaxCount(Items.ENDER_PEARL)));
+        LOGGER.info(String.valueOf(Items.ENDER_PEARL.getMaxCount()));
         ItemModification.INSTANCE.setMaxCount(Items.ENDER_PEARL, 64);
-        LOGGER.info(String.valueOf(ItemModification.INSTANCE.getMaxCount(Items.ENDER_PEARL)));
+        LOGGER.info(String.valueOf(Items.ENDER_PEARL.getMaxCount()));
         LOGGER.info("pass");
 
         LOGGER.info("MAX DAMAGE");
-        LOGGER.info(String.valueOf(ItemModification.INSTANCE.getMaxDamage(Items.WOODEN_HOE)));
+        LOGGER.info(String.valueOf(Items.WOODEN_HOE.getMaxDamage()));
         ItemModification.INSTANCE.setMaxDamage(Items.WOODEN_HOE, 1);
-        LOGGER.info(String.valueOf(ItemModification.INSTANCE.getMaxDamage(Items.WOODEN_HOE)));
+        LOGGER.info(String.valueOf(Items.WOODEN_HOE.getMaxDamage()));
         LOGGER.info("pass");
 
         LOGGER.info("FIREPROOF");
-        LOGGER.info(String.valueOf(ItemModification.INSTANCE.isFireproof(Items.NETHERITE_BLOCK)));
+        LOGGER.info(String.valueOf(Items.NETHERITE_BLOCK.isFireproof()));
         ItemModification.INSTANCE.setFireproof(Items.NETHERITE_BLOCK, false);
-        LOGGER.info(String.valueOf(ItemModification.INSTANCE.isFireproof(Items.NETHERITE_BLOCK)));
+        LOGGER.info(String.valueOf(Items.NETHERITE_BLOCK.isFireproof()));
         LOGGER.info("pass");
 
         LOGGER.info("RECIPE REMAINDER");
-        LOGGER.info(String.valueOf(ItemModification.INSTANCE.getRecipeRemainder(Items.MILK_BUCKET).getTranslationKey()));
+        LOGGER.info(String.valueOf(Items.MILK_BUCKET.getRecipeRemainder()));
         ItemModification.INSTANCE.setRecipeRemainder(Items.MILK_BUCKET, Items.WATER_BUCKET);
-        LOGGER.info(String.valueOf(ItemModification.INSTANCE.getRecipeRemainder(Items.MILK_BUCKET).getTranslationKey()));
+        LOGGER.info(String.valueOf(Items.MILK_BUCKET.getRecipeRemainder()));
         LOGGER.info("pass");
 
         LOGGER.info("FOOD COMPONENT");
