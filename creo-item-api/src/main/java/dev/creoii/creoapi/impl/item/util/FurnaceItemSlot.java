@@ -1,6 +1,7 @@
-package dev.creoii.creoapi.impl.item;
+package dev.creoii.creoapi.impl.item.util;
 
 import dev.creoii.creoapi.api.item.CreoItemSettings;
+import dev.creoii.creoapi.impl.item.RequiredFuelsImpl;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

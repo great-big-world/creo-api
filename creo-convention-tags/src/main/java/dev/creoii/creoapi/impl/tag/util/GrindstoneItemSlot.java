@@ -1,4 +1,4 @@
-package dev.creoii.creoapi.impl.tag.enchantment;
+package dev.creoii.creoapi.impl.tag.util;
 
 import dev.creoii.creoapi.api.tag.CreoEnchantmentTags;
 import net.fabricmc.fabric.api.tag.convention.v1.TagUtil;

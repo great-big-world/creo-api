@@ -1,7 +1,7 @@
 package dev.creoii.creoapi.mixin.modification.enchantment;
 
 import dev.creoii.creoapi.impl.modification.EnchantmentImpl;
-import dev.creoii.creoapi.impl.modification.ExtendedEnchantment;
+import dev.creoii.creoapi.impl.modification.util.ExtendedEnchantment;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.ItemStack;
 import org.jetbrains.annotations.Nullable;

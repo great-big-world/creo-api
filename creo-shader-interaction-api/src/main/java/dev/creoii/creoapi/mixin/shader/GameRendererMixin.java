@@ -1,7 +1,7 @@
 package dev.creoii.creoapi.mixin.shader;
 
 import dev.creoii.creoapi.impl.shader.GameRendererImpl;
-import dev.creoii.creoapi.impl.shader.PostProcessorInteraction;
+import dev.creoii.creoapi.impl.shader.util.PostProcessorInteraction;
 import net.minecraft.client.gl.PostEffectProcessor;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.util.Identifier;

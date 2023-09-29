@@ -13,16 +13,9 @@ public class EntityBlockCollision {
     private final EntityType<?> entityType;
     private final Predicate<EntityBlockCollisionContext> contextPredicate;
 
-    private EntityBlockCollision(EntityType<?> entityType, Predicate<EntityBlockCollisionContext> contextPredicate) {
+    public EntityBlockCollision(EntityType<?> entityType, Predicate<EntityBlockCollisionContext> contextPredicate) {
         this.entityType = entityType;
         this.contextPredicate = contextPredicate;
-    }
-
-    /**
-     * Creates an entity-block collision interaction.
-     */
-    public static EntityBlockCollision create(EntityType<?> entityType, Predicate<EntityBlockCollisionContext> contextPredicate) {
-        return new EntityBlockCollision(entityType, contextPredicate);
     }
 
     public EntityType<?> getEntityType() {

@@ -5,8 +5,10 @@ import net.fabricmc.fabric.api.tag.convention.v1.TagUtil;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.ItemStack;
+import org.jetbrains.annotations.ApiStatus;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+@ApiStatus.Internal
 public final class StatusEffectTagImpl {
     public static void cureStatusEffects(ItemStack stack, LivingEntity living, CallbackInfoReturnable<ItemStack> cir) {
         if (living.getWorld().isClient) {

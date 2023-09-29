@@ -1,14 +1,12 @@
 package dev.creoii.creoapi.impl.shader;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import dev.creoii.creoapi.impl.shader.util.PostProcessorInteraction;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Nullable;
 
 @ApiStatus.Internal
-@Environment(EnvType.CLIENT)
 public final class ShaderInteractionImpl {
     private static final MinecraftClient CLIENT = MinecraftClient.getInstance();
 

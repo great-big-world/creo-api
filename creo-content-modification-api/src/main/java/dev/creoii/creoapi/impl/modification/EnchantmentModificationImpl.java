@@ -1,12 +1,15 @@
 package dev.creoii.creoapi.impl.modification;
 
 import dev.creoii.creoapi.api.modification.EnchantmentModification;
+import dev.creoii.creoapi.impl.modification.util.ExtendedEnchantment;
 import dev.creoii.creoapi.mixin.modification.enchantment.EnchantmentAccessor;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.ItemStack;
+import org.jetbrains.annotations.ApiStatus;
 
 import java.util.function.Predicate;
 
+@ApiStatus.Internal
 public class EnchantmentModificationImpl implements EnchantmentModification {
     @Override
     public void setRarity(Enchantment enchantment, Enchantment.Rarity rarity) {

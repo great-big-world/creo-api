@@ -1,6 +1,8 @@
 package dev.creoii.creoapi.impl.item;
 
 import dev.creoii.creoapi.api.item.CreoItemSettings;
+import dev.creoii.creoapi.impl.item.util.AccessibleItem;
+import dev.creoii.creoapi.impl.item.util.FurnaceItemSlot;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

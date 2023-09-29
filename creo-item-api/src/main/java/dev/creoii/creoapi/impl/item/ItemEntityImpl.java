@@ -1,6 +1,7 @@
 package dev.creoii.creoapi.impl.item;
 
 import dev.creoii.creoapi.api.item.CreoItemSettings;
+import dev.creoii.creoapi.impl.item.util.AccessibleItem;
 import net.minecraft.item.ItemStack;
 import org.apache.commons.lang3.mutable.MutableBoolean;
 import org.apache.commons.lang3.mutable.MutableDouble;

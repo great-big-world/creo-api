@@ -1,17 +1,19 @@
 package dev.creoii.creoapi.impl.tag;
 
 import dev.creoii.creoapi.api.tag.CreoEnchantmentTags;
-import dev.creoii.creoapi.impl.tag.enchantment.GrindstoneItemSlot;
+import dev.creoii.creoapi.impl.tag.util.GrindstoneItemSlot;
 import net.fabricmc.fabric.api.tag.convention.v1.TagUtil;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.GrindstoneScreenHandler;
+import org.jetbrains.annotations.ApiStatus;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@ApiStatus.Internal
 public final class EnchantmentTagImpl {
     public static void applyCursed(Enchantment enchantment, CallbackInfoReturnable<Boolean> cir) {
         cir.setReturnValue(TagUtil.isIn(CreoEnchantmentTags.CURSED, enchantment));

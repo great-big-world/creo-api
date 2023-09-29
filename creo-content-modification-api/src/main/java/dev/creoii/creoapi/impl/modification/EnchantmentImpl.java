@@ -1,10 +1,12 @@
 package dev.creoii.creoapi.impl.modification;
 
 import net.minecraft.item.ItemStack;
+import org.jetbrains.annotations.ApiStatus;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.function.Predicate;
 
+@ApiStatus.Internal
 public final class EnchantmentImpl {
     public static void applyAcceptableItemPredicate(Predicate<ItemStack> acceptableItemPredicate, ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
         if (acceptableItemPredicate != null)

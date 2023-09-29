@@ -1,4 +1,4 @@
-package dev.creoii.creoapi.impl.shader;
+package dev.creoii.creoapi.impl.shader.util;
 
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.ApiStatus;
