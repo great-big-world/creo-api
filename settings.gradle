@@ -11,7 +11,6 @@ pluginManagement {
 
 rootProject.name = "creo-api"
 
-include "creo-advancement-api"
 include "creo-block-injection-api"
 include "creo-content-modification-api"
 include "creo-convention-tags"

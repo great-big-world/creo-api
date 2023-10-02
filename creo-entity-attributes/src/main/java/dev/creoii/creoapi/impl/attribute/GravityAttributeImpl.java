@@ -40,7 +40,7 @@ public final class GravityAttributeImpl {
         if (canModifyGravity(livingEntity)) {
             EntityAttributeInstance gravity = livingEntity.getAttributeInstance(CreoEntityAttributes.GENERIC_GRAVITY);
             if (gravity.hasModifier(GravityAttributeImpl.SLOW_FALLING_MODIFIER))
-                gravity.removeModifier(GravityAttributeImpl.SLOW_FALLING_MODIFIER);
+                gravity.removeModifier(GravityAttributeImpl.SLOW_FALLING_MODIFIER_ID);
         }
     }
 

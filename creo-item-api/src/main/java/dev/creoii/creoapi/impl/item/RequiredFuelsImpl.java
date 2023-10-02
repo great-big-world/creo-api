@@ -41,7 +41,7 @@ public final class RequiredFuelsImpl {
         }
     }
 
-    static boolean isRequiredFuel(RegistryEntryList<Item> items, ItemStack fuel) {
+    public static boolean isRequiredFuel(RegistryEntryList<Item> items, ItemStack fuel) {
         return items.contains(fuel.getRegistryEntry());
     }
 }

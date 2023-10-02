@@ -1,13 +1,13 @@
 plugins {
     id 'java'
     id 'idea'
-    id 'fabric-loom' version '1.3-SNAPSHOT'
+    id 'fabric-loom' version '1.4-SNAPSHOT'
     id 'maven-publish'
 }
 
-version = project.mod_version
-archivesBaseName = project.archives_base_name
-group = project.maven_group
+version = mod_version + "+" + minecraft_version
+archivesBaseName = archives_base_name
+group = maven_group
 
 dependencies {
     afterEvaluate {
@@ -86,5 +86,5 @@ allprojects {
 
 subprojects.forEach {
     it.group = project.maven_group
-    it.version = it.mod_version
+    it.version = it.mod_version + "+" + project.minecraft_version
 }
