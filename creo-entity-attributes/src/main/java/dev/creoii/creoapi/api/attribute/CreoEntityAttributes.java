@@ -26,11 +26,6 @@ public class CreoEntityAttributes implements ModInitializer {
     public static final EntityAttribute GENERIC_CLIMBING_SPEED = new ClampedEntityAttribute("attribute.name.generic.climbing_speed", .2d, 0d, 256d).setTracked(true);
 
     /**
-     * Controls movement speed while flying.
-     */
-    public static final EntityAttribute PLAYER_FLYING_SPEED = new ClampedEntityAttribute("attribute.name.player.flying_speed", .05d, 0d, 256d).setTracked(true);
-
-    /**
      * Controls the height of an entity's jump.
      */
     public static final EntityAttribute GENERIC_JUMP_STRENGTH = new ClampedEntityAttribute("attribute.name.generic.jump_strength", .42d, 0d, 256d).setTracked(true);
@@ -60,7 +55,6 @@ public class CreoEntityAttributes implements ModInitializer {
         Registry.register(Registries.ATTRIBUTE, new Identifier(CreoEntityAttributes.NAMESPACE, "generic.gravity"), GENERIC_GRAVITY);
         Registry.register(Registries.ATTRIBUTE, new Identifier(CreoEntityAttributes.NAMESPACE, "generic.swimming_speed"), GENERIC_SWIMMING_SPEED);
         Registry.register(Registries.ATTRIBUTE, new Identifier(CreoEntityAttributes.NAMESPACE, "generic.climbing_speed"), GENERIC_CLIMBING_SPEED);
-        Registry.register(Registries.ATTRIBUTE, new Identifier(CreoEntityAttributes.NAMESPACE, "player.flying_speed"), PLAYER_FLYING_SPEED);
         Registry.register(Registries.ATTRIBUTE, new Identifier(CreoEntityAttributes.NAMESPACE, "generic.jump_strength"), GENERIC_JUMP_STRENGTH);
         Registry.register(Registries.ATTRIBUTE, new Identifier(CreoEntityAttributes.NAMESPACE, "generic.max_air"), GENERIC_MAX_AIR);
         Registry.register(Registries.ATTRIBUTE, new Identifier(CreoEntityAttributes.NAMESPACE, "player.place_cooldown"), PLACE_COOLDOWN);

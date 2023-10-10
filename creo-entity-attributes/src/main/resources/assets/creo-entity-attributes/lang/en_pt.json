@@ -2,7 +2,6 @@
   "attribute.name.generic.gravity": "Gravity",
   "attribute.name.generic.swimming_speed": "Speed o' Swimmin'",
   "attribute.name.generic.climbing_speed": "Speed o' Climbin'",
-  "attribute.name.player.flying_speed": "Speed o' Soarin'",
   "attribute.name.generic.jump_strength": "Jump Strength",
   "attribute.name.generic.max_air": "Max Breath",
   "attribute.name.player.place_cooldown": "Place Cooldown",

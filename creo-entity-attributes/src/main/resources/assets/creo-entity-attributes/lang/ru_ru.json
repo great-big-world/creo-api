@@ -2,7 +2,6 @@
   "attribute.name.generic.gravity": "сила тяжести",
   "attribute.name.generic.swimming_speed": "Скорость плавания",
   "attribute.name.generic.climbing_speed": "Скорость восхождения",
-  "attribute.name.player.flying_speed": "Скорость полета",
   "attribute.name.generic.jump_strength": "Сила прыжка",
   "attribute.name.generic.max_air": "Максимальное воздух",
   "attribute.name.player.place_cooldown": "Положение кулдаун",

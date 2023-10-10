@@ -2,7 +2,6 @@
   "attribute.name.generic.gravity": "Gravedad",
   "attribute.name.generic.swimming_speed": "Velocidad de nado",
   "attribute.name.generic.climbing_speed": "Velocidad de ascenso",
-  "attribute.name.player.flying_speed": "Velocidad de vuelo",
   "attribute.name.generic.jump_strength": "Potencia de salto",
   "attribute.name.generic.max_air": "Aire máxima",
   "attribute.name.player.place_cooldown": "Lugar de enfriamiento",
