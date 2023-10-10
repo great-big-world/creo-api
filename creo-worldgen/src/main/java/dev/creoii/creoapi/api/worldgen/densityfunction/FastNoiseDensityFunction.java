@@ -3,6 +3,7 @@ package dev.creoii.creoapi.api.worldgen.densityfunction;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import dev.creoii.creoapi.api.worldgen.fastnoise.FastNoiseLite;
+import dev.creoii.creoapi.api.worldgen.fastnoise.FastNoiseParameters;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.dynamic.CodecHolder;
 import net.minecraft.world.gen.densityfunction.DensityFunction;
@@ -10,7 +11,7 @@ import net.minecraft.world.gen.densityfunction.DensityFunction;
 public class FastNoiseDensityFunction implements DensityFunction {
     public static final Codec<FastNoiseDensityFunction> CODEC = RecordCodecBuilder.create(instance -> {
         return instance.group(
-                FastNoiseLite.REGISTRY_ENTRY_CODEC.fieldOf("noise").forGetter(predicate -> {
+                FastNoiseParameters.REGISTRY_ENTRY_CODEC.fieldOf("noise").forGetter(predicate -> {
                     return predicate.noise;
                 }),
                 Codec.DOUBLE.fieldOf("xz_scale").forGetter(predicate -> {
@@ -22,11 +23,11 @@ public class FastNoiseDensityFunction implements DensityFunction {
         ).apply(instance, FastNoiseDensityFunction::new);
     });
     public static final CodecHolder<FastNoiseDensityFunction> CODEC_HOLDER = CodecHolder.of(CODEC);
-    private final RegistryEntry<FastNoiseLite> noise;
+    private final RegistryEntry<FastNoiseParameters> noise;
     private final double xzScale;
     private final double yScale;
 
-    public FastNoiseDensityFunction(RegistryEntry<FastNoiseLite> noise, double xzScale, double yScale) {
+    public FastNoiseDensityFunction(RegistryEntry<FastNoiseParameters> noise, double xzScale, double yScale) {
         this.noise = noise;
         this.xzScale = xzScale;
         this.yScale = yScale;
@@ -36,7 +37,8 @@ public class FastNoiseDensityFunction implements DensityFunction {
     public double sample(NoisePos pos) {
         if (!noise.hasKeyAndValue())
             throw new IllegalArgumentException("FastNoise value " + noise.getKey().orElseThrow().getValue() + " is not present.");
-        return noise.value().getNoise((float) (pos.blockX() * xzScale), (float) (pos.blockY() * yScale), (float) (pos.blockZ() * xzScale));
+        FastNoiseLite fastNoiseLite = new FastNoiseLite(noise.value());
+        return fastNoiseLite.getNoise((float) (pos.blockX() * xzScale), (float) (pos.blockY() * yScale), (float) (pos.blockZ() * xzScale));
     }
 
     @Override

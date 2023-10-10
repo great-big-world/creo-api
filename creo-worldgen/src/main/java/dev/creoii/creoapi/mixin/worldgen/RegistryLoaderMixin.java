@@ -2,6 +2,7 @@ package dev.creoii.creoapi.mixin.worldgen;
 
 import com.google.common.collect.ImmutableList;
 import dev.creoii.creoapi.api.worldgen.fastnoise.FastNoiseLite;
+import dev.creoii.creoapi.api.worldgen.fastnoise.FastNoiseParameters;
 import net.minecraft.registry.RegistryLoader;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -21,7 +22,7 @@ public class RegistryLoaderMixin {
     private static void creo_addFastNoiseSettingsRegistry(CallbackInfo ci) {
         DYNAMIC_REGISTRIES = new ImmutableList.Builder<RegistryLoader.Entry<?>>()
                 .addAll(DYNAMIC_REGISTRIES)
-                .add(new RegistryLoader.Entry<>(FastNoiseLite.FAST_NOISE_SETTINGS_KEY, FastNoiseLite.CODEC))
+                .add(new RegistryLoader.Entry<>(FastNoiseParameters.REGISTRY_KEY, FastNoiseParameters.CODEC))
                 .build();
     }
 }
