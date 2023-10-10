@@ -57,7 +57,7 @@ public class GrindstoneItemSlot extends Slot {
         for (Map.Entry<Enchantment, Integer> entry : map.entrySet()) {
             Enchantment enchantment = entry.getKey();
             Integer integer = entry.getValue();
-            if (enchantment.isCursed() || TagUtil.isIn(CreoEnchantmentTags.GRINDSTONE_IGNORES, enchantment))
+            if (TagUtil.isIn(CreoEnchantmentTags.GRINDSTONE_IGNORES, enchantment))
                 continue;
             i += enchantment.getMinPower(integer);
         }

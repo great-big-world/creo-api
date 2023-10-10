@@ -37,8 +37,7 @@ public final class EnchantmentTagImpl {
 
     public static void applyGrindstoneIgnoresGrind(ItemStack item, ItemStack stack) {
         Map<Enchantment, Integer> map = EnchantmentHelper.get(item).entrySet().stream().filter(entry -> {
-            Enchantment enchantment = entry.getKey();
-            return enchantment.isCursed() || TagUtil.isIn(CreoEnchantmentTags.GRINDSTONE_IGNORES, enchantment);
+            return TagUtil.isIn(CreoEnchantmentTags.GRINDSTONE_IGNORES, entry.getKey());
         }).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
         EnchantmentHelper.set(map, stack);
     }
