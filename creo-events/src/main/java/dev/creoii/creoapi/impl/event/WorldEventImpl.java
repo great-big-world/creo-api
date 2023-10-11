@@ -1,10 +1,12 @@
 package dev.creoii.creoapi.impl.event;
 
 import dev.creoii.creoapi.api.event.world.WorldEvents;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.explosion.Explosion;
 import net.minecraft.world.explosion.ExplosionBehavior;
 import org.jetbrains.annotations.ApiStatus;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @ApiStatus.Internal
@@ -20,5 +22,13 @@ public final class WorldEventImpl {
     public static void cancelWorldExplodeEvent(Explosion explosion, CallbackInfoReturnable<Explosion> cir) {
         if (explosion == null)
             cir.setReturnValue(null);
+    }
+
+    public static void applyWorldWeatherEvent(ServerWorld serverWorld, int clearDuration, int rainDuration, int thunderDuration, boolean raining, boolean thundering, CallbackInfo ci) {
+        boolean result = WorldEvents.WEATHER.invoker().onWeather(serverWorld, clearDuration, rainDuration, thunderDuration, raining, thundering);
+
+        if (!result) {
+            ci.cancel();
+        }
     }
 }
