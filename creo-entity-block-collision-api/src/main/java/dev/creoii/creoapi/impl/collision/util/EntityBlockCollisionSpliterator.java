@@ -1,7 +1,7 @@
 package dev.creoii.creoapi.impl.collision.util;
 
 import com.google.common.collect.AbstractIterator;
-import dev.creoii.creoapi.api.collision.EntityBlockCollision;
+import dev.creoii.creoapi.api.collision.EntityBlockCollisionContext;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.ShapeContext;
@@ -30,9 +30,9 @@ public class EntityBlockCollisionSpliterator extends AbstractIterator<VoxelShape
     @Nullable
     private BlockView chunk;
     private long chunkPos;
-    private final Predicate<EntityBlockCollision.EntityBlockCollisionContext> contextPredicate;
+    private final Predicate<EntityBlockCollisionContext> contextPredicate;
 
-    public EntityBlockCollisionSpliterator(CollisionView world, Entity entity, Box box, Predicate<EntityBlockCollision.EntityBlockCollisionContext> contextPredicate) {
+    public EntityBlockCollisionSpliterator(CollisionView world, Entity entity, Box box, Predicate<EntityBlockCollisionContext> contextPredicate) {
         this.entity = entity;
         context = ShapeContext.of(entity);
         pos = new BlockPos.Mutable();
@@ -80,7 +80,7 @@ public class EntityBlockCollisionSpliterator extends AbstractIterator<VoxelShape
                 pos.set(i, j, k);
                 BlockState state = chunk.getBlockState(pos);
 
-                EntityBlockCollision.EntityBlockCollisionContext collisionContext = new EntityBlockCollision.EntityBlockCollisionContext(world, entity, pos, state, chunk);
+                EntityBlockCollisionContext collisionContext = new EntityBlockCollisionContext(world, entity, pos, state, chunk);
                 if (!contextPredicate.test(collisionContext))
                     continue;
 

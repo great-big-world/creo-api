@@ -3,32 +3,29 @@ package dev.creoii.creoapi.api.collision;
 import net.minecraft.entity.EntityType;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Predicate;
 
 /**
  * Allows the specification of certain blocks that an {@link EntityType} will not collide with.
  */
 public final class EntityBlockCollisionRegistry {
-    private static final List<EntityBlockCollision> INTERACTIONS = new LinkedList<>();
+    private static final Map<EntityType<?>, Predicate<EntityBlockCollisionContext>> INTERACTIONS = new HashMap<>();
 
     /**
      * Registers a block collision interaction to the specified entity type.
      */
-    public static void register(EntityBlockCollision collision) {
-        INTERACTIONS.add(collision);
+    public static void register(EntityType<?> entityType, Predicate<EntityBlockCollisionContext> collision) {
+        INTERACTIONS.put(entityType, collision);
     }
 
-    public static List<EntityBlockCollision> getCollisionInteractions() {
+    public static Map<EntityType<?>, Predicate<EntityBlockCollisionContext>> getCollisionInteractions() {
         return INTERACTIONS;
     }
 
     @Nullable
-    public static EntityBlockCollision getCollisionOfType(EntityType<?> entityType) {
-        for (EntityBlockCollision collision : INTERACTIONS) {
-            if (collision.getEntityType() == entityType)
-                return collision;
-        }
-        return null;
+    public static Predicate<EntityBlockCollisionContext> getCollisionOfType(EntityType<?> entityType) {
+        return INTERACTIONS.getOrDefault(entityType, null);
     }
 }

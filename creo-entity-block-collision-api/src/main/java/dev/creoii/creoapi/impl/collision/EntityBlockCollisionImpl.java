@@ -1,6 +1,6 @@
 package dev.creoii.creoapi.impl.collision;
 
-import dev.creoii.creoapi.api.collision.EntityBlockCollision;
+import dev.creoii.creoapi.api.collision.EntityBlockCollisionContext;
 import dev.creoii.creoapi.api.collision.EntityBlockCollisionRegistry;
 import dev.creoii.creoapi.impl.collision.util.EntityBlockCollisionSpliterator;
 import net.minecraft.entity.Entity;
@@ -13,23 +13,24 @@ import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 @ApiStatus.Internal
 public final class EntityBlockCollisionImpl {
     public static void applyEntityBlockCollision(CollisionView collisionView, @Nullable Entity entity, Box box, CallbackInfoReturnable<Iterable<VoxelShape>> cir) {
         if (entity != null) {
-            EntityBlockCollision collision = EntityBlockCollisionRegistry.getCollisionOfType(entity.getType());
+            Predicate<EntityBlockCollisionContext> collision = EntityBlockCollisionRegistry.getCollisionOfType(entity.getType());
             if (collision != null) {
-                cir.setReturnValue(() -> new EntityBlockCollisionSpliterator(collisionView, entity, box, collision.getPredicate()));
+                cir.setReturnValue(() -> new EntityBlockCollisionSpliterator(collisionView, entity, box, collision));
             }
         }
     }
 
     public static void applyEntityBlockCollisionLithium(World world, @Nullable Entity entity, Box box, CallbackInfoReturnable<List<VoxelShape>> cir) {
         if (entity != null) {
-            EntityBlockCollision collision = EntityBlockCollisionRegistry.getCollisionOfType(entity.getType());
+            Predicate<EntityBlockCollisionContext> collision = EntityBlockCollisionRegistry.getCollisionOfType(entity.getType());
             if (collision != null) {
-                cir.setReturnValue(new EntityBlockCollisionSpliterator(world, entity, box, collision.getPredicate()).collectAll());
+                cir.setReturnValue(new EntityBlockCollisionSpliterator(world, entity, box, collision).collectAll());
             }
         }
     }
