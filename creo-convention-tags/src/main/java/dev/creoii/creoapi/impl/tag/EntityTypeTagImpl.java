@@ -44,7 +44,7 @@ public final class EntityTypeTagImpl {
         cir.setReturnValue(!entity.getType().isIn(CreoEntityTypeTags.FISHING_ROD_CANNOT_HOOK));
     }
 
-    public static void applyScaresCreepers(CreeperEntity creeperEntity, GoalSelector goalSelector, CallbackInfo ci) {
+    public static void applyScaresCreepers(CreeperEntity creeperEntity, GoalSelector goalSelector) {
         goalSelector.add(3, new FleeEntityGoal<>(creeperEntity, LivingEntity.class, 6f, 1d, 1.2d, livingEntity -> {
             return livingEntity.getType().isIn(CreoEntityTypeTags.SCARES_CREEPERS);
         }));
