@@ -26,8 +26,10 @@ allprojects {
     apply plugin: 'fabric-loom'
     apply plugin: 'maven-publish'
 
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+    it.sourceCompatibility = JavaVersion.VERSION_17
+    it.targetCompatibility = JavaVersion.VERSION_17
+    it.version = it.mod_version + "+" + minecraft_version
+    it.group = maven_group
 
     repositories {
         maven {
@@ -52,13 +54,14 @@ allprojects {
         modImplementation "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_version}"
     }
 
+    Project sub = it
     tasks.withType(ProcessResources).configureEach {
-        inputs.property "version", project.version
+        inputs.property "version", sub.version
         inputs.property "loader_version", rootProject.loader_version
         inputs.property "minecraft_version", rootProject.minecraft_version
 
         filesMatching("fabric.mod.json") {
-            expand "version": project.version,
+            expand "version": sub.version,
                     "loader_version": rootProject.loader_version,
                     "minecraft_version": rootProject.minecraft_version
         }
@@ -82,9 +85,4 @@ allprojects {
     artifacts {
         dev jar
     }
-}
-
-subprojects.forEach {
-    it.group = project.maven_group
-    it.version = it.mod_version + "+" + project.minecraft_version
 }
