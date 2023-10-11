@@ -1,4 +1,4 @@
-package dev.creoii.creoapi.api;
+package dev.creoii.creoapi.api.compatibility;
 
 import org.jetbrains.annotations.Nullable;
 

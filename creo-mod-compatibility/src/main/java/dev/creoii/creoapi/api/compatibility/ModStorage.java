@@ -1,7 +1,6 @@
 package dev.creoii.creoapi.api.compatibility;
 
 import com.google.common.collect.Sets;
-import dev.creoii.creoapi.api.ModProperty;
 import net.minecraft.client.MinecraftClient;
 import org.jetbrains.annotations.Nullable;
 
@@ -90,10 +89,12 @@ public class ModStorage {
     @SuppressWarnings("unchecked")
     public <T extends Comparable<T>> void setProperty(String propertyName, T value, boolean save) {
         ModProperty<T> property = (ModProperty<T>) getProperty(propertyName);
-        property.setValue(value);
+        if (property != null) {
+            property.setValue(value);
 
-        if (save)
-            save();
+            if (save)
+                save();
+        }
     }
 
     public <T extends Comparable<T>> void setProperty(String propertyName, T value) {

@@ -35,9 +35,8 @@ public final class RequiredFuelsImpl {
         Item.Settings settings = ((AccessibleItem) item.getItem()).creo_getItemSettings();
         if (settings instanceof CreoItemSettings creoItemSettings) {
             RegistryEntryList<Item> requiredFuels = creoItemSettings.getRequiredFuels();
-            if (requiredFuels != null) {
+            if (requiredFuels != null)
                 cir.setReturnValue(isRequiredFuel(requiredFuels, stack));
-            }
         }
     }
 
