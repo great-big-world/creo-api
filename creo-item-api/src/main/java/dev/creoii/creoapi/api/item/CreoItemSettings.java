@@ -23,6 +23,19 @@ public class CreoItemSettings extends FabricItemSettings {
     private double gravity = -.04d;
     private RegistryEntryList<Item> requiredFuels;
 
+    public static CreoItemSettings copyOf(Item item) {
+        CreoItemSettings copy = new CreoItemSettings();
+
+        ((ItemSettingsAccessor) copy).setMaxCount(item.getMaxCount());
+        ((ItemSettingsAccessor) copy).setMaxDamage(item.getMaxDamage());
+        ((ItemSettingsAccessor) copy).setRecipeRemainder(item.getRecipeRemainder());
+        ((ItemSettingsAccessor) copy).setRarity(item.getRarity(item.getDefaultStack()));
+        ((ItemSettingsAccessor) copy).setFoodComponent(item.getFoodComponent());
+        if (item.isFireproof())
+            ((ItemSettingsAccessor) copy).setFireproof(true);
+        return copy;
+    }
+
     public static CreoItemSettings copyOf(Item.Settings settings) {
         ItemSettingsAccessor accessor = (ItemSettingsAccessor) settings;
         CreoItemSettings copy = new CreoItemSettings();
