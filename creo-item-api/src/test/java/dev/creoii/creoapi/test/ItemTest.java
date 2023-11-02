@@ -17,6 +17,7 @@ public class ItemTest implements ModInitializer {
                         .despawnTime(3000)
                         .notBuoyant()
                         .gravity(0d)
+                        .hopperTransferRate(1)
                         .requiredFuels(ItemTags.COALS)
         ));
     }

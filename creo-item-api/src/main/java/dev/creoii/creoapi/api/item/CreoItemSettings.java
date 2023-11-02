@@ -1,5 +1,6 @@
 package dev.creoii.creoapi.api.item;
 
+import dev.creoii.creoapi.impl.item.util.AccessibleItem;
 import dev.creoii.creoapi.mixin.item.ItemSettingsAccessor;
 import net.fabricmc.fabric.api.item.v1.CustomDamageHandler;
 import net.fabricmc.fabric.api.item.v1.EquipmentSlotProvider;
@@ -21,6 +22,7 @@ public class CreoItemSettings extends FabricItemSettings {
     private int despawnTime = 6000;
     private boolean buoyant = true;
     private double gravity = -.04d;
+    private int hopperTransferRate = 8;
     private RegistryEntryList<Item> requiredFuels;
 
     public static CreoItemSettings copyOf(Item item) {
@@ -33,6 +35,15 @@ public class CreoItemSettings extends FabricItemSettings {
         ((ItemSettingsAccessor) copy).setFoodComponent(item.getFoodComponent());
         if (item.isFireproof())
             ((ItemSettingsAccessor) copy).setFireproof(true);
+
+        if (((AccessibleItem) item).creo_getItemSettings() instanceof CreoItemSettings creoItemSettings) {
+            copy.setPickupDelay(creoItemSettings.getPickupDelay());
+            copy.setDespawnTime(creoItemSettings.getDespawnTime());
+            copy.setBuoyant(creoItemSettings.isBuoyant());
+            copy.setGravity(creoItemSettings.getGravity());
+            copy.setHopperTransferRate(creoItemSettings.getHopperTransferRate());
+            copy.setRequiredFuels(creoItemSettings.getRequiredFuels());
+        }
         return copy;
     }
 
@@ -45,15 +56,15 @@ public class CreoItemSettings extends FabricItemSettings {
         ((ItemSettingsAccessor) copy).setRecipeRemainder(accessor.getRecipeRemainder());
         ((ItemSettingsAccessor) copy).setRarity(accessor.getRarity());
         ((ItemSettingsAccessor) copy).setFoodComponent(accessor.getFoodComponent());
-        if (accessor.isFireproof()) {
+        if (accessor.isFireproof())
             ((ItemSettingsAccessor) copy).setFireproof(true);
-        }
 
         if (settings instanceof CreoItemSettings creoItemSettings) {
             copy.setPickupDelay(creoItemSettings.getPickupDelay());
             copy.setDespawnTime(creoItemSettings.getDespawnTime());
             copy.setBuoyant(creoItemSettings.isBuoyant());
             copy.setGravity(creoItemSettings.getGravity());
+            copy.setHopperTransferRate(creoItemSettings.getHopperTransferRate());
             copy.setRequiredFuels(creoItemSettings.getRequiredFuels());
         }
         return copy;
@@ -149,6 +160,11 @@ public class CreoItemSettings extends FabricItemSettings {
         return this;
     }
 
+    public CreoItemSettings hopperTransferRate(int hopperTransferRate) {
+        this.hopperTransferRate = hopperTransferRate;
+        return this;
+    }
+
     public CreoItemSettings requiredFuels(RegistryEntryList<Item> requiredFuels) {
         this.requiredFuels = requiredFuels;
         return this;
@@ -185,6 +201,10 @@ public class CreoItemSettings extends FabricItemSettings {
         return gravity;
     }
 
+    public int getHopperTransferRate() {
+        return hopperTransferRate;
+    }
+
     public RegistryEntryList<Item> getRequiredFuels() {
         return requiredFuels;
     }
@@ -203,6 +223,10 @@ public class CreoItemSettings extends FabricItemSettings {
 
     public void setGravity(double gravity) {
         this.gravity = gravity;
+    }
+
+    public void setHopperTransferRate(int hopperTransferRate) {
+        this.hopperTransferRate = hopperTransferRate;
     }
 
     public void setRequiredFuels(RegistryEntryList<Item> requiredFuels) {

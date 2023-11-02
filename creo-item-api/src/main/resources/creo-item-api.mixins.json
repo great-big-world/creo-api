@@ -6,6 +6,7 @@
   "mixins": [
     "AbstractFurnaceScreenHandlerMixin",
     "FurnaceFuelSlotMixin",
+    "HopperBlockEntityMixin",
     "ItemEntityMixin",
     "ItemMixin",
     "ItemSettingsAccessor"

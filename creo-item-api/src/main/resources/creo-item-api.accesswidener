@@ -1,3 +1,4 @@
 accessWidener v2 named
 
 accessible method net/minecraft/screen/ScreenHandler addSlot (Lnet/minecraft/screen/slot/Slot;)Lnet/minecraft/screen/slot/Slot;
+accessible method net/minecraft/block/entity/HopperBlockEntity setTransferCooldown (I)V
