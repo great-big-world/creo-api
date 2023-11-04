@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "id": "creo-block-api",
+  "version": "${version}",
+  "name": "Creo Block API",
+  "description": "Extensions giving blocks more functionality.",
+  "authors": [
+    "creoii"
+  ],
+  "contact": {
+    "homepage": "https://www.creoii.dev",
+    "sources": "https://github.com/great-big-world/creo-api/tree/master/creo-block-api",
+    "issues": "https://github.com/great-big-world/creo-api/issues"
+  },
+  "license": "All-Rights-Reserved",
+  "icon": "assets/creo-block-api/icon.png",
+  "environment": "*",
+  "entrypoints": {},
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "minecraft": "${minecraft_version}"
+  },
+  "custom": {
+    "modmenu": {
+      "badges": [
+        "library"
+      ],
+      "parent": {
+        "id": "creo-api",
+        "name": "Creo API",
+        "description": "A multi-purpose api for Minecraft mod and datapack development.",
+        "icon": "assets/creo-block-api/icon.png",
+        "badges": [
+          "library"
+        ]
+      }
+    }
+  }
+}
