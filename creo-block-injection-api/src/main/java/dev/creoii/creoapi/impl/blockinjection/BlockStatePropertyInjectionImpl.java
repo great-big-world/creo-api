@@ -12,7 +12,7 @@ import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Nullable;
 
 @ApiStatus.Internal
-public class BlockStatePropertyInjectionImpl {
+public final class BlockStatePropertyInjectionImpl {
     public static <T extends Comparable<T>> void inject(Block block, Property<T> property, @Nullable T defaultValue) {
         BlockAccessor accessor = tryInjectProperty(block, property);
         if (accessor == null)
