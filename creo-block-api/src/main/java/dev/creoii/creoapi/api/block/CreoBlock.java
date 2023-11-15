@@ -14,5 +14,6 @@ public interface CreoBlock {
      * @param looker the entity looking at the block
      * @param squaredDistance the squared distance from the block to the looker
      */
-    void onLookAt(World world, BlockState state, BlockHitResult hitResult, Entity looker, double squaredDistance);
+    default void onLookAt(World world, BlockState state, BlockHitResult hitResult, Entity looker, double squaredDistance) {
+    }
 }

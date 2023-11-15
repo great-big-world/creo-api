@@ -5,7 +5,9 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
+import org.jetbrains.annotations.ApiStatus;
 
+@ApiStatus.Internal
 public final class BlockImpl {
     public static void lookAtBlock(Entity entity) {
         HitResult hitResult = entity.raycast(64d, 0f, false);

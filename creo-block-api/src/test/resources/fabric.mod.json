@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "creo-item-api-test",
+  "id": "creo-block-api-test",
   "version": "${version}",
-  "name": "Creo Item API Test",
-  "description": "Test mod for the Creo Item API.",
+  "name": "Creo Block API Test",
+  "description": "Test mod for the Creo Block API.",
   "authors": [
     "creoii"
   ],
@@ -11,11 +11,11 @@
     "repo": "https://github.com/great-big-world/creo-api"
   },
   "license": "All-Rights-Reserved",
-  "icon": "assets/creo-item-api/icon.png",
+  "icon": "assets/creo-block-api-test/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "dev.creoii.creoapi.test.ItemTest"
+      "dev.creoii.creoapi.test.BlockTest"
     ]
   },
   "depends": {

@@ -1,27 +1,29 @@
 {
   "schemaVersion": 1,
-  "id": "creo-block-api",
+  "id": "creo-registry-api",
   "version": "${version}",
-  "name": "Creo Block API",
-  "description": "Extensions giving blocks more functionality.",
+  "name": "Creo Registry API",
+  "description": "Utilities which help registration needs.",
   "authors": [
     "creoii"
   ],
   "contact": {
     "homepage": "https://www.creoii.dev",
-    "sources": "https://github.com/great-big-world/creo-api/tree/master/creo-block-api",
+    "sources": "https://github.com/great-big-world/creo-api/tree/master/creo-registry-api",
     "issues": "https://github.com/great-big-world/creo-api/issues"
   },
   "license": "All-Rights-Reserved",
-  "icon": "assets/creo-block-api/icon.png",
+  "icon": "assets/creo-registry-api/icon.png",
   "environment": "*",
   "entrypoints": {},
   "mixins": [
-    "creo-block-api.mixins.json"
+    "creo-registry-api.mixins.json"
   ],
+  "accessWidener": "creo-registry-api.accesswidener",
   "depends": {
+    "minecraft": "${minecraft_version}",
     "fabricloader": ">=${loader_version}",
-    "minecraft": "${minecraft_version}"
+    "fabric-registry-sync-v0": "*"
   },
   "custom": {
     "modmenu": {
@@ -32,7 +34,7 @@
         "id": "creo-api",
         "name": "Creo API",
         "description": "A multi-purpose api for Minecraft mod and datapack development.",
-        "icon": "assets/creo-block-api/icon.png",
+        "icon": "assets/creo-registry-api/icon.png",
         "badges": [
           "library"
         ]

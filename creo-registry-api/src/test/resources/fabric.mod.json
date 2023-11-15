@@ -1,27 +1,23 @@
 {
   "schemaVersion": 1,
-  "id": "creo-block-api",
+  "id": "creo-registry-api-test",
   "version": "${version}",
-  "name": "Creo Block API",
-  "description": "Extensions giving blocks more functionality.",
+  "name": "Creo Registry API Test",
+  "description": "Test mod for the Creo Registry API.",
   "authors": [
     "creoii"
   ],
   "contact": {
-    "homepage": "https://www.creoii.dev",
-    "sources": "https://github.com/great-big-world/creo-api/tree/master/creo-block-api",
-    "issues": "https://github.com/great-big-world/creo-api/issues"
+    "repo": "https://github.com/great-big-world/creo-api"
   },
   "license": "All-Rights-Reserved",
-  "icon": "assets/creo-block-api/icon.png",
+  "icon": "assets/creo-registry-api-test/icon.png",
   "environment": "*",
   "entrypoints": {},
-  "mixins": [
-    "creo-block-api.mixins.json"
-  ],
   "depends": {
+    "minecraft": "${minecraft_version}",
     "fabricloader": ">=${loader_version}",
-    "minecraft": "${minecraft_version}"
+    "fabric-registry-sync-v0": "*"
   },
   "custom": {
     "modmenu": {
@@ -32,7 +28,7 @@
         "id": "creo-api",
         "name": "Creo API",
         "description": "A multi-purpose api for Minecraft mod and datapack development.",
-        "icon": "assets/creo-block-api/icon.png",
+        "icon": "assets/creo-registry-api-test/icon.png",
         "badges": [
           "library"
         ]

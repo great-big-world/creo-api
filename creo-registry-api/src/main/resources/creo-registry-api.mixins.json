@@ -1,13 +1,14 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "dev.creoii.creoapi.mixin.block",
+  "package": "dev.creoii.creoapi.mixin.registry",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "AbstractBlockMixin",
-    "EntityMixin"
+    "RegistryMixin",
+    "ServerMainMixin"
   ],
   "client": [
+    "ClientMainMixin"
   ],
   "injectors": {
     "defaultRequire": 1
