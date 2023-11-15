@@ -4,7 +4,6 @@ import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * Events related to {@link Registry}.
@@ -30,9 +29,8 @@ public final class RegistryEvents {
          * @param registry the registry
          * @param key the registry key of the object
          * @param entry the object
-         * @return the modified object, or null to cancel registration.
+         * @return the modified object.
          */
-        @Nullable
         Object onRegister(Registry<?> registry, RegistryKey<?> key, Object entry);
     }
 }
