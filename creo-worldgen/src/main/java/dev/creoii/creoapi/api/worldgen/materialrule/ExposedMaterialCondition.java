@@ -20,13 +20,15 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.surfacebuilder.MaterialRules;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Objects;
+
 public class ExposedMaterialCondition implements MaterialRules.MaterialCondition {
     public static final Codec<ExposedMaterialCondition> CODEC = RecordCodecBuilder.create(instance -> {
         return instance.group(RegistryCodecs.entryList(RegistryKeys.BLOCK).optionalFieldOf("can_be_exposed_to", RegistryEntryList.of(RegistryEntry.of(Blocks.AIR))).forGetter(predicate -> {
             return predicate.canBeExposedTo;
         }), Codec.intRange(1, 4).optionalFieldOf("min_exposed_faces", 1).forGetter(predicate -> {
             return predicate.minExposedFaces;
-        }), Codec.STRING.optionalFieldOf("axis", "horizontal").forGetter(predicate -> {
+        }), Codec.STRING.optionalFieldOf("axis", "HORIZONTAL").forGetter(predicate -> {
             return predicate.axis;
         })).apply(instance, ExposedMaterialCondition::new);
     });
@@ -38,8 +40,8 @@ public class ExposedMaterialCondition implements MaterialRules.MaterialCondition
     public ExposedMaterialCondition(RegistryEntryList<Block> canBeExposedTo, int minExposedFaces, String axis) {
         this.canBeExposedTo = canBeExposedTo;
         this.minExposedFaces = minExposedFaces;
-        if (!(axis.equalsIgnoreCase("horizontal") || axis.equalsIgnoreCase("vertical"))) {
-            this.axis = "horizontal";
+        if (!(Objects.equals(axis, Direction.Type.HORIZONTAL.name()) || Objects.equals(axis, Direction.Type.VERTICAL.name()))) {
+            this.axis = Direction.Type.HORIZONTAL.name();
         } else
             this.axis = axis;
     }
