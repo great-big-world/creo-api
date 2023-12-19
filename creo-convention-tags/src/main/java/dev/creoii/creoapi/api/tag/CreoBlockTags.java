@@ -81,6 +81,7 @@ public final class CreoBlockTags {
      * Blocks which will not stop weather rendering below them.
      */
     public static final TagKey<Block> WEATHER_RENDER_IGNORES = TagKey.of(RegistryKeys.BLOCK, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "weather_render_ignores"));
+    public static final TagKey<Block> SPIDERS_CANNOT_CLIMB = TagKey.of(RegistryKeys.BLOCK, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "spiders_cannot_climb"));
 
     public static final TagKey<Block> FURNACES = TagKey.of(RegistryKeys.BLOCK, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "furnaces"));
     public static final TagKey<Block> CONCRETE = TagKey.of(RegistryKeys.BLOCK, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "concrete"));
