@@ -1,6 +1,8 @@
 package dev.creoii.creoapi.impl.food;
 
 import dev.creoii.creoapi.api.food.CreoFoodComponent;
+import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -28,8 +30,15 @@ public final class FoodComponentImpl {
     }
 
     public static void applyFoodEatDurabilityNbt(ItemStack stack) {
-        if (stack.isFood() && stack.getItem().getFoodComponent() instanceof CreoFoodComponent creoFoodComponent) {
+        if (stack.isFood() && stack.getItem().getFoodComponent() instanceof CreoFoodComponent creoFoodComponent && creoFoodComponent.hasEatDurability()) {
             stack.setDamage(creoFoodComponent.getEatDurability());
         }
+    }
+
+    public static boolean applyFoodSprintEdibles(ClientPlayerEntity player) {
+        if (player.getActiveItem().getItem().getFoodComponent() instanceof CreoFoodComponent creoFoodComponent) {
+            return player.isUsingItem() ? !creoFoodComponent.isSprintEdible() : player.isUsingItem();
+        }
+        return player.isUsingItem();
     }
 }
