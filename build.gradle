@@ -86,3 +86,12 @@ allprojects {
         dev jar
     }
 }
+
+jar {
+    destinationDirectory.set(file("$buildDir/$minecraft_version"))
+}
+
+subprojects.forEach {
+    it.group = project.maven_group
+    it.version = it.mod_version
+}
