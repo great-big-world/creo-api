@@ -58,7 +58,7 @@ public final class CreoBlockTags {
     public static final TagKey<Block> NETHER_PORTAL_FRAME_BASE_BLOCKS = TagKey.of(RegistryKeys.BLOCK, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "nether_portal_frame_base_blocks"));
     public static final TagKey<Block> CAN_DRIP_THROUGH = TagKey.of(RegistryKeys.BLOCK, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "can_drip_through"));
     /**
-     * Blocks that are eaten by Sheep like {@link net.minecraft.block.Blocks#GRASS}.
+     * Blocks that are eaten by Sheep like {@link net.minecraft.block.Blocks#SHORT_GRASS}.
      */
     public static final TagKey<Block> EATEN_BY_SHEEP = TagKey.of(RegistryKeys.BLOCK, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "eaten_by_sheep"));
     /**

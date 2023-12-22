@@ -120,9 +120,9 @@ public class ContentModificationApiTest implements ModInitializer {
         LOGGER.info("pass");
 
         LOGGER.info("REPLACEABLE");
-        LOGGER.info(String.valueOf(BlockModification.INSTANCE.isReplaceable(Blocks.GRASS)));
-        BlockModification.INSTANCE.setReplaceable(Blocks.GRASS, false);
-        LOGGER.info(String.valueOf(BlockModification.INSTANCE.isReplaceable(Blocks.GRASS)));
+        LOGGER.info(String.valueOf(BlockModification.INSTANCE.isReplaceable(Blocks.SHORT_GRASS)));
+        BlockModification.INSTANCE.setReplaceable(Blocks.SHORT_GRASS, false);
+        LOGGER.info(String.valueOf(BlockModification.INSTANCE.isReplaceable(Blocks.SHORT_GRASS)));
         LOGGER.info("pass");
 
         LOGGER.info("---------- ITEM ----------");

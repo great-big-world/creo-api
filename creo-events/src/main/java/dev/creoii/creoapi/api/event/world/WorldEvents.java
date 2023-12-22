@@ -4,7 +4,9 @@ import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.world.World;
 import net.minecraft.world.explosion.Explosion;
 import net.minecraft.world.explosion.ExplosionBehavior;
@@ -16,7 +18,7 @@ public final class WorldEvents {
     /**
      * An event called when an explosion occurs, before it affects the world.
      *
-     * @see World#createExplosion(Entity, DamageSource, ExplosionBehavior, double, double, double, float, boolean, World.ExplosionSourceType, boolean)
+     * @see World#createExplosion(Entity, DamageSource, ExplosionBehavior, double, double, double, float, boolean, World.ExplosionSourceType, boolean, ParticleEffect, ParticleEffect, SoundEvent)
      */
     public static final Event<Explode> EXPLODE = EventFactory.createArrayBacked(Explode.class,
             listeners -> (world, explosion, x, y, z, behavior, destructionType, explosionSourceType, power, createFire, particles) -> {
@@ -61,7 +63,7 @@ public final class WorldEvents {
          *
          * @return true for the explosion to affect the world, or false otherwise.
          *
-         * @see World#createExplosion(Entity, DamageSource, ExplosionBehavior, double, double, double, float, boolean, World.ExplosionSourceType, boolean)
+         * @see World#createExplosion(Entity, DamageSource, ExplosionBehavior, double, double, double, float, boolean, World.ExplosionSourceType, boolean, ParticleEffect, ParticleEffect, SoundEvent)
          */
         boolean onExplode(World world, Explosion explosion, double x, double y, double z, ExplosionBehavior behavior, Explosion.DestructionType destructionType, World.ExplosionSourceType explosionSourceType, float power, boolean createFire, boolean particles);
     }

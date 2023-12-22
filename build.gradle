@@ -87,11 +87,19 @@ allprojects {
     }
 }
 
-jar {
-    destinationDirectory.set(file("$buildDir/$minecraft_version"))
-}
-
 subprojects.forEach {
     it.group = project.maven_group
     it.version = it.mod_version
+}
+
+jar {
+    destinationDirectory = file("$rootDir/build/libs/$minecraft_version/$mod_version")
+}
+
+javadocJar {
+    destinationDirectory = file("$rootDir/build/libs/$minecraft_version/$mod_version")
+}
+
+sourcesJar {
+    destinationDirectory = file("$rootDir/build/libs/$minecraft_version/$mod_version")
 }

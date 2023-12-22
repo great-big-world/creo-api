@@ -6,6 +6,7 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Events related to {@link net.minecraft.item.Item}.
@@ -45,7 +46,7 @@ public final class ItemEvents {
          * @param player the player crafting
          * @param amount the amount being crafted
          */
-        void onCraft(World world, ItemStack stack, PlayerEntity player, int amount);
+        void onCraft(World world, ItemStack stack, @Nullable PlayerEntity player, int amount);
     }
 
     @FunctionalInterface

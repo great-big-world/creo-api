@@ -6,11 +6,12 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.ApiStatus;
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @ApiStatus.Internal
 public final class ItemEventImpl {
-    public static void applyItemCraftEvent(World world, ItemStack stack, PlayerEntity player, int amount, CallbackInfo ci) {
+    public static void applyItemCraftEvent(World world, ItemStack stack, @Nullable PlayerEntity player, int amount, CallbackInfo ci) {
         ItemEvents.CRAFT.invoker().onCraft(world, stack, player, amount);
     }
 
