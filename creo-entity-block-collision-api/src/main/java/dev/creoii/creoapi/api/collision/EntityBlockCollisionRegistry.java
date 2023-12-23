@@ -19,10 +19,6 @@ public final class EntityBlockCollisionRegistry {
         INTERACTIONS.add(collision);
     }
 
-    public static List<EntityBlockCollision> getCollisionInteractions() {
-        return INTERACTIONS;
-    }
-
     @Nullable
     public static EntityBlockCollision getCollisionOfType(EntityType<?> entityType) {
         for (EntityBlockCollision collision : INTERACTIONS) {

@@ -9,7 +9,7 @@ import net.minecraft.entity.EntityType;
 public class EntityBlockCollisionTest implements ModInitializer {
     @Override
     public void onInitialize() {
-        EntityBlockCollisionRegistry.register(EntityBlockCollision.create(EntityType.PLAYER, context -> {
+        EntityBlockCollisionRegistry.register(new EntityBlockCollision(EntityType.PLAYER, context -> {
             if (context.state().isOf(Blocks.STONE))
                 return false;
             return (context.entity().isDescending() && context.entity().verticalCollision) || context.entity().horizontalCollision;
