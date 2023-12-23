@@ -30,6 +30,10 @@ public final class LivingEntityEvents {
 
     /**
      * An event that is called when a {@link LivingEntity} equips an item to an equipment slot.
+     * <p>
+     *     This differs from {@link net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents#EQUIPMENT_CHANGE}
+     *     in that it is called from {@link LivingEntity#onEquipStack(EquipmentSlot, ItemStack, ItemStack)} rather than in {@link LivingEntity#tick()}.
+     * </p>
      */
     public static final Event<EquipStack> EQUIP_STACK = EventFactory.createArrayBacked(EquipStack.class,
             listeners -> (livingEntity, slot, oldStack, newStack) -> {

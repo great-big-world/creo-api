@@ -49,12 +49,10 @@ public final class CreoEntityTypeTags {
      * Entities which Creepers run away from.
      */
     public static final TagKey<EntityType<?>> SCARES_CREEPERS = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "scares_creepers"));
-    public static final TagKey<EntityType<?>> CAN_BREATHE_IN_WATER = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "can_breathe_in_water"));
     public static final TagKey<EntityType<?>> GLINTED = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "glinted"));
-    public static final TagKey<EntityType<?>> UNDEAD = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "undead"));
     public static final TagKey<EntityType<?>> ARTHROPOD = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "arthropod"));
     public static final TagKey<EntityType<?>> AQUATIC = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "aquatic"));
-    public static final TagKey<EntityType<?>> ILLAGER = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "illager"));
+    public static final TagKey<EntityType<?>> ILLAGERS = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "illagers"));
     /**
      * Entities which do not activate Tripwires.
      */
