@@ -59,20 +59,20 @@ public class FastNoiseStructureProcessor extends StructureProcessor {
     @Nullable
     @Override
     public StructureTemplate.StructureBlockInfo process(WorldView world, BlockPos pos, BlockPos pivot, StructureTemplate.StructureBlockInfo originalBlockInfo, StructureTemplate.StructureBlockInfo currentBlockInfo, StructurePlacementData data) {
-        if (!noise.hasKeyAndValue() || currentBlockInfo.state() == result)
+        if (!noise.hasKeyAndValue() || currentBlockInfo.state == result)
             return currentBlockInfo;
         ServerWorld serverWorld = ((ServerWorldAccess) world).toServerWorld();
 
         FastNoiseLite fastNoiseLite = noise.value().seed(serverWorld.getSeed());
-        BlockPos blockPos = currentBlockInfo.pos();
+        BlockPos blockPos = currentBlockInfo.pos;
         double value = fastNoiseLite.getNoise(blockPos.getX(), blockPos.getY(), blockPos.getZ());
         if (value >= minThreshold && value <= maxThreshold) {
-            if (replaceableBlocks.isPresent() && !currentBlockInfo.state().isIn(replaceableBlocks.get())) {
+            if (replaceableBlocks.isPresent() && !currentBlockInfo.state.isIn(replaceableBlocks.get())) {
                 return currentBlockInfo;
             }
             if (result.isAir())
                 return null;
-            return new StructureTemplate.StructureBlockInfo(blockPos, result, currentBlockInfo.nbt());
+            return new StructureTemplate.StructureBlockInfo(blockPos, result, currentBlockInfo.nbt);
         }
         return currentBlockInfo;
     }

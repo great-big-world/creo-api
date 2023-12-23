@@ -11,7 +11,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootTable;
-import net.minecraft.loot.context.LootContextParameterSet;
+import net.minecraft.loot.context.LootContext;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.structure.StructureStart;
@@ -78,8 +78,8 @@ public final class EntityEventImpl {
             ci.cancel();
     }
 
-    public static void applyLivingDropLootEvent(LivingEntity livingEntity, Identifier identifier, LootTable lootTable, DamageSource damageSource, LootContextParameterSet lootContextParameterSet, boolean causedByPlayer, CallbackInfo ci) {
-        boolean result = LivingEntityEvents.DROP_LOOT.invoker().onDropLoot(livingEntity, identifier, lootTable, damageSource, lootContextParameterSet, causedByPlayer);
+    public static void applyLivingDropLootEvent(LivingEntity livingEntity, Identifier identifier, LootTable lootTable, DamageSource damageSource, LootContext.Builder builder, boolean causedByPlayer, CallbackInfo ci) {
+        boolean result = LivingEntityEvents.DROP_LOOT.invoker().onDropLoot(livingEntity, identifier, lootTable, damageSource, builder, causedByPlayer);
 
         if (!result)
             ci.cancel();

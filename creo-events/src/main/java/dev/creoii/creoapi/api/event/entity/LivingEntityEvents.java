@@ -7,7 +7,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootTable;
-import net.minecraft.loot.context.LootContextParameterSet;
+import net.minecraft.loot.context.LootContext;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
@@ -19,9 +19,9 @@ public final class LivingEntityEvents {
      * An event that is called when a {@link LivingEntity} drops loot.
      */
     public static final Event<DropLoot> DROP_LOOT = EventFactory.createArrayBacked(DropLoot.class,
-            listeners -> (livingEntity, identifier, lootTable, damageSource, lootContextParameterSet, causedByPlayer) -> {
+            listeners -> (livingEntity, identifier, lootTable, damageSource, builder, causedByPlayer) -> {
                 for (DropLoot event : listeners) {
-                    return event.onDropLoot(livingEntity, identifier, lootTable, damageSource, lootContextParameterSet, causedByPlayer);
+                    return event.onDropLoot(livingEntity, identifier, lootTable, damageSource, builder, causedByPlayer);
                 }
 
                 return true;
@@ -65,10 +65,10 @@ public final class LivingEntityEvents {
          * @param identifier the original loot table id
          * @param lootTable the loot table instance
          * @param damageSource the damageSource resulting in the death of the living entity
-         * @param lootContextParameterSet the loot context parameters
+         * @param builder the loot context builder
          * @param causedByPlayer whether the death was caused by a player
          */
-        boolean onDropLoot(LivingEntity livingEntity, Identifier identifier, LootTable lootTable, DamageSource damageSource, LootContextParameterSet lootContextParameterSet, boolean causedByPlayer);
+        boolean onDropLoot(LivingEntity livingEntity, Identifier identifier, LootTable lootTable, DamageSource damageSource, LootContext.Builder builder, boolean causedByPlayer);
     }
 
     @FunctionalInterface

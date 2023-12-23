@@ -2,8 +2,6 @@ package dev.creoii.creoapi.mixin.modification.block;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.MapColor;
-import net.minecraft.block.enums.Instrument;
-import net.minecraft.block.piston.PistonBehavior;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 
@@ -38,30 +36,6 @@ public interface AbstractBlockStateAccessor {
 
     @Accessor("opaque")
     void setOpaque(boolean opaque);
-
-    @Accessor("burnable")
-    boolean isBurnable();
-
-    @Accessor("burnable")
-    void setBurnable(boolean burnable);
-
-    @Accessor("pistonBehavior")
-    PistonBehavior getPistonBehavior();
-
-    @Accessor("pistonBehavior")
-    void setPistonBehavior(PistonBehavior pistonBehavior);
-
-    @Accessor("instrument")
-    Instrument getInstrument();
-
-    @Accessor("instrument")
-    void setInstrument(Instrument instrument);
-
-    @Accessor("replaceable")
-    boolean isReplaceable();
-
-    @Accessor("replaceable")
-    void setReplaceable(boolean replaceable);
 
     @Accessor("blockBreakParticles")
     boolean hasBlockBreakParticles();

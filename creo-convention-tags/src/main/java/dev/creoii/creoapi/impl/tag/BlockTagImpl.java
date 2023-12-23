@@ -34,9 +34,8 @@ public final class BlockTagImpl {
             cir.setReturnValue(true);
     }
 
-    @SuppressWarnings("deprecation")
     public static void applyCactusPlantableOn(BlockState state, WorldView world, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
-        if (!world.getBlockState(pos.up()).isLiquid()) {
+        if (!world.getBlockState(pos.up()).getMaterial().isLiquid()) {
             if (state.isIn(CreoBlockTags.CACTUS_PLANTABLE_ON))
                 cir.setReturnValue(true);
         }
@@ -117,7 +116,7 @@ public final class BlockTagImpl {
     }
 
     private static boolean shouldWeatherIgnore(BlockState state) {
-        return !state.isIn(CreoBlockTags.WEATHER_RENDER_IGNORES) && (state.blocksMovement() || !state.getFluidState().isEmpty());
+        return !state.isIn(CreoBlockTags.WEATHER_RENDER_IGNORES) && (state.getMaterial().blocksMovement() || !state.getFluidState().isEmpty());
     }
 
     public static int applyWeatherRenderIgnores(World world, int x, int z) {

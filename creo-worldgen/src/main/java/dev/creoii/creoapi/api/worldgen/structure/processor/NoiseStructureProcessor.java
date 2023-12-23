@@ -59,19 +59,19 @@ public class NoiseStructureProcessor extends StructureProcessor {
     @Nullable
     @Override
     public StructureTemplate.StructureBlockInfo process(WorldView world, BlockPos pos, BlockPos pivot, StructureTemplate.StructureBlockInfo originalBlockInfo, StructureTemplate.StructureBlockInfo currentBlockInfo, StructurePlacementData data) {
-        if (currentBlockInfo.state() == result)
+        if (currentBlockInfo.state == result)
             return currentBlockInfo;
         ServerWorld serverWorld = ((ServerWorldAccess) world).toServerWorld();
 
-        BlockPos blockPos = currentBlockInfo.pos();
+        BlockPos blockPos = currentBlockInfo.pos;
         double value = serverWorld.getChunkManager().getNoiseConfig().getOrCreateSampler(noise).sample(blockPos.getX(), blockPos.getY(), blockPos.getZ());
         if (value >= minThreshold && value <= maxThreshold) {
-            if (replaceableBlocks.isPresent() && !currentBlockInfo.state().isIn(replaceableBlocks.get())) {
+            if (replaceableBlocks.isPresent() && !currentBlockInfo.state.isIn(replaceableBlocks.get())) {
                 return currentBlockInfo;
             }
             if (result.isAir())
                 return null;
-            return new StructureTemplate.StructureBlockInfo(blockPos, result, currentBlockInfo.nbt());
+            return new StructureTemplate.StructureBlockInfo(blockPos, result, currentBlockInfo.nbt);
         }
         return currentBlockInfo;
     }

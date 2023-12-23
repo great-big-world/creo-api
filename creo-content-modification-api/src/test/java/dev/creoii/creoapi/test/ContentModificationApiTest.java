@@ -95,34 +95,10 @@ public class ContentModificationApiTest implements ModInitializer {
         LOGGER.info(String.valueOf(BlockModification.INSTANCE.isOpaque(Blocks.IRON_BARS)));
         LOGGER.info("fail");
 
-        LOGGER.info("BURNABLE");
-        LOGGER.info(String.valueOf(BlockModification.INSTANCE.isBurnable(Blocks.OAK_LOG)));
-        BlockModification.INSTANCE.setBurnable(Blocks.OAK_LOG, false);
-        LOGGER.info(String.valueOf(BlockModification.INSTANCE.isBurnable(Blocks.OAK_LOG)));
-        LOGGER.info("fail");
-
-        LOGGER.info("PISTON BEHAVIOR");
-        LOGGER.info(String.valueOf(BlockModification.INSTANCE.getPistonBehavior(Blocks.DIRT)));
-        BlockModification.INSTANCE.setPistonBehavior(Blocks.DIRT, PistonBehavior.DESTROY);
-        LOGGER.info(String.valueOf(BlockModification.INSTANCE.getPistonBehavior(Blocks.DIRT)));
-        LOGGER.info("pass");
-
-        LOGGER.info("INSTRUMENT");
-        LOGGER.info(String.valueOf(BlockModification.INSTANCE.getInstrument(Blocks.GOLD_BLOCK)));
-        BlockModification.INSTANCE.setInstrument(Blocks.GOLD_BLOCK, Instrument.DRAGON);
-        LOGGER.info(String.valueOf(BlockModification.INSTANCE.getInstrument(Blocks.GOLD_BLOCK)));
-        LOGGER.info("fail");
-
         LOGGER.info("BLOCK BREAK PARTICLES");
         LOGGER.info(String.valueOf(BlockModification.INSTANCE.hasBlockBreakParticles(Blocks.DIRT)));
         BlockModification.INSTANCE.setBlockBreakParticles(Blocks.DIRT, false);
         LOGGER.info(String.valueOf(BlockModification.INSTANCE.hasBlockBreakParticles(Blocks.DIRT)));
-        LOGGER.info("pass");
-
-        LOGGER.info("REPLACEABLE");
-        LOGGER.info(String.valueOf(BlockModification.INSTANCE.isReplaceable(Blocks.GRASS)));
-        BlockModification.INSTANCE.setReplaceable(Blocks.GRASS, false);
-        LOGGER.info(String.valueOf(BlockModification.INSTANCE.isReplaceable(Blocks.GRASS)));
         LOGGER.info("pass");
 
         LOGGER.info("---------- ITEM ----------");

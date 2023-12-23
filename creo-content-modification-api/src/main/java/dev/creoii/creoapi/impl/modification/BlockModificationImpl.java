@@ -7,8 +7,6 @@ import dev.creoii.creoapi.mixin.modification.block.BlockSettingsAccessor;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.MapColor;
-import net.minecraft.block.enums.Instrument;
-import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
@@ -190,51 +188,6 @@ public class BlockModificationImpl implements BlockModification {
     }
 
     @Override
-    public void setBurnable(Block block, boolean burnable) {
-        setBurnable(block.getDefaultState(), burnable);
-    }
-
-    @Override
-    public void setBurnable(BlockState state, boolean burnable) {
-        ((AbstractBlockStateAccessor) state).setBurnable(burnable);
-    }
-
-    @Override
-    public boolean isBurnable(Block block) {
-        return ((AbstractBlockStateAccessor) block.getDefaultState()).isBurnable();
-    }
-
-    @Override
-    public void setPistonBehavior(Block block, PistonBehavior pistonBehavior) {
-        setPistonBehavior(block.getDefaultState(), pistonBehavior);
-    }
-
-    @Override
-    public void setPistonBehavior(BlockState state, PistonBehavior pistonBehavior) {
-        ((AbstractBlockStateAccessor) state).setPistonBehavior(pistonBehavior);
-    }
-
-    @Override
-    public PistonBehavior getPistonBehavior(Block block) {
-        return ((AbstractBlockStateAccessor) block.getDefaultState()).getPistonBehavior();
-    }
-
-    @Override
-    public void setInstrument(Block block, Instrument instrument) {
-        setInstrument(block.getDefaultState(), instrument);
-    }
-
-    @Override
-    public void setInstrument(BlockState state, Instrument instrument) {
-        ((AbstractBlockStateAccessor) state).setInstrument(instrument);
-    }
-
-    @Override
-    public Instrument getInstrument(Block block) {
-        return ((AbstractBlockStateAccessor) block.getDefaultState()).getInstrument();
-    }
-
-    @Override
     public void setBlockBreakParticles(Block block, boolean blockBreakParticles) {
         setBlockBreakParticles(block.getDefaultState(), blockBreakParticles);
     }
@@ -247,21 +200,6 @@ public class BlockModificationImpl implements BlockModification {
     @Override
     public boolean hasBlockBreakParticles(Block block) {
         return ((AbstractBlockStateAccessor) block.getDefaultState()).hasBlockBreakParticles();
-    }
-
-    @Override
-    public void setReplaceable(Block block, boolean replaceable) {
-        setReplaceable(block.getDefaultState(), replaceable);
-    }
-
-    @Override
-    public void setReplaceable(BlockState state, boolean replaceable) {
-        ((AbstractBlockStateAccessor) state).setReplaceable(replaceable);
-    }
-
-    @Override
-    public boolean isReplaceable(Block block) {
-        return ((AbstractBlockStateAccessor) block.getDefaultState()).isReplaceable();
     }
 
     @Override

@@ -4,8 +4,6 @@ import dev.creoii.creoapi.impl.modification.BlockModificationImpl;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.MapColor;
-import net.minecraft.block.enums.Instrument;
-import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
@@ -208,70 +206,11 @@ public interface BlockModification {
 
     boolean isOpaque(Block block);
 
-    /**
-     * Set whether the block can be lit on fire by lava.
-     * @param block A block
-     * @param burnable Whether the block can be lit on fire by lava
-     */
-    void setBurnable(Block block, boolean burnable);
-
-    /**
-     * Set whether the {@link BlockState} can be lit on fire by lava.
-     * @param state A blockstate
-     * @param burnable Whether the blockstate can be lit on fire by lava
-     */
-    void setBurnable(BlockState state, boolean burnable);
-
-    /**
-     * Returns whether the block can be lit on fire by lava.
-     * @param block A block
-     * @return Whether lava can light the block on fire
-     */
-    boolean isBurnable(Block block);
-
-    /**
-     * Set a new {@link PistonBehavior} for the block.
-     * @param block A block
-     * @param pistonBehavior The new piston behavior
-     */
-    void setPistonBehavior(Block block, PistonBehavior pistonBehavior);
-
-    /**
-     * Set a new {@link PistonBehavior} for the {@link BlockState}.
-     * @param state A blockstate
-     * @param pistonBehavior The new piston behavior
-     */
-    void setPistonBehavior(BlockState state, PistonBehavior pistonBehavior);
-
-    /**
-     * Get the {@link PistonBehavior} of the block.
-     * @param block A block
-     * @return The block's piston behavior
-     */
-    PistonBehavior getPistonBehavior(Block block);
-
-    void setInstrument(Block block, Instrument instrument);
-
-    void setInstrument(BlockState state, Instrument instrument);
-
-    /**
-     * Get the {@link Instrument} of the block.
-     * @param block A block
-     * @return The block's instrument
-     */
-    Instrument getInstrument(Block block);
-
     void setBlockBreakParticles(Block block, boolean blockBreakParticles);
 
     void setBlockBreakParticles(BlockState state, boolean blockBreakParticles);
 
     boolean hasBlockBreakParticles(Block block);
-
-    void setReplaceable(Block block, boolean replaceable);
-
-    void setReplaceable(BlockState state, boolean replaceable);
-
-    boolean isReplaceable(Block block);
 
     void setEmissiveLighting(Block block, boolean emissiveLighting);
 
