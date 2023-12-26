@@ -26,8 +26,6 @@ allprojects {
     apply plugin: 'fabric-loom'
     apply plugin: 'maven-publish'
 
-    it.sourceCompatibility = JavaVersion.VERSION_17
-    it.targetCompatibility = JavaVersion.VERSION_17
     it.version = it.mod_version + "+" + minecraft_version
     it.group = maven_group
 
@@ -38,6 +36,8 @@ allprojects {
     }
 
     java {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
         withSourcesJar()
         withJavadocJar()
     }
