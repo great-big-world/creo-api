@@ -6,7 +6,6 @@ plugins {
 }
 
 version = mod_version + "+" + minecraft_version
-archivesBaseName = archives_base_name
 group = maven_group
 
 dependencies {
