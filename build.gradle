@@ -3,14 +3,11 @@ plugins {
     id 'idea'
     id 'fabric-loom' version '1.4-SNAPSHOT'
     id 'maven-publish'
+    id 'signing'
 }
 
 version = mod_version + "+" + minecraft_version
 group = maven_group
-
-java {
-
-}
 
 dependencies {
     afterEvaluate {
@@ -28,14 +25,14 @@ allprojects {
     apply plugin: 'idea'
     apply plugin: 'fabric-loom'
     apply plugin: 'maven-publish'
+    apply plugin: 'signing'
 
     it.version = it.mod_version + "+" + minecraft_version
     it.group = maven_group
 
     repositories {
-        maven {
-            url 'https://jitpack.io'
-        }
+        mavenCentral()
+        maven { url "https://jitpack.io"  }
     }
 
     java {
