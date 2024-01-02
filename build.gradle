@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id "java-library"
     id 'idea'
     id 'fabric-loom' version '1.4-SNAPSHOT'
     id 'maven-publish'
@@ -21,9 +22,9 @@ dependencies {
 }
 
 allprojects {
-    apply plugin: 'java'
-    apply plugin: 'idea'
-    apply plugin: 'fabric-loom'
+    apply plugin: "java"
+    apply plugin: "java-library"
+    apply plugin: "fabric-loom"
     apply plugin: 'maven-publish'
     apply plugin: 'signing'
 
@@ -32,7 +33,6 @@ allprojects {
 
     repositories {
         mavenCentral()
-        maven { url "https://jitpack.io"  }
     }
 
     java {
@@ -73,33 +73,24 @@ allprojects {
 
     artifacts {
         dev jar
+        dev sourcesJar
+        dev javadocJar
     }
 }
 
-subprojects.forEach {
+subprojects {
     it.group = project.maven_group
     it.version = it.mod_version + "+" + minecraft_version
 }
 
 publishing {
-    repositories {
-        maven {
-            url = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
-            credentials {
-                username = ossrhUsername
-                password = ossrhPassword
-            }
-        }
-    }
-
     publications {
         mavenJava(MavenPublication) {
             pom {
-                groupId = group
-                name = project.name
-                description = 'A multi-purpose api for Minecraft mod and datapack development.'
+                name = archives_base_name
+                version = mod_version
                 url = 'https://www.creoii.dev/projects/creo-api'
-                from components.java
+                description = 'A multi-purpose api for Minecraft mod and datapack development.'
                 licenses {
                     license {
                         name = 'All Rights Reserved'
@@ -110,20 +101,31 @@ publishing {
                     developer {
                         id = 'creoii'
                         name = 'creoii'
+                        url = 'https://creoii.dev/'
                     }
                 }
                 scm {
-                    connection = 'scm:git:git://github.com/great-big-world/creo-api.git'
-                    developerConnection = 'scm:git:git://github.com/great-big-world/creo-api.git'
+                    connection = 'scm:git:https://github.com/great-big-world/creo-api.git'
+                    developerConnection = 'scm:git:https://github.com/great-big-world/creo-api.git'
                     url = 'https://github.com/great-big-world/creo-api/'
                 }
+                issueManagement {
+                    system = 'GitHub'
+                    url = 'https://github.com/great-big-world/creo-api/issues'
+                }
+            }
+
+            artifact(remapJar) {
+                builtBy remapJar
+            }
+            artifact(javadocJar) {
+                builtBy javadocJar
+            }
+            artifact(remapSourcesJar) {
+                builtBy remapSourcesJar
             }
         }
     }
-}
-
-signing {
-    sign publishing.publications.mavenJava
 }
 
 jar {
@@ -136,4 +138,11 @@ javadocJar {
 
 sourcesJar {
     destinationDirectory = file("$rootDir/build/libs/$minecraft_version/$mod_version")
+}
+
+signing {
+    if (project.hasProperty("signing.keyId")) {
+        sign configurations.dev
+        sign publishing.publications.mavenJava
+    }
 }

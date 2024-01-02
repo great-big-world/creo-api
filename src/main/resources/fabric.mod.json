@@ -12,7 +12,7 @@
     "sources": "https://github.com/great-big-world/creo-api",
     "issues": "https://github.com/great-big-world/creo-api/issues"
   },
-  "license": "All-Rights-Reserved",
+  "license": "All Rights Reserved",
   "icon": "assets/creo-api/icon.png",
   "environment": "*",
   "entrypoints": {},

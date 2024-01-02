@@ -120,3 +120,4 @@ run/
 # Ignore secret keyring from gpg
 secring.gpg
 *.gpg
+todo.txt
