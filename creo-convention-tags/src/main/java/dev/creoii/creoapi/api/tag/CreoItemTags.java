@@ -54,11 +54,22 @@ public final class CreoItemTags {
     /**
      * Items which can be used to charge a Respawn Anchor.
      */
-    public static final TagKey<Item> RESPAWN_ANCHOR_CHARGES = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "respawn_anchor_charges"));
+    public static final TagKey<Item> CHARGES_RESPAWN_ANCHOR = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "charges_respawn_anchor"));
     /**
      * Items which can be used to fuel a Furnace Minecart.
      */
     public static final TagKey<Item> FUELS_FURNACE_MINECARTS = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "fuels_furnace_minecarts"));
+
+    public static final TagKey<Item> REPAIRS_LEATHER = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "repairs/leather"));
+    public static final TagKey<Item> REPAIRS_WOOD = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "repairs/wood"));
+    public static final TagKey<Item> REPAIRS_CHAINMAIL = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "repairs/chainmail"));
+    public static final TagKey<Item> REPAIRS_STONE = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "repairs/stone"));
+    public static final TagKey<Item> REPAIRS_IRON = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "repairs/iron"));
+    public static final TagKey<Item> REPAIRS_GOLD = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "repairs/gold"));
+    public static final TagKey<Item> REPAIRS_DIAMOND = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "repairs/diamond"));
+    public static final TagKey<Item> REPAIRS_NETHERITE = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "repairs/netherite"));
+    public static final TagKey<Item> REPAIRS_TURTLE = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "repairs/turtle"));
+
     public static final TagKey<Item> BREEDS_SHEEP = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "breeds/sheep"));
     public static final TagKey<Item> BREEDS_COW = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "breeds/cow"));
     public static final TagKey<Item> BREEDS_PIG = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "breeds/pig"));

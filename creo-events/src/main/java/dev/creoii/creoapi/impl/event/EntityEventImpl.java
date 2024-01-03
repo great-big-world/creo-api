@@ -2,6 +2,7 @@ package dev.creoii.creoapi.impl.event;
 
 import dev.creoii.creoapi.api.event.entity.*;
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.goal.GoalSelector;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.mob.MobEntity;
@@ -21,6 +22,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
+import net.minecraft.world.TeleportTarget;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.ApiStatus;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -108,5 +110,24 @@ public final class EntityEventImpl {
 
         if (!result)
             ci.cancel();
+    }
+
+    public static void applyMobPreInitGoalsEvent(World world, MobEntity mob, GoalSelector goalSelector, GoalSelector targetSelector) {
+        MobEntityEvents.PRE_INIT_GOALS.invoker().onPreInitGoals(world, mob, goalSelector, targetSelector);
+    }
+
+    public static void applyMobPostInitGoalsEvent(World world, MobEntity mob, GoalSelector goalSelector, GoalSelector targetSelector) {
+        MobEntityEvents.POST_INIT_GOALS.invoker().onPostInitGoals(world, mob, goalSelector, targetSelector);
+    }
+
+    public static void applyEntityStruckByLightningEvent(ServerWorld world, Entity entity, LightningEntity lightning) {
+        EntityEvents.STRUCK_BY_LIGHTNING.invoker().onStruckByLightning(world, entity, lightning);
+    }
+
+    public static void applyEntityChangeDimensionEvent(World world, World destination, Entity entity, Entity copy, TeleportTarget teleportTarget, CallbackInfoReturnable<Entity> cir) {
+        boolean result = EntityEvents.CHANGE_DIMENSION.invoker().onChangeDimension(world, destination, entity, copy, teleportTarget);
+
+        if (!result)
+            cir.setReturnValue(null);
     }
 }

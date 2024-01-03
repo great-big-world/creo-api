@@ -36,8 +36,12 @@
     "entity.WardenEntityMixin",
     "entity.ZoglinEntityMixin",
     "entity.goal.EatGrassGoalMixin",
+    "item.ArmorMaterialsAccessor",
+    "item.ArmorMaterialsMixin",
     "item.MilkBucketItemMixin",
     "item.ShearsItemMixin",
+    "item.ToolMaterialsAccessor",
+    "item.ToolMaterialsMixin",
     "screen.EnchantmentScreenHandlerMixin",
     "screen.GrindstoneScreenHandlerMixin",
     "world.HeightmapTypeMixin"

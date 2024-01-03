@@ -3,10 +3,13 @@ package dev.creoii.creoapi.api.event.entity;
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LightningEntity;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.structure.StructureStart;
+import net.minecraft.world.TeleportTarget;
+import net.minecraft.world.World;
 
 /**
  * Events related to {@link Entity}.
@@ -52,6 +55,24 @@ public final class EntityEvents {
             }
     );
 
+    public static final Event<StruckByLightning> STRUCK_BY_LIGHTNING = EventFactory.createArrayBacked(StruckByLightning.class,
+            listeners -> (serverWorld, entity, lightning) -> {
+                for (StruckByLightning event : listeners) {
+                    event.onStruckByLightning(serverWorld, entity, lightning);
+                }
+            }
+    );
+
+    public static final Event<ChangeDimension> CHANGE_DIMENSION = EventFactory.createArrayBacked(ChangeDimension.class,
+            listeners -> (world, destination, entity, copy, teleportTarget) -> {
+                for (ChangeDimension event : listeners) {
+                    return event.onChangeDimension(world, destination, entity, copy, teleportTarget);
+                }
+
+                return true;
+            }
+    );
+
     @FunctionalInterface
     public interface Spawn {
         /**
@@ -85,5 +106,15 @@ public final class EntityEvents {
     @FunctionalInterface
     public interface WriteNbt {
         void onWriteNbt(Entity entity, NbtCompound nbt);
+    }
+
+    @FunctionalInterface
+    public interface StruckByLightning {
+        void onStruckByLightning(ServerWorld serverWorld, Entity entity, LightningEntity lightning);
+    }
+
+    @FunctionalInterface
+    public interface ChangeDimension {
+        boolean onChangeDimension(World world, World destination, Entity entity, Entity copy, TeleportTarget teleportTarget);
     }
 }

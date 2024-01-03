@@ -58,12 +58,12 @@ public final class BlockEvents {
         /**
          * Called when a block is placed via a {@link net.minecraft.item.BlockItem}.
          *
-         * @param block the block
+         * @param state the blockstate
          * @param context the placement context
          *
-         * @return true to place the block, or false to ignore the placement.
+         * @return true to place the block or false to ignore the placement.
          */
-        boolean onPlace(Block block, ItemPlacementContext context);
+        boolean onPlace(BlockState state, ItemPlacementContext context);
     }
 
     @FunctionalInterface
@@ -76,7 +76,7 @@ public final class BlockEvents {
          * @param state the blockstate being broken
          * @param pos the block position
          *
-         * @return true to break the block, or false to keep the block.
+         * @return true to break the block or false to keep the block.
          */
         boolean onBreak(ServerWorld world, ServerPlayerEntity player, BlockState state, BlockPos pos);
     }

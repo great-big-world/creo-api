@@ -4,10 +4,12 @@ import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
 import net.minecraft.entity.EntityData;
 import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.ai.goal.GoalSelector;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
+import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -33,6 +35,22 @@ public final class MobEntityEvents {
             }
     );
 
+    public static final Event<PreInitGoals> PRE_INIT_GOALS = EventFactory.createArrayBacked(PreInitGoals.class,
+            listeners -> (world, mob, goalSelector, targetSelector) -> {
+                for (PreInitGoals event : listeners) {
+                    event.onPreInitGoals(world, mob, goalSelector, targetSelector);
+                }
+            }
+    );
+
+    public static final Event<PostInitGoals> POST_INIT_GOALS = EventFactory.createArrayBacked(PostInitGoals.class,
+            listeners -> (world, mob, goalSelector, targetSelector) -> {
+                for (PostInitGoals event : listeners) {
+                    event.onPostInitGoals(world, mob, goalSelector, targetSelector);
+                }
+            }
+    );
+
     @FunctionalInterface
     public interface Initialize {
         /**
@@ -48,5 +66,15 @@ public final class MobEntityEvents {
          * @param entityNbt the mob's nbt
          */
         EntityData onInitialize(ServerWorldAccess world, MobEntity mob, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt);
+    }
+
+    @FunctionalInterface
+    public interface PreInitGoals {
+        void onPreInitGoals(World world, MobEntity mob, GoalSelector goalSelector, GoalSelector targetSelector);
+    }
+
+    @FunctionalInterface
+    public interface PostInitGoals {
+        void onPostInitGoals(World world, MobEntity mob, GoalSelector goalSelector, GoalSelector targetSelector);
     }
 }
