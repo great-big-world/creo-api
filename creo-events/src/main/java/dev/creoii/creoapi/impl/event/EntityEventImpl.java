@@ -14,8 +14,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.context.LootContextParameterSet;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.structure.StructureStart;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
@@ -120,8 +122,8 @@ public final class EntityEventImpl {
         MobEntityEvents.POST_INIT_GOALS.invoker().onPostInitGoals(world, mob, goalSelector, targetSelector);
     }
 
-    public static void applyEntityStruckByLightningEvent(ServerWorld world, Entity entity, LightningEntity lightning) {
-        EntityEvents.STRUCK_BY_LIGHTNING.invoker().onStruckByLightning(world, entity, lightning);
+    public static void applyEntityStruckByLightningEvent(ServerWorld serverWorld, Entity entity, LightningEntity lightning) {
+        EntityEvents.STRUCK_BY_LIGHTNING.invoker().onStruckByLightning(serverWorld, entity, lightning);
     }
 
     public static void applyEntityChangeDimensionEvent(World world, World destination, Entity entity, Entity copy, TeleportTarget teleportTarget, CallbackInfoReturnable<Entity> cir) {
@@ -129,5 +131,23 @@ public final class EntityEventImpl {
 
         if (!result)
             cir.setReturnValue(null);
+    }
+
+    public static void applyPlayerRespawnEvent(ServerPlayerEntity player, boolean alive) {
+        PlayerEntityEvents.RESPAWN.invoker().onRespawn(player, alive);
+    }
+
+    public static void applyAnimalGrowUpEvent(PlayerEntity player, PassiveEntity animal, int age, boolean overGrow, CallbackInfoReturnable<ActionResult> cir) {
+        boolean result = AnimalEntityEvents.GROW_UP.invoker().onGrowUp(player, animal, age, overGrow);
+
+        if (!result)
+            cir.setReturnValue(ActionResult.FAIL);
+    }
+
+    public static void applyAnimalLoveEvent(PlayerEntity player, PassiveEntity animal, int age, boolean overGrow, CallbackInfoReturnable<ActionResult> cir) {
+        boolean result = AnimalEntityEvents.LOVE.invoker().onLove(player, animal, age, overGrow);
+
+        if (!result)
+            cir.setReturnValue(ActionResult.FAIL);
     }
 }

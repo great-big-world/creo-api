@@ -4,7 +4,9 @@ import com.google.common.collect.Sets;
 import net.minecraft.client.MinecraftClient;
 import org.jetbrains.annotations.Nullable;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Set;
 

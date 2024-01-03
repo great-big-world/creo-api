@@ -1,6 +1,5 @@
 package dev.creoii.creoapi.api.event.misc;
 
-import dev.creoii.creoapi.api.event.entity.EntityEvents;
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
 import net.minecraft.entity.player.PlayerEntity;
@@ -11,7 +10,7 @@ import net.minecraft.world.World;
 /**
  * Events related to fishing.
  *
- * @see {@link net.minecraft.item.FishingRodItem}, {@link net.minecraft.entity.projectile.FishingBobberEntity}.
+ * @see net.minecraft.item.FishingRodItem
  */
 public class FishingEvents {
     public static final Event<Cast> CAST = EventFactory.createArrayBacked(Cast.class,

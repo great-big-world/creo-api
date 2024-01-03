@@ -1,11 +1,23 @@
 package dev.creoii.creoapi.impl.event;
 
+import com.mojang.datafixers.util.Either;
 import dev.creoii.creoapi.api.event.misc.FishingEvents;
+import dev.creoii.creoapi.api.event.misc.SleepEvents;
+import net.minecraft.block.BlockState;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.Unit;
+import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 public class MiscEventImpl {
@@ -21,5 +33,35 @@ public class MiscEventImpl {
 
         if (!result)
             cir.setReturnValue(TypedActionResult.fail(itemStack));
+    }
+
+    public static void applySleepExplodeEvent(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit, CallbackInfoReturnable<ActionResult> cir) {
+        boolean result = SleepEvents.EXPLODE.invoker().onExplode(state, world, pos, player, hand, hit);
+
+        if (!result)
+            cir.setReturnValue(ActionResult.FAIL);
+    }
+
+    public static void applySleepWakeVillagerEvent(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit, CallbackInfoReturnable<ActionResult> cir) {
+        boolean result = SleepEvents.WAKE_VILLAGER.invoker().onWakeVillager(state, world, pos, player, hand, hit, world.getEntitiesByClass(VillagerEntity.class, new Box(pos), LivingEntity::isSleeping));
+
+        if (!result)
+            cir.setReturnValue(ActionResult.FAIL);
+    }
+
+    public static void applySleepSleepEvent(Entity entity, BlockPos pos, Either<PlayerEntity.SleepFailureReason, Unit> either, CallbackInfoReturnable<Either<PlayerEntity.SleepFailureReason, Unit>> cir) {
+        boolean result = SleepEvents.SLEEP.invoker().onSleep(entity, pos, either);
+
+        if (!result)
+            cir.setReturnValue(Either.left(either.left().orElse(PlayerEntity.SleepFailureReason.OTHER_PROBLEM)));
+        else
+            cir.setReturnValue(Either.right(Unit.INSTANCE));
+    }
+
+    public static void applySleepWakeUpEvent(Entity entity, boolean skipSleepTimer, boolean updateSleepingPlayers, CallbackInfo ci) {
+        boolean result = SleepEvents.WAKE_UP.invoker().onWakeUp(entity, skipSleepTimer, updateSleepingPlayers);
+
+        if (!result)
+            ci.cancel();
     }
 }

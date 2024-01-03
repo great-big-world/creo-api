@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.PassiveEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 
 /**
@@ -13,9 +14,9 @@ public final class AnimalEntityEvents {
     /**
      * An event that is called when two animals have begun breeding, before a baby is born.
      */
-    public static final Event<Pre> BREED_PRE = EventFactory.createArrayBacked(Pre.class,
+    public static final Event<PreBreed> BREED_PRE = EventFactory.createArrayBacked(PreBreed.class,
             listeners -> (world, animal, other, baby) -> {
-                for (Pre event : listeners) {
+                for (PreBreed event : listeners) {
                     return event.onBreed(world, animal, other, baby);
                 }
 
@@ -26,16 +27,36 @@ public final class AnimalEntityEvents {
     /**
      * An event that is called when two animals have finished breeding, after a baby is born.
      */
-    public static final Event<Post> BREED_POST = EventFactory.createArrayBacked(Post.class,
+    public static final Event<PostBreed> BREED_POST = EventFactory.createArrayBacked(PostBreed.class,
             listeners -> (world, animal, other, baby) -> {
-                for (Post event : listeners) {
+                for (PostBreed event : listeners) {
                     event.onBreed(world, animal, other, baby);
                 }
             }
     );
 
+    public static final Event<GrowUp> GROW_UP = EventFactory.createArrayBacked(GrowUp.class,
+            listeners -> (player, animal, age, overGrow) -> {
+                for (GrowUp event : listeners) {
+                    return event.onGrowUp(player, animal, age, overGrow);
+                }
+
+                return true;
+            }
+    );
+
+    public static final Event<Love> LOVE = EventFactory.createArrayBacked(Love.class,
+            listeners -> (player, animal, age, overGrow) -> {
+                for (Love event : listeners) {
+                    return event.onLove(player, animal, age, overGrow);
+                }
+
+                return true;
+            }
+    );
+
     @FunctionalInterface
-    public interface Pre {
+    public interface PreBreed {
         /**
          * Called when two animals have begun breeding, before a baby is born.
          *
@@ -50,7 +71,7 @@ public final class AnimalEntityEvents {
     }
 
     @FunctionalInterface
-    public interface Post {
+    public interface PostBreed {
         /**
          * Called when two animals have finished breeding, after a baby is born.
          *
@@ -60,5 +81,15 @@ public final class AnimalEntityEvents {
          * @param baby the baby
          */
         void onBreed(ServerWorld serverWorld, AnimalEntity animal, AnimalEntity other, PassiveEntity baby);
+    }
+
+    @FunctionalInterface
+    public interface GrowUp {
+        boolean onGrowUp(PlayerEntity player, PassiveEntity animal, int age, boolean overGrow);
+    }
+
+    @FunctionalInterface
+    public interface Love {
+        boolean onLove(PlayerEntity player, PassiveEntity animal, int age, boolean overGrow);
     }
 }

@@ -21,6 +21,14 @@ public final class PlayerEntityEvents {
             }
     );
 
+    public static final Event<Respawn> RESPAWN = EventFactory.createArrayBacked(Respawn.class,
+            listeners -> (player, alive) -> {
+                for (Respawn event : listeners) {
+                    event.onRespawn(player, alive);
+                }
+            }
+    );
+
     @FunctionalInterface
     public interface LevelUp {
         /**
@@ -31,5 +39,15 @@ public final class PlayerEntityEvents {
          * @return true to level up, or false to stop the level up.
          */
         boolean onLevelUp(PlayerEntity player, int levels);
+    }
+
+    @FunctionalInterface
+    public interface Respawn {
+        /**
+         * Called server-side when a player respawns.
+         * @param player the player
+         * @param alive whether the player is alive or not
+         */
+        void onRespawn(PlayerEntity player, boolean alive);
     }
 }

@@ -2,7 +2,6 @@ package dev.creoii.creoapi.impl.event;
 
 import dev.creoii.creoapi.api.event.block.BlockEvents;
 import dev.creoii.creoapi.api.event.block.CropEvents;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.server.network.ServerPlayerEntity;
