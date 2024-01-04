@@ -1,5 +1,5 @@
 plugins {
-    id "java-library"
+    id 'java-library'
     id 'idea'
     id 'fabric-loom' version '1.4-SNAPSHOT'
     id 'maven-publish'
@@ -9,23 +9,29 @@ plugins {
 version = mod_version
 group = maven_group
 
+import groovy.json.JsonSlurper
+
 static def getSubprojectVersion(Project project) {
     return project.properties["$project.name-version"]
 }
 
 static def addPomMetadataInformation(Project project, MavenPom pom) {
-    pom.name = project.name
-    pom.description = 'A multi-purpose api for Minecraft mod and datapack development.'
+    def modJsonFile = project.file('src/main/resources/fabric.mod.json')
 
-    if (project.name.equals("creo-api"))
-        pom.url = 'https://www.creoii.dev/projects/creo-api'
-    else
-        pom.url = "https://www.creoii.dev/projects/creo-api/$project.name"
+    if (!modJsonFile.exists()) {
+        modJsonFile = project.file('src/client/resources/fabric.mod.json')
+    }
+
+    def modJson = new JsonSlurper().parse(modJsonFile)
+
+    pom.name = modJson.name
+    pom.description = modJson.description
+    pom.url = modJson.contact.homepage
 
     pom.inceptionYear = '2023'
     pom.licenses {
         license {
-            name = 'All Rights Reserved'
+            name = modJson.license
             url = 'https://github.com/great-big-world/creo-api/blob/master/LICENSE'
         }
     }
@@ -39,7 +45,7 @@ static def addPomMetadataInformation(Project project, MavenPom pom) {
     pom.scm {
         connection = 'scm:git:https://github.com/great-big-world/creo-api.git'
         developerConnection = 'scm:git:https://github.com/great-big-world/creo-api.git'
-        url = 'https://github.com/great-big-world/creo-api/'
+        url = 'https://github.com/great-big-world/creo-api'
     }
     pom.issueManagement {
         system = 'GitHub'
@@ -47,15 +53,22 @@ static def addPomMetadataInformation(Project project, MavenPom pom) {
     }
     pom.organization {
         name = 'Great Big World'
-        url = 'https://github.com/great-big-world/'
+        url = 'https://github.com/great-big-world'
     }
 }
 
 allprojects {
-    apply plugin: "java-library"
-    apply plugin: "fabric-loom"
+    apply plugin: 'java-library'
+    apply plugin: 'fabric-loom'
     apply plugin: 'maven-publish'
     apply plugin: 'signing'
+
+    configurations {
+        dev {
+            canBeResolved = false
+            canBeConsumed = true
+        }
+    }
 
     signing {
         afterEvaluate {
@@ -72,7 +85,7 @@ allprojects {
 
     tasks.withType(JavaCompile).configureEach {
         it.options.release.set(17)
-        it.options.encoding = "UTF-8"
+        it.options.encoding = 'UTF-8'
     }
 
     dependencies {
@@ -84,12 +97,12 @@ allprojects {
 
     Project sub = it
     tasks.withType(ProcessResources).configureEach {
-        inputs.property "version", sub.version + "+" + minecraft_version
+        inputs.property "version", (sub.version + "+" + minecraft_version)
         inputs.property "loader_version", loader_version
         inputs.property "minecraft_version", minecraft_version
 
         filesMatching("fabric.mod.json") {
-            expand "version": sub.version + "+" + minecraft_version,
+            expand "version": (sub.version + "+" + minecraft_version),
                     "loader_version": loader_version,
                     "minecraft_version": minecraft_version
         }
@@ -98,12 +111,9 @@ allprojects {
     remapJar {
         afterEvaluate {
             subprojects.each {
-                nestedJars.from project("$it.path").tasks.getByName("signRemapJar")
+                nestedJars.from project("$it.path").tasks.getByName('signRemapJar')
             }
         }
-    }
-
-    jar {
         destinationDirectory = file("$rootDir/build/libs/$minecraft_version/$mod_version")
     }
 
@@ -113,6 +123,12 @@ allprojects {
 
     sourcesJar {
         destinationDirectory = file("$rootDir/build/libs/$minecraft_version/$mod_version")
+    }
+
+    artifacts {
+        dev remapJar
+        dev javadocJar
+        dev sourcesJar
     }
 
     signing {
@@ -128,8 +144,8 @@ subprojects {
         archivesName = project.name
     }
 
-    apply plugin: "java-library"
-    apply plugin: "fabric-loom"
+    apply plugin: 'java-library'
+    apply plugin: 'fabric-loom'
     apply plugin: 'maven-publish'
     apply plugin: 'signing'
 
@@ -140,8 +156,8 @@ subprojects {
                     addPomMetadataInformation(project, pom)
                 }
 
-                artifact(jar) {
-                    builtBy jar
+                artifact(remapJar) {
+                    builtBy remapJar
                 }
 
                 artifact(remapSourcesJar) {
@@ -154,11 +170,22 @@ subprojects {
     }
 }
 
+dependencies {
+    afterEvaluate {
+        subprojects.each {
+            if (it.name.startsWith("creo")) {
+                dependencies.implementation project(path: ":$it.name", configuration: 'dev')
+                dependencies.include project(":$it.name")
+            }
+        }
+    }
+}
+
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            artifact(jar) {
-                builtBy jar
+            artifact(remapJar) {
+                builtBy remapJar
             }
 
             artifact(sourcesJar) {
@@ -170,13 +197,13 @@ publishing {
             pom.withXml {
                 addPomMetadataInformation(project, pom)
 
-                def depsNode = asNode().appendNode("dependencies")
+                def depsNode = asNode().appendNode('dependencies')
                 subprojects.each {
-                    def depNode = depsNode.appendNode("dependency")
-                    depNode.appendNode("groupId", it.group)
-                    depNode.appendNode("artifactId", it.name)
-                    depNode.appendNode("version", it.version)
-                    depNode.appendNode("scope", "compile")
+                    def depNode = depsNode.appendNode('dependency')
+                    depNode.appendNode('groupId', it.group)
+                    depNode.appendNode('artifactId', it.name)
+                    depNode.appendNode('version', it.version)
+                    depNode.appendNode('scope', 'compile')
                 }
             }
         }

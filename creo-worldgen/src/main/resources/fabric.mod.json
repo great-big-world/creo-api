@@ -8,11 +8,11 @@
     "creoii"
   ],
   "contact": {
-    "homepage": "https://www.creoii.dev",
+    "homepage": "https://www.creoii.dev/projects/creo-api/creo-worldgen",
     "sources": "https://github.com/great-big-world/creo-api/tree/master/creo-worldgen",
     "issues": "https://github.com/great-big-world/creo-api/issues"
   },
-  "license": "All-Rights-Reserved",
+  "license": "All Rights Reserved",
   "icon": "assets/creo-worldgen/icon.png",
   "environment": "*",
   "entrypoints": {
