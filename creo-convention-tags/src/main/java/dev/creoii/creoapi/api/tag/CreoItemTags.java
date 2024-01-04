@@ -60,14 +60,41 @@ public final class CreoItemTags {
      */
     public static final TagKey<Item> FUELS_FURNACE_MINECARTS = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "fuels_furnace_minecarts"));
 
+    /**
+     * Items which can be used to repair Leather equipment.
+     */
     public static final TagKey<Item> REPAIRS_LEATHER = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "repairs/leather"));
+    /**
+     * Items which can be used to repair Wooden equipment.
+     */
     public static final TagKey<Item> REPAIRS_WOOD = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "repairs/wood"));
+    /**
+     * Items which can be used to repair Chainmail equipment.
+     */
     public static final TagKey<Item> REPAIRS_CHAINMAIL = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "repairs/chainmail"));
+    /**
+     * Items which can be used to repair Stone equipment.
+     */
     public static final TagKey<Item> REPAIRS_STONE = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "repairs/stone"));
+    /**
+     * Items which can be used to repair Iron equipment.
+     */
     public static final TagKey<Item> REPAIRS_IRON = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "repairs/iron"));
+    /**
+     * Items which can be used to repair Golden equipment.
+     */
     public static final TagKey<Item> REPAIRS_GOLD = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "repairs/gold"));
+    /**
+     * Items which can be used to repair Diamond equipment.
+     */
     public static final TagKey<Item> REPAIRS_DIAMOND = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "repairs/diamond"));
+    /**
+     * Items which can be used to repair Netherite equipment.
+     */
     public static final TagKey<Item> REPAIRS_NETHERITE = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "repairs/netherite"));
+    /**
+     * Items which can be used to repair Turtle Helmets.
+     */
     public static final TagKey<Item> REPAIRS_TURTLE = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "repairs/turtle"));
 
     public static final TagKey<Item> BREEDS_SHEEP = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "breeds/sheep"));
@@ -91,38 +118,4 @@ public final class CreoItemTags {
     public static final TagKey<Item> BREEDS_WOLF = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "breeds/wolf"));
     public static final TagKey<Item> BREEDS_OCELOT = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "breeds/ocelot"));
     public static final TagKey<Item> BREEDS_HOGLIN = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "breeds/hoglin"));
-
-    public static final TagKey<Item> GEMS = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "gems"));
-    public static final TagKey<Item> RAW_METALS = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "raw_metals"));
-    public static final TagKey<Item> INGOTS = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "ingots"));
-    public static final TagKey<Item> NUGGETS = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "nuggets"));
-    public static final TagKey<Item> MINERALS = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "minerals"));
-    public static final TagKey<Item> FRUIT = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "fruit"));
-    public static final TagKey<Item> RAW_MEAT = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "raw_meat"));
-    public static final TagKey<Item> COOKED_MEAT = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "cooked_meat"));
-    public static final TagKey<Item> MEAT = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "meat"));
-    public static final TagKey<Item> SEEDS = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "seeds"));
-    public static final TagKey<Item> HELMETS = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "helmets"));
-    public static final TagKey<Item> CHESTPLATES = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "chestplates"));
-    public static final TagKey<Item> LEGGINGS = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "leggings"));
-    public static final TagKey<Item> BOOTS = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "boots"));
-    public static final TagKey<Item> ARMOR = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "armor"));
-    public static final TagKey<Item> WEAPONS = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "weapons"));
-    public static final TagKey<Item> RANGED_WEAPONS = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "ranged_weapons"));
-    public static final TagKey<Item> MELEE_WEAPONS = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "melee_weapons"));
-    public static final TagKey<Item> EQUIPMENT = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "equipment"));
-
-    public static final TagKey<Item> CONCRETE = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "concrete"));
-    public static final TagKey<Item> CONCRETE_POWDER = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "concrete_powder"));
-    public static final TagKey<Item> GLAZED_TERRACOTTA = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "glazed_terracotta"));
-    public static final TagKey<Item> STAINED_GLASS = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "stained_glass"));
-    public static final TagKey<Item> STAINED_GLASS_PANES = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "stained_glass_panes"));
-    public static final TagKey<Item> GLASS = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "glass"));
-    public static final TagKey<Item> GLASS_PANES = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "glass_panes"));
-    public static final TagKey<Item> SANDSTONE = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "sandstone"));
-    public static final TagKey<Item> RED_SANDSTONE = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "red_sandstone"));
-    public static final TagKey<Item> MINERAL_BLOCKS = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "mineral_blocks"));
-    public static final TagKey<Item> DEAD_CORAL_BLOCKS = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "dead_coral_blocks"));
-    public static final TagKey<Item> DEAD_CORAL_PLANTS = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "dead_coral_plants"));
-    public static final TagKey<Item> DEAD_CORALS = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "dead_corals"));
 }

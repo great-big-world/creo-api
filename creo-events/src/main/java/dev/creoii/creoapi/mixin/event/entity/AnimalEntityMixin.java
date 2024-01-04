@@ -33,9 +33,9 @@ public abstract class AnimalEntityMixin extends PassiveEntity {
         EntityEventImpl.applyAnimalPostBreedEvent(world, (AnimalEntity) (Object) this, other, baby, ci);
     }
 
-    @Inject(method = "interactMob", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/passive/AnimalEntity;growUp(IZ)V"), cancellable = true, locals = LocalCapture.CAPTURE_FAILSOFT)
-    private void creo_applyAnimalGrowUpEvent(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir, ItemStack itemStack, int i) {
-        EntityEventImpl.applyAnimalGrowUpEvent(player, (AnimalEntity) (Object) this, i, true, cir);
+    @Inject(method = "interactMob", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/passive/AnimalEntity;getBreedingAge()I", shift = At.Shift.BY, by = 2), cancellable = true, locals = LocalCapture.CAPTURE_FAILSOFT)
+    private void creo_applyAnimalEatEvent(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir, ItemStack itemStack, int i) {
+        EntityEventImpl.applyAnimalEatEvent(player, hand, itemStack, (AnimalEntity) (Object) this, i, true, cir);
     }
 
     @Inject(method = "interactMob", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/passive/AnimalEntity;lovePlayer(Lnet/minecraft/entity/player/PlayerEntity;)V"), cancellable = true, locals = LocalCapture.CAPTURE_FAILSOFT)

@@ -12,6 +12,7 @@
     "entity.EntityMixin",
     "entity.LivingEntityMixin",
     "entity.MobEntityMixin",
+    "entity.PassiveEntityMixin",
     "entity.PlayerEntityMixin",
     "entity.ProjectileEntityMixin",
     "entity.ServerPlayerEntityMixin",

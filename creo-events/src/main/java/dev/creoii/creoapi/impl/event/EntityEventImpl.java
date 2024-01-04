@@ -18,6 +18,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.structure.StructureStart;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
@@ -65,14 +66,14 @@ public final class EntityEventImpl {
     }
 
     public static void applyAnimalPreBreedEvent(ServerWorld world, AnimalEntity animal, AnimalEntity other, PassiveEntity baby, CallbackInfo ci) {
-        boolean result = AnimalEntityEvents.BREED_PRE.invoker().onBreed(world, animal, other, baby);
+        boolean result = AnimalEntityEvents.PRE_BREED.invoker().onBreed(world, animal, other, baby);
 
         if (!result)
             ci.cancel();
     }
 
     public static void applyAnimalPostBreedEvent(ServerWorld world, AnimalEntity animal, AnimalEntity other, PassiveEntity baby, CallbackInfo ci) {
-        AnimalEntityEvents.BREED_POST.invoker().onBreed(world, animal, other, baby);
+        AnimalEntityEvents.POST_BREED.invoker().onBreed(world, animal, other, baby);
     }
 
     public static void applyLivingEquipStackEvent(LivingEntity livingEntity, EquipmentSlot slot, ItemStack oldStack, ItemStack newStack, CallbackInfo ci) {
@@ -114,12 +115,8 @@ public final class EntityEventImpl {
             ci.cancel();
     }
 
-    public static void applyMobPreInitGoalsEvent(World world, MobEntity mob, GoalSelector goalSelector, GoalSelector targetSelector) {
-        MobEntityEvents.PRE_INIT_GOALS.invoker().onPreInitGoals(world, mob, goalSelector, targetSelector);
-    }
-
     public static void applyMobPostInitGoalsEvent(World world, MobEntity mob, GoalSelector goalSelector, GoalSelector targetSelector) {
-        MobEntityEvents.POST_INIT_GOALS.invoker().onPostInitGoals(world, mob, goalSelector, targetSelector);
+        MobEntityEvents.INIT_GOALS.invoker().onInitGoals(world, mob, goalSelector, targetSelector);
     }
 
     public static void applyEntityStruckByLightningEvent(ServerWorld serverWorld, Entity entity, LightningEntity lightning) {
@@ -137,17 +134,26 @@ public final class EntityEventImpl {
         PlayerEntityEvents.RESPAWN.invoker().onRespawn(player, alive);
     }
 
-    public static void applyAnimalGrowUpEvent(PlayerEntity player, PassiveEntity animal, int age, boolean overGrow, CallbackInfoReturnable<ActionResult> cir) {
-        boolean result = AnimalEntityEvents.GROW_UP.invoker().onGrowUp(player, animal, age, overGrow);
+    public static void applyAnimalEatEvent(PlayerEntity player, Hand hand, ItemStack food, AnimalEntity animal, int age, boolean overGrow, CallbackInfoReturnable<ActionResult> cir) {
+        boolean result = AnimalEntityEvents.EAT.invoker().onEat(player, hand, food, animal, age, overGrow);
 
         if (!result)
-            cir.setReturnValue(ActionResult.FAIL);
+            cir.setReturnValue(ActionResult.PASS);
+    }
+
+    public static void applyAnimalGrowUpEvent(PassiveEntity passive, int age, CallbackInfo ci) {
+        boolean result = AnimalEntityEvents.GROW_UP.invoker().onGrowUp(passive, age);
+
+        if (!result) {
+            passive.getDataTracker().set(PassiveEntity.CHILD, true);
+            ci.cancel();
+        }
     }
 
     public static void applyAnimalLoveEvent(PlayerEntity player, PassiveEntity animal, int age, boolean overGrow, CallbackInfoReturnable<ActionResult> cir) {
         boolean result = AnimalEntityEvents.LOVE.invoker().onLove(player, animal, age, overGrow);
 
         if (!result)
-            cir.setReturnValue(ActionResult.FAIL);
+            cir.setReturnValue(ActionResult.PASS);
     }
 }

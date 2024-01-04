@@ -14,9 +14,9 @@ import net.minecraft.world.World;
  */
 public class FishingEvents {
     public static final Event<Cast> CAST = EventFactory.createArrayBacked(Cast.class,
-            listeners -> (world, user, hand, fishingRod) -> {
+            listeners -> (world, user, hand, fishingRod, lure, luck) -> {
                 for (Cast event : listeners) {
-                    return event.onCast(world, user, hand, fishingRod);
+                    return event.onCast(world, user, hand, fishingRod, lure, luck);
                 }
 
                 return true;
@@ -24,9 +24,9 @@ public class FishingEvents {
     );
 
     public static final Event<Catch> CATCH = EventFactory.createArrayBacked(Catch.class,
-            listeners -> (world, user, hand, fishingRod, lure, luck) -> {
+            listeners -> (world, user, hand, fishingRod) -> {
                 for (Catch event : listeners) {
-                    return event.onCatch(world, user, hand, fishingRod, lure, luck);
+                    return event.onCatch(world, user, hand, fishingRod);
                 }
 
                 return true;
@@ -35,11 +35,11 @@ public class FishingEvents {
 
     @FunctionalInterface
     public interface Cast {
-        boolean onCast(World world, PlayerEntity user, Hand hand, ItemStack fishingRod);
+        boolean onCast(World world, PlayerEntity user, Hand hand, ItemStack fishingRod, int lure, int luck);
     }
 
     @FunctionalInterface
     public interface Catch {
-        boolean onCatch(World world, PlayerEntity user, Hand hand, ItemStack fishingRod, int lure, int luck);
+        boolean onCatch(World world, PlayerEntity user, Hand hand, ItemStack fishingRod);
     }
 }

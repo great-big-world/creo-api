@@ -20,9 +20,4 @@ public class BedBlockMixin {
     private void creo_applySleepExplodeEvent(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit, CallbackInfoReturnable<ActionResult> cir) {
         MiscEventImpl.applySleepExplodeEvent(state, world, pos, player, hand, hit, cir);
     }
-
-    @Inject(method = "onUse", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/BedBlock;wakeVillager(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;)Z"), cancellable = true)
-    private void creo_applySleepWakeVillagerEvent(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit, CallbackInfoReturnable<ActionResult> cir) {
-        MiscEventImpl.applySleepWakeVillagerEvent(state, world, pos, player, hand, hit, cir);
-    }
 }

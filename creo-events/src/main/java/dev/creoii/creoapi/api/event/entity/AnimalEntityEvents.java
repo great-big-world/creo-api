@@ -5,7 +5,9 @@ import net.fabricmc.fabric.api.event.EventFactory;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.Hand;
 
 /**
  * Events related to {@link AnimalEntity}.
@@ -14,7 +16,7 @@ public final class AnimalEntityEvents {
     /**
      * An event that is called when two animals have begun breeding, before a baby is born.
      */
-    public static final Event<PreBreed> BREED_PRE = EventFactory.createArrayBacked(PreBreed.class,
+    public static final Event<PreBreed> PRE_BREED = EventFactory.createArrayBacked(PreBreed.class,
             listeners -> (world, animal, other, baby) -> {
                 for (PreBreed event : listeners) {
                     return event.onBreed(world, animal, other, baby);
@@ -27,7 +29,7 @@ public final class AnimalEntityEvents {
     /**
      * An event that is called when two animals have finished breeding, after a baby is born.
      */
-    public static final Event<PostBreed> BREED_POST = EventFactory.createArrayBacked(PostBreed.class,
+    public static final Event<PostBreed> POST_BREED = EventFactory.createArrayBacked(PostBreed.class,
             listeners -> (world, animal, other, baby) -> {
                 for (PostBreed event : listeners) {
                     event.onBreed(world, animal, other, baby);
@@ -35,20 +37,30 @@ public final class AnimalEntityEvents {
             }
     );
 
-    public static final Event<GrowUp> GROW_UP = EventFactory.createArrayBacked(GrowUp.class,
-            listeners -> (player, animal, age, overGrow) -> {
-                for (GrowUp event : listeners) {
-                    return event.onGrowUp(player, animal, age, overGrow);
+    public static final Event<Eat> EAT = EventFactory.createArrayBacked(Eat.class,
+            listeners -> (player, hand, food, animal, age, overGrow) -> {
+                for (Eat event : listeners) {
+                    return event.onEat(player, hand, food, animal, age, overGrow);
                 }
 
                 return true;
             }
     );
 
+    public static final Event<GrowUp> GROW_UP = EventFactory.createArrayBacked(GrowUp.class,
+            listeners -> (passive, age) -> {
+                for (GrowUp event : listeners) {
+                    return event.onGrowUp(passive, age);
+                }
+
+                return age >= 0;
+            }
+    );
+
     public static final Event<Love> LOVE = EventFactory.createArrayBacked(Love.class,
-            listeners -> (player, animal, age, overGrow) -> {
+            listeners -> (player, passive, age, overGrow) -> {
                 for (Love event : listeners) {
-                    return event.onLove(player, animal, age, overGrow);
+                    return event.onLove(player, passive, age, overGrow);
                 }
 
                 return true;
@@ -84,8 +96,13 @@ public final class AnimalEntityEvents {
     }
 
     @FunctionalInterface
+    public interface Eat {
+        boolean onEat(PlayerEntity player, Hand hand, ItemStack food, AnimalEntity animal, int age, boolean overGrow);
+    }
+
+    @FunctionalInterface
     public interface GrowUp {
-        boolean onGrowUp(PlayerEntity player, PassiveEntity animal, int age, boolean overGrow);
+        boolean onGrowUp(PassiveEntity passive, int age);
     }
 
     @FunctionalInterface

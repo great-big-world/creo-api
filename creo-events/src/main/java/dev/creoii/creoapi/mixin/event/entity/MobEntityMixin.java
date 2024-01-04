@@ -21,7 +21,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(MobEntity.class)
 public class MobEntityMixin {
     @Shadow @Final protected GoalSelector goalSelector;
-
     @Shadow @Final protected GoalSelector targetSelector;
 
     @Inject(method = "initialize", at = @At("HEAD"), cancellable = true)
@@ -29,12 +28,7 @@ public class MobEntityMixin {
         EntityEventImpl.applyMobInitializeEvent(world, (MobEntity) (Object) this, difficulty, spawnReason, entityData, entityNbt, cir);
     }
 
-    @Inject(method = "initGoals", at = @At("HEAD"), cancellable = true)
-    private void creo_mobInitGoalsPreCallback(CallbackInfo ci) {
-        EntityEventImpl.applyMobPreInitGoalsEvent(((MobEntity) (Object) this).getWorld(), (MobEntity) (Object) this, goalSelector, targetSelector);
-    }
-
-    @Inject(method = "<init>", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/mob/MobEntity;initGoals()V", shift = At.Shift.AFTER), cancellable = true)
+    @Inject(method = "<init>(Lnet/minecraft/entity/EntityType;Lnet/minecraft/world/World;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/mob/MobEntity;initGoals()V", shift = At.Shift.BY, by = 2))
     private void creo_mobInitGoalsPostCallback(EntityType<?> entityType, World world, CallbackInfo ci) {
         EntityEventImpl.applyMobPostInitGoalsEvent(world, (MobEntity) (Object) this, goalSelector, targetSelector);
     }

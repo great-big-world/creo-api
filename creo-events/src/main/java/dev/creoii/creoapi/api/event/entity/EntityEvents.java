@@ -115,6 +115,15 @@ public final class EntityEvents {
 
     @FunctionalInterface
     public interface ChangeDimension {
+        /**
+         * Called on the server for non-player entities when changing dimensions.
+         * @param world the world
+         * @param destination the destination world
+         * @param entity the entity changing dimension
+         * @param copy the copy of that entity in the destination world
+         * @param teleportTarget the teleport target information
+         * @return true to change dimensions or false to cancel the change
+         */
         boolean onChangeDimension(World world, World destination, Entity entity, Entity copy, TeleportTarget teleportTarget);
     }
 }

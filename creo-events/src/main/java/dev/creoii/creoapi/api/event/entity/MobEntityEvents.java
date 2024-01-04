@@ -35,18 +35,10 @@ public final class MobEntityEvents {
             }
     );
 
-    public static final Event<PreInitGoals> PRE_INIT_GOALS = EventFactory.createArrayBacked(PreInitGoals.class,
+    public static final Event<InitGoals> INIT_GOALS = EventFactory.createArrayBacked(InitGoals.class,
             listeners -> (world, mob, goalSelector, targetSelector) -> {
-                for (PreInitGoals event : listeners) {
-                    event.onPreInitGoals(world, mob, goalSelector, targetSelector);
-                }
-            }
-    );
-
-    public static final Event<PostInitGoals> POST_INIT_GOALS = EventFactory.createArrayBacked(PostInitGoals.class,
-            listeners -> (world, mob, goalSelector, targetSelector) -> {
-                for (PostInitGoals event : listeners) {
-                    event.onPostInitGoals(world, mob, goalSelector, targetSelector);
+                for (InitGoals event : listeners) {
+                    event.onInitGoals(world, mob, goalSelector, targetSelector);
                 }
             }
     );
@@ -69,12 +61,7 @@ public final class MobEntityEvents {
     }
 
     @FunctionalInterface
-    public interface PreInitGoals {
-        void onPreInitGoals(World world, MobEntity mob, GoalSelector goalSelector, GoalSelector targetSelector);
-    }
-
-    @FunctionalInterface
-    public interface PostInitGoals {
-        void onPostInitGoals(World world, MobEntity mob, GoalSelector goalSelector, GoalSelector targetSelector);
+    public interface InitGoals {
+        void onInitGoals(World world, MobEntity mob, GoalSelector goalSelector, GoalSelector targetSelector);
     }
 }

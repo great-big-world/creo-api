@@ -5,8 +5,6 @@ import dev.creoii.creoapi.api.event.misc.FishingEvents;
 import dev.creoii.creoapi.api.event.misc.SleepEvents;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
@@ -15,35 +13,27 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.Unit;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 public class MiscEventImpl {
-    public static void applyFishingRodCastEvent(World world, PlayerEntity user, Hand hand, ItemStack itemStack, CallbackInfoReturnable<TypedActionResult<ItemStack>> cir) {
-        boolean result = FishingEvents.CAST.invoker().onCast(world, user, hand, itemStack);
+    public static void applyFishingRodCastEvent(World world, PlayerEntity user, Hand hand, ItemStack itemStack, int lure, int luck, CallbackInfoReturnable<TypedActionResult<ItemStack>> cir) {
+        boolean result = FishingEvents.CAST.invoker().onCast(world, user, hand, itemStack, lure, luck);
 
         if (!result)
-            cir.setReturnValue(TypedActionResult.fail(itemStack));
+            cir.setReturnValue(TypedActionResult.pass(itemStack));
     }
 
-    public static void applyFishingRodCatchEvent(World world, PlayerEntity user, Hand hand, ItemStack itemStack, int lure, int luck, CallbackInfoReturnable<TypedActionResult<ItemStack>> cir) {
-        boolean result = FishingEvents.CATCH.invoker().onCatch(world, user, hand, itemStack, lure, luck);
+    public static void applyFishingRodCatchEvent(World world, PlayerEntity user, Hand hand, ItemStack itemStack, CallbackInfoReturnable<TypedActionResult<ItemStack>> cir) {
+        boolean result = FishingEvents.CATCH.invoker().onCatch(world, user, hand, itemStack);
 
         if (!result)
-            cir.setReturnValue(TypedActionResult.fail(itemStack));
+            cir.setReturnValue(TypedActionResult.pass(itemStack));
     }
 
     public static void applySleepExplodeEvent(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit, CallbackInfoReturnable<ActionResult> cir) {
         boolean result = SleepEvents.EXPLODE.invoker().onExplode(state, world, pos, player, hand, hit);
-
-        if (!result)
-            cir.setReturnValue(ActionResult.FAIL);
-    }
-
-    public static void applySleepWakeVillagerEvent(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit, CallbackInfoReturnable<ActionResult> cir) {
-        boolean result = SleepEvents.WAKE_VILLAGER.invoker().onWakeVillager(state, world, pos, player, hand, hit, world.getEntitiesByClass(VillagerEntity.class, new Box(pos), LivingEntity::isSleeping));
 
         if (!result)
             cir.setReturnValue(ActionResult.FAIL);

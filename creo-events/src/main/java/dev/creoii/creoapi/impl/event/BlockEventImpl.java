@@ -36,8 +36,15 @@ public final class BlockEventImpl {
             cir.setReturnValue(oldState);
     }
 
-    public static void applyCropGrowEvent(World world, BlockPos pos, BlockState state, BlockState growState, int age, CallbackInfo ci) {
-        boolean result = CropEvents.GROW.invoker().onGrow(world, pos, state, growState, age);
+    public static void applyCropGrowEvent(World world, BlockPos pos, BlockState state, BlockState growState, int age, float moisture, CallbackInfoReturnable<Boolean> cir) {
+        boolean result = CropEvents.GROW.invoker().onGrow(world, pos, state, growState, age, moisture);
+
+        if (!result)
+            cir.setReturnValue(false);
+    }
+
+    public static void applyCropGrowRandomEvent(World world, BlockPos pos, BlockState state, BlockState growState, int age, float moisture, CallbackInfo ci) {
+        boolean result = CropEvents.GROW.invoker().onGrow(world, pos, state, growState, age, moisture);
 
         if (!result)
             ci.cancel();
