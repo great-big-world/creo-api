@@ -6,3 +6,5 @@ accessible method net/minecraft/entity/LivingEntity onStatusEffectRemoved (Lnet/
 accessible field net/minecraft/screen/GrindstoneScreenHandler context Lnet/minecraft/screen/ScreenHandlerContext;
 accessible field net/minecraft/screen/GrindstoneScreenHandler result Lnet/minecraft/inventory/Inventory;
 accessible field net/minecraft/screen/GrindstoneScreenHandler input Lnet/minecraft/inventory/Inventory;
+mutable field net/minecraft/item/ArmorMaterials repairIngredientSupplier Lnet/minecraft/util/Lazy;
+mutable field net/minecraft/item/ToolMaterials repairIngredient Lnet/minecraft/util/Lazy;

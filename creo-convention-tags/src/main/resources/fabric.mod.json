@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "creo-worldgen",
+  "id": "creo-convention-tags",
   "version": "${version}",
   "name": "Creo Convention Tags",
   "description": "Many new tags bringing easy functionality to blocks, items, entity types, biomes, and more.",
@@ -15,7 +15,11 @@
   "license": "All-Rights-Reserved",
   "icon": "assets/creo-convention-tags/icon.png",
   "environment": "*",
-  "entrypoints": {},
+  "entrypoints": {
+    "main": [
+      "dev.creoii.creoapi.api.tag.CreoConventionTags"
+    ]
+  },
   "accessWidener": "creo-convention-tags.accesswidener",
   "mixins": [
     "creo-convention-tags.mixins.json"

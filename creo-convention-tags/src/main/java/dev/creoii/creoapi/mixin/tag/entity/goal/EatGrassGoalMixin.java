@@ -16,10 +16,10 @@ import java.util.function.Predicate;
 
 @Mixin(EatGrassGoal.class)
 public class EatGrassGoalMixin {
-    @Mutable @Shadow @Final private static Predicate<BlockState> GRASS_PREDICATE;
+    @Mutable @Shadow @Final private static Predicate<BlockState> SHORT_GRASS_PREDICATE;
 
     @Inject(method = "<clinit>", at = @At("TAIL"))
     private static void creo_applyEatenBySheep(CallbackInfo ci) {
-        BlockTagImpl.applyEatenBySheep(() -> GRASS_PREDICATE = state -> state.isIn(CreoBlockTags.EATEN_BY_SHEEP));
+        BlockTagImpl.applyEatenBySheep(() -> SHORT_GRASS_PREDICATE = state -> state.isIn(CreoBlockTags.EATEN_BY_SHEEP));
     }
 }
