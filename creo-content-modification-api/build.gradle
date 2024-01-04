@@ -1,6 +1,3 @@
-version = project.mod_version
-archivesBaseName = project.archives_base_name
-
 loom {
     accessWidenerPath = file("src/main/resources/creo-content-modification-api.accesswidener")
 }

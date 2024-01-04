@@ -209,11 +209,11 @@ public class EventsTest implements ModInitializer {
         }
 
         if (testBlockPlaceEvent) {
-            BlockEvents.PLACE.register((block, context) -> {
+            BlockEvents.PLACE.register((state, context) -> {
                 System.out.println("Block Place:");
-                System.out.println("    block=" + block.getTranslationKey());
+                System.out.println("    block=" + state.getBlock().getTranslationKey());
 
-                return block != Blocks.STONE;
+                return state.getBlock() != Blocks.STONE;
             });
         }
 
