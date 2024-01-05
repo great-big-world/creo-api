@@ -10,6 +10,9 @@ import net.minecraft.world.World;
  * Events related to {@link net.minecraft.block.CropBlock}.
  */
 public final class CropEvents {
+    /**
+     * An event called when a {@link net.minecraft.block.CropBlock} grows naturally or when bone-mealed.
+     */
     public static final Event<Grow> GROW = EventFactory.createArrayBacked(Grow.class,
             listeners -> (world, pos, state, growState, age, moisture) -> {
                 for (Grow event : listeners) {
@@ -23,6 +26,7 @@ public final class CropEvents {
     @FunctionalInterface
     public interface Grow {
         /**
+         * Called when a {@link net.minecraft.block.CropBlock} grows naturally or when bone-mealed.
          * @param world the world
          * @param pos the block pos
          * @param state the blockstate

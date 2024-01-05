@@ -11,6 +11,9 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 
+/**
+ * General-purpose Creo-provided extensions for Block subclasses.
+ */
 public interface CreoBlock {
     /**
      * Called when an entity is looking at the block.

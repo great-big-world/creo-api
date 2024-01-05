@@ -21,6 +21,9 @@ public final class PlayerEntityEvents {
             }
     );
 
+    /**
+     * An event called server-side when a {@link PlayerEntity} respawns.
+     */
     public static final Event<Respawn> RESPAWN = EventFactory.createArrayBacked(Respawn.class,
             listeners -> (player, alive) -> {
                 for (Respawn event : listeners) {

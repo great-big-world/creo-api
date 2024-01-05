@@ -28,7 +28,7 @@ public class MiscEventImpl {
     }
 
     public static void applyFishingRodCatchEvent(World world, PlayerEntity user, Hand hand, ItemStack itemStack, CallbackInfoReturnable<TypedActionResult<ItemStack>> cir) {
-        boolean result = FishingEvents.CATCH.invoker().onCatch(world, user, hand, itemStack);
+        boolean result = FishingEvents.REELED_IN.invoker().onReeledIn(world, user, hand, itemStack);
 
         if (!result)
             cir.setReturnValue(TypedActionResult.pass(itemStack));

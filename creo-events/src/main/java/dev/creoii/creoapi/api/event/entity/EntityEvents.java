@@ -39,6 +39,9 @@ public final class EntityEvents {
             }
     );
 
+    /**
+     * An event that is called when an entity's dataTracker is initialized.
+     */
     public static final Event<DataTrack> DATA_TRACK = EventFactory.createArrayBacked(DataTrack.class,
             listeners -> (entity, dataTracker) -> {
                 for (DataTrack event : listeners) {
@@ -47,6 +50,9 @@ public final class EntityEvents {
             }
     );
 
+    /**
+     * An event that is called when an entity's custom nbt data is written.
+     */
     public static final Event<WriteNbt> WRITE_NBT = EventFactory.createArrayBacked(WriteNbt.class,
             listeners -> (entity, nbt) -> {
                 for (WriteNbt event : listeners) {
@@ -55,6 +61,9 @@ public final class EntityEvents {
             }
     );
 
+    /**
+     * An event that is called when an entity is struck by a {@link LightningEntity}.
+     */
     public static final Event<StruckByLightning> STRUCK_BY_LIGHTNING = EventFactory.createArrayBacked(StruckByLightning.class,
             listeners -> (serverWorld, entity, lightning) -> {
                 for (StruckByLightning event : listeners) {
@@ -63,6 +72,9 @@ public final class EntityEvents {
             }
     );
 
+    /**
+     * An event that is called when an entity moves to another dimension. This is not called for players.
+     */
     public static final Event<ChangeDimension> CHANGE_DIMENSION = EventFactory.createArrayBacked(ChangeDimension.class,
             listeners -> (world, destination, entity, copy, teleportTarget) -> {
                 for (ChangeDimension event : listeners) {
@@ -100,16 +112,32 @@ public final class EntityEvents {
 
     @FunctionalInterface
     public interface DataTrack {
+        /**
+         * Called when an entity's dataTracker is initialized.
+         * @param entity the entity
+         * @param dataTracker the entity's data tracker
+         */
         void onDataTrack(Entity entity, DataTracker dataTracker);
     }
 
     @FunctionalInterface
     public interface WriteNbt {
+        /**
+         * Called when an entity's custom nbt data is written.
+         * @param entity the entity
+         * @param nbt the entity's nbt data
+         */
         void onWriteNbt(Entity entity, NbtCompound nbt);
     }
 
     @FunctionalInterface
     public interface StruckByLightning {
+        /**
+         * Called when an entity is struck by a {@link LightningEntity}.
+         * @param serverWorld the world
+         * @param entity the entity
+         * @param lightning the lightning bolt
+         */
         void onStruckByLightning(ServerWorld serverWorld, Entity entity, LightningEntity lightning);
     }
 

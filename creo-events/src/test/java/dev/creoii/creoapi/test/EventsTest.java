@@ -398,7 +398,7 @@ public class EventsTest implements ModInitializer {
         }
 
         if (testFishingCatchEvent) {
-            FishingEvents.CATCH.register((world, user, hand, fishingRod) -> {
+            FishingEvents.REELED_IN.register((world, user, hand, fishingRod) -> {
                 System.out.println("Fishing Catch:");
                 System.out.println("    world=" + world.getDimensionKey().toString());
                 System.out.println("    user=" + user.getDisplayName().getString());

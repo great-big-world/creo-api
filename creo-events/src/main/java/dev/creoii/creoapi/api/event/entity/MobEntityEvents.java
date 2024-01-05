@@ -35,6 +35,11 @@ public final class MobEntityEvents {
             }
     );
 
+    /**
+     * An event called when a {@link MobEntity} has its goalSelector and targetSelector initialized,
+     * allowing you to add custom goals.
+     * @see GoalSelector
+     */
     public static final Event<InitGoals> INIT_GOALS = EventFactory.createArrayBacked(InitGoals.class,
             listeners -> (world, mob, goalSelector, targetSelector) -> {
                 for (InitGoals event : listeners) {
@@ -62,6 +67,13 @@ public final class MobEntityEvents {
 
     @FunctionalInterface
     public interface InitGoals {
+        /**
+         * Called when a {@link MobEntity} has its goalSelector and targetSelector initialized
+         * @param world the world
+         * @param mob the mob
+         * @param goalSelector the mob's goal selector
+         * @param targetSelector the mob's target selector
+         */
         void onInitGoals(World world, MobEntity mob, GoalSelector goalSelector, GoalSelector targetSelector);
     }
 }

@@ -37,6 +37,9 @@ public final class AnimalEntityEvents {
             }
     );
 
+    /**
+     * An event that is called when an animal is fed food.
+     */
     public static final Event<Eat> EAT = EventFactory.createArrayBacked(Eat.class,
             listeners -> (player, hand, food, animal, age, overGrow) -> {
                 for (Eat event : listeners) {
@@ -47,6 +50,9 @@ public final class AnimalEntityEvents {
             }
     );
 
+    /**
+     * An event that is called when a baby animal grows up.
+     */
     public static final Event<GrowUp> GROW_UP = EventFactory.createArrayBacked(GrowUp.class,
             listeners -> (passive, age) -> {
                 for (GrowUp event : listeners) {
@@ -57,6 +63,9 @@ public final class AnimalEntityEvents {
             }
     );
 
+    /**
+     * An event that is called when two animals have begun breeding, when they spawn heart particles.
+     */
     public static final Event<Love> LOVE = EventFactory.createArrayBacked(Love.class,
             listeners -> (player, passive, age, overGrow) -> {
                 for (Love event : listeners) {
