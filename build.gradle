@@ -108,10 +108,14 @@ allprojects {
         }
     }
 
+    jar {
+        destinationDirectory = file("$rootDir/build/libs/$minecraft_version/$mod_version")
+    }
+
     remapJar {
         afterEvaluate {
             subprojects.each {
-                nestedJars.from project("$it.path").tasks.getByName('signRemapJar')
+                nestedJars.from project("$it.path").tasks.getByName('remapJar')
             }
         }
         destinationDirectory = file("$rootDir/build/libs/$minecraft_version/$mod_version")
@@ -194,9 +198,11 @@ publishing {
 
             artifact javadocJar
 
-            pom.withXml {
+            pom {
                 addPomMetadataInformation(project, pom)
+            }
 
+            pom.withXml {
                 def depsNode = asNode().appendNode('dependencies')
                 subprojects.each {
                     def depNode = depsNode.appendNode('dependency')
