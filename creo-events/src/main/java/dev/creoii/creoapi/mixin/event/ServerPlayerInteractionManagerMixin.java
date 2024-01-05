@@ -1,5 +1,6 @@
 package dev.creoii.creoapi.mixin.event;
 
+import com.llamalad7.mixinextras.sugar.Local;
 import dev.creoii.creoapi.impl.event.BlockEventImpl;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -21,8 +22,8 @@ public class ServerPlayerInteractionManagerMixin {
     @Shadow protected ServerWorld world;
     @Shadow @Final protected ServerPlayerEntity player;
 
-    @Inject(method = "tryBreakBlock", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/Block;onBreak(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Lnet/minecraft/entity/player/PlayerEntity;)Lnet/minecraft/block/BlockState;"), cancellable = true, locals = LocalCapture.CAPTURE_FAILSOFT)
-    private void creo_applyBlockBreakEvent(BlockPos pos, CallbackInfoReturnable<Boolean> cir, BlockEntity blockEntity, Block block, BlockState blockState) {
+    @Inject(method = "tryBreakBlock", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/Block;onBreak(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Lnet/minecraft/entity/player/PlayerEntity;)Lnet/minecraft/block/BlockState;"), cancellable = true)
+    private void creo_applyBlockBreakEvent(BlockPos pos, CallbackInfoReturnable<Boolean> cir, @Local BlockState blockState) {
         BlockEventImpl.applyBlockBreakEvent(world, player, blockState, pos, cir);
     }
 }

@@ -1,5 +1,6 @@
 package dev.creoii.creoapi.mixin.tag.block.entity;
 
+import com.llamalad7.mixinextras.sugar.Local;
 import dev.creoii.creoapi.impl.tag.BlockTagImpl;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.ConduitBlockEntity;
@@ -16,8 +17,8 @@ import java.util.List;
 
 @Mixin(ConduitBlockEntity.class)
 public class ConduitBlockEntityMixin {
-    @Inject(method = "updateActivatingBlocks", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;getBlockState(Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/block/BlockState;", shift = At.Shift.BY, by = 2), locals = LocalCapture.CAPTURE_FAILSOFT)
-    private static void creo_applyConduitFrameBaseBlocks(World world, BlockPos pos, List<BlockPos> activatingBlocks, CallbackInfoReturnable<Boolean> cir, int i, int j, int k, int l, int m, int n, BlockPos blockPos2, BlockState blockState) {
+    @Inject(method = "updateActivatingBlocks", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;getBlockState(Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/block/BlockState;", shift = At.Shift.BY, by = 2))
+    private static void creo_applyConduitFrameBaseBlocks(World world, BlockPos pos, List<BlockPos> activatingBlocks, CallbackInfoReturnable<Boolean> cir, @Local(ordinal = 1) BlockPos blockPos2, @Local BlockState blockState) {
         BlockTagImpl.applyConduitFrameBaseBlocks(blockState, blockPos2, activatingBlocks);
     }
 

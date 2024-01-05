@@ -1,5 +1,6 @@
 package dev.creoii.creoapi.mixin.event.block;
 
+import com.llamalad7.mixinextras.sugar.Local;
 import dev.creoii.creoapi.impl.event.BlockEventImpl;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -27,15 +28,15 @@ public abstract class CropBlockMixin {
         return 0;
     }
 
-    @Inject(method = "canGrow", at = @At("HEAD"), locals = LocalCapture.CAPTURE_FAILSOFT, cancellable = true)
+    @Inject(method = "canGrow", at = @At("HEAD"), cancellable = true)
     private void creo_applyCropGrowBonemealEvent(World world, Random random, BlockPos pos, BlockState state, CallbackInfoReturnable<Boolean> cir) {
         int i = getAge(state) + getGrowthAmount(world);
         float f = getAvailableMoisture((CropBlock) (Object) this, world, pos);
         BlockEventImpl.applyCropGrowEvent(world, pos, state, withAge(i), i, f, cir);
     }
 
-    @Inject(method = "randomTick", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/world/ServerWorld;setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)Z"), locals = LocalCapture.CAPTURE_FAILSOFT, cancellable = true)
-    private void creo_applyCropGrowRandomEvent(BlockState state, ServerWorld world, BlockPos pos, Random random, CallbackInfo ci, int i, float f) {
+    @Inject(method = "randomTick", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/world/ServerWorld;setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)Z"), cancellable = true)
+    private void creo_applyCropGrowRandomEvent(BlockState state, ServerWorld world, BlockPos pos, Random random, CallbackInfo ci, @Local int i, @Local float f) {
         BlockEventImpl.applyCropGrowRandomEvent(world, pos, state, withAge(i), i, f, ci);
     }
 }

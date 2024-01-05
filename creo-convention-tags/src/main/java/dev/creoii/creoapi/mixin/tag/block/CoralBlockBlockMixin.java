@@ -1,5 +1,6 @@
 package dev.creoii.creoapi.mixin.tag.block;
 
+import com.llamalad7.mixinextras.sugar.Local;
 import dev.creoii.creoapi.impl.tag.BlockTagImpl;
 import net.minecraft.block.CoralBlockBlock;
 import net.minecraft.fluid.FluidState;
@@ -14,8 +15,8 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(CoralBlockBlock.class)
 public class CoralBlockBlockMixin {
-    @Inject(method = "isInWater", at = @At(value = "RETURN", ordinal = 0), cancellable = true, locals = LocalCapture.CAPTURE_FAILSOFT)
-    private void creo_keepCoralAlive(BlockView world, BlockPos pos, CallbackInfoReturnable<Boolean> cir, Direction[] var3, int var4, int var5, Direction direction, FluidState fluidState) {
+    @Inject(method = "isInWater", at = @At(value = "RETURN", ordinal = 0), cancellable = true)
+    private void creo_keepCoralAlive(BlockView world, BlockPos pos, CallbackInfoReturnable<Boolean> cir, @Local Direction direction) {
         BlockTagImpl.applyKeepsCoralAlive(world, pos, direction, cir);
     }
 }

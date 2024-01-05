@@ -35,9 +35,4 @@ public abstract class AbstractFurnaceScreenHandlerMixin extends AbstractRecipeSc
     private void creo_applyItemRequiredFuels(ItemStack itemStack, CallbackInfoReturnable<Boolean> cir) {
         RequiredFuelsImpl.applySmeltable(itemStack, inventory, cir);
     }
-
-    @Unique
-    private boolean isRequiredFuel(RegistryEntryList<Item> items, ItemStack fuel) {
-        return items.contains(fuel.getRegistryEntry());
-    }
 }

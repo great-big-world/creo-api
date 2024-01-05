@@ -1,5 +1,6 @@
 package dev.creoii.creoapi.mixin.event.entity;
 
+import com.llamalad7.mixinextras.sugar.Local;
 import dev.creoii.creoapi.impl.event.EntityEventImpl;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.AnimalEntity;
@@ -33,13 +34,13 @@ public abstract class AnimalEntityMixin extends PassiveEntity {
         EntityEventImpl.applyAnimalPostBreedEvent(world, (AnimalEntity) (Object) this, other, baby, ci);
     }
 
-    @Inject(method = "interactMob", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/passive/AnimalEntity;getBreedingAge()I", shift = At.Shift.BY, by = 2), cancellable = true, locals = LocalCapture.CAPTURE_FAILSOFT)
-    private void creo_applyAnimalEatEvent(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir, ItemStack itemStack, int i) {
+    @Inject(method = "interactMob", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/passive/AnimalEntity;getBreedingAge()I", shift = At.Shift.BY, by = 2), cancellable = true)
+    private void creo_applyAnimalEatEvent(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir, @Local ItemStack itemStack, @Local int i) {
         EntityEventImpl.applyAnimalEatEvent(player, hand, itemStack, (AnimalEntity) (Object) this, i, true, cir);
     }
 
-    @Inject(method = "interactMob", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/passive/AnimalEntity;lovePlayer(Lnet/minecraft/entity/player/PlayerEntity;)V"), cancellable = true, locals = LocalCapture.CAPTURE_FAILSOFT)
-    private void creo_applyAnimalLoveEvent(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir, ItemStack itemStack, int i) {
+    @Inject(method = "interactMob", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/passive/AnimalEntity;lovePlayer(Lnet/minecraft/entity/player/PlayerEntity;)V"), cancellable = true)
+    private void creo_applyAnimalLoveEvent(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir, @Local ItemStack itemStack, @Local int i) {
         EntityEventImpl.applyAnimalLoveEvent(player, (AnimalEntity) (Object) this, i, true, cir);
     }
 }

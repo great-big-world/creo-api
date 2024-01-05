@@ -1,5 +1,6 @@
 package dev.creoii.creoapi.mixin.event.entity;
 
+import com.llamalad7.mixinextras.sugar.Local;
 import dev.creoii.creoapi.impl.event.EntityEventImpl;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
@@ -23,8 +24,8 @@ public class LivingEntityMixin {
         EntityEventImpl.applyLivingEquipStackEvent((LivingEntity) (Object) this, slot, oldStack, newStack, ci);
     }
 
-    @Inject(method = "dropLoot", at = @At(value = "INVOKE", target = "Lnet/minecraft/loot/LootTable;generateLoot(Lnet/minecraft/loot/context/LootContextParameterSet;JLjava/util/function/Consumer;)V"), cancellable = true, locals = LocalCapture.CAPTURE_FAILSOFT)
-    private void creo_livingDropLootCallback(DamageSource damageSource, boolean causedByPlayer, CallbackInfo ci, Identifier identifier, LootTable lootTable, LootContextParameterSet.Builder builder, LootContextParameterSet lootContextParameterSet) {
+    @Inject(method = "dropLoot", at = @At(value = "INVOKE", target = "Lnet/minecraft/loot/LootTable;generateLoot(Lnet/minecraft/loot/context/LootContextParameterSet;JLjava/util/function/Consumer;)V"), cancellable = true)
+    private void creo_livingDropLootCallback(DamageSource damageSource, boolean causedByPlayer, CallbackInfo ci, @Local Identifier identifier, @Local LootTable lootTable, @Local LootContextParameterSet.Builder builder, @Local LootContextParameterSet lootContextParameterSet) {
         EntityEventImpl.applyLivingDropLootEvent((LivingEntity) (Object) this, identifier, lootTable, damageSource, lootContextParameterSet, causedByPlayer, ci);
     }
 

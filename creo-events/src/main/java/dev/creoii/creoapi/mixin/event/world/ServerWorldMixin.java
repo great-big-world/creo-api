@@ -1,5 +1,6 @@
 package dev.creoii.creoapi.mixin.event.world;
 
+import com.llamalad7.mixinextras.sugar.Local;
 import dev.creoii.creoapi.impl.event.EntityEventImpl;
 import dev.creoii.creoapi.impl.event.WorldEventImpl;
 import net.minecraft.entity.Entity;
@@ -24,8 +25,8 @@ public class ServerWorldMixin {
         EntityEventImpl.applyEntitySpawnEvent((ServerWorld) (Object) this, entity, cir);
     }
 
-    @Inject(method = "createExplosion", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/explosion/Explosion;shouldDestroy()Z"), cancellable = true, locals = LocalCapture.CAPTURE_FAILSOFT)
-    private void creo_cancelWorldExplodeEvent(Entity entity, DamageSource damageSource, ExplosionBehavior behavior, double x, double y, double z, float power, boolean createFire, World.ExplosionSourceType explosionSourceType, ParticleEffect particle, ParticleEffect emitterParticle, SoundEvent soundEvent, CallbackInfoReturnable<Explosion> cir, Explosion explosion) {
+    @Inject(method = "createExplosion", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/explosion/Explosion;shouldDestroy()Z"), cancellable = true)
+    private void creo_cancelWorldExplodeEvent(Entity entity, DamageSource damageSource, ExplosionBehavior behavior, double x, double y, double z, float power, boolean createFire, World.ExplosionSourceType explosionSourceType, ParticleEffect particle, ParticleEffect emitterParticle, SoundEvent soundEvent, CallbackInfoReturnable<Explosion> cir, @Local Explosion explosion) {
         WorldEventImpl.cancelWorldExplodeEvent(explosion, cir);
     }
 
