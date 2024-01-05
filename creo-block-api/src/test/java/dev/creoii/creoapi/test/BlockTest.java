@@ -7,11 +7,18 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.Entity;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.structure.StructurePlacementData;
+import net.minecraft.structure.StructureTemplate;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
+import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -29,8 +36,13 @@ public class BlockTest implements ModInitializer {
         }
 
         @Override
-        public void onLookAt(World world, BlockState state, BlockHitResult hitResult, Entity looker, double squaredDistance) {
+        public void onLookedAt(World world, BlockState state, BlockHitResult hitResult, Entity looker, double squaredDistance) {
             System.out.println("Looker: " + looker.getType().getTranslationKey());
+        }
+
+        @Override
+        public void onPlacedByStructure(ServerWorldAccess world, BlockPos pos, BlockState state, FluidState fluidState, Random random, BlockPos pivot, StructureTemplate structureTemplate, StructurePlacementData placementData, StructureTemplate.StructureBlockInfo structureBlockInfo) {
+            System.out.println("block " + world.getBlockState(pos).getBlock().getTranslationKey() + " placed by structure at " + pos.toShortString());
         }
     }
 

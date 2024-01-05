@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:jigsaw",
+  "biomes": "#minecraft:has_structure/ancient_city",
+  "max_distance_from_center": 116,
+  "size": 1,
+  "spawn_overrides": {},
+  "start_height": {
+    "absolute": -20
+  },
+  "start_jigsaw_name": "test:test",
+  "start_pool": "test:test",
+  "step": "underground_decoration",
+  "terrain_adaptation": "beard_box",
+  "use_expansion_hack": false
+}

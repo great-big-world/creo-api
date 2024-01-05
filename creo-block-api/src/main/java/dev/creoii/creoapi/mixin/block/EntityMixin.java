@@ -11,6 +11,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class EntityMixin {
     @Inject(method = "baseTick", at = @At("TAIL"))
     private void creo_lookAtBlock(CallbackInfo ci) {
-        BlockImpl.lookAtBlock((Entity) (Object) this);
+        BlockImpl.applyLookAtBlock((Entity) (Object) this);
     }
 }
