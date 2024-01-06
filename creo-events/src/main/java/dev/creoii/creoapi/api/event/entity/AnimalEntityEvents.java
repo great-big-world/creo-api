@@ -64,7 +64,7 @@ public final class AnimalEntityEvents {
     );
 
     /**
-     * An event that is called when two animals have begun breeding, when they spawn heart particles.
+     * An event that is called when two animals have entered 'love' mode to begin breeding.
      */
     public static final Event<Love> LOVE = EventFactory.createArrayBacked(Love.class,
             listeners -> (player, passive, age, overGrow) -> {
