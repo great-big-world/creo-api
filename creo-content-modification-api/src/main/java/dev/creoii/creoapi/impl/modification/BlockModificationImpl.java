@@ -29,23 +29,8 @@ public class BlockModificationImpl implements BlockModification {
     }
 
     @Override
-    public float getHardness(Block block) {
-        return ((AbstractBlockStateAccessor) block.getDefaultState()).getHardness();
-    }
-
-    @Override
-    public float getHardness(BlockState state) {
-        return ((AbstractBlockStateAccessor) state).getHardness();
-    }
-
-    @Override
     public void setResistance(Block block, float resistance) {
         ((AbstractBlockAccessor) block).setResistance(resistance);
-    }
-
-    @Override
-    public float getResistance(Block block) {
-        return block.getBlastResistance();
     }
 
     @Override
@@ -65,18 +50,8 @@ public class BlockModificationImpl implements BlockModification {
     }
 
     @Override
-    public BlockSoundGroup getSoundGroup(Block block) {
-        return ((AbstractBlockAccessor) block).getSoundGroup();
-    }
-
-    @Override
     public void setSlipperiness(Block block, float slipperiness) {
         ((AbstractBlockAccessor) block).setSlipperiness(slipperiness);
-    }
-
-    @Override
-    public float getSlipperiness(Block block) {
-        return block.getSlipperiness();
     }
 
     @Override
@@ -87,16 +62,6 @@ public class BlockModificationImpl implements BlockModification {
     @Override
     public void setLuminance(BlockState state, int luminance) {
         ((AbstractBlockStateAccessor) state).setLuminance(luminance);
-    }
-
-    @Override
-    public int getLuminance(Block block) {
-        return getLuminance(block.getDefaultState());
-    }
-
-    @Override
-    public int getLuminance(BlockState state) {
-        return ((AbstractBlockStateAccessor) state).getLuminance();
     }
 
     @Override
@@ -125,28 +90,13 @@ public class BlockModificationImpl implements BlockModification {
     }
 
     @Override
-    public float getVelocityMultiplier(Block block) {
-        return block.getVelocityMultiplier();
-    }
-
-    @Override
     public void setJumpVelocityMultiplier(Block block, float jumpVelocityMultiplier) {
         ((AbstractBlockAccessor) block).setJumpVelocityMultiplier(jumpVelocityMultiplier);
     }
 
     @Override
-    public float getJumpVelocityMultiplier(Block block) {
-        return block.getJumpVelocityMultiplier();
-    }
-
-    @Override
     public void setRandomTicks(Block block, boolean randomTicks) {
         ((AbstractBlockAccessor) block).setRandomTicks(randomTicks);
-    }
-
-    @Override
-    public boolean hasRandomTicks(Block block) {
-        return ((AbstractBlockAccessor) block).hasRandomTicks();
     }
 
     @Override
@@ -160,18 +110,8 @@ public class BlockModificationImpl implements BlockModification {
     }
 
     @Override
-    public boolean isToolRequired(Block block) {
-        return ((AbstractBlockStateAccessor) block.getDefaultState()).isToolRequired();
-    }
-
-    @Override
     public void setLootTableId(Block block, Identifier lootTableId) {
         ((AbstractBlockAccessor) block).setLootTableId(lootTableId);
-    }
-
-    @Override
-    public Identifier getLootTableId(Block block) {
-        return ((AbstractBlockAccessor) block).getLootTableId();
     }
 
     @Override
@@ -185,11 +125,6 @@ public class BlockModificationImpl implements BlockModification {
     }
 
     @Override
-    public boolean isOpaque(Block block) {
-        return ((AbstractBlockStateAccessor) block.getDefaultState()).isOpaque();
-    }
-
-    @Override
     public void setBurnable(Block block, boolean burnable) {
         setBurnable(block.getDefaultState(), burnable);
     }
@@ -197,11 +132,6 @@ public class BlockModificationImpl implements BlockModification {
     @Override
     public void setBurnable(BlockState state, boolean burnable) {
         ((AbstractBlockStateAccessor) state).setBurnable(burnable);
-    }
-
-    @Override
-    public boolean isBurnable(Block block) {
-        return ((AbstractBlockStateAccessor) block.getDefaultState()).isBurnable();
     }
 
     @Override
@@ -215,11 +145,6 @@ public class BlockModificationImpl implements BlockModification {
     }
 
     @Override
-    public PistonBehavior getPistonBehavior(Block block) {
-        return ((AbstractBlockStateAccessor) block.getDefaultState()).getPistonBehavior();
-    }
-
-    @Override
     public void setInstrument(Block block, Instrument instrument) {
         setInstrument(block.getDefaultState(), instrument);
     }
@@ -227,11 +152,6 @@ public class BlockModificationImpl implements BlockModification {
     @Override
     public void setInstrument(BlockState state, Instrument instrument) {
         ((AbstractBlockStateAccessor) state).setInstrument(instrument);
-    }
-
-    @Override
-    public Instrument getInstrument(Block block) {
-        return ((AbstractBlockStateAccessor) block.getDefaultState()).getInstrument();
     }
 
     @Override
@@ -245,11 +165,6 @@ public class BlockModificationImpl implements BlockModification {
     }
 
     @Override
-    public boolean hasBlockBreakParticles(Block block) {
-        return ((AbstractBlockStateAccessor) block.getDefaultState()).hasBlockBreakParticles();
-    }
-
-    @Override
     public void setReplaceable(Block block, boolean replaceable) {
         setReplaceable(block.getDefaultState(), replaceable);
     }
@@ -257,11 +172,6 @@ public class BlockModificationImpl implements BlockModification {
     @Override
     public void setReplaceable(BlockState state, boolean replaceable) {
         ((AbstractBlockStateAccessor) state).setReplaceable(replaceable);
-    }
-
-    @Override
-    public boolean isReplaceable(Block block) {
-        return ((AbstractBlockStateAccessor) block.getDefaultState()).isReplaceable();
     }
 
     @Override

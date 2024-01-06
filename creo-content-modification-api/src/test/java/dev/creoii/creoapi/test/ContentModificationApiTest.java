@@ -24,33 +24,33 @@ public class ContentModificationApiTest implements ModInitializer {
     public void onInitialize() {
         LOGGER.info("---------- BLOCK ----------");
         LOGGER.info("HARDNESS");
-        LOGGER.info(String.valueOf(BlockModification.INSTANCE.getHardness(Blocks.STONE)));
+        LOGGER.info(String.valueOf(Blocks.STONE.getHardness()));
         BlockModification.INSTANCE.setHardness(Blocks.STONE, 50f);
-        LOGGER.info(String.valueOf(BlockModification.INSTANCE.getHardness(Blocks.STONE)));
+        LOGGER.info(String.valueOf(Blocks.STONE.getHardness()));
         LOGGER.info("pass");
 
         LOGGER.info("RESISTANCE");
-        LOGGER.info(String.valueOf(BlockModification.INSTANCE.getResistance(Blocks.OBSIDIAN)));
+        LOGGER.info(String.valueOf(Blocks.OBSIDIAN.getBlastResistance()));
         BlockModification.INSTANCE.setResistance(Blocks.OBSIDIAN, 0f);
-        LOGGER.info(String.valueOf(BlockModification.INSTANCE.getResistance(Blocks.OBSIDIAN)));
+        LOGGER.info(String.valueOf(Blocks.OBSIDIAN.getBlastResistance()));
         LOGGER.info("pass");
 
         LOGGER.info("SOUND GROUP");
-        LOGGER.info(String.valueOf(BlockModification.INSTANCE.getSoundGroup(Blocks.DIAMOND_BLOCK).getPlaceSound().getId()));
+        LOGGER.info(String.valueOf(Blocks.DIAMOND_BLOCK.getDefaultState().getSoundGroup().getPlaceSound().getId()));
         BlockModification.INSTANCE.setSoundGroup(Blocks.DIAMOND_BLOCK, BlockSoundGroup.AMETHYST_BLOCK);
-        LOGGER.info(String.valueOf(BlockModification.INSTANCE.getSoundGroup(Blocks.DIAMOND_BLOCK).getPlaceSound().getId()));
+        LOGGER.info(String.valueOf(Blocks.DIAMOND_BLOCK.getDefaultState().getSoundGroup().getPlaceSound().getId()));
         LOGGER.info("pass");
 
         LOGGER.info("SLIPPERINESS");
-        LOGGER.info(String.valueOf(BlockModification.INSTANCE.getSlipperiness(Blocks.ICE)));
+        LOGGER.info(String.valueOf(Blocks.ICE.getSlipperiness()));
         BlockModification.INSTANCE.setSlipperiness(Blocks.ICE, .6f);
-        LOGGER.info(String.valueOf(BlockModification.INSTANCE.getSlipperiness(Blocks.ICE)));
+        LOGGER.info(String.valueOf(Blocks.ICE.getSlipperiness()));
         LOGGER.info("pass");
 
         LOGGER.info("LUMINANCE");
-        LOGGER.info(String.valueOf(BlockModification.INSTANCE.getLuminance(Blocks.GLOWSTONE)));
+        LOGGER.info(String.valueOf(Blocks.GLOWSTONE.getDefaultState().getLuminance()));
         BlockModification.INSTANCE.setLuminance(Blocks.GLOWSTONE, 0);
-        LOGGER.info(String.valueOf(BlockModification.INSTANCE.getLuminance(Blocks.GLOWSTONE)));
+        LOGGER.info(String.valueOf(Blocks.GLOWSTONE.getDefaultState().getLuminance()));
         LOGGER.info("pass");
 
         LOGGER.info("MAP COLOR");
@@ -60,69 +60,69 @@ public class ContentModificationApiTest implements ModInitializer {
         LOGGER.info("pass");
 
         LOGGER.info("VELOCITY MULT");
-        LOGGER.info(String.valueOf(BlockModification.INSTANCE.getVelocityMultiplier(Blocks.DIRT_PATH)));
+        LOGGER.info(String.valueOf(Blocks.DIRT_PATH.getVelocityMultiplier()));
         BlockModification.INSTANCE.setVelocityMultiplier(Blocks.DIRT_PATH, 1.2f);
-        LOGGER.info(String.valueOf(BlockModification.INSTANCE.getVelocityMultiplier(Blocks.DIRT_PATH)));
+        LOGGER.info(String.valueOf(Blocks.DIRT_PATH.getVelocityMultiplier()));
         LOGGER.info("pass");
 
         LOGGER.info("JUMP VELOCITY MULT");
-        LOGGER.info(String.valueOf(BlockModification.INSTANCE.getJumpVelocityMultiplier(Blocks.SLIME_BLOCK)));
+        LOGGER.info(String.valueOf(Blocks.SLIME_BLOCK.getJumpVelocityMultiplier()));
         BlockModification.INSTANCE.setJumpVelocityMultiplier(Blocks.SLIME_BLOCK, 2f);
-        LOGGER.info(String.valueOf(BlockModification.INSTANCE.getJumpVelocityMultiplier(Blocks.SLIME_BLOCK)));
+        LOGGER.info(String.valueOf(Blocks.SLIME_BLOCK.getJumpVelocityMultiplier()));
         LOGGER.info("pass");
 
         LOGGER.info("RANDOM TICKS");
-        LOGGER.info(String.valueOf(BlockModification.INSTANCE.hasRandomTicks(Blocks.REDSTONE_ORE)));
+        LOGGER.info(String.valueOf(Blocks.REDSTONE_ORE.getDefaultState().hasRandomTicks()));
         BlockModification.INSTANCE.setRandomTicks(Blocks.REDSTONE_ORE, false);
-        LOGGER.info(String.valueOf(BlockModification.INSTANCE.hasRandomTicks(Blocks.REDSTONE_ORE)));
+        LOGGER.info(String.valueOf(Blocks.REDSTONE_ORE.getDefaultState().hasRandomTicks()));
         LOGGER.info("pass");
 
         LOGGER.info("TOOL REQUIRED");
-        LOGGER.info(String.valueOf(BlockModification.INSTANCE.isToolRequired(Blocks.NETHERRACK)));
+        LOGGER.info(String.valueOf(Blocks.NETHERRACK.getDefaultState().isToolRequired()));
         BlockModification.INSTANCE.setToolRequired(Blocks.NETHERRACK, false);
-        LOGGER.info(String.valueOf(BlockModification.INSTANCE.isToolRequired(Blocks.NETHERRACK)));
+        LOGGER.info(String.valueOf(Blocks.NETHERRACK.getDefaultState().isToolRequired()));
         LOGGER.info("fail");
 
         LOGGER.info("LOOT TABLE ID");
-        LOGGER.info(String.valueOf(BlockModification.INSTANCE.getLootTableId(Blocks.OAK_PLANKS)));
+        LOGGER.info(String.valueOf(Blocks.OAK_PLANKS.getLootTableId()));
         BlockModification.INSTANCE.setLootTableId(Blocks.OAK_PLANKS, Blocks.SPRUCE_PLANKS.getLootTableId());
-        LOGGER.info(String.valueOf(BlockModification.INSTANCE.getLootTableId(Blocks.OAK_PLANKS)));
+        LOGGER.info(String.valueOf(Blocks.OAK_PLANKS.getLootTableId()));
         LOGGER.info("fail");
 
         LOGGER.info("OPAQUE");
-        LOGGER.info(String.valueOf(BlockModification.INSTANCE.isOpaque(Blocks.IRON_BARS)));
+        LOGGER.info(String.valueOf(Blocks.IRON_BARS.getDefaultState().isOpaque()));
         BlockModification.INSTANCE.setOpaque(Blocks.IRON_BARS, true);
-        LOGGER.info(String.valueOf(BlockModification.INSTANCE.isOpaque(Blocks.IRON_BARS)));
+        LOGGER.info(String.valueOf(Blocks.IRON_BARS.getDefaultState().isOpaque()));
         LOGGER.info("fail");
 
         LOGGER.info("BURNABLE");
-        LOGGER.info(String.valueOf(BlockModification.INSTANCE.isBurnable(Blocks.OAK_LOG)));
+        LOGGER.info(String.valueOf(Blocks.OAK_LOG.getDefaultState().isBurnable()));
         BlockModification.INSTANCE.setBurnable(Blocks.OAK_LOG, false);
-        LOGGER.info(String.valueOf(BlockModification.INSTANCE.isBurnable(Blocks.OAK_LOG)));
+        LOGGER.info(String.valueOf(Blocks.OAK_LOG.getDefaultState().isBurnable()));
         LOGGER.info("fail");
 
         LOGGER.info("PISTON BEHAVIOR");
-        LOGGER.info(String.valueOf(BlockModification.INSTANCE.getPistonBehavior(Blocks.DIRT)));
+        LOGGER.info(String.valueOf(Blocks.DIRT.getDefaultState().getPistonBehavior()));
         BlockModification.INSTANCE.setPistonBehavior(Blocks.DIRT, PistonBehavior.DESTROY);
-        LOGGER.info(String.valueOf(BlockModification.INSTANCE.getPistonBehavior(Blocks.DIRT)));
+        LOGGER.info(String.valueOf(Blocks.DIRT.getDefaultState().getPistonBehavior()));
         LOGGER.info("pass");
 
         LOGGER.info("INSTRUMENT");
-        LOGGER.info(String.valueOf(BlockModification.INSTANCE.getInstrument(Blocks.GOLD_BLOCK)));
+        LOGGER.info(String.valueOf(Blocks.GOLD_BLOCK.getDefaultState().getInstrument()));
         BlockModification.INSTANCE.setInstrument(Blocks.GOLD_BLOCK, Instrument.DRAGON);
-        LOGGER.info(String.valueOf(BlockModification.INSTANCE.getInstrument(Blocks.GOLD_BLOCK)));
+        LOGGER.info(String.valueOf(Blocks.GOLD_BLOCK.getDefaultState().getInstrument()));
         LOGGER.info("fail");
 
         LOGGER.info("BLOCK BREAK PARTICLES");
-        LOGGER.info(String.valueOf(BlockModification.INSTANCE.hasBlockBreakParticles(Blocks.DIRT)));
+        LOGGER.info(String.valueOf(Blocks.DIRT.getDefaultState().hasBlockBreakParticles()));
         BlockModification.INSTANCE.setBlockBreakParticles(Blocks.DIRT, false);
-        LOGGER.info(String.valueOf(BlockModification.INSTANCE.hasBlockBreakParticles(Blocks.DIRT)));
+        LOGGER.info(String.valueOf(Blocks.DIRT.getDefaultState().hasBlockBreakParticles()));
         LOGGER.info("pass");
 
         LOGGER.info("REPLACEABLE");
-        LOGGER.info(String.valueOf(BlockModification.INSTANCE.isReplaceable(Blocks.SHORT_GRASS)));
+        LOGGER.info(String.valueOf(Blocks.SHORT_GRASS.getDefaultState().isReplaceable()));
         BlockModification.INSTANCE.setReplaceable(Blocks.SHORT_GRASS, false);
-        LOGGER.info(String.valueOf(BlockModification.INSTANCE.isReplaceable(Blocks.SHORT_GRASS)));
+        LOGGER.info(String.valueOf(Blocks.SHORT_GRASS.getDefaultState().isReplaceable()));
         LOGGER.info("pass");
 
         LOGGER.info("---------- ITEM ----------");

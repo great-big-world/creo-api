@@ -34,32 +34,11 @@ public interface BlockModification {
     void setHardness(BlockState state, float hardness);
 
     /**
-     * Get the hardness value of the block.
-     * @param block A block
-     * @return The block's hardness value
-     */
-    float getHardness(Block block);
-
-    /**
-     * Get the hardness value of the {@link BlockState}.
-     * @param state A blockstate
-     * @return The block's hardness value
-     */
-    float getHardness(BlockState state);
-
-    /**
      * Set a new resistance value for the block.
      * @param block A block
      * @param resistance The new resistance value
      */
     void setResistance(Block block, float resistance);
-
-    /**
-     * Get the resistance value of the block.
-     * @param block A block
-     * @return The block's resistance value
-     */
-    float getResistance(Block block);
 
     /**
      * Set both the hardness and resistance for the block.
@@ -76,202 +55,187 @@ public interface BlockModification {
      */
     void setStrength(Block block, float strength);
 
+    /**
+     * Set a new {@link BlockSoundGroup} for the block.
+     * @param block a block
+     * @param soundGroup the new sound group.
+     */
     void setSoundGroup(Block block, BlockSoundGroup soundGroup);
 
     /**
-     * Get the {@link BlockSoundGroup} value of the block.
-     * @param block A block
-     * @return The block's sound group
-     */
-    BlockSoundGroup getSoundGroup(Block block);
-
-    /**
      * Set a new slipperiness value for the block.
-     * @param block A block
-     * @param slipperiness The new slipperiness value
+     * @param block a block
+     * @param slipperiness the new slipperiness value
      */
     void setSlipperiness(Block block, float slipperiness);
 
     /**
-     * Get the slipperiness value of the block.
-     * @param block A block
-     * @return The block's slipperiness value
-     */
-    float getSlipperiness(Block block);
-
-    /**
      * Set a new luminance value for the block.
-     * @param block A block
-     * @param luminance The new luminance value
+     * @param block a block
+     * @param luminance the new luminance value
      */
     void setLuminance(Block block, int luminance);
 
     /**
      * Set a new resistance value for the {@link BlockState}.
-     * @param state A blockstate
-     * @param luminance The new luminance value
+     * @param state a blockstate
+     * @param luminance the new luminance value
      */
     void setLuminance(BlockState state, int luminance);
 
     /**
-     * Get the luminance value of the block.
-     * @param block A block
-     * @return The block's luminance value
-     */
-    int getLuminance(Block block);
-
-    /**
-     * Get the luminance value of the {@link BlockState}.
-     * @param state A blockstate
-     * @return The blockstate's luminance value
-     */
-    int getLuminance(BlockState state);
-
-    /**
      * Set a new {@link MapColor} for the block.
-     * @param block A block
-     * @param mapColor The new map color
+     * @param block a block
+     * @param mapColor the new map color
      */
     void setMapColor(Block block, MapColor mapColor);
 
     /**
      * Set a new {@link MapColor} for the {@link BlockState}.
-     * @param state A blockstate
-     * @param mapColor The new map color
+     * @param state a blockstate
+     * @param mapColor the new map color
      */
     void setMapColor(BlockState state, MapColor mapColor);
 
     /**
      * Get the {@link MapColor} of the block.
-     * @param block A block
-     * @return The block's map color
+     * @param block a block
+     * @return the block's map color
      */
     MapColor getMapColor(Block block);
 
     /**
      * Get the {@link MapColor} of the {@link BlockState}.
-     * @param state A blockstate
-     * @return The blockstate's map color
+     * @param state a blockstate
+     * @return the blockstate's map color
      */
     MapColor getMapColor(BlockState state);
 
     /**
      * Set a new velocity multiplier value for the block.
-     * @param block A block
-     * @param velocityMultiplier The new velocity multiplier value
+     * @param block a block
+     * @param velocityMultiplier the new velocity multiplier value
      */
     void setVelocityMultiplier(Block block, float velocityMultiplier);
 
     /**
-     * Get the velocity multiplier value of the block.
-     * @param block A block
-     * @return The block's velocity multiplier value
-     */
-    float getVelocityMultiplier(Block block);
-
-    /**
      * Set a new jump velocity multiplier value for the block.
-     * @param block A block
-     * @param jumpVelocityMultiplier The new jump velocity multiplier value
+     * @param block a block
+     * @param jumpVelocityMultiplier the new jump velocity multiplier value
      */
     void setJumpVelocityMultiplier(Block block, float jumpVelocityMultiplier);
 
     /**
-     * Get the jump velocity multiplier value of the block.
-     * @param block A block
-     * @return The block's jump velocity multiplier value
+     * Set whether the block ticks randomly.
+     * @param block a block
+     * @param randomTicks whether the block ticks randomly
      */
-    float getJumpVelocityMultiplier(Block block);
-
     void setRandomTicks(Block block, boolean randomTicks);
 
-    boolean hasRandomTicks(Block block);
-
+    /**
+     * Set whether a tool is required to mine the block.
+     * @param block a block
+     * @param toolRequired whether a tool is required to mine the block
+     */
     void setToolRequired(Block block, boolean toolRequired);
 
+    /**
+     * Set whether a tool is required to mine the blockstate.
+     * @param state a blockstate
+     * @param toolRequired whether a tool is required to mine the blockstate
+     */
     void setToolRequired(BlockState state, boolean toolRequired);
 
-    boolean isToolRequired(Block block);
-
+    /**
+     * Set the loot table identifier of the block.
+     * @param block a block
+     * @param lootTableId the new loot table id of the block
+     */
     void setLootTableId(Block block, Identifier lootTableId);
 
     /**
-     * Get the loot table id of the block.
-     * @param block A block
-     * @return The block's loot table id
+     * Set whether the block is opaque.
+     * @param block a block
+     * @param opaque whether the block is opaque
      */
-    Identifier getLootTableId(Block block);
-
     void setOpaque(Block block, boolean opaque);
 
+    /**
+     * Set whether the blockstate is opaque.
+     * @param state a blockstate
+     * @param opaque whether the blockstate is opaque
+     */
     void setOpaque(BlockState state, boolean opaque);
-
-    boolean isOpaque(Block block);
 
     /**
      * Set whether the block can be lit on fire by lava.
-     * @param block A block
-     * @param burnable Whether the block can be lit on fire by lava
+     * @param block a block
+     * @param burnable whether the block can be lit on fire by lava
      */
     void setBurnable(Block block, boolean burnable);
 
     /**
      * Set whether the {@link BlockState} can be lit on fire by lava.
-     * @param state A blockstate
-     * @param burnable Whether the blockstate can be lit on fire by lava
+     * @param state a blockstate
+     * @param burnable whether the blockstate can be lit on fire by lava
      */
     void setBurnable(BlockState state, boolean burnable);
 
     /**
-     * Returns whether the block can be lit on fire by lava.
-     * @param block A block
-     * @return Whether lava can light the block on fire
-     */
-    boolean isBurnable(Block block);
-
-    /**
      * Set a new {@link PistonBehavior} for the block.
-     * @param block A block
-     * @param pistonBehavior The new piston behavior
+     * @param block a block
+     * @param pistonBehavior the new piston behavior
      */
     void setPistonBehavior(Block block, PistonBehavior pistonBehavior);
 
     /**
      * Set a new {@link PistonBehavior} for the {@link BlockState}.
-     * @param state A blockstate
-     * @param pistonBehavior The new piston behavior
+     * @param state a blockstate
+     * @param pistonBehavior the new piston behavior
      */
     void setPistonBehavior(BlockState state, PistonBehavior pistonBehavior);
 
     /**
-     * Get the {@link PistonBehavior} of the block.
-     * @param block A block
-     * @return The block's piston behavior
+     * Set a new {@link Instrument} for the block.
+     * @param block a block
+     * @param instrument the new Instrument
      */
-    PistonBehavior getPistonBehavior(Block block);
-
     void setInstrument(Block block, Instrument instrument);
 
+    /**
+     * Set a new {@link Instrument} for the blockstate.
+     * @param state a blockstate
+     * @param instrument the new Instrument
+     */
     void setInstrument(BlockState state, Instrument instrument);
 
     /**
-     * Get the {@link Instrument} of the block.
-     * @param block A block
-     * @return The block's instrument
+     * Set whether the block has block break particles.
+     * @param block a block
+     * @param blockBreakParticles whether the block has block break particles
      */
-    Instrument getInstrument(Block block);
-
     void setBlockBreakParticles(Block block, boolean blockBreakParticles);
 
+    /**
+     * Set whether the blockstate has block break particles.
+     * @param state a blockstate
+     * @param blockBreakParticles whether the blockstate has block break particles
+     */
     void setBlockBreakParticles(BlockState state, boolean blockBreakParticles);
 
-    boolean hasBlockBreakParticles(Block block);
-
+    /**
+     * Set whether the block is replaceable
+     * @param block a block
+     * @param replaceable whether the block is replaceable
+     */
     void setReplaceable(Block block, boolean replaceable);
 
+    /**
+     * Set whether the blockstate is replaceable
+     * @param state a blockstate
+     * @param replaceable whether the blockstate is replaceable
+     */
     void setReplaceable(BlockState state, boolean replaceable);
-
-    boolean isReplaceable(Block block);
 
     void setEmissiveLighting(Block block, boolean emissiveLighting);
 
