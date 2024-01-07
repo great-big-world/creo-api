@@ -54,4 +54,12 @@ public final class EntityTypeTagImpl {
         if (entity != null && entity.getType().isIn(CreoEntityTypeTags.WARDEN_IGNORES))
             cir.setReturnValue(false);
     }
+
+    public static boolean applyWolfPrey(LivingEntity living) {
+        return living.getType().isIn(CreoEntityTypeTags.WOLF_PREY);
+    }
+
+    public static boolean applyFoxPrey(Entity entity) {
+        return entity.getType().isIn(CreoEntityTypeTags.FOX_PREY);
+    }
 }

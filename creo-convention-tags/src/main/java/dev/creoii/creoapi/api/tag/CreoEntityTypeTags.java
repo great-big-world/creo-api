@@ -49,6 +49,8 @@ public final class CreoEntityTypeTags {
      * Entities which Creepers run away from.
      */
     public static final TagKey<EntityType<?>> SCARES_CREEPERS = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "scares_creepers"));
+    public static final TagKey<EntityType<?>> WOLF_PREY = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "wolf_prey"));
+    public static final TagKey<EntityType<?>> FOX_PREY = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "fox_prey"));
     public static final TagKey<EntityType<?>> GLINTED = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "glinted"));
     public static final TagKey<EntityType<?>> ARTHROPOD = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "arthropod"));
     public static final TagKey<EntityType<?>> AQUATIC = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "aquatic"));

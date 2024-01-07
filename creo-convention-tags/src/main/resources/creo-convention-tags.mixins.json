@@ -34,6 +34,7 @@
     "entity.RavagerEntityMixin",
     "entity.ShulkerEntityMixin",
     "entity.WardenEntityMixin",
+    "entity.WolfEntityMixin",
     "entity.ZoglinEntityMixin",
     "entity.goal.EatGrassGoalMixin",
     "item.ArmorMaterialsAccessor",
