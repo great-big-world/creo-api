@@ -3,6 +3,7 @@ package dev.creoii.creoapi.test;
 import dev.creoii.creoapi.api.modification.BlockModification;
 import dev.creoii.creoapi.api.modification.EnchantmentModification;
 import dev.creoii.creoapi.api.modification.ItemModification;
+import dev.creoii.creoapi.api.modification.StatusEffectModification;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.MapColor;
@@ -10,6 +11,8 @@ import net.minecraft.block.enums.Instrument;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
+import net.minecraft.entity.effect.StatusEffectCategory;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Items;
 import net.minecraft.sound.BlockSoundGroup;
@@ -72,16 +75,16 @@ public class ContentModificationApiTest implements ModInitializer {
         LOGGER.info("pass");
 
         LOGGER.info("RANDOM TICKS");
-        LOGGER.info(String.valueOf(Blocks.REDSTONE_ORE.getDefaultState().hasRandomTicks()));
-        BlockModification.INSTANCE.setRandomTicks(Blocks.REDSTONE_ORE, false);
-        LOGGER.info(String.valueOf(Blocks.REDSTONE_ORE.getDefaultState().hasRandomTicks()));
+        LOGGER.info(String.valueOf(Blocks.OAK_SAPLING.getDefaultState().hasRandomTicks()));
+        BlockModification.INSTANCE.setRandomTicks(Blocks.OAK_SAPLING, false);
+        LOGGER.info(String.valueOf(Blocks.OAK_SAPLING.getDefaultState().hasRandomTicks()));
         LOGGER.info("pass");
 
         LOGGER.info("TOOL REQUIRED");
         LOGGER.info(String.valueOf(Blocks.NETHERRACK.getDefaultState().isToolRequired()));
         BlockModification.INSTANCE.setToolRequired(Blocks.NETHERRACK, false);
         LOGGER.info(String.valueOf(Blocks.NETHERRACK.getDefaultState().isToolRequired()));
-        LOGGER.info("fail");
+        LOGGER.info("pass");
 
         LOGGER.info("LOOT TABLE ID");
         LOGGER.info(String.valueOf(Blocks.OAK_PLANKS.getLootTableId()));
@@ -93,13 +96,13 @@ public class ContentModificationApiTest implements ModInitializer {
         LOGGER.info(String.valueOf(Blocks.IRON_BARS.getDefaultState().isOpaque()));
         BlockModification.INSTANCE.setOpaque(Blocks.IRON_BARS, true);
         LOGGER.info(String.valueOf(Blocks.IRON_BARS.getDefaultState().isOpaque()));
-        LOGGER.info("fail");
+        LOGGER.info("pass");
 
         LOGGER.info("BURNABLE");
         LOGGER.info(String.valueOf(Blocks.OAK_LOG.getDefaultState().isBurnable()));
         BlockModification.INSTANCE.setBurnable(Blocks.OAK_LOG, false);
         LOGGER.info(String.valueOf(Blocks.OAK_LOG.getDefaultState().isBurnable()));
-        LOGGER.info("fail");
+        LOGGER.info("pass");
 
         LOGGER.info("PISTON BEHAVIOR");
         LOGGER.info(String.valueOf(Blocks.DIRT.getDefaultState().getPistonBehavior()));
@@ -111,7 +114,7 @@ public class ContentModificationApiTest implements ModInitializer {
         LOGGER.info(String.valueOf(Blocks.GOLD_BLOCK.getDefaultState().getInstrument()));
         BlockModification.INSTANCE.setInstrument(Blocks.GOLD_BLOCK, Instrument.DRAGON);
         LOGGER.info(String.valueOf(Blocks.GOLD_BLOCK.getDefaultState().getInstrument()));
-        LOGGER.info("fail");
+        LOGGER.info("pass");
 
         LOGGER.info("BLOCK BREAK PARTICLES");
         LOGGER.info(String.valueOf(Blocks.DIRT.getDefaultState().hasBlockBreakParticles()));
@@ -161,7 +164,7 @@ public class ContentModificationApiTest implements ModInitializer {
         LOGGER.info(String.valueOf(Items.CARROT_ON_A_STICK.isFood()));
         ItemModification.INSTANCE.setFoodComponent(Items.CARROT_ON_A_STICK, new FoodComponent.Builder().hunger(2).build());
         LOGGER.info(String.valueOf(Items.CARROT_ON_A_STICK.isFood()));
-        LOGGER.info("fail");
+        LOGGER.info("pass");
 
         LOGGER.info("---------- ENCHANTMENT ----------");
 
@@ -169,24 +172,38 @@ public class ContentModificationApiTest implements ModInitializer {
         LOGGER.info(Enchantments.MENDING.getRarity().name());
         EnchantmentModification.INSTANCE.setRarity(Enchantments.MENDING, Enchantment.Rarity.COMMON);
         LOGGER.info(Enchantments.MENDING.getRarity().name());
-        LOGGER.info("???");
+        LOGGER.info("pass");
 
         LOGGER.info("ACCEPTABLE ITEM");
         LOGGER.info(String.valueOf(Enchantments.MENDING.isAcceptableItem(Items.DIAMOND.getDefaultStack())));
         EnchantmentModification.INSTANCE.setAcceptableItems(Enchantments.MENDING, stack -> stack.isOf(Items.DIAMOND));
         LOGGER.info(String.valueOf(Enchantments.MENDING.isAcceptableItem(Items.DIAMOND.getDefaultStack())));
-        LOGGER.info("???");
+        LOGGER.info("pass");
 
         LOGGER.info("MIN LEVEL");
         LOGGER.info(String.valueOf(Enchantments.SILK_TOUCH.getMinLevel()));
         EnchantmentModification.INSTANCE.setMinLevel(Enchantments.SILK_TOUCH, 2);
         LOGGER.info(String.valueOf(Enchantments.SILK_TOUCH.getMinLevel()));
-        LOGGER.info("???");
+        LOGGER.info("pass");
 
         LOGGER.info("MAX LEVEL");
         LOGGER.info(String.valueOf(Enchantments.SILK_TOUCH.getMaxLevel()));
         EnchantmentModification.INSTANCE.setMaxLevel(Enchantments.SILK_TOUCH, 3);
         LOGGER.info(String.valueOf(Enchantments.SILK_TOUCH.getMaxLevel()));
-        LOGGER.info("???");
+        LOGGER.info("pass");
+
+        LOGGER.info("---------- STATUS EFFECT ----------");
+
+        LOGGER.info("CATEGORY");
+        LOGGER.info(StatusEffects.ABSORPTION.getCategory().name());
+        StatusEffectModification.INSTANCE.setCategory(StatusEffects.ABSORPTION, StatusEffectCategory.HARMFUL);
+        LOGGER.info(StatusEffects.ABSORPTION.getCategory().name());
+        LOGGER.info("pass");
+
+        LOGGER.info("COLOR");
+        LOGGER.info(String.valueOf(StatusEffects.INSTANT_DAMAGE.getColor()));
+        StatusEffectModification.INSTANCE.setColor(StatusEffects.INSTANT_DAMAGE, 0);
+        LOGGER.info(String.valueOf(StatusEffects.INSTANT_DAMAGE.getColor()));
+        LOGGER.info("pass");
     }
 }

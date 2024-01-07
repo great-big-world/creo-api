@@ -10,13 +10,7 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 @Mixin(AbstractBlock.AbstractBlockState.class)
 public interface AbstractBlockStateAccessor {
     @Accessor("hardness")
-    float getHardness();
-
-    @Accessor("hardness")
     void setHardness(float hardness);
-
-    @Accessor("luminance")
-    int getLuminance();
 
     @Accessor("luminance")
     void setLuminance(int luminance);
@@ -28,44 +22,26 @@ public interface AbstractBlockStateAccessor {
     void setMapColor(MapColor mapColor);
 
     @Accessor("toolRequired")
-    boolean isToolRequired();
-
-    @Accessor("toolRequired")
     void setToolRequired(boolean toolRequired);
-
-    @Accessor("opaque")
-    boolean isOpaque();
 
     @Accessor("opaque")
     void setOpaque(boolean opaque);
 
     @Accessor("burnable")
-    boolean isBurnable();
-
-    @Accessor("burnable")
     void setBurnable(boolean burnable);
-
-    @Accessor("pistonBehavior")
-    PistonBehavior getPistonBehavior();
 
     @Accessor("pistonBehavior")
     void setPistonBehavior(PistonBehavior pistonBehavior);
 
     @Accessor("instrument")
-    Instrument getInstrument();
-
-    @Accessor("instrument")
     void setInstrument(Instrument instrument);
-
-    @Accessor("replaceable")
-    boolean isReplaceable();
 
     @Accessor("replaceable")
     void setReplaceable(boolean replaceable);
 
     @Accessor("blockBreakParticles")
-    boolean hasBlockBreakParticles();
-
-    @Accessor("blockBreakParticles")
     void setBlockBreakParticles(boolean blockBreakParticles);
+
+    @Accessor("ticksRandomly")
+    void setRandomTicks(boolean ticksRandomly);
 }

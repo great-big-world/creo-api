@@ -20,12 +20,15 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class BlockModificationImpl implements BlockModification {
     @Override
     public void setHardness(Block block, float hardness) {
-        setHardness(block.getDefaultState(), hardness);
+        block.getStateManager().getStates().forEach(state -> {
+            setHardness(state, hardness);
+        });
     }
 
     @Override
     public void setHardness(BlockState state, float hardness) {
         ((AbstractBlockStateAccessor) state).setHardness(hardness);
+        ((BlockSettingsAccessor) state.getBlock().getSettings()).setHardness(hardness);
     }
 
     @Override
@@ -56,7 +59,9 @@ public class BlockModificationImpl implements BlockModification {
 
     @Override
     public void setLuminance(Block block, int luminance) {
-        setLuminance(block.getDefaultState(), luminance);
+        block.getStateManager().getStates().forEach(state -> {
+            setLuminance(state, luminance);
+        });
     }
 
     @Override
@@ -66,7 +71,9 @@ public class BlockModificationImpl implements BlockModification {
 
     @Override
     public void setMapColor(Block block, MapColor mapColor) {
-        setMapColor(block.getDefaultState(), mapColor);
+        block.getStateManager().getStates().forEach(state -> {
+            setMapColor(state, mapColor);
+        });
     }
 
     @Override
@@ -97,11 +104,16 @@ public class BlockModificationImpl implements BlockModification {
     @Override
     public void setRandomTicks(Block block, boolean randomTicks) {
         ((AbstractBlockAccessor) block).setRandomTicks(randomTicks);
+        block.getStateManager().getStates().forEach(state -> {
+            ((AbstractBlockStateAccessor) state).setRandomTicks(randomTicks);
+        });
     }
 
     @Override
     public void setToolRequired(Block block, boolean toolRequired) {
-        setToolRequired(block.getDefaultState(), toolRequired);
+        block.getStateManager().getStates().forEach(state -> {
+            setToolRequired(state, toolRequired);
+        });
     }
 
     @Override
@@ -116,7 +128,9 @@ public class BlockModificationImpl implements BlockModification {
 
     @Override
     public void setOpaque(Block block, boolean opaque) {
-        setOpaque(block.getDefaultState(), opaque);
+        block.getStateManager().getStates().forEach(state -> {
+            setOpaque(state, opaque);
+        });
     }
 
     @Override
@@ -126,7 +140,9 @@ public class BlockModificationImpl implements BlockModification {
 
     @Override
     public void setBurnable(Block block, boolean burnable) {
-        setBurnable(block.getDefaultState(), burnable);
+        block.getStateManager().getStates().forEach(state -> {
+            setBurnable(state, burnable);
+        });
     }
 
     @Override
@@ -136,7 +152,9 @@ public class BlockModificationImpl implements BlockModification {
 
     @Override
     public void setPistonBehavior(Block block, PistonBehavior pistonBehavior) {
-        setPistonBehavior(block.getDefaultState(), pistonBehavior);
+        block.getStateManager().getStates().forEach(state -> {
+            setPistonBehavior(state, pistonBehavior);
+        });
     }
 
     @Override
@@ -146,7 +164,9 @@ public class BlockModificationImpl implements BlockModification {
 
     @Override
     public void setInstrument(Block block, Instrument instrument) {
-        setInstrument(block.getDefaultState(), instrument);
+        block.getStateManager().getStates().forEach(state -> {
+            setInstrument(state, instrument);
+        });
     }
 
     @Override
@@ -156,7 +176,9 @@ public class BlockModificationImpl implements BlockModification {
 
     @Override
     public void setBlockBreakParticles(Block block, boolean blockBreakParticles) {
-        setBlockBreakParticles(block.getDefaultState(), blockBreakParticles);
+        block.getStateManager().getStates().forEach(state -> {
+            setBlockBreakParticles(state, blockBreakParticles);
+        });
     }
 
     @Override
@@ -166,7 +188,9 @@ public class BlockModificationImpl implements BlockModification {
 
     @Override
     public void setReplaceable(Block block, boolean replaceable) {
-        setReplaceable(block.getDefaultState(), replaceable);
+        block.getStateManager().getStates().forEach(state -> {
+            setReplaceable(state, replaceable);
+        });
     }
 
     @Override

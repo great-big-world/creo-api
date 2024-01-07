@@ -15,13 +15,7 @@ public interface AbstractBlockAccessor {
     void setResistance(float resistance);
 
     @Accessor("randomTicks")
-    boolean hasRandomTicks();
-
-    @Accessor("randomTicks")
     void setRandomTicks(boolean randomTicks);
-
-    @Accessor("soundGroup")
-    BlockSoundGroup getSoundGroup();
 
     @Accessor("soundGroup")
     void setSoundGroup(BlockSoundGroup soundGroup);
@@ -34,9 +28,6 @@ public interface AbstractBlockAccessor {
 
     @Accessor("jumpVelocityMultiplier")
     void setJumpVelocityMultiplier(float jumpVelocityMultiplier);
-
-    @Accessor("lootTableId")
-    Identifier getLootTableId();
 
     @Accessor("lootTableId")
     void setLootTableId(Identifier lootTableId);
