@@ -36,6 +36,7 @@
     "entity.WardenEntityMixin",
     "entity.WolfEntityMixin",
     "entity.ZoglinEntityMixin",
+    "entity.ZombieVillagerEntityMixin",
     "entity.goal.EatGrassGoalMixin",
     "item.ArmorMaterialsAccessor",
     "item.MilkBucketItemMixin",
