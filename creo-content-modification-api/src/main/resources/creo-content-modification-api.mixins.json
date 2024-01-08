@@ -11,6 +11,7 @@
     "block.BlockSettingsAccessor",
     "enchantment.EnchantmentAccessor",
     "enchantment.EnchantmentMixin",
+    "item.BlockItemAccessor",
     "item.ItemAccessor",
     "item.SpawnEggItemAccessor"
   ],

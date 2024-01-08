@@ -35,3 +35,4 @@ mutable field net/minecraft/entity/effect/StatusEffect category Lnet/minecraft/e
 mutable field net/minecraft/entity/effect/StatusEffect color I
 mutable field net/minecraft/item/SpawnEggItem primaryColor I
 mutable field net/minecraft/item/SpawnEggItem secondaryColor I
+mutable field net/minecraft/item/BlockItem block Lnet/minecraft/block/Block;

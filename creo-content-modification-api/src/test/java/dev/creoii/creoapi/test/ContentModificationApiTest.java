@@ -13,6 +13,7 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Items;
 import net.minecraft.sound.BlockSoundGroup;
@@ -164,6 +165,12 @@ public class ContentModificationApiTest implements ModInitializer {
         LOGGER.info(String.valueOf(Items.CARROT_ON_A_STICK.isFood()));
         ItemModification.INSTANCE.setFoodComponent(Items.CARROT_ON_A_STICK, new FoodComponent.Builder().hunger(2).build());
         LOGGER.info(String.valueOf(Items.CARROT_ON_A_STICK.isFood()));
+        LOGGER.info("pass");
+
+        LOGGER.info("BLOCK ITEM BLOCK");
+        LOGGER.info(String.valueOf(((BlockItem) Items.STONE).getBlock().getTranslationKey()));
+        ItemModification.INSTANCE.setBlock((BlockItem) Items.STONE, Blocks.DEEPSLATE);
+        LOGGER.info(String.valueOf(((BlockItem) Items.STONE).getBlock().getTranslationKey()));
         LOGGER.info("pass");
 
         LOGGER.info("---------- ENCHANTMENT ----------");

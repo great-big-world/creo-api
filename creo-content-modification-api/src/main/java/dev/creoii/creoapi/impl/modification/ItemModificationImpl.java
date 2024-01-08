@@ -1,7 +1,10 @@
 package dev.creoii.creoapi.impl.modification;
 
 import dev.creoii.creoapi.api.modification.ItemModification;
+import dev.creoii.creoapi.mixin.modification.item.BlockItemAccessor;
 import dev.creoii.creoapi.mixin.modification.item.ItemAccessor;
+import net.minecraft.block.Block;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
 import net.minecraft.util.Rarity;
@@ -42,5 +45,10 @@ public class ItemModificationImpl implements ItemModification {
     @Override
     public void setFoodComponent(Item item, FoodComponent foodComponent) {
         ((ItemAccessor) item).setFoodComponent(foodComponent);
+    }
+
+    @Override
+    public void setBlock(BlockItem blockItem, Block block) {
+        ((BlockItemAccessor) blockItem).setBlock(block);
     }
 }

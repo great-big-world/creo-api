@@ -1,6 +1,8 @@
 package dev.creoii.creoapi.api.modification;
 
 import dev.creoii.creoapi.impl.modification.ItemModificationImpl;
+import net.minecraft.block.Block;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
 import net.minecraft.util.Rarity;
@@ -58,4 +60,11 @@ public interface ItemModification {
      * @param foodComponent the new {@link FoodComponent}
      */
     void setFoodComponent(Item item, FoodComponent foodComponent);
+
+    /**
+     * Set the block of the {@link BlockItem}.
+     * @param blockItem the block item
+     * @param block the new block
+     */
+    void setBlock(BlockItem blockItem, Block block);
 }
