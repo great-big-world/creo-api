@@ -17,7 +17,7 @@ import net.minecraft.world.World;
  *
  * @see net.minecraft.block.BedBlock
  */
-public class SleepEvents {
+public final class SleepEvents {
     /**
      * An event called when a bed explodes.
      */
@@ -67,7 +67,7 @@ public class SleepEvents {
          * @param player the player
          * @param hand the hand used
          * @param hit the hitresult
-         * @return true to explode or false to ignore the explosion
+         * @return true to explode or false to ignore the explosion.
          */
         boolean onExplode(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit);
     }
@@ -79,7 +79,7 @@ public class SleepEvents {
          * @param entity the entity
          * @param pos the block pos
          * @param either the {@link net.minecraft.entity.player.PlayerEntity.SleepFailureReason}, or {@link Unit#INSTANCE} if sleeping is allowed
-         * @return true to let the entity sleep or false to not sleep
+         * @return true to let the entity sleep or false to not sleep.
          */
         boolean onSleep(Entity entity, BlockPos pos, Either<PlayerEntity.SleepFailureReason, Unit> either);
     }
@@ -91,7 +91,7 @@ public class SleepEvents {
          * @param entity the entity
          * @param skipSleepTimer whether to skip the sleep timer or not
          * @param updateSleepingPlayers whether to update other sleeping players or not
-         * @return true to wake up the entity or false to keep them in bed
+         * @return true to wake up the entity or false to keep them in bed.
          */
         boolean onWakeUp(Entity entity, boolean skipSleepTimer, boolean updateSleepingPlayers);
     }

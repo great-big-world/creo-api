@@ -3,7 +3,6 @@ package dev.creoii.creoapi.mixin.tag.block;
 import com.llamalad7.mixinextras.sugar.Local;
 import dev.creoii.creoapi.impl.tag.BlockTagImpl;
 import net.minecraft.block.CoralBlockBlock;
-import net.minecraft.fluid.FluidState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
@@ -11,7 +10,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(CoralBlockBlock.class)
 public class CoralBlockBlockMixin {

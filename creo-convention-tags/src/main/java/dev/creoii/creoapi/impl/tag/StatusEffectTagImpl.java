@@ -1,10 +1,7 @@
 package dev.creoii.creoapi.impl.tag;
 
-import dev.creoii.creoapi.api.tag.CreoEnchantmentTags;
 import dev.creoii.creoapi.api.tag.CreoStatusEffectTags;
 import net.fabricmc.fabric.api.tag.convention.v1.TagUtil;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;

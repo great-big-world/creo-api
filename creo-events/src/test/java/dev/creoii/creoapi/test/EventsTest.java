@@ -5,6 +5,7 @@ import dev.creoii.creoapi.api.event.block.CropEvents;
 import dev.creoii.creoapi.api.event.entity.*;
 import dev.creoii.creoapi.api.event.item.ItemEvents;
 import dev.creoii.creoapi.api.event.misc.FishingEvents;
+import dev.creoii.creoapi.api.event.misc.LanguageEvents;
 import dev.creoii.creoapi.api.event.misc.SleepEvents;
 import dev.creoii.creoapi.api.event.world.WorldEvents;
 import net.fabricmc.api.ModInitializer;
@@ -59,6 +60,7 @@ public class EventsTest implements ModInitializer {
     private static final boolean testSleepWakeUpEvent = false;
     private static final boolean testFishingCastEvent = false;
     private static final boolean testFishingCatchEvent = false;
+    private static final boolean testLanguageTranslationLoadEvent = true;
 
     @Override
     public void onInitialize() {
@@ -456,6 +458,19 @@ public class EventsTest implements ModInitializer {
                 System.out.println("    updateSleepingPlayers=" + updateSleepingPlayers);
 
                 return false;
+            });
+        }
+
+        if (testLanguageTranslationLoadEvent) {
+            LanguageEvents.TRANSLATION_LOAD.register((consumer, translation, translated) -> {
+                if (translation.getKey().equals("block.minecraft.stone")) {
+                    System.out.println("Language Translation Load:");
+                    System.out.println("    translation=" + translation.getKey() + " : " + translated);
+
+                    consumer.accept(translation.getKey(), "Test Translated");
+                    return false;
+                }
+                return true;
             });
         }
     }

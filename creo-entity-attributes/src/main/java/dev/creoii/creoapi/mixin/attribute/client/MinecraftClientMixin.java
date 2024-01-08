@@ -4,12 +4,10 @@ import com.llamalad7.mixinextras.sugar.Local;
 import dev.creoii.creoapi.impl.attribute.BlockCooldownAttributeImpl;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Hand;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(MinecraftClient.class)
 public class MinecraftClientMixin {

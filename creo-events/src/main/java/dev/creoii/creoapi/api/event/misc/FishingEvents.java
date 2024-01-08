@@ -12,7 +12,7 @@ import net.minecraft.world.World;
  *
  * @see net.minecraft.item.FishingRodItem
  */
-public class FishingEvents {
+public final class FishingEvents {
     /**
      * An event called when a Fishing Rod is cast.
      */
@@ -49,7 +49,7 @@ public class FishingEvents {
          * @param fishingRod the fishing rod
          * @param lure the amount of lure
          * @param luck the amount of luck
-         * @return true to cast the line or false to ignore it
+         * @return true to cast the line or false to ignore it.
          */
         boolean onCast(World world, PlayerEntity user, Hand hand, ItemStack fishingRod, int lure, int luck);
     }
@@ -62,7 +62,7 @@ public class FishingEvents {
          * @param user the user
          * @param hand the hand being used
          * @param fishingRod the fishing rod
-         * @return
+         * @return true to reel in the fishing bobber or false to ignore the action.
          */
         boolean onReeledIn(World world, PlayerEntity user, Hand hand, ItemStack fishingRod);
     }
