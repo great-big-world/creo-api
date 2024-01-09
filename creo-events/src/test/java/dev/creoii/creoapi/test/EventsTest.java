@@ -462,13 +462,13 @@ public class EventsTest implements ModInitializer {
         }
 
         if (testLanguageTranslationLoadEvent) {
-            LanguageEvents.TRANSLATION_LOAD.register((consumer, translation, translated) -> {
-                if (translation.getKey().equals("block.minecraft.stone")) {
-                    System.out.println("Language Translation Load:");
-                    System.out.println("    translation=" + translation.getKey() + " : " + translated);
-
-                    consumer.accept(translation.getKey(), "Test Translated");
-                    return false;
+            LanguageEvents.TRANSLATION_LOAD.register((consumer, translationKey, translated) -> {
+                if (translationKey.startsWith("block.")) {
+                    if (translationKey.contains("chiseled_")) {
+                        System.out.println(translationKey);
+                        consumer.accept(translationKey, translated.replace("Chiseled ", ""));
+                        return false;
+                    }
                 }
                 return true;
             });
