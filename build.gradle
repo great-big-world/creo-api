@@ -59,6 +59,41 @@ static def addPomMetadataInformation(Project project, MavenPom pom) {
 }
 
 allprojects {
+    tasks.register("findLatestVersion") {
+        doFirst {
+            def groupId = project.group
+            def artifactId = project.name
+
+            def metadata = "https://repo.maven.apache.org/maven2/${groupId.replace('.', '/')}/$artifactId/maven-metadata.xml"
+            def latestVersion = new XmlSlurper().parseText(new URL(metadata).text).versioning.latest.text()
+
+            project.ext.latestVersion = latestVersion
+
+            logger.lifecycle("Latest version for $groupId:$artifactId is $latestVersion")
+        }
+    }
+
+    tasks.register("shouldPublish") {
+        doFirst {
+            dependsOn findLatestVersion
+
+            if (project.version > project.ext.latestVersion) {
+                logger.lifecycle("Publishing $project.name $project.version")
+            } else {
+                logger.lifecycle("Skipping publication for project: $project.name")
+                throw new StopExecutionException("Publication skipped for $project.name")
+            }
+        }
+    }
+
+    tasks.withType(PublishToMavenRepository).configureEach {
+        dependsOn findLatestVersion
+
+        onlyIf {
+            project.version > project.ext.latestVersion
+        }
+    }
+
     apply plugin: 'java-library'
     apply plugin: 'fabric-loom'
     apply plugin: 'maven-publish'
