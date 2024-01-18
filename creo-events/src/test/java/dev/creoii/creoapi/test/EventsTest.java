@@ -462,7 +462,7 @@ public class EventsTest implements ModInitializer {
         }
 
         if (testLanguageTranslationLoadEvent) {
-            LanguageEvents.TRANSLATION_LOAD.register((consumer, translationKey, translated) -> {
+            LanguageEvents.LOAD_TRANSLATION.register((langCode, consumer, translationKey, translated) -> {
                 if (translationKey.startsWith("block.")) {
                     if (translationKey.contains("chiseled_")) {
                         System.out.println(translationKey);

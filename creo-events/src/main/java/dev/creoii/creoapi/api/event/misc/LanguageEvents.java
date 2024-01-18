@@ -2,6 +2,7 @@ package dev.creoii.creoapi.api.event.misc;
 
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.function.BiConsumer;
 
@@ -15,10 +16,10 @@ public final class LanguageEvents {
     /**
      * An event called when each translation key for a locale is translated and stored.
      */
-    public static final Event<TranslationLoad> TRANSLATION_LOAD = EventFactory.createArrayBacked(TranslationLoad.class,
-            listeners -> (consumer, translationKey, translated) -> {
-                for (TranslationLoad event : listeners) {
-                    return event.onTranslationLoad(consumer, translationKey, translated);
+    public static final Event<LoadTranslation> LOAD_TRANSLATION = EventFactory.createArrayBacked(LoadTranslation.class,
+            listeners -> (langCode, consumer, translationKey, translated) -> {
+                for (LoadTranslation event : listeners) {
+                    return event.onLoadTranslation(langCode, consumer, translationKey, translated);
                 }
 
                 return true;
@@ -26,14 +27,15 @@ public final class LanguageEvents {
     );
 
     @FunctionalInterface
-    public interface TranslationLoad {
+    public interface LoadTranslation {
         /**
          * Called when each translation key for a locale is translated and stored.
+         * @param langCode the language code
          * @param consumer adds the translated text to the translations list
          * @param translationKey the translation key
          * @param translated the translated text
          * @return true to translate the translation or false to ignore the default translation
          */
-        boolean onTranslationLoad(BiConsumer<String, String> consumer, String translationKey, String translated);
+        boolean onLoadTranslation(@Nullable String langCode, BiConsumer<String, String> consumer, String translationKey, String translated);
     }
 }

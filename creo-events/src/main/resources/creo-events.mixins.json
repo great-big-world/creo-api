@@ -25,7 +25,8 @@
     "world.WorldMixin"
   ],
   "client": [
-    "LanguageMixin"
+    "LanguageMixin",
+    "TranslationStorageMixin"
   ],
   "injectors": {
     "defaultRequire": 1

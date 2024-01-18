@@ -8,14 +8,12 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.Unit;
+import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.ApiStatus;
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
@@ -60,7 +58,7 @@ public class MiscEventImpl {
             ci.cancel();
     }
 
-    public static boolean applyLanguageTranslationLoadEvent(BiConsumer<String, String> entryConsumer, String  key, String value) {
-        return LanguageEvents.TRANSLATION_LOAD.invoker().onTranslationLoad(entryConsumer, key, value);
+    public static boolean applyLanguageTranslationLoadEvent(@Nullable String langCode, BiConsumer<String, String> entryConsumer, String key, String value) {
+        return LanguageEvents.LOAD_TRANSLATION.invoker().onLoadTranslation(langCode, entryConsumer, key, value);
     }
 }
