@@ -17,7 +17,8 @@ public class LanguageMixin implements LocaleAwareLanguage {
 
     @WrapWithCondition(method = "load(Ljava/io/InputStream;Ljava/util/function/BiConsumer;)V", at = @At(value = "INVOKE", target = "Ljava/util/function/BiConsumer;accept(Ljava/lang/Object;Ljava/lang/Object;)V"))
     private static boolean creo_applyTranslationLoadEvent(BiConsumer<String, String> entryConsumer, Object key, Object value) {
-        return MiscEventImpl.applyLanguageTranslationLoadEvent(((LocaleAwareLanguage) Language.getInstance()).creo_getLangCode(), entryConsumer, (String) key, (String) value);
+        String langCode = Language.getInstance() == null ? Language.DEFAULT_LANGUAGE : ((LocaleAwareLanguage) Language.getInstance()).creo_getLangCode();
+        return MiscEventImpl.applyLanguageTranslationLoadEvent(langCode, entryConsumer, (String) key, (String) value);
     }
 
     @Override
