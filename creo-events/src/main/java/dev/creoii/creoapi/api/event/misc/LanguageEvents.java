@@ -34,7 +34,7 @@ public final class LanguageEvents {
          * @param consumer adds the translated text to the translations list
          * @param translationKey the translation key
          * @param translated the translated text
-         * @return true to translate the translation or false to ignore the default translation
+         * @return true to translate the translation or false to ignore the default translation.
          */
         boolean onLoadTranslation(@Nullable String langCode, BiConsumer<String, String> consumer, String translationKey, String translated);
     }

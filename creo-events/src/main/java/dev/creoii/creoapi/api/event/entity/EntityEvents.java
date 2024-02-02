@@ -4,8 +4,6 @@ import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LightningEntity;
-import net.minecraft.entity.data.DataTracker;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.structure.StructureStart;
 import net.minecraft.world.TeleportTarget;
@@ -35,28 +33,6 @@ public final class EntityEvents {
             listeners -> (serverWorld, entity, structureStart) -> {
                 for (WithinStructure event : listeners) {
                     event.onWithinStructure(serverWorld, entity, structureStart);
-                }
-            }
-    );
-
-    /**
-     * An event that is called when an entity's dataTracker is initialized.
-     */
-    public static final Event<DataTrack> DATA_TRACK = EventFactory.createArrayBacked(DataTrack.class,
-            listeners -> (entity, dataTracker) -> {
-                for (DataTrack event : listeners) {
-                    event.onDataTrack(entity, dataTracker);
-                }
-            }
-    );
-
-    /**
-     * An event that is called when an entity's custom nbt data is written.
-     */
-    public static final Event<WriteNbt> WRITE_NBT = EventFactory.createArrayBacked(WriteNbt.class,
-            listeners -> (entity, nbt) -> {
-                for (WriteNbt event : listeners) {
-                    event.onWriteNbt(entity, nbt);
                 }
             }
     );
@@ -108,26 +84,6 @@ public final class EntityEvents {
          * @param structureStart the structure
          */
         void onWithinStructure(ServerWorld serverWorld, Entity entity, StructureStart structureStart);
-    }
-
-    @FunctionalInterface
-    public interface DataTrack {
-        /**
-         * Called when an entity's dataTracker is initialized.
-         * @param entity the entity
-         * @param dataTracker the entity's data tracker
-         */
-        void onDataTrack(Entity entity, DataTracker dataTracker);
-    }
-
-    @FunctionalInterface
-    public interface WriteNbt {
-        /**
-         * Called when an entity's custom nbt data is written.
-         * @param entity the entity
-         * @param nbt the entity's nbt data
-         */
-        void onWriteNbt(Entity entity, NbtCompound nbt);
     }
 
     @FunctionalInterface

@@ -4,7 +4,6 @@ import dev.creoii.creoapi.api.event.entity.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.GoalSelector;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.PassiveEntity;
@@ -57,14 +56,6 @@ public final class EntityEventImpl {
         }
     }
 
-    public static void applyWriteNbtEvent(Entity entity, NbtCompound nbt) {
-        EntityEvents.WRITE_NBT.invoker().onWriteNbt(entity, nbt);
-    }
-
-    public static void applyDataTrackEvent(Entity entity, DataTracker dataTracker) {
-        EntityEvents.DATA_TRACK.invoker().onDataTrack(entity, dataTracker);
-    }
-
     public static void applyAnimalPreBreedEvent(ServerWorld world, AnimalEntity animal, AnimalEntity other, PassiveEntity baby, CallbackInfo ci) {
         boolean result = AnimalEntityEvents.PRE_BREED.invoker().onBreed(world, animal, other, baby);
 
@@ -72,7 +63,7 @@ public final class EntityEventImpl {
             ci.cancel();
     }
 
-    public static void applyAnimalPostBreedEvent(ServerWorld world, AnimalEntity animal, AnimalEntity other, PassiveEntity baby, CallbackInfo ci) {
+    public static void applyAnimalPostBreedEvent(ServerWorld world, AnimalEntity animal, AnimalEntity other, PassiveEntity baby) {
         AnimalEntityEvents.POST_BREED.invoker().onBreed(world, animal, other, baby);
     }
 

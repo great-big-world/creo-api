@@ -1,13 +1,16 @@
 package dev.creoii.creoapi.impl.event;
 
+import com.google.common.collect.ImmutableMap;
 import com.mojang.datafixers.util.Either;
 import dev.creoii.creoapi.api.event.misc.FishingEvents;
 import dev.creoii.creoapi.api.event.misc.LanguageEvents;
+import dev.creoii.creoapi.api.event.misc.RecipeEvents;
 import dev.creoii.creoapi.api.event.misc.SleepEvents;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.recipe.RecipeEntry;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -60,5 +63,14 @@ public class MiscEventImpl {
 
     public static boolean applyLanguageTranslationLoadEvent(@Nullable String langCode, BiConsumer<String, String> entryConsumer, String key, String value) {
         return LanguageEvents.LOAD_TRANSLATION.invoker().onLoadTranslation(langCode, entryConsumer, key, value);
+    }
+
+    public static ImmutableMap.Builder<Identifier, RecipeEntry<?>> applyRecipeLoadEvent(ImmutableMap.Builder<Identifier, RecipeEntry<?>> builder, Identifier identifier, RecipeEntry<?> recipeEntry) {
+        boolean result = RecipeEvents.LOAD_RECIPE.invoker().onLoadRecipe(builder, recipeEntry);
+
+        if (!result)
+            return builder;
+
+        return builder.put(identifier, recipeEntry);
     }
 }

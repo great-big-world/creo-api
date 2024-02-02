@@ -30,7 +30,7 @@ public abstract class AnimalEntityMixin extends PassiveEntity {
 
     @Inject(method = "breed(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/entity/passive/AnimalEntity;Lnet/minecraft/entity/passive/PassiveEntity;)V", at = @At("TAIL"), cancellable = true)
     private void creo_animalPostBreedEvent(ServerWorld world, AnimalEntity other, PassiveEntity baby, CallbackInfo ci) {
-        EntityEventImpl.applyAnimalPostBreedEvent(world, (AnimalEntity) (Object) this, other, baby, ci);
+        EntityEventImpl.applyAnimalPostBreedEvent(world, (AnimalEntity) (Object) this, other, baby);
     }
 
     @Inject(method = "interactMob", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/passive/AnimalEntity;getBreedingAge()I", shift = At.Shift.BY, by = 2), cancellable = true)
