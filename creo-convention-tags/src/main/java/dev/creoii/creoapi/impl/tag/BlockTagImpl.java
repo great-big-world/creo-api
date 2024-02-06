@@ -34,12 +34,8 @@ public final class BlockTagImpl {
             cir.setReturnValue(true);
     }
 
-    @SuppressWarnings("deprecation")
-    public static void applyCactusPlantableOn(BlockState state, WorldView world, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
-        if (!world.getBlockState(pos.up()).isLiquid()) {
-            if (state.isIn(CreoBlockTags.CACTUS_PLANTABLE_ON))
-                cir.setReturnValue(true);
-        }
+    public static boolean applyCactusPlantableOn(BlockState state) {
+        return state.isIn(CreoBlockTags.CACTUS_PLANTABLE_ON);
     }
 
     public static void applyNetherWartPlantableOn(BlockState state, CallbackInfoReturnable<Boolean> cir) {
