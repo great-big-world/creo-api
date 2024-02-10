@@ -102,6 +102,11 @@ public class BlockModificationImpl implements BlockModification {
     }
 
     @Override
+    public void setDynamicBounds(Block block, boolean dynamicBounds) {
+        ((AbstractBlockAccessor) block).setDynamicBounds(dynamicBounds);
+    }
+
+    @Override
     public void setRandomTicks(Block block, boolean randomTicks) {
         ((AbstractBlockAccessor) block).setRandomTicks(randomTicks);
         block.getStateManager().getStates().forEach(state -> {

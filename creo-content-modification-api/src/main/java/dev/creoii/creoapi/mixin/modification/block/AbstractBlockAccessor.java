@@ -31,4 +31,7 @@ public interface AbstractBlockAccessor {
 
     @Accessor("lootTableId")
     void setLootTableId(Identifier lootTableId);
+
+    @Accessor("dynamicBounds")
+    void setDynamicBounds(boolean dynamicBounds);
 }

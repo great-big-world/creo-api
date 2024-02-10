@@ -75,6 +75,12 @@ public class ContentModificationApiTest implements ModInitializer {
         LOGGER.info(String.valueOf(Blocks.SLIME_BLOCK.getJumpVelocityMultiplier()));
         LOGGER.info("pass");
 
+        LOGGER.info("DYNAMIC BOUNDS");
+        LOGGER.info(String.valueOf(Blocks.SHORT_GRASS.hasDynamicBounds()));
+        BlockModification.INSTANCE.setDynamicBounds(Blocks.SHORT_GRASS, true);
+        LOGGER.info(String.valueOf(Blocks.SHORT_GRASS.hasDynamicBounds()));
+        LOGGER.info("pass");
+
         LOGGER.info("RANDOM TICKS");
         LOGGER.info(String.valueOf(Blocks.OAK_SAPLING.getDefaultState().hasRandomTicks()));
         BlockModification.INSTANCE.setRandomTicks(Blocks.OAK_SAPLING, false);

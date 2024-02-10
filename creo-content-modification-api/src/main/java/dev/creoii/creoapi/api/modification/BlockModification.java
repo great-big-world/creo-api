@@ -126,6 +126,13 @@ public interface BlockModification {
     void setJumpVelocityMultiplier(Block block, float jumpVelocityMultiplier);
 
     /**
+     * Set whether the block has dynamic bounds.
+     * @param block a block
+     * @param dynamicBounds whether the block has dynamic bounds
+     */
+    void setDynamicBounds(Block block, boolean dynamicBounds);
+
+    /**
      * Set whether the block ticks randomly.
      * @param block a block
      * @param randomTicks whether the block ticks randomly
