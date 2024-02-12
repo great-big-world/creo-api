@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import dev.creoii.creoapi.api.worldgen.CreoPlacementModifierTypes;
 import dev.creoii.creoapi.api.worldgen.CreoWorldgen;
+import net.minecraft.registry.Registries;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.gen.feature.FeaturePlacementContext;
@@ -24,6 +25,9 @@ public class RandomPlacementModifier extends PlacementModifier {
 
     public RandomPlacementModifier(List<PlacementModifier> placements) {
         this.placements = placements;
+        if (placements.size() == 1) {
+            CreoWorldgen.LOGGER.error("Instance of {} contains 1 placement entry. This is redundant.", Registries.PLACEMENT_MODIFIER_TYPE.getId(getType()));
+        }
     }
 
     @Override
@@ -33,9 +37,6 @@ public class RandomPlacementModifier extends PlacementModifier {
 
     @Override
     public Stream<BlockPos> getPositions(FeaturePlacementContext context, Random random, BlockPos pos) {
-        if (placements.size() == 1) {
-            CreoWorldgen.LOGGER.warn("Instance of creo:random {} contains 1 placement entry. This is redundant.", context.getPlacedFeature().get().feature().getKey().get());
-        }
         PlacementModifier modifier = placements.get(random.nextInt(placements.size()));
         if (modifier instanceof AbstractConditionalPlacementModifier conditional && !conditional.shouldPlace(context, random, pos)) {
             return Stream.of();
