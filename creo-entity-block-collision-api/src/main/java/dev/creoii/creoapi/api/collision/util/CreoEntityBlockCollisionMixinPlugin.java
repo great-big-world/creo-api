@@ -1,4 +1,4 @@
-package dev.creoii.creoapi.impl.collision.util;
+package dev.creoii.creoapi.api.collision.util;
 
 import net.fabricmc.loader.api.FabricLoader;
 import org.objectweb.asm.tree.ClassNode;
@@ -19,7 +19,7 @@ public class CreoEntityBlockCollisionMixinPlugin implements IMixinConfigPlugin {
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        if ("dev.creoii.creoapi.mixin.compat.LithiumEntityCollisionsMixin".equals(mixinClassName)) {
+        if ("dev.creoii.creoapi.mixin.collision.compat.LithiumEntityCollisionsMixin".equals(mixinClassName)) {
             return FabricLoader.getInstance().isModLoaded("lithium");
         }
         return true;

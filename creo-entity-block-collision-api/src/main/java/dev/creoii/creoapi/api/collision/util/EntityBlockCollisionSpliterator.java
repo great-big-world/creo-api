@@ -1,4 +1,4 @@
-package dev.creoii.creoapi.impl.collision.util;
+package dev.creoii.creoapi.api.collision.util;
 
 import com.google.common.collect.AbstractIterator;
 import dev.creoii.creoapi.api.collision.EntityBlockCollisionContext;

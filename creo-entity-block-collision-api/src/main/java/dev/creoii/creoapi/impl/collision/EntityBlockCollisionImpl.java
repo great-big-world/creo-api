@@ -2,7 +2,7 @@ package dev.creoii.creoapi.impl.collision;
 
 import dev.creoii.creoapi.api.collision.EntityBlockCollisionContext;
 import dev.creoii.creoapi.api.collision.EntityBlockCollisionRegistry;
-import dev.creoii.creoapi.impl.collision.util.EntityBlockCollisionSpliterator;
+import dev.creoii.creoapi.api.collision.util.EntityBlockCollisionSpliterator;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.shape.VoxelShape;
