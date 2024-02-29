@@ -112,6 +112,7 @@ public final class BlockTagImpl {
         return types.toArray(new Heightmap.Type[0]);
     }
 
+    @SuppressWarnings("deprecation")
     private static boolean shouldWeatherIgnore(BlockState state) {
         return !state.isIn(CreoBlockTags.WEATHER_RENDER_IGNORES) && (state.blocksMovement() || !state.getFluidState().isEmpty());
     }

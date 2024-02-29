@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(RecipeManager.class)
 public class RecipeManagerMixin {
     @SuppressWarnings("unchecked")
-    @Redirect(method = "apply(Ljava/util/Map;Lnet/minecraft/resource/ResourceManager;Lnet/minecraft/util/profiler/Profiler;)V", at = @At(value = "INVOKE", target = "Lcom/google/common/collect/ImmutableMap$Builder;put(Ljava/lang/Object;Ljava/lang/Object;)Lcom/google/common/collect/ImmutableMap$Builder;"))
+    @Redirect(method = "apply(Ljava/util/Map;Lnet/minecraft/resource/ResourceManager;Lnet/minecraft/util/profiler/Profiler;)V", at = @At(value = "INVOKE", target = "Lcom/google/common/collect/ImmutableMap$Builder;put(Ljava/lang/Object;Ljava/lang/Object;)Lcom/google/common/collect/ImmutableMap$Builder;", ordinal = 1))
     private <K, V> ImmutableMap.Builder<K, V> gbw$(ImmutableMap.Builder<K, V> instance, K key, V value) {
         return (ImmutableMap.Builder<K, V>) MiscEventImpl.applyRecipeLoadEvent((ImmutableMap.Builder<Identifier, RecipeEntry<?>>) instance, (Identifier) key, (RecipeEntry<?>) value);
     }
