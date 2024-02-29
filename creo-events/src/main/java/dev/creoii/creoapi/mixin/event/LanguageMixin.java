@@ -1,6 +1,6 @@
 package dev.creoii.creoapi.mixin.event;
 
-import com.llamalad7.mixinextras.injector.WrapWithCondition;
+import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
 import dev.creoii.creoapi.impl.event.MiscEventImpl;
 import dev.creoii.creoapi.impl.event.util.LocaleAwareLanguage;
 import net.minecraft.util.Language;
