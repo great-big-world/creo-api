@@ -59,7 +59,10 @@ public final class CreoItemTags {
      * Items which can be used to fuel a Furnace Minecart.
      */
     public static final TagKey<Item> FUELS_FURNACE_MINECARTS = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "fuels_furnace_minecarts"));
-
+    /**
+     * Items which, when worn, do not anger an Enderman upon looking at one.
+     */
+    public static final TagKey<Item> BLOCKS_ENDERMAN_STARE = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "blocks_enderman_stare"));
     /**
      * Items which can be used to repair Leather equipment.
      */

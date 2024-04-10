@@ -22,6 +22,7 @@
     "entity.AllayEntityMixin",
     "entity.CreeperEntityMixin",
     "entity.DolphinEntityMixin",
+    "entity.EndermanEntityMixin",
     "entity.EntityMixin",
     "entity.FallingBlockEntityMixin",
     "entity.FishingBobberEntityMixin",

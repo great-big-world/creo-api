@@ -2,6 +2,8 @@ package dev.creoii.creoapi.impl.food;
 
 import dev.creoii.creoapi.api.food.CreoFoodComponent;
 import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.entity.player.HungerManager;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -39,5 +41,13 @@ public final class FoodComponentImpl {
             return player.isUsingItem() ? !creoFoodComponent.isSprintEdible() : player.isUsingItem();
         }
         return player.isUsingItem();
+    }
+
+    public static void applyFoodHealsHealth(PlayerEntity player, HungerManager instance, ItemStack stack) {
+        if (stack.getFoodComponent() instanceof CreoFoodComponent creoFoodComponent && creoFoodComponent.healsHealth()) {
+            player.heal(creoFoodComponent.getHunger());
+        } else {
+            instance.eat(stack.getItem(), stack);
+        }
     }
 }

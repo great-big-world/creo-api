@@ -78,6 +78,10 @@ public final class ItemTagImpl {
         return stack.isIn(CreoItemTags.ENCHANTING_FUEL);
     }
 
+    public static boolean applyBlocksEndermanStare(ItemStack stack) {
+        return stack.isIn(CreoItemTags.BLOCKS_ENDERMAN_STARE);
+    }
+
     @SuppressWarnings("deprecation")
     public static void applyArmorRepairIngredients() {
         ((ArmorMaterialsAccessor) (Object) ArmorMaterials.LEATHER).setRepairIngredientSupplier(new Lazy<>(() -> Ingredient.fromTag(CreoItemTags.REPAIRS_LEATHER)));

@@ -11,16 +11,18 @@ public class CreoFoodComponent extends FoodComponent {
     private final int eatSpeed;
     private final int eatDurability;
     private final boolean sprintEdible;
+    private final boolean healsHealth;
 
-    public CreoFoodComponent(int hunger, float saturationModifier, int eatSpeed, int eatDurability, boolean meat, boolean alwaysEdible, boolean sprintEdible, boolean snack, List<Pair<StatusEffectInstance, Float>> statusEffects) {
-        super(hunger, saturationModifier, meat, alwaysEdible, snack, statusEffects);
+    public CreoFoodComponent(int value, float saturationModifier, int eatSpeed, int eatDurability, boolean meat, boolean alwaysEdible, boolean sprintEdible, boolean healsHealth, boolean snack, List<Pair<StatusEffectInstance, Float>> statusEffects) {
+        super(value, saturationModifier, meat, alwaysEdible, snack, statusEffects);
         this.eatSpeed = eatSpeed;
         this.eatDurability = eatDurability;
         this.sprintEdible = sprintEdible;
+        this.healsHealth = healsHealth;
     }
 
     public static CreoFoodComponent copyOf(FoodComponent foodComponent) {
-        return new CreoFoodComponent(foodComponent.getHunger(), foodComponent.getSaturationModifier(), foodComponent.isSnack() ? 16 : 32, 1, foodComponent.isMeat(), foodComponent.isAlwaysEdible(), false, foodComponent.isSnack(), foodComponent.getStatusEffects());
+        return new CreoFoodComponent(foodComponent.getHunger(), foodComponent.getSaturationModifier(), foodComponent.isSnack() ? 16 : 32, 1, foodComponent.isMeat(), foodComponent.isAlwaysEdible(), false, false, foodComponent.isSnack(), foodComponent.getStatusEffects());
     }
 
     public int getEatSpeed() {
@@ -39,21 +41,26 @@ public class CreoFoodComponent extends FoodComponent {
         return sprintEdible;
     }
 
+    public boolean healsHealth() {
+        return healsHealth;
+    }
+
     public static class Builder {
-        private int hunger;
+        private int value;
         private float saturationModifier;
         private int eatSpeed = 32;
         private int eatDurability = 1;
         private boolean meat;
         private boolean alwaysEdible;
         private boolean sprintEdible;
+        private boolean healsHealth;
         private boolean snack;
         private final List<Pair<StatusEffectInstance, Float>> statusEffects = Lists.newArrayList();
 
         public Builder() {}
 
-        public Builder hunger(int hunger) {
-            this.hunger = hunger;
+        public Builder value(int value) {
+            this.value = value;
             return this;
         }
 
@@ -87,6 +94,11 @@ public class CreoFoodComponent extends FoodComponent {
             return this;
         }
 
+        public Builder healsHealth() {
+            healsHealth = true;
+            return this;
+        }
+
         public Builder snack() {
             snack = true;
             eatSpeed = 16;
@@ -99,7 +111,7 @@ public class CreoFoodComponent extends FoodComponent {
         }
 
         public CreoFoodComponent build() {
-            return new CreoFoodComponent(hunger, saturationModifier, eatSpeed, eatDurability, meat, alwaysEdible, sprintEdible, snack, statusEffects);
+            return new CreoFoodComponent(value, saturationModifier, eatSpeed, eatDurability, meat, alwaysEdible, sprintEdible, healsHealth, snack, statusEffects);
         }
     }
 }

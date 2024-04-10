@@ -15,10 +15,12 @@ public class FoodComponentTest implements ModInitializer {
         Item fastFood = new Item(new FabricItemSettings().food(new CreoFoodComponent.Builder().eatSpeed(1).alwaysEdible().build()));
         Item durabilityFood = new Item(new FabricItemSettings().food(new CreoFoodComponent.Builder().eatDurability(4).alwaysEdible().build()));
         Item sprintEdibleFood = new Item(new FabricItemSettings().food(new CreoFoodComponent.Builder().alwaysEdible().sprintEdible().build()));
+        Item healsHealthFood = new Item(new FabricItemSettings().food(new CreoFoodComponent.Builder().value(2).alwaysEdible().healsHealth().build()));
 
         Registry.register(Registries.ITEM, new Identifier("test", "slow_food"), slowFood);
         Registry.register(Registries.ITEM, new Identifier("test", "fast_food"), fastFood);
         Registry.register(Registries.ITEM, new Identifier("test", "durability_food"), durabilityFood);
         Registry.register(Registries.ITEM, new Identifier("test", "sprint_food"), sprintEdibleFood);
+        Registry.register(Registries.ITEM, new Identifier("test", "heals_health"), healsHealthFood);
     }
 }
