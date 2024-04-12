@@ -7,7 +7,9 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.PillarBlock;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityPose;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -16,6 +18,7 @@ import net.minecraft.structure.StructureTemplate;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3i;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
@@ -27,6 +30,7 @@ public class BlockTest implements ModInitializer {
     public void onInitialize() {
         Registry.register(Registries.BLOCK, new Identifier("test", "test"), new TestBlock());
         Registry.register(Registries.BLOCK, new Identifier("test", "spreadable"), new TestSpreadableBlock());
+        Registry.register(Registries.BLOCK, new Identifier("test", "adjacent_collider"), new TestColliderBlock());
     }
 
     public static class TestBlock extends Block implements CreoBlock {
@@ -58,6 +62,35 @@ public class BlockTest implements ModInitializer {
         @Override
         public List<Spread> getSpreads() {
             return List.of(Spread.of(Blocks.DIRT));
+        }
+    }
+
+    public static class TestColliderBlock extends PillarBlock implements CreoBlock {
+        public TestColliderBlock() {
+            super(FabricBlockSettings.copy(Blocks.GRASS_BLOCK));
+        }
+
+        @Override
+        public boolean canEntityCollideAdjacent(Entity entity, BlockState state, BlockPos pos) {
+            if (entity.isInPose(EntityPose.SWIMMING) || !entity.isSprinting() || entity.hasPassengers())
+                return false;
+            System.out.println("can collide");
+            BlockPos difference = pos.subtract(entity.getBlockPos());
+            if (difference.getY() > .5d || difference.getY() < -.5d || difference.equals(BlockPos.ORIGIN))
+                return false;
+            Vec3i facingVec = entity.getHorizontalFacing().getVector();
+            return switch (state.get(AXIS)) {
+                case X -> difference.getX() != 0d && difference.getX() == facingVec.getX() && difference.getZ() == 0d;
+                case Z -> difference.getZ() != 0d && difference.getZ() == facingVec.getZ() && difference.getX() == 0d;
+                case Y -> false;
+            };
+        }
+
+        @Override
+        public void onAdjacentEntityCollision(Entity entity, BlockState state, BlockPos pos) {
+            System.out.println("colliding");
+            entity.setSwimming(true);
+            entity.setPose(EntityPose.SWIMMING);
         }
     }
 }

@@ -13,6 +13,8 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.ServerWorldAccess;
 import org.jetbrains.annotations.ApiStatus;
 
+import java.util.Optional;
+
 @ApiStatus.Internal
 public final class BlockImpl {
     public static void applyLookAtBlock(Entity entity) {
@@ -30,6 +32,21 @@ public final class BlockImpl {
     public static void applyOnPlacedByStructure(ServerWorldAccess world, BlockPos pivot, StructurePlacementData placementData, Random random, StructureTemplate.StructureBlockInfo structureBlockInfo, BlockPos pos, FluidState fluidState, BlockState state, StructureTemplate structureTemplate) {
         if (state.getBlock() instanceof CreoBlock creoBlock) {
             creoBlock.onPlacedByStructure(world, pos, state, fluidState, random, pivot, structureTemplate, placementData, structureBlockInfo);
+        }
+    }
+
+    public static void applyCollideAdjacent(Entity entity) {
+        Optional<BlockPos> optionalPos = BlockPos.findClosest(entity.getBlockPos(), (int) (entity.getWidth() + .5f), (int) (entity.getHeight() + .5f), pos -> {
+            return entity.getWorld().getBlockState(pos).getBlock() instanceof CreoBlock;
+        });
+        if (optionalPos.isPresent()) {
+            BlockPos pos = optionalPos.get();
+            BlockState state = entity.getWorld().getBlockState(pos);
+            if (state.getBlock() instanceof CreoBlock creoBlock) {
+                if (creoBlock.canEntityCollideAdjacent(entity, state, pos)) {
+                    creoBlock.onAdjacentEntityCollision(entity, state, pos);
+                }
+            }
         }
     }
 }

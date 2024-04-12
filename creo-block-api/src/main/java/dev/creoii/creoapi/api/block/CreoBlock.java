@@ -40,4 +40,24 @@ public interface CreoBlock {
      */
     default void onPlacedByStructure(ServerWorldAccess world, BlockPos pos, BlockState state, FluidState fluidState, Random random, BlockPos pivot, StructureTemplate structureTemplate, StructurePlacementData placementData, StructureTemplate.StructureBlockInfo structureBlockInfo) {
     }
+
+    /**
+     * Determines whether an entity can collide adjacent, thus called {@link CreoBlock#onAdjacentEntityCollision}.
+     * @param entity the entity
+     * @param state the blockstate
+     * @param pos the block's position
+     * @return whether the entity can collide adjacent with the blockstate
+     */
+    default boolean canEntityCollideAdjacent(Entity entity, BlockState state, BlockPos pos) {
+        return false;
+    }
+
+    /**
+     * Called when an entity is next to a block.
+     * @param entity the entity
+     * @param state the blockstate
+     * @param pos the block's position
+     */
+    default void onAdjacentEntityCollision(Entity entity, BlockState state, BlockPos pos) {
+    }
 }
