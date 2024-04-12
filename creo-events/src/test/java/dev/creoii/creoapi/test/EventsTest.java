@@ -44,6 +44,7 @@ public class EventsTest implements ModInitializer {
     private static final boolean testProjectileImpactEvent = false;
     private static final boolean testItemCraftEvent = false;
     private static final boolean testItemEnchantEvent = false;
+    private static final boolean testItemPickUpEvent = true;
     private static final boolean testBlockPlaceEvent = false;
     private static final boolean testBlockBreakEvent = false;
     private static final boolean testBlockChangeEvent = false;
@@ -189,6 +190,14 @@ public class EventsTest implements ModInitializer {
                 System.out.println("    level=" + level);
 
                 return enchantment != Enchantments.MENDING;
+            });
+        }
+
+        if (testItemPickUpEvent) {
+            ItemEvents.PICK_UP.register((itemEntity, living) -> {
+                System.out.println("Item Pick Up:");
+                System.out.println("    item=" + itemEntity.getStack().getItem().getTranslationKey());
+                System.out.println("    entity=" + living.getType().getTranslationKey());
             });
         }
 

@@ -2,6 +2,8 @@ package dev.creoii.creoapi.impl.event;
 
 import dev.creoii.creoapi.api.event.item.ItemEvents;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.entity.ItemEntity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -11,14 +13,17 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @ApiStatus.Internal
 public final class ItemEventImpl {
-    public static void applyItemCraftEvent(World world, ItemStack stack, @Nullable PlayerEntity player, int amount, CallbackInfo ci) {
+    public static void applyItemCraftEvent(World world, ItemStack stack, @Nullable PlayerEntity player, int amount) {
         ItemEvents.CRAFT.invoker().onCraft(world, stack, player, amount);
     }
 
     public static void applyItemEnchantEvent(ItemStack stack, Enchantment enchantment, int level, CallbackInfo ci) {
         boolean result = ItemEvents.ENCHANT.invoker().onEnchant(stack, enchantment, level);
-
         if (!result)
             ci.cancel();
+    }
+
+    public static void applyItemPickUpEvent(ItemEntity itemEntity, LivingEntity living) {
+        ItemEvents.PICK_UP.invoker().onPickUp(itemEntity, living);
     }
 }

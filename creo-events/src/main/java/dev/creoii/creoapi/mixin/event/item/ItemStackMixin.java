@@ -12,14 +12,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ItemStack.class)
 public class ItemStackMixin {
-    @Inject(method = "onCraftByPlayer", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "onCraftByPlayer", at = @At("HEAD"))
     private void creo_applyItemCraftEvent(World world, PlayerEntity player, int amount, CallbackInfo ci) {
-        ItemEventImpl.applyItemCraftEvent(world, (ItemStack) (Object) this, player, amount, ci);
+        ItemEventImpl.applyItemCraftEvent(world, (ItemStack) (Object) this, player, amount);
     }
 
-    @Inject(method = "onCraftByCrafter", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "onCraftByCrafter", at = @At("HEAD"))
     private void creo_applyItemCraftEventCrafter(World world, CallbackInfo ci) {
-        ItemEventImpl.applyItemCraftEvent(world, (ItemStack) (Object) this, null, 1, ci);
+        ItemEventImpl.applyItemCraftEvent(world, (ItemStack) (Object) this, null, 1);
     }
 
     @Inject(method = "addEnchantment", at = @At("HEAD"), cancellable = true)

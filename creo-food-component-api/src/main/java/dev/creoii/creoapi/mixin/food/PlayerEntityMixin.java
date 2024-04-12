@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(PlayerEntity.class)
 public class PlayerEntityMixin {
     @Redirect(method = "eatFood", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/HungerManager;eat(Lnet/minecraft/item/Item;Lnet/minecraft/item/ItemStack;)V"))
-    private void gbw$applyCreoHealthFoods(HungerManager instance, Item item, ItemStack stack) {
+    private void creo$applyCreoHealthFoods(HungerManager instance, Item item, ItemStack stack) {
         FoodComponentImpl.applyFoodHealsHealth((PlayerEntity) (Object) this, instance, stack);
     }
 }

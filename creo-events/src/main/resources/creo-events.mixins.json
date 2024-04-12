@@ -11,6 +11,7 @@
     "block.CropBlockMixin",
     "entity.AnimalEntityMixin",
     "entity.EntityMixin",
+    "entity.ItemEntityMixin",
     "entity.LivingEntityMixin",
     "entity.MobEntityMixin",
     "entity.PassiveEntityMixin",

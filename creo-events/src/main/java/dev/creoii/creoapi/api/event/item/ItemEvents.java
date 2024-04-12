@@ -3,6 +3,8 @@ package dev.creoii.creoapi.api.event.item;
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.entity.ItemEntity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -36,6 +38,18 @@ public final class ItemEvents {
             }
     );
 
+    /**
+     * An event that is called when an item is picked up by an entity.
+     * @implNote this event called server-side.
+     */
+    public static final Event<PickUp> PICK_UP = EventFactory.createArrayBacked(PickUp.class,
+            listeners -> (itemEntity, living) -> {
+                for (PickUp event : listeners) {
+                    event.onPickUp(itemEntity, living);
+                }
+            }
+    );
+
     @FunctionalInterface
     public interface Craft {
         /**
@@ -61,5 +75,15 @@ public final class ItemEvents {
          * @param level the enchantment level
          */
         boolean onEnchant(ItemStack stack, Enchantment enchantment, int level);
+    }
+
+    @FunctionalInterface
+    public interface PickUp {
+        /**
+         * Called when an item is picked up by an entity.
+         * @param itemEntity the item
+         * @param living the entity that picked up the item
+         */
+        void onPickUp(ItemEntity itemEntity, LivingEntity living);
     }
 }
