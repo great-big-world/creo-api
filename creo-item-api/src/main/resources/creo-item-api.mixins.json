@@ -15,6 +15,6 @@
     "defaultRequire": 1
   },
   "client": [
-    "MinecraftClientMixin"
+    "ClientPlayerInteractionManagerMixin"
   ]
 }

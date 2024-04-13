@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.tag.ItemTags;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 
 public class ItemTest implements ModInitializer {
@@ -34,12 +35,12 @@ public class ItemTest implements ModInitializer {
         }
 
         @Override
-        public void onAttackThroughBlock(MinecraftClient client, ItemStack stack, Entity target) {
+        public void onAttackThroughBlock(ServerPlayerEntity player, ItemStack stack, Entity target) {
             System.out.println(target.getType().getTranslationKey());
         }
 
         @Override
-        public boolean canAttackThroughBlock(MinecraftClient client, ItemStack stack, Entity target) {
+        public boolean canAttackThroughBlock(ServerPlayerEntity player, ItemStack stack, Entity target) {
             return true;
         }
     }

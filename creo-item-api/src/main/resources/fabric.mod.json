@@ -15,7 +15,11 @@
   "license": "All-Rights-Reserved",
   "icon": "assets/creo-item-api/icon.png",
   "environment": "*",
-  "entrypoints": {},
+  "entrypoints": {
+    "main": [
+      "dev.creoii.creoapi.api.item.CreoItemApi"
+    ]
+  },
   "accessWidener": "creo-item-api.accesswidener",
   "mixins": [
     "creo-item-api.mixins.json"
