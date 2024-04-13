@@ -40,7 +40,8 @@ public final class ItemEvents {
 
     /**
      * An event that is called when an item is picked up by an entity.
-     * @implNote this event called server-side.
+     * <p>
+     * <b>Note:</b> this event called server-side.
      */
     public static final Event<PickUp> PICK_UP = EventFactory.createArrayBacked(PickUp.class,
             listeners -> (itemEntity, living) -> {
