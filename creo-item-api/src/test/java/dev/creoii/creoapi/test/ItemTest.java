@@ -15,6 +15,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 
@@ -54,6 +55,11 @@ public class ItemTest implements ModInitializer {
         @Override
         public boolean canAttackThroughBlock(ServerPlayerEntity player, ItemStack stack, Entity target) {
             return true;
+        }
+
+        @Override
+        public void onAttack(ServerPlayerEntity player, ItemStack stack, HitResult.Type type) {
+            System.out.println(type);
         }
     }
 }

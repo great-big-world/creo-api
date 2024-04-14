@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class ClientPlayerInteractionManagerMixin {
     @Shadow @Final private MinecraftClient client;
 
-    @Inject(method = "attackBlock", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/GameMode;isCreative()Z"), cancellable = true)
+    @Inject(method = "attackBlock", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/GameMode;isCreative()Z"))
     private void creo$tryAttackThroughBlock(BlockPos pos, Direction direction, CallbackInfoReturnable<Boolean> cir) {
         CreoItemImpl.applyAttackThroughBlockClient(client);
     }

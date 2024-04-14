@@ -3,8 +3,18 @@ package dev.creoii.creoapi.api.item;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.util.hit.HitResult;
 
 public interface CreoItem {
+    /**
+     * Called when a player left-clicks with an item, or an attack.
+     * @param player the player
+     * @param stack the itemstack used
+     * @param type the {@link HitResult.Type}
+     */
+    default void onAttack(ServerPlayerEntity player, ItemStack stack, HitResult.Type type) {
+    }
+
     /**
      * Performs an attack through blocks.
      * @param player the player

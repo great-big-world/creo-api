@@ -7,6 +7,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.projectile.ProjectileUtil;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.hit.EntityHitResult;
+import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.Vec3d;
 import org.jetbrains.annotations.ApiStatus;
 
@@ -26,9 +27,22 @@ public final class CreoItemImpl {
         }
     }
 
+    public static void applyItemAttack(MinecraftClient client) {
+        ClientPlayNetworking.send(CreoItemApi.ITEM_ATTACK_PACKET_ID, getItemAttackData(client));
+    }
+
     private static PacketByteBuf getAttackThroughBlockData(EntityHitResult xrayResult) {
         PacketByteBuf buf = PacketByteBufs.create();
         buf.writeInt(xrayResult.getEntity().getId());
+        return buf;
+    }
+
+    private static PacketByteBuf getItemAttackData(MinecraftClient client) {
+        PacketByteBuf buf = PacketByteBufs.create();
+        HitResult hitResult = client.crosshairTarget;
+        if (hitResult != null)
+            buf.writeInt(hitResult.getType().ordinal());
+        else buf.writeInt(-1);
         return buf;
     }
 }
