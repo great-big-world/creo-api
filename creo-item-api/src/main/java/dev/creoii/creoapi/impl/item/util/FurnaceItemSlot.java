@@ -19,7 +19,7 @@ public class FurnaceItemSlot extends Slot {
         if (fuel.isEmpty())
             return true;
 
-        Item.Settings settings = ((AccessibleItem) stack.getItem()).creo_getItemSettings();
+        Item.Settings settings = ((AccessibleItem) stack.getItem()).creo$getItemSettings();
         if (settings instanceof CreoItemSettings creoItemSettings) {
             RegistryEntryList<Item> requiredFuels = creoItemSettings.getRequiredFuels();
             if (requiredFuels != null)

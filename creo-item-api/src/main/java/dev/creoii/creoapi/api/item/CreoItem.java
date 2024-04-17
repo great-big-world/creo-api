@@ -11,6 +11,7 @@ public interface CreoItem {
      * @param player the player
      * @param stack the itemstack used
      * @param type the {@link HitResult.Type}
+     * @since 0.2.2
      */
     default void onAttack(ServerPlayerEntity player, ItemStack stack, HitResult.Type type) {
     }
@@ -20,6 +21,7 @@ public interface CreoItem {
      * @param player the player
      * @param stack the itemstack used
      * @param target the target attacked
+     * @since 0.1.2
      */
     default void onAttackThroughBlock(ServerPlayerEntity player, ItemStack stack, Entity target) {
     }
@@ -30,6 +32,7 @@ public interface CreoItem {
      * @param stack the itemstack used
      * @param target the target attacked
      * @return whether the item can attack through blocks.
+     * @since 0.1.2
      */
     default boolean canAttackThroughBlock(ServerPlayerEntity player, ItemStack stack, Entity target) {
         return false;

@@ -25,30 +25,11 @@ public class CreoItemSettings extends FabricItemSettings {
     private int hopperTransferRate = 8;
     private float rotationModifier = 1f;
     private boolean hoverAnimation = true;
+    private boolean clickPickup = false;
     private RegistryEntryList<Item> requiredFuels;
 
     public static CreoItemSettings copyOf(Item item) {
-        CreoItemSettings copy = new CreoItemSettings();
-
-        ((ItemSettingsAccessor) copy).setMaxCount(item.getMaxCount());
-        ((ItemSettingsAccessor) copy).setMaxDamage(item.getMaxDamage());
-        ((ItemSettingsAccessor) copy).setRecipeRemainder(item.getRecipeRemainder());
-        ((ItemSettingsAccessor) copy).setRarity(item.getRarity(item.getDefaultStack()));
-        ((ItemSettingsAccessor) copy).setFoodComponent(item.getFoodComponent());
-        if (item.isFireproof())
-            ((ItemSettingsAccessor) copy).setFireproof(true);
-
-        if (((AccessibleItem) item).creo_getItemSettings() instanceof CreoItemSettings creoItemSettings) {
-            copy.setPickupDelay(creoItemSettings.getPickupDelay());
-            copy.setDespawnTime(creoItemSettings.getDespawnTime());
-            copy.setBuoyant(creoItemSettings.isBuoyant());
-            copy.setGravity(creoItemSettings.getGravity());
-            copy.setHopperTransferRate(creoItemSettings.getHopperTransferRate());
-            copy.setRotationModifier(creoItemSettings.getRotationModifier());
-            copy.setHoverAnimation(creoItemSettings.hasHoverAnimation());
-            copy.setRequiredFuels(creoItemSettings.getRequiredFuels());
-        }
-        return copy;
+        return copyOf(((AccessibleItem) item).creo$getItemSettings());
     }
 
     public static CreoItemSettings copyOf(Item.Settings settings) {
@@ -71,6 +52,7 @@ public class CreoItemSettings extends FabricItemSettings {
             copy.setHopperTransferRate(creoItemSettings.getHopperTransferRate());
             copy.setRotationModifier(creoItemSettings.getRotationModifier());
             copy.setHoverAnimation(creoItemSettings.hasHoverAnimation());
+            copy.setClickPickup(creoItemSettings.doesClickPickup());
             copy.setRequiredFuels(creoItemSettings.getRequiredFuels());
         }
         return copy;
@@ -171,6 +153,9 @@ public class CreoItemSettings extends FabricItemSettings {
         return this;
     }
 
+    /**
+     * @since 0.2.3
+     */
     public CreoItemSettings rotationModifier(float rotationModifier) {
         this.rotationModifier = rotationModifier;
         return this;
@@ -178,6 +163,14 @@ public class CreoItemSettings extends FabricItemSettings {
 
     public CreoItemSettings noHoverAnimation() {
         hoverAnimation = false;
+        return this;
+    }
+
+    /**
+     * @since 0.2.3
+     */
+    public CreoItemSettings clickPickup() {
+        clickPickup = true;
         return this;
     }
 
@@ -229,6 +222,10 @@ public class CreoItemSettings extends FabricItemSettings {
         return hoverAnimation;
     }
 
+    public boolean doesClickPickup() {
+        return clickPickup;
+    }
+
     public RegistryEntryList<Item> getRequiredFuels() {
         return requiredFuels;
     }
@@ -259,6 +256,10 @@ public class CreoItemSettings extends FabricItemSettings {
 
     public void setHoverAnimation(boolean hoverAnimation) {
         this.hoverAnimation = hoverAnimation;
+    }
+
+    public void setClickPickup(boolean clickPickup) {
+        this.clickPickup = clickPickup;
     }
 
     public void setRequiredFuels(RegistryEntryList<Item> requiredFuels) {

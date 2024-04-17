@@ -5,5 +5,5 @@ import org.jetbrains.annotations.ApiStatus;
 
 @ApiStatus.NonExtendable
 public interface AccessibleItem {
-    Item.Settings creo_getItemSettings();
+    Item.Settings creo$getItemSettings();
 }

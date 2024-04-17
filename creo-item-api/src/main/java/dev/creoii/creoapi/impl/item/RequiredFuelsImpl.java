@@ -19,7 +19,7 @@ public final class RequiredFuelsImpl {
     }
 
     public static void applySmeltable(ItemStack stack, Inventory inventory, CallbackInfoReturnable<Boolean> cir) {
-        Item.Settings settings = ((AccessibleItem) stack.getItem()).creo_getItemSettings();
+        Item.Settings settings = ((AccessibleItem) stack.getItem()).creo$getItemSettings();
         if (settings instanceof CreoItemSettings creoItemSettings) {
             RegistryEntryList<Item> requiredFuels = creoItemSettings.getRequiredFuels();
             if (requiredFuels != null)
@@ -32,7 +32,7 @@ public final class RequiredFuelsImpl {
         if (item.isEmpty())
             cir.setReturnValue(true);
 
-        Item.Settings settings = ((AccessibleItem) item.getItem()).creo_getItemSettings();
+        Item.Settings settings = ((AccessibleItem) item.getItem()).creo$getItemSettings();
         if (settings instanceof CreoItemSettings creoItemSettings) {
             RegistryEntryList<Item> requiredFuels = creoItemSettings.getRequiredFuels();
             if (requiredFuels != null)

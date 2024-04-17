@@ -2,6 +2,7 @@ package dev.creoii.creoapi.test;
 
 import dev.creoii.creoapi.api.item.CreoItem;
 import dev.creoii.creoapi.api.item.CreoItemSettings;
+import dev.creoii.creoapi.api.item.ItemEvents;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
@@ -30,9 +31,14 @@ public class ItemTest implements ModInitializer {
                         .hopperTransferRate(1)
                         .rotationModifier(0f)
                         .noHoverAnimation()
+                        .clickPickup()
                         .requiredFuels(ItemTags.COALS)
         ));
         Registry.register(Registries.ITEM, new Identifier("test", "xray"), new XrayItem(new CreoItemSettings()));
+
+        ItemEvents.CLICK_PICKUP.register((itemEntity, player) -> {
+            System.out.println(itemEntity.getStack().getTranslationKey());
+        });
     }
 
     private static class XrayItem extends Item implements CreoItem {

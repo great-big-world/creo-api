@@ -18,7 +18,7 @@ public abstract class ItemMixin implements AccessibleItem {
     }
 
     @Override
-    public Item.Settings creo_getItemSettings() {
+    public Item.Settings creo$getItemSettings() {
         return creo_settings;
     }
 }
