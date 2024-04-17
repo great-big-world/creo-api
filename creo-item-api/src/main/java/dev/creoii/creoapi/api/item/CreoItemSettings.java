@@ -23,6 +23,8 @@ public class CreoItemSettings extends FabricItemSettings {
     private boolean buoyant = true;
     private double gravity = -.04d;
     private int hopperTransferRate = 8;
+    private float rotationModifier = 1f;
+    private boolean hoverAnimation = true;
     private RegistryEntryList<Item> requiredFuels;
 
     public static CreoItemSettings copyOf(Item item) {
@@ -42,6 +44,8 @@ public class CreoItemSettings extends FabricItemSettings {
             copy.setBuoyant(creoItemSettings.isBuoyant());
             copy.setGravity(creoItemSettings.getGravity());
             copy.setHopperTransferRate(creoItemSettings.getHopperTransferRate());
+            copy.setRotationModifier(creoItemSettings.getRotationModifier());
+            copy.setHoverAnimation(creoItemSettings.hasHoverAnimation());
             copy.setRequiredFuels(creoItemSettings.getRequiredFuels());
         }
         return copy;
@@ -65,6 +69,8 @@ public class CreoItemSettings extends FabricItemSettings {
             copy.setBuoyant(creoItemSettings.isBuoyant());
             copy.setGravity(creoItemSettings.getGravity());
             copy.setHopperTransferRate(creoItemSettings.getHopperTransferRate());
+            copy.setRotationModifier(creoItemSettings.getRotationModifier());
+            copy.setHoverAnimation(creoItemSettings.hasHoverAnimation());
             copy.setRequiredFuels(creoItemSettings.getRequiredFuels());
         }
         return copy;
@@ -165,6 +171,16 @@ public class CreoItemSettings extends FabricItemSettings {
         return this;
     }
 
+    public CreoItemSettings rotationModifier(float rotationModifier) {
+        this.rotationModifier = rotationModifier;
+        return this;
+    }
+
+    public CreoItemSettings noHoverAnimation() {
+        hoverAnimation = false;
+        return this;
+    }
+
     public CreoItemSettings requiredFuels(RegistryEntryList<Item> requiredFuels) {
         this.requiredFuels = requiredFuels;
         return this;
@@ -205,6 +221,14 @@ public class CreoItemSettings extends FabricItemSettings {
         return hopperTransferRate;
     }
 
+    public float getRotationModifier() {
+        return rotationModifier;
+    }
+
+    public boolean hasHoverAnimation() {
+        return hoverAnimation;
+    }
+
     public RegistryEntryList<Item> getRequiredFuels() {
         return requiredFuels;
     }
@@ -227,6 +251,14 @@ public class CreoItemSettings extends FabricItemSettings {
 
     public void setHopperTransferRate(int hopperTransferRate) {
         this.hopperTransferRate = hopperTransferRate;
+    }
+
+    public void setRotationModifier(float rotationModifier) {
+        this.rotationModifier = rotationModifier;
+    }
+
+    public void setHoverAnimation(boolean hoverAnimation) {
+        this.hoverAnimation = hoverAnimation;
     }
 
     public void setRequiredFuels(RegistryEntryList<Item> requiredFuels) {

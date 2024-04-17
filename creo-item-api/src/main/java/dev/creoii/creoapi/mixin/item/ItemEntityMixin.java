@@ -1,15 +1,12 @@
 package dev.creoii.creoapi.mixin.item;
 
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import dev.creoii.creoapi.impl.item.ItemSettingsImpl;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
-import org.apache.commons.lang3.mutable.MutableBoolean;
-import org.apache.commons.lang3.mutable.MutableDouble;
-import org.apache.commons.lang3.mutable.MutableInt;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -17,44 +14,41 @@ import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ItemEntity.class)
-public class ItemEntityMixin {
-    @Shadow private int pickupDelay;
-    @Unique private final MutableInt creo_despawnTime = new MutableInt(6000);
-    @Unique private final MutableBoolean creo_buoyant = new MutableBoolean(true);
-    @Unique private final MutableDouble creo_gravity = new MutableDouble(-.04d);
-
-    @Inject(method = "<init>(Lnet/minecraft/entity/ItemEntity;)V", at = @At("TAIL"))
-    private void creo_applyCreoItemSettings(ItemEntity entity, CallbackInfo ci) {
-        pickupDelay = ItemSettingsImpl.applyCreoItemSettings(entity.getStack(), creo_despawnTime, creo_buoyant, creo_gravity);
-    }
-
-    @Inject(method = "<init>(Lnet/minecraft/world/World;DDDLnet/minecraft/item/ItemStack;DDD)V", at = @At("TAIL"))
-    private void creo_applyCreoItemSettings(World world, double x, double y, double z, ItemStack stack, double velocityX, double velocityY, double velocityZ, CallbackInfo ci) {
-        pickupDelay = ItemSettingsImpl.applyCreoItemSettings(stack, creo_despawnTime, creo_buoyant, creo_gravity);
-    }
+public abstract class ItemEntityMixin {
+    @Shadow public abstract ItemStack getStack();
 
     @ModifyConstant(method = "tick", constant = @Constant(intValue = 6000))
-    private int creo_tickDespawnTime(int constant) {
-        return ItemSettingsImpl.applyDespawnTime(creo_despawnTime);
+    private int creo$tickDespawnTime(int constant) {
+        return ItemSettingsImpl.applyDespawnTime(getStack(), constant);
     }
 
     @ModifyConstant(method = "canMerge()Z", constant = @Constant(intValue = 6000))
-    private int creo_mergeDespawnTime(int constant) {
-        return ItemSettingsImpl.applyPickupDelay(creo_despawnTime);
+    private int creo$mergeDespawnTime(int constant) {
+        return ItemSettingsImpl.applyPickupDelay(getStack(), constant);
     }
 
     @Inject(method = "applyWaterBuoyancy", at = @At("HEAD"), cancellable = true)
-    private void creo_stopWaterBuoyancy(CallbackInfo ci) {
-        ItemSettingsImpl.applyBuoyancy(creo_buoyant, ci);
+    private void creo$stopWaterBuoyancy(CallbackInfo ci) {
+        ItemSettingsImpl.applyBuoyancy(getStack(), ci);
     }
 
     @Inject(method = "applyLavaBuoyancy", at = @At("HEAD"), cancellable = true)
-    private void creo_stopLavaBuoyancy(CallbackInfo ci) {
-        ItemSettingsImpl.applyBuoyancy(creo_buoyant, ci);
+    private void creo$stopLavaBuoyancy(CallbackInfo ci) {
+        ItemSettingsImpl.applyBuoyancy(getStack(), ci);
     }
 
     @ModifyConstant(method = "tick", constant = @Constant(doubleValue = -.04d))
-    private double creo_applyItemGravity(double constant) {
-        return ItemSettingsImpl.applyGravity(creo_gravity);
+    private double creo$applyItemGravity(double constant) {
+        return ItemSettingsImpl.applyGravity(getStack(), constant);
+    }
+
+    @ModifyReturnValue(method = "getRotation", at = @At("RETURN"))
+    private float creo$applyItemRotationModifier(float original) {
+        return ItemSettingsImpl.applyRotationModifier(getStack(), original);
+    }
+
+    @ModifyExpressionValue(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ItemEntity;isOnGround()Z", ordinal = 2))
+    private boolean creo$applyItemHoverAnimation(boolean original) {
+        return ItemSettingsImpl.applyHoverAnimation(getStack(), original);
     }
 }

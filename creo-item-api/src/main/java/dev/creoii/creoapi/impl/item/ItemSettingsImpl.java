@@ -7,37 +7,58 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import org.apache.commons.lang3.mutable.MutableBoolean;
 import org.apache.commons.lang3.mutable.MutableDouble;
+import org.apache.commons.lang3.mutable.MutableFloat;
 import org.apache.commons.lang3.mutable.MutableInt;
 import org.jetbrains.annotations.ApiStatus;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @ApiStatus.Internal
 public final class ItemSettingsImpl {
-    public static int applyCreoItemSettings(ItemStack stack, MutableInt despawnTime, MutableBoolean buoyant, MutableDouble gravity) {
+    public static void applyCreoItemSettings(ItemStack stack, MutableBoolean buoyant) {
         if (((AccessibleItem) stack.getItem()).creo_getItemSettings() instanceof CreoItemSettings settings) {
-            despawnTime.setValue(settings.getDespawnTime());
             buoyant.setValue(settings.isBuoyant());
-            gravity.setValue(settings.getGravity());
-            return settings.getPickupDelay();
         }
-        return 10;
     }
 
-    public static int applyDespawnTime(MutableInt despawnTime) {
-        return despawnTime.intValue();
+    public static int applyDespawnTime(ItemStack stack, int defaultDespawnTime) {
+        if (((AccessibleItem) stack.getItem()).creo_getItemSettings() instanceof CreoItemSettings creoItemSettings) {
+            return creoItemSettings.getDespawnTime();
+        }
+        return defaultDespawnTime;
     }
 
-    public static int applyPickupDelay(MutableInt pickupDelay) {
-        return pickupDelay.intValue();
+    public static int applyPickupDelay(ItemStack stack, int defaultPickupDelay) {
+        if (((AccessibleItem) stack.getItem()).creo_getItemSettings() instanceof CreoItemSettings creoItemSettings) {
+            return creoItemSettings.getPickupDelay();
+        }
+        return defaultPickupDelay;
     }
 
-    public static void applyBuoyancy(MutableBoolean buoyant, CallbackInfo ci) {
-        if (!buoyant.booleanValue())
+    public static void applyBuoyancy(ItemStack stack, CallbackInfo ci) {
+        if (((AccessibleItem) stack.getItem()).creo_getItemSettings() instanceof CreoItemSettings creoItemSettings && !creoItemSettings.isBuoyant()) {
             ci.cancel();
+        }
     }
 
-    public static double applyGravity(MutableDouble gravity) {
-        return gravity.doubleValue();
+    public static double applyGravity(ItemStack stack, double defaultGravity) {
+        if (((AccessibleItem) stack.getItem()).creo_getItemSettings() instanceof CreoItemSettings creoItemSettings) {
+            return creoItemSettings.getGravity();
+        }
+        return defaultGravity;
+    }
+
+    public static float applyRotationModifier(ItemStack stack, float original) {
+        if (((AccessibleItem) stack.getItem()).creo_getItemSettings() instanceof CreoItemSettings creoItemSettings) {
+            return creoItemSettings.getRotationModifier();
+        }
+        return original;
+    }
+
+    public static boolean applyHoverAnimation(ItemStack stack, boolean original) {
+        if (((AccessibleItem) stack.getItem()).creo_getItemSettings() instanceof CreoItemSettings creoItemSettings) {
+            return creoItemSettings.hasHoverAnimation();
+        }
+        return original;
     }
 
     public static void applyHopperTransferRate(HopperBlockEntity hopperBlockEntity) {

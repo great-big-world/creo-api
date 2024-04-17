@@ -3,7 +3,6 @@ package dev.creoii.creoapi.test;
 import dev.creoii.creoapi.api.item.CreoItem;
 import dev.creoii.creoapi.api.item.CreoItemSettings;
 import net.fabricmc.api.ModInitializer;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -25,13 +24,14 @@ public class ItemTest implements ModInitializer {
         Registry.register(Registries.ITEM, new Identifier("test", "test_item"), new Item(
                 new CreoItemSettings()
                         .pickupDelay(25)
-                        .despawnTime(3000)
+                        .despawnTime(2000)
                         .notBuoyant()
                         .gravity(0d)
                         .hopperTransferRate(1)
+                        .rotationModifier(0f)
+                        .noHoverAnimation()
                         .requiredFuels(ItemTags.COALS)
         ));
-
         Registry.register(Registries.ITEM, new Identifier("test", "xray"), new XrayItem(new CreoItemSettings()));
     }
 
