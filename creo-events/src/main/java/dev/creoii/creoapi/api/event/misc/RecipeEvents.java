@@ -12,6 +12,7 @@ import net.minecraft.util.Identifier;
 public final class RecipeEvents {
     /**
      * An event called when a recipe is deserialized, before being loaded into the game.
+     * @since 0.5.0
      */
     public static final Event<LoadRecipe> LOAD_RECIPE = EventFactory.createArrayBacked(LoadRecipe.class,
             listeners -> (builder, recipeEntry) -> {

@@ -47,6 +47,7 @@ public interface CreoBlock {
      * @param state the blockstate
      * @param pos the block's position
      * @return whether the entity can collide adjacent with the blockstate
+     * @since 0.2.1
      */
     default boolean canEntityCollideAdjacent(Entity entity, BlockState state, BlockPos pos) {
         return false;
@@ -57,6 +58,7 @@ public interface CreoBlock {
      * @param entity the entity
      * @param state the blockstate
      * @param pos the block's position
+     * @since 0.2.1
      */
     default void onAdjacentEntityCollision(Entity entity, BlockState state, BlockPos pos) {
     }
