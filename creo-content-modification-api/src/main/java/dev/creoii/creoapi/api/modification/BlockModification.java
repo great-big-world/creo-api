@@ -129,6 +129,7 @@ public interface BlockModification {
      * Set whether the block has dynamic bounds.
      * @param block a block
      * @param dynamicBounds whether the block has dynamic bounds
+     * @since 0.2.1
      */
     void setDynamicBounds(Block block, boolean dynamicBounds);
 

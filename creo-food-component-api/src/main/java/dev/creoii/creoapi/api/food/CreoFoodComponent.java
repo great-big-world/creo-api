@@ -41,6 +41,9 @@ public class CreoFoodComponent extends FoodComponent {
         return sprintEdible;
     }
 
+    /**
+     * @since 0.1.2
+     */
     public boolean healsHealth() {
         return healsHealth;
     }

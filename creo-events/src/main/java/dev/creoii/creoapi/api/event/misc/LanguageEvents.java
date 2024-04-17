@@ -15,6 +15,7 @@ import java.util.function.BiConsumer;
 public final class LanguageEvents {
     /**
      * An event called when each translation key for a locale is translated and stored.
+     * @since 0.2.1
      */
     public static final Event<LoadTranslation> LOAD_TRANSLATION = EventFactory.createArrayBacked(LoadTranslation.class,
             listeners -> (langCode, consumer, translationKey, translated) -> {
