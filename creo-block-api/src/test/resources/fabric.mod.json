@@ -16,6 +16,9 @@
   "entrypoints": {
     "main": [
       "dev.creoii.creoapi.test.BlockTest"
+    ],
+    "client": [
+      "dev.creoii.creoapi.test.BlockTest"
     ]
   },
   "depends": {

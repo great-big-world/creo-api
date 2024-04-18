@@ -1,6 +1,7 @@
 package dev.creoii.creoapi.api.block;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.structure.StructurePlacementData;
@@ -12,7 +13,7 @@ import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 
 /**
- * General-purpose Creo-provided extensions for Block subclasses.
+ * General-purpose Creo-provided extensions for blocks.
  */
 public interface CreoBlock {
     /**
@@ -61,5 +62,17 @@ public interface CreoBlock {
      * @since 0.2.1
      */
     default void onAdjacentEntityCollision(Entity entity, BlockState state, BlockPos pos) {
+    }
+
+    /**
+     * Called client-side to render a blockstate as an overlay to the block.
+     * @param state the blockstate
+     * @param pos the block's position
+     * @param random a random instance
+     * @return the block to render as an overlay to the block
+     * @since 0.2.2
+     */
+    default BlockState getOverlayState(BlockState state, BlockPos pos, Random random) {
+        return Blocks.AIR.getDefaultState();
     }
 }

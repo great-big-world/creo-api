@@ -5,6 +5,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.hit.HitResult;
 
+/**
+ * General-purpose Creo-provided extensions for items.
+ */
 public interface CreoItem {
     /**
      * Called when a player left-clicks with an item, or an attack.

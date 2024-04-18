@@ -1,13 +1,14 @@
 package dev.creoii.creoapi.test;
 
+import com.mojang.serialization.MapCodec;
 import dev.creoii.creoapi.api.block.CreoBlock;
 import dev.creoii.creoapi.api.block.Spreadable;
+import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.PillarBlock;
+import net.minecraft.block.*;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityPose;
 import net.minecraft.fluid.FluidState;
@@ -25,12 +26,20 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class BlockTest implements ModInitializer {
+public class BlockTest implements ModInitializer, ClientModInitializer {
+    private static final Block TEST_OVERLAY = new TestOverlayBlock();
+
     @Override
     public void onInitialize() {
         Registry.register(Registries.BLOCK, new Identifier("test", "test"), new TestBlock());
         Registry.register(Registries.BLOCK, new Identifier("test", "spreadable"), new TestSpreadableBlock());
         Registry.register(Registries.BLOCK, new Identifier("test", "adjacent_collider"), new TestColliderBlock());
+        Registry.register(Registries.BLOCK, new Identifier("test", "overlay"), TEST_OVERLAY);
+    }
+
+    @Override
+    public void onInitializeClient() {
+        BlockRenderLayerMap.INSTANCE.putBlock(TEST_OVERLAY, RenderLayer.getCutout());
     }
 
     public static class TestBlock extends Block implements CreoBlock {
@@ -91,6 +100,22 @@ public class BlockTest implements ModInitializer {
             System.out.println("colliding");
             entity.setSwimming(true);
             entity.setPose(EntityPose.SWIMMING);
+        }
+    }
+
+    public static class TestOverlayBlock extends PlantBlock implements CreoBlock {
+        protected TestOverlayBlock() {
+            super(FabricBlockSettings.copy(Blocks.SHORT_GRASS));
+        }
+
+        @Override
+        public BlockState getOverlayState(BlockState state, BlockPos pos, Random random) {
+            return Blocks.SNOW.getDefaultState();
+        }
+
+        @Override
+        protected MapCodec<? extends PlantBlock> getCodec() {
+            return null;
         }
     }
 }

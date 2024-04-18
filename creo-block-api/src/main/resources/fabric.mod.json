@@ -16,6 +16,7 @@
   "icon": "assets/creo-block-api/icon.png",
   "environment": "*",
   "entrypoints": {},
+  "accessWidener": "creo-block-api.accesswidener",
   "mixins": [
     "creo-block-api.mixins.json"
   ],

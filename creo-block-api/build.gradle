@@ -1,0 +1,16 @@
+repositories {
+    maven {
+        url = uri "https://api.modrinth.com/maven"
+        content {
+            includeGroup "maven.modrinth"
+        }
+    }
+}
+
+loom {
+    accessWidenerPath = file("src/main/resources/creo-block-api.accesswidener")
+}
+
+dependencies {
+    modCompileOnly "maven.modrinth:sodium:mc$project.minecraft_version-0.5.8"
+}
