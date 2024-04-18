@@ -1,10 +1,13 @@
 package dev.creoii.creoapi.impl.item;
 
+import dev.creoii.creoapi.api.item.CreoItem;
 import dev.creoii.creoapi.api.item.CreoItemApi;
+import dev.creoii.creoapi.api.item.ItemEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.projectile.ProjectileUtil;
+import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
@@ -22,13 +25,24 @@ public final class CreoItemImpl {
                 return !entityx.isSpectator() && entityx.canHit();
             }, d);
             if (client.player != null && xrayResult != null) {
-                ClientPlayNetworking.send(CreoItemApi.ATTACK_THROUGH_BLOCK_PACKET_ID, getAttackThroughBlockData(xrayResult));
+                ItemStack stack = client.player.getStackInHand(client.player.getActiveHand());
+                if (stack.getItem() instanceof CreoItem creoItem && creoItem.canAttackThroughBlock(client.player, stack, xrayResult.getEntity())) {
+                    ItemEvents.ATTACK_THROUGH_BLOCK.invoker().onAttackThroughBlock(client.player, stack, xrayResult.getEntity());
+                    creoItem.onAttackThroughBlock(client.player, stack, xrayResult.getEntity());
+                    ClientPlayNetworking.send(CreoItemApi.ATTACK_THROUGH_BLOCK_PACKET_ID, getAttackThroughBlockData(xrayResult));
+                }
             }
         }
     }
 
     public static void applyItemAttack(MinecraftClient client) {
-        ClientPlayNetworking.send(CreoItemApi.ITEM_ATTACK_PACKET_ID, getItemAttackData(client));
+        if (client.player == null)
+            return;
+        ItemStack stack = client.player.getStackInHand(client.player.getActiveHand());
+        if (stack.getItem() instanceof CreoItem creoItem && client.crosshairTarget != null) {
+            creoItem.onAttack(client.player, stack, client.crosshairTarget.getType());
+            ClientPlayNetworking.send(CreoItemApi.ITEM_ATTACK_PACKET_ID, getItemAttackData(client));
+        }
     }
 
     private static PacketByteBuf getAttackThroughBlockData(EntityHitResult xrayResult) {

@@ -1,6 +1,7 @@
 package dev.creoii.creoapi.api.item;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.hit.HitResult;
@@ -16,7 +17,7 @@ public interface CreoItem {
      * @param type the {@link HitResult.Type}
      * @since 0.2.2
      */
-    default void onAttack(ServerPlayerEntity player, ItemStack stack, HitResult.Type type) {
+    default void onAttack(PlayerEntity player, ItemStack stack, HitResult.Type type) {
     }
 
     /**
@@ -26,7 +27,7 @@ public interface CreoItem {
      * @param target the target attacked
      * @since 0.1.2
      */
-    default void onAttackThroughBlock(ServerPlayerEntity player, ItemStack stack, Entity target) {
+    default void onAttackThroughBlock(PlayerEntity player, ItemStack stack, Entity target) {
     }
 
     /**
@@ -37,7 +38,7 @@ public interface CreoItem {
      * @return whether the item can attack through blocks.
      * @since 0.1.2
      */
-    default boolean canAttackThroughBlock(ServerPlayerEntity player, ItemStack stack, Entity target) {
+    default boolean canAttackThroughBlock(PlayerEntity player, ItemStack stack, Entity target) {
         return false;
     }
 }

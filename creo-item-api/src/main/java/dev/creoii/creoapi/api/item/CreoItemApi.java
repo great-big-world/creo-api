@@ -21,6 +21,7 @@ public class CreoItemApi implements ModInitializer {
                     Entity entity = player.getWorld().getEntityById(entityId);
                     if (entity != null && creoItem.canAttackThroughBlock(player, stack, entity)) {
                         player.attack(entity);
+                        ItemEvents.ATTACK_THROUGH_BLOCK.invoker().onAttackThroughBlock(player, stack, entity);
                         creoItem.onAttackThroughBlock(player, stack, entity);
                     }
                 }
