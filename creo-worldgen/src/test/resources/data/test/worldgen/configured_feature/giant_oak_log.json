@@ -1,0 +1,37 @@
+{
+  "type": "creo:giant_log",
+  "config": {
+    "outer_state": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "minecraft:oak_log"
+      }
+    },
+    "length": {
+      "type": "minecraft:uniform",
+      "value": {
+        "min_inclusive": 8,
+        "max_inclusive": 24
+      }
+    },
+    "end_offset": {
+      "type": "minecraft:uniform",
+      "value": {
+        "min_inclusive": 0,
+        "max_inclusive": 4
+      }
+    },
+    "radius": {
+      "type": "minecraft:uniform",
+      "value": {
+        "min_inclusive": 3,
+        "max_inclusive": 8
+      }
+    },
+    "noise_modifier": {
+      "noise": "test:processor_noise",
+      "min_threshold": -2.0,
+      "max_threshold": 0.25
+    }
+  }
+}
