@@ -71,8 +71,8 @@ public class ItemTest implements ModInitializer {
         }
 
         @Override
-        public void onAttack(PlayerEntity player, ItemStack stack, HitResult.Type type) {
-            System.out.println("on attack: " + player.getWorld().isClient + " | " + type);
+        public void onAttack(PlayerEntity player, ItemStack stack, HitResult.Type type, Vec3d pos) {
+            System.out.println("on attack: " + player.getWorld().isClient + " | " + type + " | " + pos.toString());
         }
     }
 }

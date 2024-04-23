@@ -8,6 +8,7 @@ import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.projectile.ProjectileUtil;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
@@ -40,7 +41,7 @@ public final class CreoItemImpl {
             return;
         ItemStack stack = client.player.getStackInHand(client.player.getActiveHand());
         if (stack.getItem() instanceof CreoItem creoItem && client.crosshairTarget != null) {
-            creoItem.onAttack(client.player, stack, client.crosshairTarget.getType());
+            creoItem.onAttack(client.player, stack, client.crosshairTarget.getType(), client.crosshairTarget.getPos());
             ClientPlayNetworking.send(CreoItemApi.ITEM_ATTACK_PACKET_ID, getItemAttackData(client));
         }
     }
@@ -54,9 +55,10 @@ public final class CreoItemImpl {
     private static PacketByteBuf getItemAttackData(MinecraftClient client) {
         PacketByteBuf buf = PacketByteBufs.create();
         HitResult hitResult = client.crosshairTarget;
-        if (hitResult != null)
+        if (hitResult != null) {
             buf.writeInt(hitResult.getType().ordinal());
-        else buf.writeInt(-1);
+            buf.writeVec3d(hitResult.getPos());
+        } else buf.writeInt(-1);
         return buf;
     }
 }

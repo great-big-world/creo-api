@@ -5,6 +5,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.hit.HitResult;
+import net.minecraft.util.math.Vec3d;
 
 /**
  * General-purpose Creo-provided extensions for items.
@@ -17,7 +18,7 @@ public interface CreoItem {
      * @param type the {@link HitResult.Type}
      * @since 0.2.2
      */
-    default void onAttack(PlayerEntity player, ItemStack stack, HitResult.Type type) {
+    default void onAttack(PlayerEntity player, ItemStack stack, HitResult.Type type, Vec3d pos) {
     }
 
     /**
