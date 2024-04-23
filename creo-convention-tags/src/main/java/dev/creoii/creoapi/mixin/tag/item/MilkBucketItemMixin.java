@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(MilkBucketItem.class)
 public class MilkBucketItemMixin {
     @Inject(method = "finishUsing", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;clearStatusEffects()Z"), cancellable = true)
-    private void creo_applyMilkDoesNotCure(ItemStack stack, World world, LivingEntity user, CallbackInfoReturnable<ItemStack> cir) {
+    private void creo$applyMilkDoesNotCure(ItemStack stack, World world, LivingEntity user, CallbackInfoReturnable<ItemStack> cir) {
         StatusEffectTagImpl.applyMilkDoesNotCure(stack, user, cir);
     }
 }

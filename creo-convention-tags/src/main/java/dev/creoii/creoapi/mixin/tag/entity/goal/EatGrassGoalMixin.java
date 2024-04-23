@@ -19,7 +19,7 @@ public class EatGrassGoalMixin {
     @Mutable @Shadow @Final private static Predicate<BlockState> SHORT_GRASS_PREDICATE;
 
     @Inject(method = "<clinit>", at = @At("TAIL"))
-    private static void creo_applyEatenBySheep(CallbackInfo ci) {
+    private static void creo$applyEatenBySheep(CallbackInfo ci) {
         BlockTagImpl.applyEatenBySheep(() -> SHORT_GRASS_PREDICATE = state -> state.isIn(CreoBlockTags.EATEN_BY_SHEEP));
     }
 }

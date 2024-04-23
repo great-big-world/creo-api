@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(ShulkerEntity.class)
 public class ShulkerEntityMixin {
     @Inject(method = "isInvalidPosition", at = @At(value = "RETURN", ordinal = 1), cancellable = true)
-    private void creo_invalidShulkerStates(BlockPos pos, CallbackInfoReturnable<Boolean> cir, @Local BlockState blockState) {
+    private void creo$invalidShulkerStates(BlockPos pos, CallbackInfoReturnable<Boolean> cir, @Local BlockState blockState) {
         BlockTagImpl.applyInvalidForShulkerTeleport(blockState, cir);
     }
 }

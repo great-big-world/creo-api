@@ -18,12 +18,11 @@ public abstract class CreeperEntityMixin extends HostileEntity {
     }
 
     @Redirect(method = "initGoals", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ai/goal/GoalSelector;add(ILnet/minecraft/entity/ai/goal/Goal;)V", ordinal = 2))
-    private void creo_stopFleeOcelots(GoalSelector instance, int priority, Goal goal) {
-
+    private void creo$stopFleeOcelots(GoalSelector instance, int priority, Goal goal) {
     }
 
     @Redirect(method = "initGoals", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ai/goal/GoalSelector;add(ILnet/minecraft/entity/ai/goal/Goal;)V", ordinal = 3))
-    private void creo_applyScaresCreepers(GoalSelector instance, int priority, Goal goal) {
+    private void creo$applyScaresCreepers(GoalSelector instance, int priority, Goal goal) {
         EntityTypeTagImpl.applyScaresCreepers((CreeperEntity) (Object) this, goalSelector);
     }
 }

@@ -26,7 +26,7 @@ public class HeightmapTypeMixin {
     @Shadow @Final @Mutable private static Heightmap.Type[] field_13199;
 
     @Inject(method = "<clinit>", at = @At(value = "FIELD", opcode = Opcodes.PUTSTATIC, target = "Lnet/minecraft/world/Heightmap$Type;field_13199:[Lnet/minecraft/world/Heightmap$Type;", shift = At.Shift.AFTER))
-    private static void creo_addWeatherHeightmap(CallbackInfo ci) {
+    private static void creo$addWeatherHeightmap(CallbackInfo ci) {
         field_13199 = BlockTagImpl.addWeatherHeightmap(field_13199, HeightmapTypeMixin::create);
     }
 }

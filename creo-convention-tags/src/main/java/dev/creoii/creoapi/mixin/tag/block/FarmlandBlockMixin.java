@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(FarmlandBlock.class)
 public class FarmlandBlockMixin {
     @Inject(method = "isWaterNearby", at = @At(value = "INVOKE", target = "Lnet/minecraft/fluid/FluidState;isIn(Lnet/minecraft/registry/tag/TagKey;)Z"), cancellable = true)
-    private static void creo_keepsFarmlandMoist(WorldView world, BlockPos pos, CallbackInfoReturnable<Boolean> cir, @Local(ordinal = 1) BlockPos blockPos) {
+    private static void creo$keepsFarmlandMoist(WorldView world, BlockPos pos, CallbackInfoReturnable<Boolean> cir, @Local(ordinal = 1) BlockPos blockPos) {
         BlockTagImpl.applyKeepsFarmlandMoist(world, blockPos, cir);
     }
 }

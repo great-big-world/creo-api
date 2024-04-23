@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(WardenEntity.class)
 public class WardenEntityMixin {
     @Inject(method = "isValidTarget", at = @At("RETURN"), cancellable = true)
-    private void creo_wardenIgnores(Entity entity, CallbackInfoReturnable<Boolean> cir) {
+    private void creo$wardenIgnores(Entity entity, CallbackInfoReturnable<Boolean> cir) {
         EntityTypeTagImpl.applyWardenIgnores(entity, cir);
     }
 }

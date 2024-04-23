@@ -18,20 +18,20 @@ import java.util.Map;
 
 @Mixin(GrindstoneScreenHandler.class)
 public class GrindstoneScreenHandlerMixin {
-    @Unique private ItemStack creo_item;
+    @Unique private ItemStack creo$item;
 
     @Inject(method = "<init>(ILnet/minecraft/entity/player/PlayerInventory;Lnet/minecraft/screen/ScreenHandlerContext;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/screen/GrindstoneScreenHandler;addSlot(Lnet/minecraft/screen/slot/Slot;)Lnet/minecraft/screen/slot/Slot;", ordinal = 2, shift = At.Shift.AFTER))
-    private void creo_applyGrindstoneIgnoresSlot(int syncId, PlayerInventory playerInventory, ScreenHandlerContext context, CallbackInfo ci) {
+    private void creo$applyGrindstoneIgnoresSlot(int syncId, PlayerInventory playerInventory, ScreenHandlerContext context, CallbackInfo ci) {
         EnchantmentTagImpl.applyGrindstoneItemSlotAdd((GrindstoneScreenHandler) (Object) this);
     }
 
     @Inject(method = "grind", at = @At(value = "INVOKE", target = "Lnet/minecraft/enchantment/EnchantmentHelper;get(Lnet/minecraft/item/ItemStack;)Ljava/util/Map;"))
-    private void creo_applyGrindstoneIgnoresSet(ItemStack item, int damage, int amount, CallbackInfoReturnable<ItemStack> cir) {
-        this.creo_item = item;
+    private void creo$applyGrindstoneIgnoresSet(ItemStack item, int damage, int amount, CallbackInfoReturnable<ItemStack> cir) {
+        this.creo$item = item;
     }
 
     @Redirect(method = "grind", at = @At(value = "INVOKE", target = "Lnet/minecraft/enchantment/EnchantmentHelper;set(Ljava/util/Map;Lnet/minecraft/item/ItemStack;)V"))
-    private void creo_applyGrindstoneIgnoresGrind(Map<Enchantment, Integer> enchantments, ItemStack stack) {
-        EnchantmentTagImpl.applyGrindstoneIgnoresGrind(creo_item, stack);
+    private void creo$applyGrindstoneIgnoresGrind(Map<Enchantment, Integer> enchantments, ItemStack stack) {
+        EnchantmentTagImpl.applyGrindstoneIgnoresGrind(creo$item, stack);
     }
 }

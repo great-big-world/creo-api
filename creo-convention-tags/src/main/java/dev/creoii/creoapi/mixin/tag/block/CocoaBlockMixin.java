@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(CocoaBlock.class)
 public class CocoaBlockMixin {
     @Inject(method = "canPlaceAt", at = @At("RETURN"), cancellable = true)
-    private void creo_cocoaPlaceableOn(BlockState state, WorldView world, BlockPos pos, CallbackInfoReturnable<Boolean> cir, @Local(ordinal = 1) BlockState blockState) {
+    private void creo$cocoaPlaceableOn(BlockState state, WorldView world, BlockPos pos, CallbackInfoReturnable<Boolean> cir, @Local(ordinal = 1) BlockState blockState) {
         BlockTagImpl.applyCocoaBeansPlantableOn(blockState, cir);
     }
 }

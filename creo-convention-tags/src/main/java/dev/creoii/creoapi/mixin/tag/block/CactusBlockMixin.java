@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(CactusBlock.class)
 public class CactusBlockMixin {
     @Redirect(method = "canPlaceAt", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/BlockState;isIn(Lnet/minecraft/registry/tag/TagKey;)Z"))
-    private boolean creo_cactusPlantableOn(BlockState instance, TagKey<Block> tagKey) {
+    private boolean creo$cactusPlantableOn(BlockState instance, TagKey<Block> tagKey) {
         return BlockTagImpl.applyCactusPlantableOn(instance);
     }
 }

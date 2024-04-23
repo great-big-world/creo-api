@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(ZombieVillagerEntity.class)
 public class ZombieVillagerEntityMixin {
     @Redirect(method = "interactMob", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/mob/ZombieVillagerEntity;hasStatusEffect(Lnet/minecraft/entity/effect/StatusEffect;)Z"))
-    private boolean creo_applyCuresZombieVillagers(ZombieVillagerEntity instance, StatusEffect statusEffect) {
+    private boolean creo$applyCuresZombieVillagers(ZombieVillagerEntity instance, StatusEffect statusEffect) {
         return StatusEffectTagImpl.applyCuresZombieVillagers(instance);
     }
 }

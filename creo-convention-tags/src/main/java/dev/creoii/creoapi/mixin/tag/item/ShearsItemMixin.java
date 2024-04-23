@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(ShearsItem.class)
 public class ShearsItemMixin {
     @Inject(method = "getMiningSpeedMultiplier", at = @At("HEAD"), cancellable = true)
-    private void creo_shearsMineables(ItemStack stack, BlockState state, CallbackInfoReturnable<Float> cir) {
+    private void creo$shearsMineables(ItemStack stack, BlockState state, CallbackInfoReturnable<Float> cir) {
         BlockTagImpl.applyShearsMineables(state, cir);
     }
 }

@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(ZoglinEntity.class)
 public class ZoglinEntityMixin {
     @Inject(method = "shouldAttack", at = @At("RETURN"), cancellable = true)
-    private void creo_zoglinIgnoreEntities(LivingEntity entity, CallbackInfoReturnable<Boolean> cir) {
+    private void creo$zoglinIgnoreEntities(LivingEntity entity, CallbackInfoReturnable<Boolean> cir) {
         EntityTypeTagImpl.applyZoglinIgnores(entity.getType(), cir);
     }
 }

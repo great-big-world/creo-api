@@ -20,7 +20,7 @@ public abstract class RavagerEntityMixin extends RaiderEntity {
     }
 
     @Inject(method = "tickMovement", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/BlockState;getBlock()Lnet/minecraft/block/Block;"))
-    private void creo_ravagerBreakables(CallbackInfo ci, @Local boolean bl, @Local BlockPos blockPos, @Local BlockState blockState) {
+    private void creo$ravagerBreakables(CallbackInfo ci, @Local boolean bl, @Local BlockPos blockPos, @Local BlockState blockState) {
         BlockTagImpl.applyRavagerBreakable(getWorld(), blockState, blockPos, (RavagerEntity) (Object) this, bl);
     }
 }

@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(CampfireBlock.class)
 public class CampfireBlockMixin {
     @Inject(method = "isSignalFireBaseBlock", at = @At("HEAD"), cancellable = true)
-    private void creo_signalFireBaseBlocks(BlockState state, CallbackInfoReturnable<Boolean> cir) {
+    private void creo$signalFireBaseBlocks(BlockState state, CallbackInfoReturnable<Boolean> cir) {
         BlockTagImpl.applySignalFireBaseBlocks(state, cir);
     }
 }

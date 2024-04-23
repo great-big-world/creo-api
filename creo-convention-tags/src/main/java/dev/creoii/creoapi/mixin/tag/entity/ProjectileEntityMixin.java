@@ -14,12 +14,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(ProjectileEntity.class)
 public class ProjectileEntityMixin {
     @Inject(method = "onCollision", at = @At(value = "HEAD"), cancellable = true)
-    private void creo_projectilesIgnore(HitResult hitResult, CallbackInfo ci) {
+    private void creo$projectilesIgnore(HitResult hitResult, CallbackInfo ci) {
         BlockTagImpl.applyProjectilesIgnore((ProjectileEntity) (Object) this, hitResult, ci);
     }
 
     @Inject(method = "canHit", at = @At("HEAD"), cancellable = true)
-    private void creo_projectilesIgnoreEntities(Entity entity, CallbackInfoReturnable<Boolean> cir) {
+    private void creo$projectilesIgnoreEntities(Entity entity, CallbackInfoReturnable<Boolean> cir) {
         EntityTypeTagImpl.applyProjectilesIgnore(entity, cir);
     }
 }

@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(WorldRenderer.class)
 public class WorldRendererMixin {
     @Redirect(method = "renderWeather", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;getTopY(Lnet/minecraft/world/Heightmap$Type;II)I"))
-    private int test_applyWeatherRenderIgnores(World instance, Heightmap.Type heightmap, int x, int z) {
+    private int creo$applyWeatherRenderIgnores(World instance, Heightmap.Type heightmap, int x, int z) {
         return BlockTagImpl.applyWeatherRenderIgnores(instance, x, z);
     }
 }

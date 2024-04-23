@@ -1,6 +1,7 @@
 package dev.creoii.creoapi.api.tag;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.ChorusFlowerBlock;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
@@ -42,12 +43,21 @@ public final class CreoBlockTags {
      * Blocks that Cacti can be placed and grown on.
      */
     public static final TagKey<Block> CACTUS_PLANTABLE_ON = TagKey.of(RegistryKeys.BLOCK, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "cactus_plantable_on"));
+    /**
+     * Blocks that Wither Roses can be placed and grown on.
+     * @since 0.2.5
+     */
     public static final TagKey<Block> WITHER_ROSE_PLANTABLE_ON = TagKey.of(RegistryKeys.BLOCK, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "wither_rose_plantable_on"));
     /**
      * Blocks that Nether Wart can be placed and grown on.
      */
     public static final TagKey<Block> NETHER_WART_PLANTABLE_ON = TagKey.of(RegistryKeys.BLOCK, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "nether_wart_plantable_on"));
-    public static final TagKey<Block> CHORUS_FRUIT_PLANTABLE_ON = TagKey.of(RegistryKeys.BLOCK, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "chorus_fruit_plantable_on"));
+    /**
+     * Blocks that Chorus Fruit can be placed and grown on.
+     * @since 0.2.5
+     */
+    ChorusFlowerBlock
+    public static final TagKey<Block> CHORUS_PLANT_PLANTABLE_ON = TagKey.of(RegistryKeys.BLOCK, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "chorus_plant_plantable_on"));
     /**
      * Blocks which activate Conduits when placed correctly.
      */
@@ -78,4 +88,9 @@ public final class CreoBlockTags {
      * Blocks which will not stop weather rendering below them.
      */
     public static final TagKey<Block> WEATHER_RENDER_IGNORES = TagKey.of(RegistryKeys.BLOCK, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "weather_render_ignores"));
+    /**
+     * Blocks which cannot be crouched on at an edge to stop you from falling off.
+     * @since 0.2.5
+     */
+    public static final TagKey<Block> DOES_NOT_CLIP_AT_LEDGE = TagKey.of(RegistryKeys.BLOCK, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "does_not_clip_at_ledge"));
 }

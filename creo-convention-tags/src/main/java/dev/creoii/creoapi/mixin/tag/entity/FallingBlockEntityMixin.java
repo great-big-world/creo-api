@@ -18,7 +18,7 @@ public abstract class FallingBlockEntityMixin extends Entity {
     }
 
     @Inject(method = "handleFallDamage", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/AnvilBlock;getLandingState(Lnet/minecraft/block/BlockState;)Lnet/minecraft/block/BlockState;", shift = At.Shift.AFTER), cancellable = true)
-    private void creo_anvilSofteners(float fallDistance, float damageMultiplier, DamageSource damageSource, CallbackInfoReturnable<Boolean> cir) {
+    private void creo$anvilSofteners(float fallDistance, float damageMultiplier, DamageSource damageSource, CallbackInfoReturnable<Boolean> cir) {
         BlockTagImpl.applyAnvilSofteners(getWorld(), getBlockPos(), cir);
     }
 }

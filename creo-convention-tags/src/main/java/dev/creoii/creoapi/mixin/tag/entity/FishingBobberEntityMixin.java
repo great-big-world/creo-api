@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(FishingBobberEntity.class)
 public class FishingBobberEntityMixin {
     @Inject(method = "canHit", at = @At("RETURN"), cancellable = true)
-    private void creo_fishingRodIgnores(Entity entity, CallbackInfoReturnable<Boolean> cir) {
+    private void creo$fishingRodIgnores(Entity entity, CallbackInfoReturnable<Boolean> cir) {
         EntityTypeTagImpl.applyFishingRodCannotHook(entity, cir);
     }
 }

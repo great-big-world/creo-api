@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(RespawnAnchorBlock.class)
 public class RespawnAnchorBlockMixin {
     @Inject(method = "isChargeItem", at = @At("HEAD"), cancellable = true)
-    private static void creo_respawnAnchorCharges(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
+    private static void creo$respawnAnchorCharges(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
         ItemTagImpl.applyRespawnAnchorCharges(stack, cir);
     }
 }

@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(ItemFrameEntity.class)
 public class ItemFrameEntityMixin {
     @Inject(method = "interact", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isEmpty()Z", ordinal = 0), cancellable = true)
-    private void creo_applyUnframeables(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir, @Local ItemStack itemStack) {
+    private void creo$applyUnframeables(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir, @Local ItemStack itemStack) {
         ItemTagImpl.applyUnframeable(itemStack, cir);
     }
 }

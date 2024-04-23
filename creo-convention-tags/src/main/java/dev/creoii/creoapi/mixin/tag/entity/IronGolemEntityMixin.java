@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(IronGolemEntity.class)
 public class IronGolemEntityMixin {
     @Redirect(method = "interactMob", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
-    private boolean creo_applyRepairsIronGolems(ItemStack instance, Item item) {
+    private boolean creo$applyRepairsIronGolems(ItemStack instance, Item item) {
         return ItemTagImpl.applyRepairsIronGolems(instance);
     }
 }

@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(NetherWartBlock.class)
 public class NetherWartBlockMixin {
     @Inject(method = "canPlantOnTop", at = @At("HEAD"), cancellable = true)
-    private void creo_netherWartPlaceables(BlockState floor, BlockView world, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
+    private void creo$netherWartPlaceables(BlockState floor, BlockView world, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
         BlockTagImpl.applyNetherWartPlantableOn(floor, cir);
     }
 }

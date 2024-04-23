@@ -14,12 +14,12 @@ public abstract class EntityMixin {
     @Shadow public abstract EntityType<?> getType();
 
     @Inject(method = "canAvoidTraps", at = @At("HEAD"), cancellable = true)
-    private void creo_lib_canAvoidTraps(CallbackInfoReturnable<Boolean> cir) {
+    private void creo$canAvoidTraps(CallbackInfoReturnable<Boolean> cir) {
         EntityTypeTagImpl.applyAvoidsTraps(getType(), cir);
     }
 
     @Inject(method = "isCollidable", at = @At("HEAD"), cancellable = true)
-    private void creo_lib_isCollidable(CallbackInfoReturnable<Boolean> cir) {
+    private void creo$isCollidable(CallbackInfoReturnable<Boolean> cir) {
         EntityTypeTagImpl.applyCollidable(getType(), cir);
     }
 }

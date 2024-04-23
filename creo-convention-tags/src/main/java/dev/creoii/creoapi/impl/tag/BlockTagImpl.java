@@ -4,6 +4,7 @@ import com.mojang.datafixers.util.Function5;
 import dev.creoii.creoapi.api.tag.CreoBlockTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.mob.RavagerEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
@@ -38,9 +39,17 @@ public final class BlockTagImpl {
         return state.isIn(CreoBlockTags.CACTUS_PLANTABLE_ON);
     }
 
+    public static void applyWitherRosePlantableOn(BlockState state, CallbackInfoReturnable<Boolean> cir) {
+        cir.setReturnValue(state.isIn(CreoBlockTags.WITHER_ROSE_PLANTABLE_ON));
+    }
+
     public static void applyNetherWartPlantableOn(BlockState state, CallbackInfoReturnable<Boolean> cir) {
         if (state.isIn(CreoBlockTags.NETHER_WART_PLANTABLE_ON))
             cir.setReturnValue(true);
+    }
+
+    public static boolean applyChorusPlantPlantableOn(BlockState state) {
+        return state.isIn(CreoBlockTags.CHORUS_PLANT_PLANTABLE_ON);
     }
 
     public static void applyKeepsFarmlandMoist(WorldView world, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
@@ -119,5 +128,11 @@ public final class BlockTagImpl {
 
     public static int applyWeatherRenderIgnores(World world, int x, int z) {
         return world.getTopY(Heightmap.Type.valueOf("WEATHER"), x, z);
+    }
+
+    public static void applyDoesNotClipAtLedge(PlayerEntity player, CallbackInfoReturnable<Boolean> cir) {
+        if (player.getSteppingBlockState().isIn(CreoBlockTags.DOES_NOT_CLIP_AT_LEDGE)) {
+            cir.setReturnValue(false);
+        }
     }
 }

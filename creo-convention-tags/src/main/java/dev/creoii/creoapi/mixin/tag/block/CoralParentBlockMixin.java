@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(CoralParentBlock.class)
 public class CoralParentBlockMixin {
     @Inject(method = "isInWater", at = @At(value = "RETURN", ordinal = 1), cancellable = true)
-    private static void creo_keepCoralAlive(BlockState state, BlockView world, BlockPos pos, CallbackInfoReturnable<Boolean> cir, @Local Direction direction) {
+    private static void creo$keepCoralAlive(BlockState state, BlockView world, BlockPos pos, CallbackInfoReturnable<Boolean> cir, @Local Direction direction) {
         BlockTagImpl.applyKeepsCoralAlive(world, pos, direction, cir);
     }
 }

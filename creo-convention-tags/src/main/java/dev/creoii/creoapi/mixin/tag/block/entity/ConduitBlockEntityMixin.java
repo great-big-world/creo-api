@@ -17,12 +17,12 @@ import java.util.List;
 @Mixin(ConduitBlockEntity.class)
 public class ConduitBlockEntityMixin {
     @Inject(method = "updateActivatingBlocks", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;getBlockState(Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/block/BlockState;", shift = At.Shift.BY, by = 2))
-    private static void creo_applyConduitFrameBaseBlocks(World world, BlockPos pos, List<BlockPos> activatingBlocks, CallbackInfoReturnable<Boolean> cir, @Local(ordinal = 1) BlockPos blockPos2, @Local BlockState blockState) {
+    private static void creo$applyConduitFrameBaseBlocks(World world, BlockPos pos, List<BlockPos> activatingBlocks, CallbackInfoReturnable<Boolean> cir, @Local(ordinal = 1) BlockPos blockPos2, @Local BlockState blockState) {
         BlockTagImpl.applyConduitFrameBaseBlocks(blockState, blockPos2, activatingBlocks);
     }
 
     @Redirect(method = "updateActivatingBlocks", at = @At(value = "INVOKE", target = "Ljava/util/List;add(Ljava/lang/Object;)Z"))
-    private static <E> boolean creo_cancelActivatingBlocks(List<BlockPos> instance, E e) {
+    private static <E> boolean creo$cancelActivatingBlocks(List<BlockPos> instance, E e) {
         return false;
     }
 }
