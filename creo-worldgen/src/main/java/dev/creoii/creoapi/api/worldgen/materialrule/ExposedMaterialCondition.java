@@ -64,7 +64,7 @@ public class ExposedMaterialCondition implements MaterialRules.MaterialCondition
         @Override
         @SuppressWarnings("deprecation")
         protected boolean test() {
-            World world = ((WorldAwareNoiseConfig) context.noiseConfig).creo_getWorld();
+            World world = ((WorldAwareNoiseConfig) context.noiseConfig).creo$getWorld();
             Chunk chunk = context.chunk;
             BlockPos pos = new BlockPos(context.blockX, chunk.sampleHeightmap(Heightmap.Type.WORLD_SURFACE_WG, context.blockX, context.blockZ), context.blockZ);
 

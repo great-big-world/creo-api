@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.block.Block;
 import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.math.intprovider.IntProvider;
 import net.minecraft.world.gen.feature.FeatureConfig;
@@ -25,7 +26,7 @@ public record PoolFeatureConfig(int yOffset, IntProvider rimSize, BlockStateProv
             return config.startRadius;
         }), IntProvider.POSITIVE_CODEC.fieldOf("inner_depth").forGetter(config -> {
             return config.innerDepth;
-        }), TagKey.codec(RegistryKeys.BLOCK).fieldOf("replaceable").forGetter(config -> {
+        }), TagKey.codec(RegistryKeys.BLOCK).fieldOf("replaceable").orElse(BlockTags.REPLACEABLE).forGetter(config -> {
             return config.replaceable;
         }), Codec.BOOL.fieldOf("solid_rim").orElse(false).forGetter(config -> {
             return config.solidRim;

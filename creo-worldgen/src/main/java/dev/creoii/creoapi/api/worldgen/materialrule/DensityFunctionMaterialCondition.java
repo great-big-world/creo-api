@@ -46,11 +46,11 @@ public record DensityFunctionMaterialCondition(RegistryEntry<DensityFunction> de
         protected boolean test() {
             if (!densityFunction.hasKeyAndValue()) return false;
 
-            long seed = ((WorldAwareNoiseConfig) context.noiseConfig).creo_getWorld().getSeed();
+            long seed = ((WorldAwareNoiseConfig) context.noiseConfig).creo$getWorld().getSeed();
             if (!NoiseConfigCache.getCachedNoiseConfigs().containsKey(seed)) {
-                ChunkGenerator chunkGenerator = ((WorldAwareNoiseConfig) context.noiseConfig).creo_getWorld().getChunkManager().getChunkGenerator();
+                ChunkGenerator chunkGenerator = ((WorldAwareNoiseConfig) context.noiseConfig).creo$getWorld().getChunkManager().getChunkGenerator();
                 ChunkGeneratorSettings settings = chunkGenerator instanceof NoiseChunkGenerator noiseChunkGenerator ? noiseChunkGenerator.getSettings().value() : ChunkGeneratorSettings.createMissingSettings();
-                NoiseConfigCache.getCachedNoiseConfigs().put(seed, NoiseConfig.create(settings, ((WorldAwareNoiseConfig) context.noiseConfig).creo_getWorld().getRegistryManager().getWrapperOrThrow(RegistryKeys.NOISE_PARAMETERS), seed));
+                NoiseConfigCache.getCachedNoiseConfigs().put(seed, NoiseConfig.create(settings, ((WorldAwareNoiseConfig) context.noiseConfig).creo$getWorld().getRegistryManager().getWrapperOrThrow(RegistryKeys.NOISE_PARAMETERS), seed));
             }
 
             double value = DensityFunctionMaterialCondition.this.densityFunction.value().apply(new CreoDensityFunctionVisitor(NoiseConfigCache.getCachedNoiseConfigs().get(seed))).sample(new DensityFunction.UnblendedNoisePos(context.blockX, context.chunk.sampleHeightmap(Heightmap.Type.WORLD_SURFACE_WG, context.blockX, context.blockZ), context.blockZ));

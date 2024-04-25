@@ -42,7 +42,7 @@ public record FastNoiseMaterialCondition(RegistryEntry<FastNoiseParameters> nois
                 return false;
             FastNoiseLite fastNoiseLite = new FastNoiseLite(noise.value());
             if (noise.value().seed() == 1337L)
-                fastNoiseLite.seed(((WorldAwareNoiseConfig) context.noiseConfig).creo_getWorld().getSeed());
+                fastNoiseLite.seed(((WorldAwareNoiseConfig) context.noiseConfig).creo$getWorld().getSeed());
             double value = fastNoiseLite.getNoise(context.blockX, context.chunk.sampleHeightmap(Heightmap.Type.WORLD_SURFACE_WG, context.blockX, context.blockZ), context.blockZ);
             return value >= FastNoiseMaterialCondition.this.minThreshold && value <= FastNoiseMaterialCondition.this.maxThreshold;
         }

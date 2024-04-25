@@ -1,0 +1,9 @@
+{
+  "type": "creo:structure",
+  "config": {
+    "structures": [
+      "minecraft:pillager_outpost/feature_cage_with_allays"
+    ],
+    "processors": "minecraft:fossil_rot"
+  }
+}

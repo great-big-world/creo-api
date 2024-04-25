@@ -209,7 +209,7 @@ public class FastNoiseLite {
     private DomainWarp domainWarp = DomainWarp.DEFAULT;
 
     private TransformType3D mTransformType3D = TransformType3D.DEFAULT_OPEN_SIMPLEX_2;
-    private float mFractalBounding = 1 / 1.75f;
+    private float mFractalBounding = 1f / 1.75f;
 
     /// <summary>
     /// Create new FastNoise object with default seed

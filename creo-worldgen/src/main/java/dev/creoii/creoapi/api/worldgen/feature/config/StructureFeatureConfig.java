@@ -20,7 +20,7 @@ public record StructureFeatureConfig(List<Identifier> structures, RegistryEntry<
             return config.processors;
         }), Codec.BOOL.optionalFieldOf("random_rotation", true).forGetter(config -> {
             return config.randomRotation;
-        }), Heightmap.Type.CODEC.optionalFieldOf("forced_heightmap", null).forGetter(config -> {
+        }), Heightmap.Type.CODEC.optionalFieldOf("forced_heightmap", Heightmap.Type.MOTION_BLOCKING_NO_LEAVES).forGetter(config -> {
             return config.forcedHeightmap;
         })).apply(instance, StructureFeatureConfig::new);
     });

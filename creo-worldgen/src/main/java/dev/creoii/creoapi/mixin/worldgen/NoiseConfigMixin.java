@@ -11,12 +11,12 @@ public class NoiseConfigMixin implements WorldAwareNoiseConfig {
     @Unique private ServerWorld creo_serverWorld;
 
     @Override
-    public ServerWorld creo_getWorld() {
+    public ServerWorld creo$getWorld() {
         return creo_serverWorld;
     }
 
     @Override
-    public void creo_setWorld(ServerWorld serverWorld) {
+    public void creo$setWorld(ServerWorld serverWorld) {
         creo_serverWorld = serverWorld;
     }
 }

@@ -61,7 +61,7 @@ public class FastNoiseStructurePlacement extends RandomSpreadStructurePlacement 
         BlockPos pos = getLocatePos(new ChunkPos(chunkX, chunkZ));
         FastNoiseLite fastNoiseLite = new FastNoiseLite(noise.value());
         if (noise.value().seed() == 1337L)
-            fastNoiseLite.seed(((WorldAwareNoiseConfig) calculator.getNoiseConfig()).creo_getWorld().getSeed());
+            fastNoiseLite.seed(((WorldAwareNoiseConfig) calculator.getNoiseConfig()).creo$getWorld().getSeed());
         double noiseValue = fastNoiseLite.getNoise(pos.getX(), 0f, pos.getZ());
         if (noiseValue >= minThreshold && noiseValue < maxThreshold) {
             return chunkPos.x == chunkX && chunkPos.z == chunkZ;

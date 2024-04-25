@@ -64,11 +64,11 @@ public class DensityFunctionStructurePlacement extends RandomSpreadStructurePlac
         if (!densityFunction.hasKeyAndValue())
             return false;
 
-        long seed = ((WorldAwareNoiseConfig) calculator.getNoiseConfig()).creo_getWorld().getSeed();
+        long seed = ((WorldAwareNoiseConfig) calculator.getNoiseConfig()).creo$getWorld().getSeed();
         if (!NoiseConfigCache.getCachedNoiseConfigs().containsKey(seed)) {
-            ChunkGenerator chunkGenerator = ((WorldAwareNoiseConfig) calculator.getNoiseConfig()).creo_getWorld().getChunkManager().getChunkGenerator();
+            ChunkGenerator chunkGenerator = ((WorldAwareNoiseConfig) calculator.getNoiseConfig()).creo$getWorld().getChunkManager().getChunkGenerator();
             ChunkGeneratorSettings settings = chunkGenerator instanceof NoiseChunkGenerator noiseChunkGenerator ? noiseChunkGenerator.getSettings().value() : ChunkGeneratorSettings.createMissingSettings();
-            NoiseConfigCache.getCachedNoiseConfigs().put(seed, NoiseConfig.create(settings, ((WorldAwareNoiseConfig) calculator.getNoiseConfig()).creo_getWorld().getRegistryManager().getWrapperOrThrow(RegistryKeys.NOISE_PARAMETERS), seed));
+            NoiseConfigCache.getCachedNoiseConfigs().put(seed, NoiseConfig.create(settings, ((WorldAwareNoiseConfig) calculator.getNoiseConfig()).creo$getWorld().getRegistryManager().getWrapperOrThrow(RegistryKeys.NOISE_PARAMETERS), seed));
         }
 
         BlockPos pos = getLocatePos(new ChunkPos(chunkX, chunkZ));

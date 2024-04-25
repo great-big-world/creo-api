@@ -5,7 +5,7 @@ import org.jetbrains.annotations.ApiStatus;
 
 @ApiStatus.NonExtendable
 public interface WorldAwareNoiseConfig {
-    ServerWorld creo_getWorld();
+    ServerWorld creo$getWorld();
 
-    void creo_setWorld(ServerWorld serverWorld);
+    void creo$setWorld(ServerWorld serverWorld);
 }
