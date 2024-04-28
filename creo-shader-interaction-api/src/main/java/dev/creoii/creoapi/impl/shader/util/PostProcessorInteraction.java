@@ -5,9 +5,9 @@ import org.jetbrains.annotations.ApiStatus;
 
 @ApiStatus.NonExtendable
 public interface PostProcessorInteraction {
-    Identifier creo_getCurrentPostProcessor();
+    Identifier creo$getCurrentPostProcessor();
 
-    void creo_setCurrentPostProcessor(Identifier id);
+    void creo$setCurrentPostProcessor(Identifier id);
 
-    void creo_clearPostProcessors();
+    void creo$clearPostProcessors();
 }

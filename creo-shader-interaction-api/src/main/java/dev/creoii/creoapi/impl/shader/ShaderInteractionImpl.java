@@ -13,18 +13,18 @@ public final class ShaderInteractionImpl {
     @Nullable
     public static Identifier getCurrentPostProcessorInternal() {
         if (checkSafe())
-            return ((PostProcessorInteraction) CLIENT.gameRenderer).creo_getCurrentPostProcessor();
+            return ((PostProcessorInteraction) CLIENT.gameRenderer).creo$getCurrentPostProcessor();
         return null;
     }
 
     public static void setCurrentPostProcessorInternal(Identifier id) {
         if (checkSafe())
-            ((PostProcessorInteraction) CLIENT.gameRenderer).creo_setCurrentPostProcessor(fixId(id));
+            ((PostProcessorInteraction) CLIENT.gameRenderer).creo$setCurrentPostProcessor(fixId(id));
     }
 
     public static void clearPostProcessorsInternal() {
         if (checkSafe())
-            ((PostProcessorInteraction) CLIENT.gameRenderer).creo_clearPostProcessors();
+            ((PostProcessorInteraction) CLIENT.gameRenderer).creo$clearPostProcessors();
     }
 
     private static boolean checkSafe() {

@@ -1,6 +1,7 @@
 package dev.creoii.creoapi.api.worldgen.structure.placement;
 
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import dev.creoii.creoapi.api.worldgen.CreoStructurePlacementTypes;
 import net.minecraft.registry.RegistryKey;
@@ -18,7 +19,8 @@ import net.minecraft.world.gen.chunk.placement.StructurePlacementType;
 import java.util.Optional;
 
 public class NoiseStructurePlacement extends RandomSpreadStructurePlacement {
-    public static final Codec<NoiseStructurePlacement> CODEC = RecordCodecBuilder.create(instance -> {
+    @SuppressWarnings("deprecation")
+    public static final MapCodec<NoiseStructurePlacement> CODEC = RecordCodecBuilder.mapCodec(instance -> {
         return instance.group(RegistryKey.createCodec(RegistryKeys.NOISE_PARAMETERS).fieldOf("noise").forGetter(predicate -> {
             return predicate.noise;
         }), Codec.DOUBLE.fieldOf("min_threshold").forGetter(predicate -> {

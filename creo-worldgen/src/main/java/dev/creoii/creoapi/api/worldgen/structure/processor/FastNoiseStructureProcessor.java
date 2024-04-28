@@ -1,6 +1,7 @@
 package dev.creoii.creoapi.api.worldgen.structure.processor;
 
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import dev.creoii.creoapi.api.worldgen.CreoStructureProcessorTypes;
 import dev.creoii.creoapi.api.worldgen.fastnoise.FastNoiseLite;
@@ -25,7 +26,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Optional;
 
 public class FastNoiseStructureProcessor extends StructureProcessor {
-    public static final Codec<FastNoiseStructureProcessor> CODEC = RecordCodecBuilder.create(instance -> {
+    public static final MapCodec<FastNoiseStructureProcessor> CODEC = RecordCodecBuilder.mapCodec(instance -> {
         return instance.group(RegistryCodecs.entryList(RegistryKeys.BLOCK).optionalFieldOf("replaceable_blocks").forGetter(processor -> {
             return processor.replaceableBlocks;
         }), FastNoiseParameters.REGISTRY_ENTRY_CODEC.fieldOf("noise").forGetter(predicate -> {

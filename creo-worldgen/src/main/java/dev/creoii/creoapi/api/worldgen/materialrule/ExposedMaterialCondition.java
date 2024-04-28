@@ -1,6 +1,7 @@
 package dev.creoii.creoapi.api.worldgen.materialrule;
 
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import dev.creoii.creoapi.impl.worldgen.util.WorldAwareNoiseConfig;
 import net.minecraft.block.Block;
@@ -23,7 +24,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Objects;
 
 public class ExposedMaterialCondition implements MaterialRules.MaterialCondition {
-    public static final Codec<ExposedMaterialCondition> CODEC = RecordCodecBuilder.create(instance -> {
+    public static final MapCodec<ExposedMaterialCondition> CODEC = RecordCodecBuilder.mapCodec(instance -> {
         return instance.group(RegistryCodecs.entryList(RegistryKeys.BLOCK).optionalFieldOf("can_be_exposed_to", RegistryEntryList.of(RegistryEntry.of(Blocks.AIR))).forGetter(predicate -> {
             return predicate.canBeExposedTo;
         }), Codec.intRange(1, 4).optionalFieldOf("min_exposed_faces", 1).forGetter(predicate -> {

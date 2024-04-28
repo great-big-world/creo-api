@@ -1,6 +1,7 @@
 package dev.creoii.creoapi.api.worldgen.placementmodifier;
 
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import dev.creoii.creoapi.api.worldgen.CreoPlacementModifierTypes;
 import dev.creoii.creoapi.impl.worldgen.util.CreoDensityFunctionVisitor;
@@ -19,7 +20,7 @@ import net.minecraft.world.gen.placementmodifier.AbstractConditionalPlacementMod
 import net.minecraft.world.gen.placementmodifier.PlacementModifierType;
 
 public class DensityFunctionPlacementModifier extends AbstractConditionalPlacementModifier {
-    public static final Codec<DensityFunctionPlacementModifier> CODEC = RecordCodecBuilder.create(instance -> {
+    public static final MapCodec<DensityFunctionPlacementModifier> CODEC = RecordCodecBuilder.mapCodec(instance -> {
         return instance.group(DensityFunction.REGISTRY_ENTRY_CODEC.fieldOf("density_function").forGetter(predicate -> {
             return predicate.densityFunction;
         }), Codec.DOUBLE.optionalFieldOf("min_threshold", -1d).forGetter(predicate -> {

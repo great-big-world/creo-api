@@ -1,6 +1,7 @@
 package dev.creoii.creoapi.api.worldgen.placementmodifier;
 
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import dev.creoii.creoapi.api.worldgen.CreoPlacementModifierTypes;
 import net.minecraft.util.math.BlockPos;
@@ -12,7 +13,7 @@ import net.minecraft.world.gen.placementmodifier.AbstractConditionalPlacementMod
 import net.minecraft.world.gen.placementmodifier.PlacementModifierType;
 
 public class DistanceFromZeroPlacementModifier extends AbstractConditionalPlacementModifier {
-    public static final Codec<DistanceFromZeroPlacementModifier> CODEC = RecordCodecBuilder.create(instance -> {
+    public static final MapCodec<DistanceFromZeroPlacementModifier> CODEC = RecordCodecBuilder.mapCodec(instance -> {
         return instance.group(Codec.INT.fieldOf("distance").forGetter(predicate -> {
             return (int) MathHelper.sqrt(predicate.squaredDistance);
         })).apply(instance, DistanceFromZeroPlacementModifier::new);

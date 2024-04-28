@@ -1,6 +1,6 @@
 package dev.creoii.creoapi.api.worldgen.placementmodifier;
 
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import dev.creoii.creoapi.api.worldgen.CreoPlacementModifierTypes;
 import net.minecraft.block.Block;
@@ -15,7 +15,7 @@ import net.minecraft.world.gen.placementmodifier.AbstractConditionalPlacementMod
 import net.minecraft.world.gen.placementmodifier.PlacementModifierType;
 
 public class SkyVisiblePlacementModifier extends AbstractConditionalPlacementModifier {
-    public static final Codec<SkyVisiblePlacementModifier> CODEC = RecordCodecBuilder.create(instance -> {
+    public static final MapCodec<SkyVisiblePlacementModifier> CODEC = RecordCodecBuilder.mapCodec(instance -> {
         return instance.group(RegistryCodecs.entryList(RegistryKeys.BLOCK).fieldOf("ignored").orElse(RegistryEntryList.of()).forGetter(placement -> {
             return placement.ignored;
         })).apply(instance, SkyVisiblePlacementModifier::new);

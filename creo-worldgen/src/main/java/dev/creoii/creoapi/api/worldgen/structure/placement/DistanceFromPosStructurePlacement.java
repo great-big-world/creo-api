@@ -1,6 +1,7 @@
 package dev.creoii.creoapi.api.worldgen.structure.placement;
 
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import dev.creoii.creoapi.api.worldgen.CreoStructurePlacementTypes;
 import net.minecraft.util.dynamic.Codecs;
@@ -16,7 +17,8 @@ import java.math.BigDecimal;
 import java.util.Optional;
 
 public class DistanceFromPosStructurePlacement extends RandomSpreadStructurePlacement {
-    public static final Codec<DistanceFromPosStructurePlacement> CODEC = RecordCodecBuilder.create(instance -> {
+    @SuppressWarnings("deprecation")
+    public static final MapCodec<DistanceFromPosStructurePlacement> CODEC = RecordCodecBuilder.mapCodec(instance -> {
         return instance.group(Codec.INT.fieldOf("min_squared_distance").forGetter(predicate -> {
             return predicate.minSquaredDistance;
         }), BlockPos.CODEC.fieldOf("center").forGetter(placement -> {

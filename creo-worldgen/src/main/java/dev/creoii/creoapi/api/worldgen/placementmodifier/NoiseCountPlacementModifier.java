@@ -1,6 +1,7 @@
 package dev.creoii.creoapi.api.worldgen.placementmodifier;
 
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import dev.creoii.creoapi.api.worldgen.CreoPlacementModifierTypes;
 import net.minecraft.registry.RegistryKey;
@@ -17,7 +18,7 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class NoiseCountPlacementModifier extends PlacementModifier {
-    public static final Codec<NoiseCountPlacementModifier> CODEC = RecordCodecBuilder.create(instance -> {
+    public static final MapCodec<NoiseCountPlacementModifier> CODEC = RecordCodecBuilder.mapCodec(instance -> {
         return instance.group(RegistryKey.createCodec(RegistryKeys.NOISE_PARAMETERS).fieldOf("noise").forGetter(predicate -> {
             return predicate.noise;
         }), Codec.DOUBLE.fieldOf("multiplier").forGetter(predicate -> {

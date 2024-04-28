@@ -1,6 +1,7 @@
 package dev.creoii.creoapi.api.worldgen.placementmodifier;
 
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import dev.creoii.creoapi.api.worldgen.CreoPlacementModifierTypes;
 import net.minecraft.util.math.BlockPos;
@@ -12,7 +13,7 @@ import net.minecraft.world.gen.placementmodifier.AbstractConditionalPlacementMod
 import net.minecraft.world.gen.placementmodifier.PlacementModifierType;
 
 public class SteepPlacementModifier extends AbstractConditionalPlacementModifier {
-    public static final Codec<SteepPlacementModifier> CODEC = RecordCodecBuilder.create(instance -> {
+    public static final MapCodec<SteepPlacementModifier> CODEC = RecordCodecBuilder.mapCodec(instance -> {
         return instance.group(Codec.intRange(1, 16).fieldOf("min_steepness").orElse(4).forGetter(predicate -> {
             return predicate.minSteepness;
         }), Codec.intRange(1, 16).fieldOf("max_steepness").orElse(4).forGetter(predicate -> {

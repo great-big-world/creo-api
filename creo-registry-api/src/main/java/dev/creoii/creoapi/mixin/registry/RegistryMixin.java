@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(Registry.class)
 public interface RegistryMixin {
     @Inject(method = "register(Lnet/minecraft/registry/Registry;Lnet/minecraft/registry/RegistryKey;Ljava/lang/Object;)Ljava/lang/Object;", at = @At("HEAD"), cancellable = true)
-    private static <V, T extends V> void test_applyRegistryRegisterEvent(Registry<V> registry, RegistryKey<V> key, T entry, CallbackInfoReturnable<T> cir) {
+    private static <V, T extends V> void creo$applyRegistryRegisterEvent(Registry<V> registry, RegistryKey<V> key, T entry, CallbackInfoReturnable<T> cir) {
         RegistryEventImpl.applyRegisterEvent(registry, key, entry, cir);
     }
 }

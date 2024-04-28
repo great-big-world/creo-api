@@ -1,6 +1,7 @@
 package dev.creoii.creoapi.api.worldgen.structure.processor;
 
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import dev.creoii.creoapi.api.worldgen.CreoStructureProcessorTypes;
 import net.minecraft.block.Block;
@@ -24,7 +25,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Optional;
 
 public class NoiseStructureProcessor extends StructureProcessor {
-    public static final Codec<NoiseStructureProcessor> CODEC = RecordCodecBuilder.create(instance -> {
+    public static final MapCodec<NoiseStructureProcessor> CODEC = RecordCodecBuilder.mapCodec(instance -> {
         return instance.group(RegistryCodecs.entryList(RegistryKeys.BLOCK).optionalFieldOf("replaceable_blocks").forGetter(processor -> {
             return processor.replaceableBlocks;
         }), RegistryKey.createCodec(RegistryKeys.NOISE_PARAMETERS).fieldOf("noise").forGetter(predicate -> {

@@ -1,6 +1,6 @@
 package dev.creoii.creoapi.api.worldgen.placementmodifier;
 
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import dev.creoii.creoapi.api.worldgen.CreoPlacementModifierTypes;
 import net.minecraft.util.math.BlockPos;
@@ -12,7 +12,7 @@ import net.minecraft.world.gen.placementmodifier.AbstractConditionalPlacementMod
 import net.minecraft.world.gen.placementmodifier.PlacementModifierType;
 
 public class HeightFilterPlacementModifier extends AbstractConditionalPlacementModifier {
-    public static final Codec<HeightFilterPlacementModifier> CODEC = RecordCodecBuilder.create(instance -> {
+    public static final MapCodec<HeightFilterPlacementModifier> CODEC = RecordCodecBuilder.mapCodec(instance -> {
         return instance.group(Heightmap.Type.CODEC.fieldOf("heightmap").forGetter(predicate -> {
             return predicate.heightmap;
         }), HeightProvider.CODEC.fieldOf("lower").forGetter(predicate -> {

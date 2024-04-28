@@ -1,6 +1,6 @@
 package dev.creoii.creoapi.api.worldgen.placementmodifier;
 
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import dev.creoii.creoapi.api.worldgen.CreoPlacementModifierTypes;
 import net.minecraft.util.math.BlockPos;
@@ -11,7 +11,7 @@ import net.minecraft.world.gen.placementmodifier.PlacementModifier;
 import net.minecraft.world.gen.placementmodifier.PlacementModifierType;
 
 public class NotPlacementModifier extends AbstractConditionalPlacementModifier {
-    public static final Codec<NotPlacementModifier> CODEC = RecordCodecBuilder.create(instance -> {
+    public static final MapCodec<NotPlacementModifier> CODEC = RecordCodecBuilder.mapCodec(instance -> {
         return instance.group(PlacementModifier.CODEC.fieldOf("modifier").forGetter(predicate -> {
             return predicate.modifier;
         })).apply(instance, NotPlacementModifier::new);

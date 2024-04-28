@@ -1,6 +1,7 @@
 package dev.creoii.creoapi.api.worldgen.placementmodifier;
 
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import dev.creoii.creoapi.api.worldgen.CreoPlacementModifierTypes;
 import dev.creoii.creoapi.impl.worldgen.util.CreoDensityFunctionVisitor;
@@ -22,7 +23,7 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class DensityFunctionCountPlacementModifier extends PlacementModifier {
-    public static final Codec<DensityFunctionCountPlacementModifier> CODEC = RecordCodecBuilder.create(instance -> {
+    public static final MapCodec<DensityFunctionCountPlacementModifier> CODEC = RecordCodecBuilder.mapCodec(instance -> {
         return instance.group(DensityFunction.REGISTRY_ENTRY_CODEC.fieldOf("density_function").forGetter(predicate -> {
             return predicate.densityFunction;
         }), Codec.DOUBLE.fieldOf("multiplier").forGetter(predicate -> {

@@ -1,6 +1,7 @@
 package dev.creoii.creoapi.api.worldgen.placementmodifier;
 
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import dev.creoii.creoapi.api.worldgen.CreoPlacementModifierTypes;
 import dev.creoii.creoapi.api.worldgen.fastnoise.FastNoiseLite;
@@ -13,7 +14,7 @@ import net.minecraft.world.gen.placementmodifier.AbstractConditionalPlacementMod
 import net.minecraft.world.gen.placementmodifier.PlacementModifierType;
 
 public class FastNoisePlacementModifier extends AbstractConditionalPlacementModifier {
-    public static final Codec<FastNoisePlacementModifier> CODEC = RecordCodecBuilder.create(instance -> {
+    public static final MapCodec<FastNoisePlacementModifier> CODEC = RecordCodecBuilder.mapCodec(instance -> {
         return instance.group(FastNoiseParameters.REGISTRY_ENTRY_CODEC.fieldOf("noise").forGetter(predicate -> {
             return predicate.noise;
         }), Codec.DOUBLE.optionalFieldOf("min_threshold", -1d).forGetter(predicate -> {

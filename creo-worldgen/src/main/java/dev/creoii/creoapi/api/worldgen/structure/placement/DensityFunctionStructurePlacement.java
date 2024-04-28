@@ -1,6 +1,7 @@
 package dev.creoii.creoapi.api.worldgen.structure.placement;
 
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import dev.creoii.creoapi.api.worldgen.CreoStructurePlacementTypes;
 import dev.creoii.creoapi.impl.worldgen.util.CreoDensityFunctionVisitor;
@@ -25,7 +26,8 @@ import net.minecraft.world.gen.noise.NoiseConfig;
 import java.util.Optional;
 
 public class DensityFunctionStructurePlacement extends RandomSpreadStructurePlacement {
-    public static final Codec<DensityFunctionStructurePlacement> CODEC = RecordCodecBuilder.create(instance -> {
+    @SuppressWarnings("deprecation")
+    public static final MapCodec<DensityFunctionStructurePlacement> CODEC = RecordCodecBuilder.mapCodec(instance -> {
         return instance.group(DensityFunction.REGISTRY_ENTRY_CODEC.fieldOf("density_function").forGetter(predicate -> {
             return predicate.densityFunction;
         }), Codec.DOUBLE.fieldOf("min").forGetter(predicate -> {

@@ -1,6 +1,7 @@
 package dev.creoii.creoapi.api.worldgen.materialrule;
 
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.util.dynamic.CodecHolder;
 import net.minecraft.world.Heightmap;
@@ -8,7 +9,7 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.surfacebuilder.MaterialRules;
 
 public class SteepMaterialCondition implements MaterialRules.MaterialCondition {
-    public static final Codec<SteepMaterialCondition> CODEC = RecordCodecBuilder.create(instance -> {
+    public static final MapCodec<SteepMaterialCondition> CODEC = RecordCodecBuilder.mapCodec(instance -> {
         return instance.group(Codec.intRange(0, 128).fieldOf("min_steepness").forGetter(predicate -> {
             return predicate.minSteepness;
         }), Codec.intRange(0, 128).fieldOf("max_steepness").forGetter(predicate -> {

@@ -37,8 +37,7 @@ public final class Shaders {
     private static Identifier register(Identifier id) {
         if (SHADERS.add(id)) {
             return id;
-        } else
-            throw new IllegalArgumentException("Shader " + id + " is already registered.");
+        } else throw new IllegalArgumentException("Shader " + id + " is already registered.");
     }
 
     public static Set<Identifier> getAll() {

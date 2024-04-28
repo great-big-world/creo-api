@@ -15,17 +15,17 @@ public abstract class GameRendererMixin implements PostProcessorInteraction {
 
     @Nullable
     @Override
-    public Identifier creo_getCurrentPostProcessor() {
+    public Identifier creo$getCurrentPostProcessor() {
         return GameRendererImpl.getCurrentPostProcessor(postProcessor);
     }
 
     @Override
-    public void creo_setCurrentPostProcessor(Identifier id) {
+    public void creo$setCurrentPostProcessor(Identifier id) {
         GameRendererImpl.setCurrentPostProcessor((GameRenderer) (Object) this, id);
     }
 
     @Override
-    public void creo_clearPostProcessors() {
+    public void creo$clearPostProcessors() {
         GameRendererImpl.clearPostProcessors((GameRenderer) (Object) this);
     }
 }

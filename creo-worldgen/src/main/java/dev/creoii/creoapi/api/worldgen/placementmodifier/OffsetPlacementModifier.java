@@ -1,6 +1,6 @@
 package dev.creoii.creoapi.api.worldgen.placementmodifier;
 
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import dev.creoii.creoapi.api.worldgen.CreoPlacementModifierTypes;
 import net.minecraft.util.math.BlockPos;
@@ -14,7 +14,7 @@ import net.minecraft.world.gen.placementmodifier.PlacementModifierType;
 import java.util.stream.Stream;
 
 public class OffsetPlacementModifier extends PlacementModifier {
-    public static final Codec<OffsetPlacementModifier> CODEC = RecordCodecBuilder.create(instance -> {
+    public static final MapCodec<OffsetPlacementModifier> CODEC = RecordCodecBuilder.mapCodec(instance -> {
         return instance.group(IntProvider.createValidatingCodec(0, 16).fieldOf("x_offset").forGetter(modifier -> {
             return modifier.offsetX;
         }), IntProvider.createValidatingCodec(0, 16).optionalFieldOf("y_offset", ConstantIntProvider.ZERO).forGetter(modifier -> {

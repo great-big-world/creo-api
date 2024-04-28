@@ -1,6 +1,7 @@
 package dev.creoii.creoapi.api.worldgen.structure.placement;
 
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import dev.creoii.creoapi.api.worldgen.CreoStructurePlacementTypes;
 import dev.creoii.creoapi.api.worldgen.fastnoise.FastNoiseLite;
@@ -19,7 +20,8 @@ import net.minecraft.world.gen.chunk.placement.StructurePlacementType;
 import java.util.Optional;
 
 public class FastNoiseStructurePlacement extends RandomSpreadStructurePlacement {
-    public static final Codec<FastNoiseStructurePlacement> CODEC = RecordCodecBuilder.create(instance -> {
+    @SuppressWarnings("deprecation")
+    public static final MapCodec<FastNoiseStructurePlacement> CODEC = RecordCodecBuilder.mapCodec(instance -> {
         return instance.group(FastNoiseParameters.REGISTRY_ENTRY_CODEC.fieldOf("fast_noise").forGetter(predicate -> {
             return predicate.noise;
         }), Codec.DOUBLE.fieldOf("min_threshold").forGetter(predicate -> {

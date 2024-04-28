@@ -1,6 +1,6 @@
 package dev.creoii.creoapi.api.worldgen.structure.placement;
 
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import dev.creoii.creoapi.api.worldgen.CreoStructurePlacementTypes;
 import net.minecraft.util.math.BlockPos;
@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class FixedStructurePlacement extends StructurePlacement {
-    public static final Codec<FixedStructurePlacement> CODEC = RecordCodecBuilder.create(instance -> {
+    public static final MapCodec<FixedStructurePlacement> CODEC = RecordCodecBuilder.mapCodec(instance -> {
         return instance.group(BlockPos.CODEC.listOf().fieldOf("positions").forGetter(placement -> {
             return placement.positions;
         })).and(buildCodec(instance)).apply(instance, FixedStructurePlacement::new);

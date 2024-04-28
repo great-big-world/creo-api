@@ -1,6 +1,6 @@
 package dev.creoii.creoapi.api.worldgen.placementmodifier;
 
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import dev.creoii.creoapi.api.worldgen.CreoPlacementModifierTypes;
 import net.minecraft.registry.RegistryCodecs;
@@ -16,7 +16,7 @@ import net.minecraft.world.gen.placementmodifier.PlacementModifierType;
 import net.minecraft.world.gen.structure.Structure;
 
 public class WithinStructurePlacementModifier extends AbstractConditionalPlacementModifier {
-    public static final Codec<WithinStructurePlacementModifier> CODEC = RecordCodecBuilder.create(instance -> {
+    public static final MapCodec<WithinStructurePlacementModifier> CODEC = RecordCodecBuilder.mapCodec(instance -> {
         return instance.group(RegistryCodecs.entryList(RegistryKeys.STRUCTURE).fieldOf("structure").forGetter(placement -> {
             return placement.structures;
         })).apply(instance, WithinStructurePlacementModifier::new);

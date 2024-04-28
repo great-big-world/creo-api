@@ -1,6 +1,7 @@
 package dev.creoii.creoapi.api.worldgen.densityfunction;
 
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import dev.creoii.creoapi.api.worldgen.fastnoise.FastNoiseLite;
 import dev.creoii.creoapi.api.worldgen.fastnoise.FastNoiseParameters;
@@ -9,7 +10,7 @@ import net.minecraft.util.dynamic.CodecHolder;
 import net.minecraft.world.gen.densityfunction.DensityFunction;
 
 public class FastNoiseDensityFunction implements DensityFunction {
-    public static final Codec<FastNoiseDensityFunction> CODEC = RecordCodecBuilder.create(instance -> {
+    public static final MapCodec<FastNoiseDensityFunction> CODEC = RecordCodecBuilder.mapCodec(instance -> {
         return instance.group(
                 FastNoiseParameters.REGISTRY_ENTRY_CODEC.fieldOf("noise").forGetter(predicate -> {
                     return predicate.noise;
