@@ -8,5 +8,5 @@ repositories {
 }
 
 dependencies {
-    modCompileOnly "maven.modrinth:lithium:mc${project.minecraft_version}-0.12.1"
+    //modCompileOnly "maven.modrinth:lithium:mc${project.minecraft_version}-0.12.1"
 }

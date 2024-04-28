@@ -19,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(StructureTemplate.class)
 public class StructureTemplateMixin {
     @Inject(method = "place", at = @At(value = "INVOKE", target = "Ljava/lang/Math;min(II)I", ordinal = 0))
-    private void creo_applyOnPlacedByStructureB(ServerWorldAccess world, BlockPos pos, BlockPos pivot, StructurePlacementData placementData, Random random, int flags, CallbackInfoReturnable<Boolean> cir, @Local BlockBox blockBox, @Local StructureTemplate.StructureBlockInfo structureBlockInfo, @Local FluidState fluidState) {
+    private void creo$applyOnPlacedByStructureB(ServerWorldAccess world, BlockPos pos, BlockPos pivot, StructurePlacementData placementData, Random random, int flags, CallbackInfoReturnable<Boolean> cir, @Local BlockBox blockBox, @Local StructureTemplate.StructureBlockInfo structureBlockInfo, @Local FluidState fluidState) {
         BlockImpl.applyOnPlacedByStructure(world, pivot, placementData, random, structureBlockInfo, structureBlockInfo.pos(), fluidState, structureBlockInfo.state(), (StructureTemplate) (Object) this);
     }
 }

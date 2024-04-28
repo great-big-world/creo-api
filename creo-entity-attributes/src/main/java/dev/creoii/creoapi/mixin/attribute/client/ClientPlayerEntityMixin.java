@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(ClientPlayerEntity.class)
 public class ClientPlayerEntityMixin {
     @Inject(method = "tickMovement", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/ClientPlayerEntity;setVelocity(Lnet/minecraft/util/math/Vec3d;)V"))
-    private void creo_applyFlightSpeed(CallbackInfo ci) {
+    private void creo$applyFlightSpeed(CallbackInfo ci) {
         MovementSpeedAttributeImpl.applySpectatorFlyingSpeed((ClientPlayerEntity) (Object) this);
     }
 }

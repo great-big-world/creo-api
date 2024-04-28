@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(MinecraftClient.class)
 public class MinecraftClientMixin {
     @Inject(method = "doItemUse", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isItemEnabled(Lnet/minecraft/resource/featuretoggle/FeatureSet;)Z"))
-    private void creo_applyBlockPlaceSpeed(CallbackInfo ci, @Local ItemStack itemStack) {
+    private void creo$applyBlockPlaceSpeed(CallbackInfo ci, @Local(argsOnly = true) ItemStack itemStack) {
         BlockCooldownAttributeImpl.applyBlockPlaceSpeed((MinecraftClient) (Object) this, itemStack);
     }
 }

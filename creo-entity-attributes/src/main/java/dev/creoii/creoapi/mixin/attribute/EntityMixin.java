@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(Entity.class)
 public class EntityMixin {
     @Inject(method = "getMaxAir", at = @At("HEAD"), cancellable = true)
-    private void creo_applyMaxAir(CallbackInfoReturnable<Integer> cir) {
+    private void creo$applyMaxAir(CallbackInfoReturnable<Integer> cir) {
         MaxAirAttributeImpl.applyMaxAir((Entity) (Object) this, cir);
     }
 }

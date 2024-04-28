@@ -1,10 +1,7 @@
 {
-  "attribute.name.generic.gravity": "Gravity",
   "attribute.name.generic.swimming_speed": "Swimming Speede",
   "attribute.name.generic.climbing_speed": "Climbing Speede",
-  "attribute.name.generic.jump_strength": "Leap Strength",
   "attribute.name.generic.max_air": "Full Breath",
   "attribute.name.player.place_cooldown": "Place Cooldown",
-  "attribute.name.player.break_cooldown": "Break Cooldown",
-  "attribute.name.player.mining_speed": "Mining Speede"
+  "attribute.name.player.break_cooldown": "Break Cooldown"
 }

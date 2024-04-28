@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(AbstractBlock.class)
 public class AbstractBlockMixin {
     @Inject(method = "randomTick", at = @At("HEAD"), cancellable = true)
-    private void creo_applySpreadables(BlockState state, ServerWorld world, BlockPos pos, Random random, CallbackInfo ci) {
+    private void creo$applySpreadables(BlockState state, ServerWorld world, BlockPos pos, Random random, CallbackInfo ci) {
         SpreadableImpl.applySpreadables(state, world, pos, random, ci);
     }
 }
