@@ -12,13 +12,6 @@ public interface EnchantmentModification {
     EnchantmentModification INSTANCE = new EnchantmentModificationImpl();
 
     /**
-     * Set the {@link net.minecraft.enchantment.Enchantment.Rarity} of the enchantment.
-     * @param enchantment the enchantment
-     * @param rarity the new {@link net.minecraft.enchantment.Enchantment.Rarity}
-     */
-    void setRarity(Enchantment enchantment, Enchantment.Rarity rarity);
-
-    /**
      * Set the acceptable items of the enchantment.
      * @param enchantment the enchantment
      * @param acceptableItemPredicate predicate for which items can support the enchantment

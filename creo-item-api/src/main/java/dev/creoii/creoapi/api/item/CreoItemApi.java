@@ -1,46 +1,54 @@
 package dev.creoii.creoapi.api.item;
 
+import dev.creoii.creoapi.impl.item.CreoItemImpl;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Identifier;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.Vec3d;
 
 public class CreoItemApi implements ModInitializer {
-    public static final Identifier ATTACK_THROUGH_BLOCK_PACKET_ID = new Identifier("creo", "attack_through_block");
-    public static final Identifier ITEM_ATTACK_PACKET_ID = new Identifier("creo", "item_attack");
+    public static final String NAMESPACE = "creo";
 
     @Override
     public void onInitialize() {
-        ServerPlayNetworking.registerGlobalReceiver(ATTACK_THROUGH_BLOCK_PACKET_ID, (server, player, handler, buf, responseSender) -> {
-            int entityId = buf.readInt();
-            ItemStack stack = player.getStackInHand(player.getActiveHand());
-            server.execute(() -> {
-                if (stack.getItem() instanceof CreoItem creoItem) {
-                    Entity entity = player.getWorld().getEntityById(entityId);
-                    if (entity != null && creoItem.canAttackThroughBlock(player, stack, entity)) {
-                        player.attack(entity);
-                        ItemEvents.ATTACK_THROUGH_BLOCK.invoker().onAttackThroughBlock(player, stack, entity);
-                        creoItem.onAttackThroughBlock(player, stack, entity);
+        CreoDataComponentTypes.register();
+        PayloadTypeRegistry.playC2S().register(CreoItemImpl.ItemAttack.PACKET_ID, CreoItemImpl.ItemAttack.PACKET_CODEC);
+        PayloadTypeRegistry.playC2S().register(CreoItemImpl.AttackThroughBlock.PACKET_ID, CreoItemImpl.AttackThroughBlock.PACKET_CODEC);
+
+        ServerPlayNetworking.registerGlobalReceiver(CreoItemImpl.AttackThroughBlock.PACKET_ID, (payload, context) -> {
+            ServerPlayerEntity serverPlayer = context.player();
+            if (serverPlayer.getServer() != null) {
+                int entityId = payload.entityId();
+                ItemStack stack = serverPlayer.getStackInHand(serverPlayer.getActiveHand());
+                serverPlayer.getServer().execute(() -> {
+                    if (stack.getItem() instanceof CreoItem creoItem) {
+                        Entity entity = serverPlayer.getWorld().getEntityById(entityId);
+                        if (entity != null && creoItem.canAttackThroughBlock(serverPlayer, stack, entity)) {
+                            serverPlayer.attack(entity);
+                            ItemEvents.ATTACK_THROUGH_BLOCK.invoker().onAttackThroughBlock(serverPlayer, stack, entity);
+                            creoItem.onAttackThroughBlock(serverPlayer, stack, entity);
+                        }
                     }
-                }
-            });
+                });
+            }
         });
 
-        ServerPlayNetworking.registerGlobalReceiver(ITEM_ATTACK_PACKET_ID, (server, player, handler, buf, responseSender) -> {
-            int hitResult = buf.readInt();
-            System.out.println("index " + buf.readerIndex());
-            System.out.println("is readable " + buf.isReadable());
-            System.out.println("bytes " + buf.readableBytes());
-            Vec3d pos = buf.readVec3d();
-            ItemStack stack = player.getStackInHand(player.getActiveHand());
-            server.execute(() -> {
-                if (stack.getItem() instanceof CreoItem creoItem) {
-                    creoItem.onAttack(player, stack, hitResult == -1 ? null : HitResult.Type.values()[hitResult], pos);
-                }
-            });
+        ServerPlayNetworking.registerGlobalReceiver(CreoItemImpl.ItemAttack.PACKET_ID, (payload, context) -> {
+            ServerPlayerEntity serverPlayer = context.player();
+            if (serverPlayer.getServer() != null) {
+                int hitResult = payload.hitResultType();
+                Vec3d pos = payload.pos();
+                ItemStack stack = serverPlayer.getStackInHand(serverPlayer.getActiveHand());
+                serverPlayer.getServer().execute(() -> {
+                    if (stack.getItem() instanceof CreoItem creoItem) {
+                        creoItem.onAttack(serverPlayer, stack, hitResult == -1 ? null : HitResult.Type.values()[hitResult], pos);
+                    }
+                });
+            }
         });
     }
 }

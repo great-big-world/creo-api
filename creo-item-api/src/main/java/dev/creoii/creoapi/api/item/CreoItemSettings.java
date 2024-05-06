@@ -1,11 +1,9 @@
 package dev.creoii.creoapi.api.item;
 
-import dev.creoii.creoapi.impl.item.util.AccessibleItem;
-import dev.creoii.creoapi.mixin.item.ItemSettingsAccessor;
 import net.fabricmc.fabric.api.item.v1.CustomDamageHandler;
 import net.fabricmc.fabric.api.item.v1.EquipmentSlotProvider;
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-import net.minecraft.item.FoodComponent;
+import net.minecraft.component.type.AttributeModifiersComponent;
+import net.minecraft.component.type.FoodComponent;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.entry.RegistryEntry;
@@ -17,46 +15,16 @@ import net.minecraft.util.Rarity;
 import java.util.LinkedList;
 import java.util.List;
 
-public class CreoItemSettings extends FabricItemSettings {
+public class CreoItemSettings extends Item.Settings {
     private int pickupDelay = 10;
     private int despawnTime = 6000;
     private boolean buoyant = true;
-    private double gravity = -.04d;
+    private double gravity = .04d;
     private int hopperTransferRate = 8;
     private float rotationModifier = 1f;
     private boolean hoverAnimation = true;
     private boolean clickPickup = false;
     private RegistryEntryList<Item> requiredFuels;
-
-    public static CreoItemSettings copyOf(Item item) {
-        return copyOf(((AccessibleItem) item).creo$getItemSettings());
-    }
-
-    public static CreoItemSettings copyOf(Item.Settings settings) {
-        ItemSettingsAccessor accessor = (ItemSettingsAccessor) settings;
-        CreoItemSettings copy = new CreoItemSettings();
-
-        ((ItemSettingsAccessor) copy).setMaxCount(accessor.getMaxCount());
-        ((ItemSettingsAccessor) copy).setMaxDamage(accessor.getMaxDamage());
-        ((ItemSettingsAccessor) copy).setRecipeRemainder(accessor.getRecipeRemainder());
-        ((ItemSettingsAccessor) copy).setRarity(accessor.getRarity());
-        ((ItemSettingsAccessor) copy).setFoodComponent(accessor.getFoodComponent());
-        if (accessor.isFireproof())
-            ((ItemSettingsAccessor) copy).setFireproof(true);
-
-        if (settings instanceof CreoItemSettings creoItemSettings) {
-            copy.setPickupDelay(creoItemSettings.getPickupDelay());
-            copy.setDespawnTime(creoItemSettings.getDespawnTime());
-            copy.setBuoyant(creoItemSettings.isBuoyant());
-            copy.setGravity(creoItemSettings.getGravity());
-            copy.setHopperTransferRate(creoItemSettings.getHopperTransferRate());
-            copy.setRotationModifier(creoItemSettings.getRotationModifier());
-            copy.setHoverAnimation(creoItemSettings.hasHoverAnimation());
-            copy.setClickPickup(creoItemSettings.doesClickPickup());
-            copy.setRequiredFuels(creoItemSettings.getRequiredFuels());
-        }
-        return copy;
-    }
 
     @Override
     public CreoItemSettings equipmentSlot(EquipmentSlotProvider equipmentSlotProvider) {
@@ -71,20 +39,19 @@ public class CreoItemSettings extends FabricItemSettings {
     }
 
     @Override
-    public CreoItemSettings food(FoodComponent foodComponent) {
+    public Item.Settings food(FoodComponent foodComponent) {
         super.food(foodComponent);
+        return this;
+    }
+
+    public Item.Settings food(CreoFoodComponent foodComponent) {
+        component(CreoDataComponentTypes.FOOD, foodComponent);
         return this;
     }
 
     @Override
     public CreoItemSettings maxCount(int maxCount) {
         super.maxCount(maxCount);
-        return this;
-    }
-
-    @Override
-    public CreoItemSettings maxDamageIfAbsent(int maxDamage) {
-        super.maxDamageIfAbsent(maxDamage);
         return this;
     }
 
@@ -115,6 +82,12 @@ public class CreoItemSettings extends FabricItemSettings {
     @Override
     public CreoItemSettings requires(FeatureFlag... features) {
         super.requires(features);
+        return this;
+    }
+
+    @Override
+    public Item.Settings attributeModifiers(AttributeModifiersComponent attributeModifiersComponent) {
+        super.attributeModifiers(attributeModifiersComponent);
         return this;
     }
 

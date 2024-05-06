@@ -5,7 +5,6 @@ import dev.creoii.creoapi.mixin.modification.item.BlockItemAccessor;
 import dev.creoii.creoapi.mixin.modification.item.ItemAccessor;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
-import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
 import net.minecraft.util.Rarity;
 import org.jetbrains.annotations.ApiStatus;
@@ -40,11 +39,6 @@ public class ItemModificationImpl implements ItemModification {
     @Override
     public void setRecipeRemainder(Item item, Item recipeRemainder) {
         ((ItemAccessor) item).setRecipeRemainder(recipeRemainder);
-    }
-
-    @Override
-    public void setFoodComponent(Item item, FoodComponent foodComponent) {
-        ((ItemAccessor) item).setFoodComponent(foodComponent);
     }
 
     @Override

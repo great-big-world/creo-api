@@ -9,7 +9,6 @@
     "block.AbstractBlockAccessor",
     "block.AbstractBlockStateAccessor",
     "block.BlockSettingsAccessor",
-    "enchantment.EnchantmentAccessor",
     "enchantment.EnchantmentMixin",
     "item.BlockItemAccessor",
     "item.ItemAccessor",

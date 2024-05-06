@@ -13,6 +13,7 @@ import net.minecraft.util.ActionResult;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.UUID;
 
@@ -38,11 +39,10 @@ public final class ItemSettingsImpl {
         }
     }
 
-    public static double applyGravity(ItemStack stack, double defaultGravity) {
+    public static void applyGravity(ItemStack stack, CallbackInfoReturnable<Double> cir) {
         if (((AccessibleItem) stack.getItem()).creo$getItemSettings() instanceof CreoItemSettings creoItemSettings) {
-            return creoItemSettings.getGravity();
+            cir.setReturnValue(creoItemSettings.getGravity());
         }
-        return defaultGravity;
     }
 
     public static float applyRotationModifier(ItemStack stack, float original) {

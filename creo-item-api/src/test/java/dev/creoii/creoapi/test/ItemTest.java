@@ -1,5 +1,6 @@
 package dev.creoii.creoapi.test;
 
+import dev.creoii.creoapi.api.item.CreoFoodComponent;
 import dev.creoii.creoapi.api.item.CreoItem;
 import dev.creoii.creoapi.api.item.CreoItemSettings;
 import dev.creoii.creoapi.api.item.ItemEvents;
@@ -44,6 +45,18 @@ public class ItemTest implements ModInitializer {
             System.out.println("attackthru event: " + player.getWorld().isClient);
             System.out.println(stack.getTranslationKey() + " on " + target.getType().getTranslationKey());
         });
+
+        Item slowFood = new Item(new CreoItemSettings().food(new CreoFoodComponent.Builder().nutrition(2).eatSeconds(3).canAlwaysEat().build()));
+        Item fastFood = new Item(new CreoItemSettings().food(new CreoFoodComponent.Builder().eatSeconds(.4f).canAlwaysEat().build()));
+        Item durabilityFood = new Item(new CreoItemSettings().food(new CreoFoodComponent.Builder().eatDurability(4).canAlwaysEat().build()));
+        Item sprintEdibleFood = new Item(new CreoItemSettings().food(new CreoFoodComponent.Builder().canAlwaysEat().canSprintEat().build()));
+        Item healsHealthFood = new Item(new CreoItemSettings().food(new CreoFoodComponent.Builder().nutrition(2).canAlwaysEat().healsHealth().build()));
+
+        Registry.register(Registries.ITEM, new Identifier("test", "slow_food"), slowFood);
+        Registry.register(Registries.ITEM, new Identifier("test", "fast_food"), fastFood);
+        Registry.register(Registries.ITEM, new Identifier("test", "durability_food"), durabilityFood);
+        Registry.register(Registries.ITEM, new Identifier("test", "sprint_food"), sprintEdibleFood);
+        Registry.register(Registries.ITEM, new Identifier("test", "heals_health"), healsHealthFood);
     }
 
     private static class XrayItem extends Item implements CreoItem {

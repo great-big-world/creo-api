@@ -5,11 +5,14 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "AbstractFurnaceScreenHandlerMixin",
+    "ClientPlayerEntityMixin",
     "FurnaceFuelSlotMixin",
     "HopperBlockEntityMixin",
+    "HungerManagerMixin",
     "ItemEntityMixin",
     "ItemMixin",
-    "ItemSettingsAccessor"
+    "ItemStackMixin",
+    "LivingEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1

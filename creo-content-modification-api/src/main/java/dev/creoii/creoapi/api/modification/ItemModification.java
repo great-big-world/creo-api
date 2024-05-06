@@ -55,13 +55,6 @@ public interface ItemModification {
     void setRecipeRemainder(Item item, Item recipeRemainder);
 
     /**
-     * Set the food component of the item.
-     * @param item the item
-     * @param foodComponent the new {@link FoodComponent}
-     */
-    void setFoodComponent(Item item, FoodComponent foodComponent);
-
-    /**
      * Set the block of the {@link BlockItem}.
      * @param blockItem the block item
      * @param block the new block

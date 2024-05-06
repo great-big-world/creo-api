@@ -20,15 +20,14 @@ import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.UUID;
 
 @Mixin(ItemEntity.class)
 public abstract class ItemEntityMixin extends Entity implements Ownable {
     @Shadow public abstract ItemStack getStack();
-
     @Shadow private int pickupDelay;
-
     @Shadow @Nullable private UUID owner;
 
     public ItemEntityMixin(EntityType<?> type, World world) {
@@ -55,9 +54,9 @@ public abstract class ItemEntityMixin extends Entity implements Ownable {
         ItemSettingsImpl.applyBuoyancy(getStack(), ci);
     }
 
-    @ModifyConstant(method = "tick", constant = @Constant(doubleValue = -.04d))
-    private double creo$applyItemGravity(double constant) {
-        return ItemSettingsImpl.applyGravity(getStack(), constant);
+    @Inject(method = "getGravity", at = @At("HEAD"), cancellable = true)
+    private void creo$applyItemGravity(CallbackInfoReturnable<Double> cir) {
+        ItemSettingsImpl.applyGravity(getStack(), cir);
     }
 
     @ModifyReturnValue(method = "getRotation", at = @At("RETURN"))
@@ -65,10 +64,10 @@ public abstract class ItemEntityMixin extends Entity implements Ownable {
         return ItemSettingsImpl.applyRotationModifier(getStack(), original);
     }
 
-    @ModifyExpressionValue(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ItemEntity;isOnGround()Z", ordinal = 2))
+    /*@ModifyExpressionValue(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ItemEntity;isOnGround()Z", ordinal = 2))
     private boolean creo$applyItemHoverAnimation(boolean original) {
         return ItemSettingsImpl.applyHoverAnimation(getStack(), original);
-    }
+    }*/
 
     @Inject(method = "onPlayerCollision", at = @At("HEAD"), cancellable = true)
     private void gbw$stopCollisionPickupIfClickPickup(PlayerEntity player, CallbackInfo ci) {

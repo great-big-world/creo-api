@@ -7,9 +7,9 @@ import java.util.function.Predicate;
 
 @ApiStatus.NonExtendable
 public interface ExtendedEnchantment {
-    void creo_setAcceptableItemPredicate(Predicate<ItemStack> acceptableItemPredicate);
+    void creo$setAcceptableItemPredicate(Predicate<ItemStack> acceptableItemPredicate);
 
-    void creo_setMinLevel(int minLevel);
+    void creo$setMinLevel(int minLevel);
 
-    void creo_setMaxLevel(int maxLevel);
+    void creo$setMaxLevel(int maxLevel);
 }

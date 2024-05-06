@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(Main.class)
 public class ClientMainMixin {
     @Inject(method = "main", at = @At(value = "INVOKE", target = "Lnet/minecraft/Bootstrap;initialize()V"))
-    private static void test_invokePreInitEntrypoint(String[] args, CallbackInfo ci) {
+    private static void creo$invokePreInitEntrypoint(String[] args, CallbackInfo ci) {
         PreInitImpl.applyPreInit(true);
     }
 }
