@@ -1,7 +1,7 @@
 package dev.creoii.creoapi.impl.tag;
 
 import dev.creoii.creoapi.api.tag.CreoStatusEffectTags;
-import net.fabricmc.fabric.api.tag.convention.v1.TagUtil;
+import net.fabricmc.fabric.api.tag.convention.v2.TagUtil;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -19,7 +19,7 @@ public final class StatusEffectTagImpl {
             return;
         }
         for (StatusEffectInstance statusEffectInstance : living.getActiveStatusEffects().values()) {
-            if (TagUtil.isIn(CreoStatusEffectTags.MILK_DOES_NOT_CURE, statusEffectInstance.getEffectType()))
+            if (TagUtil.isIn(CreoStatusEffectTags.UNAFFECTED_BY_MILK, statusEffectInstance.getEffectType().value()))
                 continue;
             living.onStatusEffectRemoved(statusEffectInstance);
             living.getActiveStatusEffects().remove(statusEffectInstance.getEffectType(), statusEffectInstance);
@@ -29,7 +29,7 @@ public final class StatusEffectTagImpl {
 
     public static boolean applyCuresZombieVillagers(ZombieVillagerEntity zombieVillager) {
         for (StatusEffectInstance statusEffect : zombieVillager.getStatusEffects()) {
-            RegistryEntry<StatusEffect> entry = zombieVillager.getWorld().getRegistryManager().get(RegistryKeys.STATUS_EFFECT).getEntry(statusEffect.getEffectType());
+            RegistryEntry<StatusEffect> entry = zombieVillager.getWorld().getRegistryManager().get(RegistryKeys.STATUS_EFFECT).getEntry(statusEffect.getEffectType().value());
             if (entry.isIn(CreoStatusEffectTags.CURES_ZOMBIE_VILLAGERS))
                 return true;
         }

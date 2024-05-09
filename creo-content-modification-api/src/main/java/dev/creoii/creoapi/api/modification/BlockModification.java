@@ -6,6 +6,8 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.MapColor;
 import net.minecraft.block.enums.Instrument;
 import net.minecraft.block.piston.PistonBehavior;
+import net.minecraft.loot.LootTable;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
@@ -157,9 +159,9 @@ public interface BlockModification {
     /**
      * Set the loot table identifier of the block.
      * @param block a block
-     * @param lootTableId the new loot table id of the block
+     * @param lootTableKey the new loot table id of the block
      */
-    void setLootTableId(Block block, Identifier lootTableId);
+    void setLootTableKey(Block block, RegistryKey<LootTable> lootTableKey);
 
     /**
      * Set whether the block is opaque.

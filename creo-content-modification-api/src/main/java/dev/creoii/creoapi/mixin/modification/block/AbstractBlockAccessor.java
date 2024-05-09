@@ -1,6 +1,8 @@
 package dev.creoii.creoapi.mixin.modification.block;
 
 import net.minecraft.block.AbstractBlock;
+import net.minecraft.loot.LootTable;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Mixin;
@@ -29,8 +31,8 @@ public interface AbstractBlockAccessor {
     @Accessor("jumpVelocityMultiplier")
     void setJumpVelocityMultiplier(float jumpVelocityMultiplier);
 
-    @Accessor("lootTableId")
-    void setLootTableId(Identifier lootTableId);
+    @Accessor("lootTableKey")
+    void setLootTableKey(RegistryKey<LootTable> lootTableId);
 
     @Accessor("dynamicBounds")
     void setDynamicBounds(boolean dynamicBounds);

@@ -2,7 +2,7 @@ package dev.creoii.creoapi.impl.tag;
 
 import dev.creoii.creoapi.api.tag.CreoEnchantmentTags;
 import dev.creoii.creoapi.impl.tag.util.GrindstoneItemSlot;
-import net.fabricmc.fabric.api.tag.convention.v1.TagUtil;
+import net.fabricmc.fabric.api.tag.convention.v2.TagUtil;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.item.ItemStack;
@@ -36,7 +36,7 @@ public final class EnchantmentTagImpl {
     }
 
     public static void applyGrindstoneIgnoresGrind(ItemStack item, ItemStack stack) {
-        Map<Enchantment, Integer> map = EnchantmentHelper.get(item).entrySet().stream().filter(entry -> {
+        Map<Enchantment, Integer> map = EnchantmentHelper.getEnchantments(item).getEnchantments().stream().filter(entry -> {
             return TagUtil.isIn(CreoEnchantmentTags.GRINDSTONE_IGNORES, entry.getKey());
         }).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
         EnchantmentHelper.set(map, stack);

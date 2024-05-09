@@ -1,7 +1,6 @@
 package dev.creoii.creoapi.api.tag;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.ChorusFlowerBlock;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
@@ -56,7 +55,6 @@ public final class CreoBlockTags {
      * Blocks that Chorus Fruit can be placed and grown on.
      * @since 0.2.5
      */
-    ChorusFlowerBlock
     public static final TagKey<Block> CHORUS_PLANT_PLANTABLE_ON = TagKey.of(RegistryKeys.BLOCK, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "chorus_plant_plantable_on"));
     /**
      * Blocks which activate Conduits when placed correctly.

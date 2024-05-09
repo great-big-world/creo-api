@@ -8,11 +8,7 @@
     "StatusEffectAccessor",
     "block.AbstractBlockAccessor",
     "block.AbstractBlockStateAccessor",
-    "block.BlockSettingsAccessor",
-    "enchantment.EnchantmentMixin",
-    "item.BlockItemAccessor",
-    "item.ItemAccessor",
-    "item.SpawnEggItemAccessor"
+    "block.BlockSettingsAccessor"
   ],
   "client": [
   ],

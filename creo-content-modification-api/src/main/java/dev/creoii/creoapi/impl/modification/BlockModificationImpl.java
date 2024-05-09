@@ -9,8 +9,9 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.MapColor;
 import net.minecraft.block.enums.Instrument;
 import net.minecraft.block.piston.PistonBehavior;
+import net.minecraft.loot.LootTable;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.sound.BlockSoundGroup;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 import org.jetbrains.annotations.ApiStatus;
@@ -127,8 +128,8 @@ public class BlockModificationImpl implements BlockModification {
     }
 
     @Override
-    public void setLootTableId(Block block, Identifier lootTableId) {
-        ((AbstractBlockAccessor) block).setLootTableId(lootTableId);
+    public void setLootTableKey(Block block, RegistryKey<LootTable> lootTableKey) {
+        ((AbstractBlockAccessor) block).setLootTableKey(lootTableKey);
     }
 
     @Override
