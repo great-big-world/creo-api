@@ -1,20 +1,21 @@
 package dev.creoii.creoapi.impl.tag.util;
 
 import dev.creoii.creoapi.api.tag.CreoEnchantmentTags;
-import net.fabricmc.fabric.api.tag.convention.v1.TagUtil;
+import it.unimi.dsi.fastutil.objects.Object2IntMap;
+import net.fabricmc.fabric.api.tag.convention.v2.TagUtil;
+import net.minecraft.component.type.ItemEnchantmentsComponent;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.screen.GrindstoneScreenHandler;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldEvents;
-
-import java.util.Map;
 
 public class GrindstoneItemSlot extends Slot {
     private final GrindstoneScreenHandler screenHandler;
@@ -43,23 +44,23 @@ public class GrindstoneItemSlot extends Slot {
 
     private int getExperience(World world) {
         int i = 0;
-        i += getExperience(screenHandler.input.getStack(0));
-        if ((i += getExperience(screenHandler.input.getStack(1))) > 0) {
-            int j = (int) Math.ceil((double)i / 2d);
+        i += this.getExperience(screenHandler.input.getStack(0));
+        i += this.getExperience(screenHandler.input.getStack(1));
+        if (i > 0) {
+            int j = (int) Math.ceil((double) i / 2d);
             return j + world.random.nextInt(j);
-        }
-        return 0;
+        } else return 0;
     }
 
     private int getExperience(ItemStack stack) {
         int i = 0;
-        Map<Enchantment, Integer> map = EnchantmentHelper.get(stack);
-        for (Map.Entry<Enchantment, Integer> entry : map.entrySet()) {
-            Enchantment enchantment = entry.getKey();
-            Integer integer = entry.getValue();
+        ItemEnchantmentsComponent itemEnchantmentsComponent = EnchantmentHelper.getEnchantments(stack);
+        for (Object2IntMap.Entry<RegistryEntry<Enchantment>> entry : itemEnchantmentsComponent.getEnchantmentsMap()) {
+            Enchantment enchantment = entry.getKey().value();
+            int j = entry.getIntValue();
             if (TagUtil.isIn(CreoEnchantmentTags.GRINDSTONE_IGNORES, enchantment))
                 continue;
-            i += enchantment.getMinPower(integer);
+            i += enchantment.getMinPower(j);
         }
         return i;
     }

@@ -84,13 +84,13 @@ public final class ItemTagImpl {
 
     @SuppressWarnings("deprecation")
     public static void applyArmorRepairIngredients() {
-        ((ArmorMaterialsAccessor) (Object) ArmorMaterials.LEATHER).setRepairIngredientSupplier(new Lazy<>(() -> Ingredient.fromTag(CreoItemTags.REPAIRS_LEATHER)));
-        ((ArmorMaterialsAccessor) (Object) ArmorMaterials.CHAIN).setRepairIngredientSupplier(new Lazy<>(() -> Ingredient.fromTag(CreoItemTags.REPAIRS_CHAINMAIL)));
-        ((ArmorMaterialsAccessor) (Object) ArmorMaterials.IRON).setRepairIngredientSupplier(new Lazy<>(() -> Ingredient.fromTag(CreoItemTags.REPAIRS_IRON)));
-        ((ArmorMaterialsAccessor) (Object) ArmorMaterials.GOLD).setRepairIngredientSupplier(new Lazy<>(() -> Ingredient.fromTag(CreoItemTags.REPAIRS_GOLD)));
-        ((ArmorMaterialsAccessor) (Object) ArmorMaterials.DIAMOND).setRepairIngredientSupplier(new Lazy<>(() -> Ingredient.fromTag(CreoItemTags.REPAIRS_DIAMOND)));
-        ((ArmorMaterialsAccessor) (Object) ArmorMaterials.NETHERITE).setRepairIngredientSupplier(new Lazy<>(() -> Ingredient.fromTag(CreoItemTags.REPAIRS_NETHERITE)));
-        ((ArmorMaterialsAccessor) (Object) ArmorMaterials.TURTLE).setRepairIngredientSupplier(new Lazy<>(() -> Ingredient.fromTag(CreoItemTags.REPAIRS_TURTLE)));
+        ((ArmorMaterialsAccessor) ArmorMaterials.LEATHER).setRepairIngredientSupplier(new Lazy<>(() -> Ingredient.fromTag(CreoItemTags.REPAIRS_LEATHER)));
+        ((ArmorMaterialsAccessor) ArmorMaterials.CHAIN).setRepairIngredientSupplier(new Lazy<>(() -> Ingredient.fromTag(CreoItemTags.REPAIRS_CHAINMAIL)));
+        ((ArmorMaterialsAccessor) ArmorMaterials.IRON).setRepairIngredientSupplier(new Lazy<>(() -> Ingredient.fromTag(CreoItemTags.REPAIRS_IRON)));
+        ((ArmorMaterialsAccessor) ArmorMaterials.GOLD).setRepairIngredientSupplier(new Lazy<>(() -> Ingredient.fromTag(CreoItemTags.REPAIRS_GOLD)));
+        ((ArmorMaterialsAccessor) ArmorMaterials.DIAMOND).setRepairIngredientSupplier(new Lazy<>(() -> Ingredient.fromTag(CreoItemTags.REPAIRS_DIAMOND)));
+        ((ArmorMaterialsAccessor) ArmorMaterials.NETHERITE).setRepairIngredientSupplier(new Lazy<>(() -> Ingredient.fromTag(CreoItemTags.REPAIRS_NETHERITE)));
+        ((ArmorMaterialsAccessor) ArmorMaterials.TURTLE).setRepairIngredientSupplier(new Lazy<>(() -> Ingredient.fromTag(CreoItemTags.REPAIRS_TURTLE)));
     }
 
     @SuppressWarnings("deprecation")

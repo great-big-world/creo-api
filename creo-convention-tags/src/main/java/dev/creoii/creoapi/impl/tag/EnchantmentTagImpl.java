@@ -3,15 +3,13 @@ package dev.creoii.creoapi.impl.tag;
 import dev.creoii.creoapi.api.tag.CreoEnchantmentTags;
 import dev.creoii.creoapi.impl.tag.util.GrindstoneItemSlot;
 import net.fabricmc.fabric.api.tag.convention.v2.TagUtil;
+import net.minecraft.component.type.ItemEnchantmentsComponent;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.GrindstoneScreenHandler;
 import org.jetbrains.annotations.ApiStatus;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-
-import java.util.Map;
-import java.util.stream.Collectors;
 
 @ApiStatus.Internal
 public final class EnchantmentTagImpl {
@@ -36,9 +34,12 @@ public final class EnchantmentTagImpl {
     }
 
     public static void applyGrindstoneIgnoresGrind(ItemStack item, ItemStack stack) {
-        Map<Enchantment, Integer> map = EnchantmentHelper.getEnchantments(item).getEnchantments().stream().filter(entry -> {
-            return TagUtil.isIn(CreoEnchantmentTags.GRINDSTONE_IGNORES, entry.getKey());
-        }).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-        EnchantmentHelper.set(map, stack);
+        ItemEnchantmentsComponent.Builder builder = new ItemEnchantmentsComponent.Builder(stack.getEnchantments());
+        EnchantmentHelper.getEnchantments(item).getEnchantmentsMap().forEach(entry -> {
+            if (TagUtil.isIn(CreoEnchantmentTags.GRINDSTONE_IGNORES, entry.getKey().value())) {
+                builder.add(entry.getKey().value(), entry.getIntValue());
+            }
+        });
+        EnchantmentHelper.set(stack, builder.build());
     }
 }
