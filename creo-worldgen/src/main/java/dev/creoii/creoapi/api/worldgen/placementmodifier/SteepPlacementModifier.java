@@ -49,8 +49,6 @@ public class SteepPlacementModifier extends AbstractConditionalPlacementModifier
         max = chunk.sampleHeightmap(Heightmap.Type.WORLD_SURFACE_WG, Math.max(x - 1, 0), z);
         min = chunk.sampleHeightmap(Heightmap.Type.WORLD_SURFACE_WG, Math.min(x + 1, 15), z);
         steepness = Math.abs(max - min);
-        if (steepness >= minSteepness && steepness <= maxSteepness)
-            return true;
-        return false;
+        return steepness >= minSteepness && steepness <= maxSteepness;
     }
 }

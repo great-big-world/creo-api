@@ -48,7 +48,7 @@
 // https://github.com/Auburn/FastNoise
 
 // To switch between using floats or doubles for input position,
-// perform a file-wide replace on the following strings (including /*FNLfloat*/)
+// perform a file-wide replacement on the following strings (including /*FNLfloat*/)
 // /*FNLfloat*/ float
 // /*FNLfloat*/ double
 package dev.creoii.creoapi.api.worldgen.fastnoise;
@@ -379,7 +379,7 @@ public class FastNoiseLite {
     }
 
     /// <summary>
-    /// Sets the maximum distance a cellular point can move from it's grid position
+    /// Sets the maximum distance a cellular point can move from its grid position
     /// </summary>
     /// <remarks>
     /// Default: 1.0

@@ -10,23 +10,23 @@ public final class CreoStructurePlacementTypes {
     /**
      * Places the structure at one or more fixed positions in the world.
      */
-    public static StructurePlacementType<FixedStructurePlacement> FIXED = () -> FixedStructurePlacement.CODEC;
+    public static final StructurePlacementType<FixedStructurePlacement> FIXED = () -> FixedStructurePlacement.CODEC;
     /**
      * Places the structure in a random spread after a certain distance from a position.
      */
-    public static StructurePlacementType<DistanceFromPosStructurePlacement> DISTANCE_FROM_POS = () -> DistanceFromPosStructurePlacement.CODEC;
+    public static final StructurePlacementType<DistanceFromPosStructurePlacement> DISTANCE_FROM_POS = () -> DistanceFromPosStructurePlacement.CODEC;
     /**
      * Places the structure in a random spread within a range of noise values.
      */
-    public static StructurePlacementType<NoiseStructurePlacement> NOISE = () -> NoiseStructurePlacement.CODEC;
+    public static final StructurePlacementType<NoiseStructurePlacement> NOISE = () -> NoiseStructurePlacement.CODEC;
     /**
      * Places the structure in a random spread within a range of fast noise values.
      */
-    public static StructurePlacementType<FastNoiseStructurePlacement> FAST_NOISE = () -> FastNoiseStructurePlacement.CODEC;
+    public static final StructurePlacementType<FastNoiseStructurePlacement> FAST_NOISE = () -> FastNoiseStructurePlacement.CODEC;
     /**
      * Places the structure in a random spread within a density function range.
      */
-    public static StructurePlacementType<DensityFunctionStructurePlacement> DENSITY_FUNCTION = () -> DensityFunctionStructurePlacement.CODEC;
+    public static final StructurePlacementType<DensityFunctionStructurePlacement> DENSITY_FUNCTION = () -> DensityFunctionStructurePlacement.CODEC;
 
     static void register() {
         Registry.register(Registries.STRUCTURE_PLACEMENT, new Identifier(CreoWorldgen.NAMESPACE, "fixed"), FIXED);

@@ -3,16 +3,15 @@ package dev.creoii.creoapi.test;
 import dev.creoii.creoapi.api.shader.ShaderInteractions;
 import dev.creoii.creoapi.api.shader.Shaders;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItem;
+import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -25,7 +24,7 @@ public class ShaderInteractionTest implements ModInitializer {
     @Override
     public void onInitialize() {
         final Block shaderBlock = Registry.register(Registries.BLOCK, new Identifier("test", "shader_block"), new ShaderBlock());
-        Registry.register(Registries.ITEM, new Identifier("test", "shader_block"), new BlockItem(shaderBlock, new FabricItemSettings()));
+        Registry.register(Registries.ITEM, new Identifier("test", "shader_block"), new BlockItem(shaderBlock, new Item.Settings()));
     }
 
     public static class ShaderBlock extends Block {
@@ -34,8 +33,7 @@ public class ShaderInteractionTest implements ModInitializer {
         }
 
         @Override
-        @SuppressWarnings("deprecation")
-        public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
             if (world.isClient) {
                 if (player.isSneaking()) {
                     Identifier id = ShaderInteractions.getCurrentPostProcessor();
@@ -55,7 +53,7 @@ public class ShaderInteractionTest implements ModInitializer {
                 }
                 return ActionResult.SUCCESS;
             }
-            return super.onUse(state, world, pos, player, hand, hit);
+            return super.onUse(state, world, pos, player, hit);
         }
     }
 }

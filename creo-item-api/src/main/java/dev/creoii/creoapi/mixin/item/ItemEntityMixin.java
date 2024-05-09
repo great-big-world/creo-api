@@ -1,6 +1,5 @@
 package dev.creoii.creoapi.mixin.item;
 
-import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import dev.creoii.creoapi.impl.item.ItemSettingsImpl;
 import net.minecraft.entity.Entity;

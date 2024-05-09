@@ -22,10 +22,7 @@ public abstract class CropBlockMixin {
     @Shadow public abstract BlockState withAge(int age);
     @Shadow public abstract int getAge(BlockState state);
     @Shadow protected abstract int getGrowthAmount(World world);
-    @Shadow
-    protected static float getAvailableMoisture(Block block, BlockView world, BlockPos pos) {
-        return 0;
-    }
+    @Shadow protected abstract float getAvailableMoisture(Block block, BlockView world, BlockPos pos);
 
     @Inject(method = "canGrow", at = @At("HEAD"), cancellable = true)
     private void creo_applyCropGrowBonemealEvent(World world, Random random, BlockPos pos, BlockState state, CallbackInfoReturnable<Boolean> cir) {

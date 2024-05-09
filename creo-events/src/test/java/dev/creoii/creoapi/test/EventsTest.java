@@ -252,7 +252,7 @@ public class EventsTest implements ModInitializer {
         if (testCropGrowEvent) {
             CropEvents.GROW.register((world, pos, state, growState, age, moisture) -> {
                 System.out.println("Crop Grow:");
-                System.out.println("    world=" + world.getDimensionKey().toString());
+                System.out.println("    world=" + world.getDimensionEntry().toString());
                 System.out.println("    pos=" + pos.toShortString());
                 System.out.println("    state=" + state.getBlock().getTranslationKey());
                 System.out.println("    growState=" + growState.getBlock().getTranslationKey());
@@ -260,7 +260,7 @@ public class EventsTest implements ModInitializer {
                 System.out.println("    moisture=" + moisture);
 
                 // Only grow crops in the Overworld
-                return world.getDimensionKey() == DimensionTypes.OVERWORLD;
+                return world.getDimensionEntry().getKey().get() == DimensionTypes.OVERWORLD;
             });
         }
 
@@ -304,7 +304,7 @@ public class EventsTest implements ModInitializer {
         if (testEntityStruckByLightningEvent) {
             EntityEvents.STRUCK_BY_LIGHTNING.register((serverWorld, entity, lightning) -> {
                 System.out.println("Entity Struck By Lightning:");
-                System.out.println("    world=" + serverWorld.getDimensionKey().toString());
+                System.out.println("    world=" + serverWorld.getDimensionEntry().toString());
                 System.out.println("    entity=" + entity.getType().getTranslationKey());
             });
         }
@@ -312,21 +312,21 @@ public class EventsTest implements ModInitializer {
         if (testEntityChangeDimensionEvent) {
             EntityEvents.CHANGE_DIMENSION.register((world, destination, entity, copy, teleportTarget) -> {
                 System.out.println("Entity Change Dimension:");
-                System.out.println("    world=" + world.getDimensionKey().toString());
-                System.out.println("    destination=" + destination.getDimensionKey().toString());
+                System.out.println("    world=" + world.getDimensionEntry().toString());
+                System.out.println("    destination=" + destination.getDimensionEntry().toString());
                 System.out.println("    entity=" + entity.getType().getTranslationKey());
                 System.out.println("    copy=" + copy.getType().getTranslationKey());
                 System.out.println("    teleportTarget=" + teleportTarget.position.toString());
 
                 // limit player to only the Overworld & Nether
-                return destination.getDimensionKey() == DimensionTypes.THE_NETHER || destination.getDimensionKey() == DimensionTypes.OVERWORLD;
+                return destination.getDimensionEntry().getKey().get() == DimensionTypes.THE_NETHER || destination.getDimensionEntry().getKey().get() == DimensionTypes.OVERWORLD;
             });
         }
 
         if (testMobInitGoalsEvent) {
             MobEntityEvents.INIT_GOALS.register((world, mob, goalSelector, targetSelector) -> {
                 System.out.println("Mob Post Init Goals:");
-                System.out.println("    world=" + world.getDimensionKey().toString());
+                System.out.println("    world=" + world.getDimensionEntry().toString());
                 System.out.println("    mob=" + mob.getType().getTranslationKey());
 
                 // all goal & target selectors should have at least 1 goal
@@ -368,7 +368,7 @@ public class EventsTest implements ModInitializer {
         if (testFishingCastEvent) {
             FishingEvents.CAST.register((world, user, hand, fishingRod, lure, luck) -> {
                 System.out.println("Fishing Cast:");
-                System.out.println("    world=" + world.getDimensionKey().toString());
+                System.out.println("    world=" + world.getDimensionEntry().toString());
                 System.out.println("    user=" + user.getDisplayName().getString());
                 System.out.println("    hand=" + hand.name());
                 System.out.println("    fishingRod=" + fishingRod.getTranslationKey());
@@ -382,7 +382,7 @@ public class EventsTest implements ModInitializer {
         if (testFishingCatchEvent) {
             FishingEvents.REELED_IN.register((world, user, hand, fishingRod) -> {
                 System.out.println("Fishing Catch:");
-                System.out.println("    world=" + world.getDimensionKey().toString());
+                System.out.println("    world=" + world.getDimensionEntry().toString());
                 System.out.println("    user=" + user.getDisplayName().getString());
                 System.out.println("    hand=" + hand.name());
                 System.out.println("    fishingRod=" + fishingRod.getTranslationKey());
@@ -395,7 +395,7 @@ public class EventsTest implements ModInitializer {
             SleepEvents.EXPLODE.register((state, world, pos, player, hand, hit) -> {
                 System.out.println("Sleep Explode:");
                 System.out.println("    state=" + state.getBlock().getTranslationKey());
-                System.out.println("    world=" + world.getDimensionKey().toString());
+                System.out.println("    world=" + world.getDimensionEntry().toString());
                 System.out.println("    pos=" + pos.toShortString());
                 System.out.println("    player=" + player.getDisplayName().getString());
                 System.out.println("    hand=" + hand.name());

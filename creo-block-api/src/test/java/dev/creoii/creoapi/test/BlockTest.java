@@ -6,7 +6,6 @@ import dev.creoii.creoapi.api.block.Spreadable;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.entity.Entity;
@@ -44,7 +43,7 @@ public class BlockTest implements ModInitializer, ClientModInitializer {
 
     public static class TestBlock extends Block implements CreoBlock {
         public TestBlock() {
-            super(FabricBlockSettings.copy(Blocks.STONE));
+            super(AbstractBlock.Settings.copy(Blocks.STONE));
         }
 
         @Override
@@ -60,7 +59,7 @@ public class BlockTest implements ModInitializer, ClientModInitializer {
 
     public static class TestSpreadableBlock extends Block implements Spreadable {
         public TestSpreadableBlock() {
-            super(FabricBlockSettings.copy(Blocks.GRASS_BLOCK));
+            super(AbstractBlock.Settings.copy(Blocks.GRASS_BLOCK));
         }
 
         @Override
@@ -76,7 +75,7 @@ public class BlockTest implements ModInitializer, ClientModInitializer {
 
     public static class TestColliderBlock extends PillarBlock implements CreoBlock {
         public TestColliderBlock() {
-            super(FabricBlockSettings.copy(Blocks.GRASS_BLOCK));
+            super(AbstractBlock.Settings.copy(Blocks.GRASS_BLOCK));
         }
 
         @Override
@@ -105,7 +104,7 @@ public class BlockTest implements ModInitializer, ClientModInitializer {
 
     public static class TestOverlayBlock extends PlantBlock implements CreoBlock {
         protected TestOverlayBlock() {
-            super(FabricBlockSettings.copy(Blocks.SHORT_GRASS));
+            super(AbstractBlock.Settings.copy(Blocks.SHORT_GRASS));
         }
 
         @Override

@@ -23,16 +23,7 @@
     "modmenu": {
       "badges": [
         "library"
-      ],
-      "parent": {
-        "id": "creo-api",
-        "name": "Creo API",
-        "description": "A multi-purpose api for Minecraft mod and datapack development.",
-        "icon": "assets/creo-registry-api-test/icon.png",
-        "badges": [
-          "library"
-        ]
-      }
+      ]
     }
   }
 }
