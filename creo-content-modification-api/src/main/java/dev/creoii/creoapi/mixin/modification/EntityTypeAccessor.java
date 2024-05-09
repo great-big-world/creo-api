@@ -3,7 +3,8 @@ package dev.creoii.creoapi.mixin.modification;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
-import net.minecraft.util.Identifier;
+import net.minecraft.loot.LootTable;
+import net.minecraft.registry.RegistryKey;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 
@@ -22,7 +23,7 @@ public interface EntityTypeAccessor {
     void setSpawnableFarFromPlayer(boolean spawnableFarFromPlayer);
 
     @Accessor("lootTableId")
-    void setLootTableId(Identifier lootTableId);
+    void setLootTableId(RegistryKey<LootTable> lootTableId);
 
     @Accessor("dimensions")
     void setDimensions(EntityDimensions dimensions);

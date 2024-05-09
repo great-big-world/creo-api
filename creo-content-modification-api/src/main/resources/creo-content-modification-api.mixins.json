@@ -8,7 +8,8 @@
     "StatusEffectAccessor",
     "block.AbstractBlockAccessor",
     "block.AbstractBlockStateAccessor",
-    "block.BlockSettingsAccessor"
+    "block.BlockSettingsAccessor",
+    "item.SpawnEggItemAccessor"
   ],
   "client": [
   ],

@@ -7,6 +7,8 @@ import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.item.SpawnEggItem;
+import net.minecraft.loot.LootTable;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.ApiStatus;
 
@@ -65,8 +67,8 @@ public class EntityTypeModificationImpl implements EntityTypeModification {
     }
 
     @Override
-    public void setLootTableId(EntityType<?> entityType, Identifier lootTableId) {
-        ((EntityTypeAccessor) entityType).setLootTableId(lootTableId);
+    public void setLootTableId(EntityType<?> entityType, RegistryKey<LootTable> lootTableKey) {
+        ((EntityTypeAccessor) entityType).setLootTableId(lootTableKey);
     }
 
     @Override

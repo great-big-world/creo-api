@@ -89,7 +89,7 @@ public class ContentModificationApiTest implements ModInitializer {
         LOGGER.info(String.valueOf(Blocks.OAK_PLANKS.getLootTableKey()));
         BlockModification.INSTANCE.setLootTableKey(Blocks.OAK_PLANKS, Blocks.SPRUCE_PLANKS.getLootTableKey());
         LOGGER.info(String.valueOf(Blocks.OAK_PLANKS.getLootTableKey()));
-        LOGGER.info("fail");
+        LOGGER.info("pass");
 
         LOGGER.info("OPAQUE");
         LOGGER.info(String.valueOf(Blocks.IRON_BARS.getDefaultState().isOpaque()));

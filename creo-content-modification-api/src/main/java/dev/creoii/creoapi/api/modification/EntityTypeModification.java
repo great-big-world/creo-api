@@ -4,6 +4,8 @@ import dev.creoii.creoapi.impl.modification.EntityTypeModificationImpl;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
+import net.minecraft.loot.LootTable;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.ApiStatus;
 
@@ -72,7 +74,7 @@ public interface EntityTypeModification {
      * @param entityType the entity type
      * @param lootTableId the new loot table id
      */
-    void setLootTableId(EntityType<?> entityType, Identifier lootTableId);
+    void setLootTableId(EntityType<?> entityType, RegistryKey<LootTable> lootTableId);
 
     /**
      * Set the entity type's dimensions.

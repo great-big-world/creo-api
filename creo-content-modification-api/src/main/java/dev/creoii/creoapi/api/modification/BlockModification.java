@@ -156,9 +156,9 @@ public interface BlockModification {
     void setToolRequired(BlockState state, boolean toolRequired);
 
     /**
-     * Set the loot table identifier of the block.
+     * Set the loot table key of the block.
      * @param block a block
-     * @param lootTableKey the new loot table id of the block
+     * @param lootTableKey the new loot table key of the block
      */
     void setLootTableKey(Block block, RegistryKey<LootTable> lootTableKey);
 

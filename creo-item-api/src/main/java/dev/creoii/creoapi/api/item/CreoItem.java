@@ -15,6 +15,7 @@ public interface CreoItem {
      * @param player the player
      * @param stack the itemstack used
      * @param type the {@link HitResult.Type}
+     * @param pos the hit result position
      * @since 0.2.2
      */
     default void onAttack(PlayerEntity player, ItemStack stack, HitResult.Type type, Vec3d pos) {
