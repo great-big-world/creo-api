@@ -15,4 +15,4 @@ dependencies {
 }
 ```
 
-For more information about how to use the api, see the [docs](https://docs.creoii.dev).
+For more information about how to use the api, see the [docs](https://docs.creoii.dev/v/creo-api).
