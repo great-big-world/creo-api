@@ -69,7 +69,7 @@ public abstract class ItemEntityMixin extends Entity implements Ownable {
     }*/
 
     @Inject(method = "onPlayerCollision", at = @At("HEAD"), cancellable = true)
-    private void gbw$stopCollisionPickupIfClickPickup(PlayerEntity player, CallbackInfo ci) {
+    private void creo$stopCollisionPickupIfClickPickup(PlayerEntity player, CallbackInfo ci) {
         if (ItemSettingsImpl.canApplyClickPickup(getStack()))
             ci.cancel();
     }

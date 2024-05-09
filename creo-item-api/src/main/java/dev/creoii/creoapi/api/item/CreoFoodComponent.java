@@ -14,7 +14,7 @@ import net.minecraft.util.dynamic.Codecs;
 
 import java.util.List;
 
-public record CreoFoodComponent(int nutrition, float saturation, boolean canAlwaysEat, boolean canSprintEat, float eatSeconds, int eatDurability, boolean healsHealth, List<FoodComponent.StatusEffectEntry> effects) {
+public record CreoFoodComponent(int nutrition, float saturation, boolean canAlwaysEat, boolean canSprintEat, float eatSeconds, boolean healsHealth, List<FoodComponent.StatusEffectEntry> effects) {
     public static final Codec<CreoFoodComponent> CODEC = RecordCodecBuilder.create((instance) -> {
         return instance.group(
                 Codecs.NONNEGATIVE_INT.fieldOf("nutrition").forGetter(CreoFoodComponent::nutrition),
@@ -22,28 +22,22 @@ public record CreoFoodComponent(int nutrition, float saturation, boolean canAlwa
                 Codec.BOOL.optionalFieldOf("can_always_eat", false).forGetter(CreoFoodComponent::canAlwaysEat),
                 Codec.BOOL.optionalFieldOf("can_sprint_eat", false).forGetter(CreoFoodComponent::canSprintEat),
                 Codecs.POSITIVE_FLOAT.optionalFieldOf("eat_seconds", 1.6f).forGetter(CreoFoodComponent::eatSeconds),
-                Codecs.POSITIVE_INT.optionalFieldOf("eat_durability", 1).forGetter(CreoFoodComponent::eatDurability),
                 Codec.BOOL.optionalFieldOf("heals_health", false).forGetter(CreoFoodComponent::healsHealth),
                 FoodComponent.StatusEffectEntry.CODEC.listOf().optionalFieldOf("effects", List.of()).forGetter(CreoFoodComponent::effects)
         ).apply(instance, CreoFoodComponent::new);
     });
-    public static final PacketCodec<RegistryByteBuf, CreoFoodComponent> PACKET_CODEC = PacketCodecHelper.tuple8(
+    public static final PacketCodec<RegistryByteBuf, CreoFoodComponent> PACKET_CODEC = PacketCodecHelper.tuple7(
             PacketCodecs.VAR_INT, CreoFoodComponent::nutrition,
             PacketCodecs.FLOAT, CreoFoodComponent::saturation,
             PacketCodecs.BOOL, CreoFoodComponent::canAlwaysEat,
             PacketCodecs.BOOL, CreoFoodComponent::canSprintEat,
             PacketCodecs.FLOAT, CreoFoodComponent::eatSeconds,
-            PacketCodecs.VAR_INT, CreoFoodComponent::eatDurability,
             PacketCodecs.BOOL, CreoFoodComponent::healsHealth,
             FoodComponent.StatusEffectEntry.PACKET_CODEC.collect(PacketCodecs.toList()), CreoFoodComponent::effects,
             CreoFoodComponent::new);
 
     public static CreoFoodComponent copyOf(FoodComponent foodComponent) {
-        return new CreoFoodComponent(foodComponent.nutrition(), foodComponent.saturation(), foodComponent.canAlwaysEat(), false, foodComponent.eatSeconds(), 1, false, foodComponent.effects());
-    }
-
-    public boolean hasEatDurability() {
-        return eatDurability > 1;
+        return new CreoFoodComponent(foodComponent.nutrition(), foodComponent.saturation(), foodComponent.canAlwaysEat(), false, foodComponent.eatSeconds(), false, foodComponent.effects());
     }
 
     public int getEatTicks() {
@@ -54,7 +48,6 @@ public record CreoFoodComponent(int nutrition, float saturation, boolean canAlwa
         private int nutrition;
         private float saturationModifier;
         private float eatSeconds = 1.6f;
-        private int eatDurability = 1;
         private boolean canAlwaysEat;
         private boolean canSprintEat;
         private boolean healsHealth;
@@ -74,11 +67,6 @@ public record CreoFoodComponent(int nutrition, float saturation, boolean canAlwa
 
         public Builder eatSeconds(float eatSeconds) {
             this.eatSeconds = eatSeconds;
-            return this;
-        }
-
-        public Builder eatDurability(int eatDurability) {
-            this.eatDurability = eatDurability;
             return this;
         }
 
@@ -109,7 +97,7 @@ public record CreoFoodComponent(int nutrition, float saturation, boolean canAlwa
 
         public CreoFoodComponent build() {
             float f = HungerConstants.calculateSaturation(nutrition, saturationModifier);
-            return new CreoFoodComponent(nutrition, f, canAlwaysEat, canSprintEat, eatSeconds, eatDurability, healsHealth, effects.build());
+            return new CreoFoodComponent(nutrition, f, canAlwaysEat, canSprintEat, eatSeconds, healsHealth, effects.build());
         }
     }
 }

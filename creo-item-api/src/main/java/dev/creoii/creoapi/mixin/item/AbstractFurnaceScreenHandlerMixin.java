@@ -24,12 +24,12 @@ public abstract class AbstractFurnaceScreenHandlerMixin extends AbstractRecipeSc
     }
 
     @Redirect(method = "<init>(Lnet/minecraft/screen/ScreenHandlerType;Lnet/minecraft/recipe/RecipeType;Lnet/minecraft/recipe/book/RecipeBookCategory;ILnet/minecraft/entity/player/PlayerInventory;Lnet/minecraft/inventory/Inventory;Lnet/minecraft/screen/PropertyDelegate;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/screen/AbstractFurnaceScreenHandler;addSlot(Lnet/minecraft/screen/slot/Slot;)Lnet/minecraft/screen/slot/Slot;", ordinal = 0))
-    private Slot creo_restrictItemSlot(AbstractFurnaceScreenHandler instance, Slot slot) {
+    private Slot creo$restrictItemSlot(AbstractFurnaceScreenHandler instance, Slot slot) {
         return RequiredFuelsImpl.addSlot(instance, inventory);
     }
 
     @Inject(method = "isSmeltable", at = @At(value = "RETURN"), cancellable = true)
-    private void creo_applyItemRequiredFuels(ItemStack itemStack, CallbackInfoReturnable<Boolean> cir) {
+    private void creo$applyItemRequiredFuels(ItemStack itemStack, CallbackInfoReturnable<Boolean> cir) {
         RequiredFuelsImpl.applySmeltable(itemStack, inventory, cir);
     }
 }

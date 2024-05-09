@@ -26,7 +26,7 @@ public class ClientPlayerInteractionManagerMixin {
     }
 
     @Inject(method = "attackEntity", at = @At("HEAD"), cancellable = true)
-    private void creo$dontAttackItemEntities(PlayerEntity player, Entity target, CallbackInfo ci) {
+    private void creo$doNotAttackItemEntities(PlayerEntity player, Entity target, CallbackInfo ci) {
         if (target instanceof ItemEntity)
             ci.cancel();
     }

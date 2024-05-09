@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(HopperBlockEntity.class)
 public class HopperBlockEntityMixin {
     @Redirect(method = "insertAndExtract", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/entity/HopperBlockEntity;setTransferCooldown(I)V"))
-    private static void creo_applyItemHopperTransferRate(HopperBlockEntity instance, int transferCooldown) {
+    private static void creo$applyItemHopperTransferRate(HopperBlockEntity instance, int transferCooldown) {
         ItemSettingsImpl.applyHopperTransferRate(instance);
     }
 }
