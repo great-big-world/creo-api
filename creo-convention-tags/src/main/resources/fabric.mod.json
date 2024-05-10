@@ -15,11 +15,7 @@
   "license": "All-Rights-Reserved",
   "icon": "assets/creo-convention-tags/icon.png",
   "environment": "*",
-  "entrypoints": {
-    "main": [
-      "dev.creoii.creoapi.api.tag.CreoConventionTags"
-    ]
-  },
+  "entrypoints": {},
   "accessWidener": "creo-convention-tags.accesswidener",
   "mixins": [
     "creo-convention-tags.mixins.json"

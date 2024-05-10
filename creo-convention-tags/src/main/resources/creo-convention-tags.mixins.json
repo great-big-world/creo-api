@@ -43,10 +43,8 @@
     "entity.ZoglinEntityMixin",
     "entity.ZombieVillagerEntityMixin",
     "entity.goal.EatGrassGoalMixin",
-    "item.ArmorMaterialAccessor",
     "item.MilkBucketItemMixin",
     "item.ShearsItemMixin",
-    "item.ToolMaterialsAccessor",
     "screen.EnchantmentScreenHandlerMixin",
     "screen.GrindstoneScreenHandlerMixin",
     "world.HeightmapTypeMixin"

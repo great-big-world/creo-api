@@ -64,42 +64,6 @@ public final class CreoItemTags {
      * @since 0.2.4
      */
     public static final TagKey<Item> BLOCKS_ENDERMAN_STARE = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "blocks_enderman_stare"));
-    /**
-     * Items which can be used to repair Leather equipment.
-     */
-    public static final TagKey<Item> REPAIRS_LEATHER = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "repairs/leather"));
-    /**
-     * Items which can be used to repair Wooden equipment.
-     */
-    public static final TagKey<Item> REPAIRS_WOOD = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "repairs/wood"));
-    /**
-     * Items which can be used to repair Chainmail equipment.
-     */
-    public static final TagKey<Item> REPAIRS_CHAINMAIL = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "repairs/chainmail"));
-    /**
-     * Items which can be used to repair Stone equipment.
-     */
-    public static final TagKey<Item> REPAIRS_STONE = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "repairs/stone"));
-    /**
-     * Items which can be used to repair Iron equipment.
-     */
-    public static final TagKey<Item> REPAIRS_IRON = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "repairs/iron"));
-    /**
-     * Items which can be used to repair Golden equipment.
-     */
-    public static final TagKey<Item> REPAIRS_GOLD = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "repairs/gold"));
-    /**
-     * Items which can be used to repair Diamond equipment.
-     */
-    public static final TagKey<Item> REPAIRS_DIAMOND = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "repairs/diamond"));
-    /**
-     * Items which can be used to repair Netherite equipment.
-     */
-    public static final TagKey<Item> REPAIRS_NETHERITE = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "repairs/netherite"));
-    /**
-     * Items which can be used to repair Turtle Helmets.
-     */
-    public static final TagKey<Item> REPAIRS_TURTLE = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "repairs/turtle"));
 
     public static final TagKey<Item> BREEDS_SHEEP = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "breeds/sheep"));
     public static final TagKey<Item> BREEDS_COW = TagKey.of(RegistryKeys.ITEM, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "breeds/cow"));
