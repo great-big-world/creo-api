@@ -25,7 +25,7 @@ public record GiantLogFeatureConfig(BlockStateProvider outerState, BlockStatePro
             return config.endOffset;
         }), IntProvider.createValidatingCodec(0, 16).fieldOf("radius").forGetter(config -> {
             return config.radius;
-        }), Codec.either(NoisePlacementModifier.CODEC, FastNoisePlacementModifier.CODEC).optionalFieldOf("noise_modifier").orElse(Optional.empty()).forGetter(config -> {
+        }), Codec.either(NoisePlacementModifier.CODEC.codec(), FastNoisePlacementModifier.CODEC.codec()).optionalFieldOf("noise_modifier").orElse(Optional.empty()).forGetter(config -> {
             return config.noisePlacementModifier;
         })).apply(instance, GiantLogFeatureConfig::new);
     });
