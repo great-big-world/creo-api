@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(BedBlock.class)
 public class BedBlockMixin {
     @Inject(method = "onUse", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;removeBlock(Lnet/minecraft/util/math/BlockPos;Z)Z", ordinal = 0), cancellable = true)
-    private void creo_applySleepExplodeEvent(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit, CallbackInfoReturnable<ActionResult> cir) {
-        MiscEventImpl.applySleepExplodeEvent(state, world, pos, player, hand, hit, cir);
+    private void creo$applySleepExplodeEvent(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit, CallbackInfoReturnable<ActionResult> cir) {
+        MiscEventImpl.applySleepExplodeEvent(state, world, pos, player, hit, cir);
     }
 }

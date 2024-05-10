@@ -33,13 +33,11 @@ public final class EnchantmentTagImpl {
         screenHandler.addSlot(new GrindstoneItemSlot(screenHandler));
     }
 
-    public static void applyGrindstoneIgnoresGrind(ItemStack item, ItemStack stack) {
-        ItemEnchantmentsComponent.Builder builder = new ItemEnchantmentsComponent.Builder(stack.getEnchantments());
-        EnchantmentHelper.getEnchantments(item).getEnchantmentsMap().forEach(entry -> {
-            if (TagUtil.isIn(CreoEnchantmentTags.GRINDSTONE_IGNORES, entry.getKey().value())) {
-                builder.add(entry.getKey().value(), entry.getIntValue());
-            }
+    public static ItemEnchantmentsComponent applyGrindstoneIgnoresGrind(ItemStack stack) {
+        return EnchantmentHelper.apply(stack, components -> {
+            components.remove(enchantment -> {
+                return !TagUtil.isIn(CreoEnchantmentTags.GRINDSTONE_IGNORES, enchantment.value());
+            });
         });
-        EnchantmentHelper.set(stack, builder.build());
     }
 }

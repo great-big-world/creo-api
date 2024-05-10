@@ -38,8 +38,8 @@ public class MiscEventImpl {
             cir.setReturnValue(TypedActionResult.pass(itemStack));
     }
 
-    public static void applySleepExplodeEvent(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit, CallbackInfoReturnable<ActionResult> cir) {
-        boolean result = SleepEvents.EXPLODE.invoker().onExplode(state, world, pos, player, hand, hit);
+    public static void applySleepExplodeEvent(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit, CallbackInfoReturnable<ActionResult> cir) {
+        boolean result = SleepEvents.EXPLODE.invoker().onExplode(state, world, pos, player, hit);
 
         if (!result)
             cir.setReturnValue(ActionResult.FAIL);

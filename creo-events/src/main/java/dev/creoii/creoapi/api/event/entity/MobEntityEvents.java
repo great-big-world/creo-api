@@ -23,9 +23,9 @@ public final class MobEntityEvents {
      * <p> Return null for default behavior to take effect.
      */
     public static final Event<Initialize> INITIALIZE = EventFactory.createArrayBacked(Initialize.class,
-            listeners -> (world, mob, difficulty, spawnReason, entityData, nbt) -> {
+            listeners -> (world, mob, difficulty, spawnReason, entityData) -> {
                 for (Initialize event : listeners) {
-                    EntityData result = event.onInitialize(world, mob, difficulty, spawnReason, entityData, nbt);
+                    EntityData result = event.onInitialize(world, mob, difficulty, spawnReason, entityData);
 
                     if (result != null)
                         return result;
@@ -60,9 +60,8 @@ public final class MobEntityEvents {
          * @param difficulty the local world difficulty
          * @param spawnReason the reason the mob is being spawned
          * @param entityData the mob's entity data
-         * @param entityNbt the mob's nbt
          */
-        EntityData onInitialize(ServerWorldAccess world, MobEntity mob, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt);
+        EntityData onInitialize(ServerWorldAccess world, MobEntity mob, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData);
     }
 
     @FunctionalInterface

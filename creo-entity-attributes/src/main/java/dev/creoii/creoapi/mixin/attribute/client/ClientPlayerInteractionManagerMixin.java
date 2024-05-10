@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.ModifyConstant;
 
 @Mixin(ClientPlayerInteractionManager.class)
 public class ClientPlayerInteractionManagerMixin {
-    @Shadow @Final MinecraftClient client;
+    @Shadow @Final private MinecraftClient client;
 
     @ModifyConstant(method = "updateBlockBreakingProgress", constant = @Constant(intValue = 5))
     private int creo$applyBlockBreakSpeed(int constant) {

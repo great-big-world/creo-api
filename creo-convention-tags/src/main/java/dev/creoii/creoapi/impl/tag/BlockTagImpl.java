@@ -3,9 +3,12 @@ package dev.creoii.creoapi.impl.tag;
 import com.mojang.datafixers.util.Function5;
 import dev.creoii.creoapi.api.tag.CreoBlockTags;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.component.type.ToolComponent;
 import net.minecraft.entity.mob.RavagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
+import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
@@ -98,11 +101,8 @@ public final class BlockTagImpl {
         runnable.run();
     }
 
-    public static void applyShearsMineables(BlockState state, CallbackInfoReturnable<Float> cir) {
-        if (state.isIn(CreoBlockTags.SHEARS_VERY_EFFICIENT))
-            cir.setReturnValue(15f);
-        else if (state.isIn(CreoBlockTags.SHEARS_LESS_EFFICIENT))
-            cir.setReturnValue(2f);
+    public static void applyShearsMineables(CallbackInfoReturnable<ToolComponent> cir) {
+        cir.setReturnValue(new ToolComponent(List.of(ToolComponent.Rule.ofAlwaysDropping(List.of(Blocks.COBWEB), 15f), ToolComponent.Rule.of(CreoBlockTags.SHEARS_VERY_EFFICIENT, 15f), ToolComponent.Rule.of(BlockTags.WOOL, 5f), ToolComponent.Rule.of(CreoBlockTags.SHEARS_LESS_EFFICIENT, 2f)), 1f, 1));
     }
 
     public static void applyProjectilesIgnore(ProjectileEntity projectile, HitResult hitResult, CallbackInfo ci) {

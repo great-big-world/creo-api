@@ -26,8 +26,8 @@ public class MobEntityMixin {
     @Shadow @Final protected GoalSelector targetSelector;
 
     @Inject(method = "initialize", at = @At("HEAD"), cancellable = true)
-    private void creo$mobInitializeCallback(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, EntityData entityData, NbtCompound entityNbt, CallbackInfoReturnable<EntityData> cir) {
-        EntityEventImpl.applyMobInitializeEvent(world, (MobEntity) (Object) this, difficulty, spawnReason, entityData, entityNbt, cir);
+    private void creo$mobInitializeCallback(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, EntityData entityData, CallbackInfoReturnable<EntityData> cir) {
+        EntityEventImpl.applyMobInitializeEvent(world, (MobEntity) (Object) this, difficulty, spawnReason, entityData, cir);
     }
 
     @Inject(method = "<init>(Lnet/minecraft/entity/EntityType;Lnet/minecraft/world/World;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/mob/MobEntity;initGoals()V", shift = At.Shift.BY, by = 2))

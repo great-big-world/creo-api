@@ -8,6 +8,7 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.context.LootContextParameterSet;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
@@ -19,9 +20,9 @@ public final class LivingEntityEvents {
      * An event that is called when a {@link LivingEntity} drops loot.
      */
     public static final Event<DropLoot> DROP_LOOT = EventFactory.createArrayBacked(DropLoot.class,
-            listeners -> (livingEntity, identifier, lootTable, damageSource, lootContextParameterSet, causedByPlayer) -> {
+            listeners -> (livingEntity, lootTableKey, lootTable, damageSource, lootContextParameterSet, causedByPlayer) -> {
                 for (DropLoot event : listeners) {
-                    return event.onDropLoot(livingEntity, identifier, lootTable, damageSource, lootContextParameterSet, causedByPlayer);
+                    return event.onDropLoot(livingEntity, lootTableKey, lootTable, damageSource, lootContextParameterSet, causedByPlayer);
                 }
 
                 return true;
@@ -66,13 +67,13 @@ public final class LivingEntityEvents {
          * <p> Return false to stop the loot from being dropped.
          *
          * @param livingEntity the living entity
-         * @param identifier the original loot table id
+         * @param lootTableKey the original loot table key
          * @param lootTable the loot table instance
          * @param damageSource the damageSource resulting in the death of the living entity
          * @param lootContextParameterSet the loot context parameters
          * @param causedByPlayer whether the death was caused by a player
          */
-        boolean onDropLoot(LivingEntity livingEntity, Identifier identifier, LootTable lootTable, DamageSource damageSource, LootContextParameterSet lootContextParameterSet, boolean causedByPlayer);
+        boolean onDropLoot(LivingEntity livingEntity, RegistryKey<LootTable> lootTableKey, LootTable lootTable, DamageSource damageSource, LootContextParameterSet lootContextParameterSet, boolean causedByPlayer);
     }
 
     @FunctionalInterface

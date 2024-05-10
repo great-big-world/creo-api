@@ -61,7 +61,7 @@ public class EventsTest implements ModInitializer {
     @Override
     public void onInitialize() {
         if (testMobInitializeEvent) {
-            MobEntityEvents.INITIALIZE.register((world, mob, difficulty, spawnReason, entityData, entityNbt) -> {
+            MobEntityEvents.INITIALIZE.register((world, mob, difficulty, spawnReason, entityData) -> {
                 System.out.println("Mob Initialize:");
                 System.out.println("    type=" + mob.getType().getTranslationKey());
                 System.out.println("    reason=" + spawnReason);
@@ -135,10 +135,10 @@ public class EventsTest implements ModInitializer {
         }
 
         if (testLivingDropLootEvent) {
-            LivingEntityEvents.DROP_LOOT.register((livingEntity, identifier, lootTable, damageSource, lootContextParameterSet, causedByPlayer) -> {
+            LivingEntityEvents.DROP_LOOT.register((livingEntity, lootTableKey, lootTable, damageSource, lootContextParameterSet, causedByPlayer) -> {
                 System.out.println("Living Drop Loot:");
                 System.out.println("    living=" + livingEntity.getType().getTranslationKey());
-                System.out.println("    id=" + identifier.toString());
+                System.out.println("    id=" + lootTableKey.getValue().toString());
                 System.out.println("    damage=" + damageSource.getName());
 
                 return true;
@@ -392,13 +392,12 @@ public class EventsTest implements ModInitializer {
         }
 
         if (testSleepExplodeEvent) {
-            SleepEvents.EXPLODE.register((state, world, pos, player, hand, hit) -> {
+            SleepEvents.EXPLODE.register((state, world, pos, player, hit) -> {
                 System.out.println("Sleep Explode:");
                 System.out.println("    state=" + state.getBlock().getTranslationKey());
                 System.out.println("    world=" + world.getDimensionEntry().toString());
                 System.out.println("    pos=" + pos.toShortString());
                 System.out.println("    player=" + player.getDisplayName().getString());
-                System.out.println("    hand=" + hand.name());
                 System.out.println("    hit=" + hit.getType().name());
 
                 if (!world.isClient) {

@@ -1,7 +1,7 @@
 package dev.creoii.creoapi.impl.tag;
 
 import dev.creoii.creoapi.api.tag.CreoItemTags;
-import dev.creoii.creoapi.mixin.tag.item.ArmorMaterialsAccessor;
+import dev.creoii.creoapi.mixin.tag.item.ArmorMaterialAccessor;
 import dev.creoii.creoapi.mixin.tag.item.ToolMaterialsAccessor;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
@@ -14,7 +14,6 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.Lazy;
 import org.jetbrains.annotations.ApiStatus;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -82,25 +81,23 @@ public final class ItemTagImpl {
         return stack.isIn(CreoItemTags.BLOCKS_ENDERMAN_STARE);
     }
 
-    @SuppressWarnings("deprecation")
     public static void applyArmorRepairIngredients() {
-        ((ArmorMaterialsAccessor) ArmorMaterials.LEATHER).setRepairIngredientSupplier(new Lazy<>(() -> Ingredient.fromTag(CreoItemTags.REPAIRS_LEATHER)));
-        ((ArmorMaterialsAccessor) ArmorMaterials.CHAIN).setRepairIngredientSupplier(new Lazy<>(() -> Ingredient.fromTag(CreoItemTags.REPAIRS_CHAINMAIL)));
-        ((ArmorMaterialsAccessor) ArmorMaterials.IRON).setRepairIngredientSupplier(new Lazy<>(() -> Ingredient.fromTag(CreoItemTags.REPAIRS_IRON)));
-        ((ArmorMaterialsAccessor) ArmorMaterials.GOLD).setRepairIngredientSupplier(new Lazy<>(() -> Ingredient.fromTag(CreoItemTags.REPAIRS_GOLD)));
-        ((ArmorMaterialsAccessor) ArmorMaterials.DIAMOND).setRepairIngredientSupplier(new Lazy<>(() -> Ingredient.fromTag(CreoItemTags.REPAIRS_DIAMOND)));
-        ((ArmorMaterialsAccessor) ArmorMaterials.NETHERITE).setRepairIngredientSupplier(new Lazy<>(() -> Ingredient.fromTag(CreoItemTags.REPAIRS_NETHERITE)));
-        ((ArmorMaterialsAccessor) ArmorMaterials.TURTLE).setRepairIngredientSupplier(new Lazy<>(() -> Ingredient.fromTag(CreoItemTags.REPAIRS_TURTLE)));
+        ((ArmorMaterialAccessor) ArmorMaterials.LEATHER).setRepairIngredient(() -> Ingredient.fromTag(CreoItemTags.REPAIRS_LEATHER));
+        ((ArmorMaterialAccessor) ArmorMaterials.CHAIN).setRepairIngredient(() -> Ingredient.fromTag(CreoItemTags.REPAIRS_CHAINMAIL));
+        ((ArmorMaterialAccessor) ArmorMaterials.IRON).setRepairIngredient(() -> Ingredient.fromTag(CreoItemTags.REPAIRS_IRON));
+        ((ArmorMaterialAccessor) ArmorMaterials.GOLD).setRepairIngredient(() -> Ingredient.fromTag(CreoItemTags.REPAIRS_GOLD));
+        ((ArmorMaterialAccessor) ArmorMaterials.DIAMOND).setRepairIngredient(() -> Ingredient.fromTag(CreoItemTags.REPAIRS_DIAMOND));
+        ((ArmorMaterialAccessor) ArmorMaterials.NETHERITE).setRepairIngredient(() -> Ingredient.fromTag(CreoItemTags.REPAIRS_NETHERITE));
+        ((ArmorMaterialAccessor) ArmorMaterials.TURTLE).setRepairIngredient(() -> Ingredient.fromTag(CreoItemTags.REPAIRS_TURTLE));
     }
 
-    @SuppressWarnings("deprecation")
     public static void applyToolRepairIngredients() {
-        ((ToolMaterialsAccessor) (Object) ToolMaterials.WOOD).setRepairIngredient(new Lazy<>(() -> Ingredient.fromTag(CreoItemTags.REPAIRS_WOOD)));
-        ((ToolMaterialsAccessor) (Object) ToolMaterials.STONE).setRepairIngredient(new Lazy<>(() -> Ingredient.fromTag(CreoItemTags.REPAIRS_STONE)));
-        ((ToolMaterialsAccessor) (Object) ToolMaterials.IRON).setRepairIngredient(new Lazy<>(() -> Ingredient.fromTag(CreoItemTags.REPAIRS_IRON)));
-        ((ToolMaterialsAccessor) (Object) ToolMaterials.GOLD).setRepairIngredient(new Lazy<>(() -> Ingredient.fromTag(CreoItemTags.REPAIRS_GOLD)));
-        ((ToolMaterialsAccessor) (Object) ToolMaterials.DIAMOND).setRepairIngredient(new Lazy<>(() -> Ingredient.fromTag(CreoItemTags.REPAIRS_DIAMOND)));
-        ((ToolMaterialsAccessor) (Object) ToolMaterials.NETHERITE).setRepairIngredient(new Lazy<>(() -> Ingredient.fromTag(CreoItemTags.REPAIRS_NETHERITE)));
+        ((ToolMaterialsAccessor) (Object) ToolMaterials.WOOD).setRepairIngredient(() -> Ingredient.fromTag(CreoItemTags.REPAIRS_WOOD));
+        ((ToolMaterialsAccessor) (Object) ToolMaterials.STONE).setRepairIngredient(() -> Ingredient.fromTag(CreoItemTags.REPAIRS_STONE));
+        ((ToolMaterialsAccessor) (Object) ToolMaterials.IRON).setRepairIngredient(() -> Ingredient.fromTag(CreoItemTags.REPAIRS_IRON));
+        ((ToolMaterialsAccessor) (Object) ToolMaterials.GOLD).setRepairIngredient(() -> Ingredient.fromTag(CreoItemTags.REPAIRS_GOLD));
+        ((ToolMaterialsAccessor) (Object) ToolMaterials.DIAMOND).setRepairIngredient(() -> Ingredient.fromTag(CreoItemTags.REPAIRS_DIAMOND));
+        ((ToolMaterialsAccessor) (Object) ToolMaterials.NETHERITE).setRepairIngredient(() -> Ingredient.fromTag(CreoItemTags.REPAIRS_NETHERITE));
     }
 
     public static class EnchantingFuelSlot extends Slot {

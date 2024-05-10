@@ -22,17 +22,19 @@ public abstract class CropBlockMixin {
     @Shadow public abstract BlockState withAge(int age);
     @Shadow public abstract int getAge(BlockState state);
     @Shadow protected abstract int getGrowthAmount(World world);
-    @Shadow protected abstract float getAvailableMoisture(Block block, BlockView world, BlockPos pos);
+    @Shadow protected static float getAvailableMoisture(Block block, BlockView world, BlockPos pos) {
+        throw new AssertionError();
+    }
 
     @Inject(method = "canGrow", at = @At("HEAD"), cancellable = true)
-    private void creo_applyCropGrowBonemealEvent(World world, Random random, BlockPos pos, BlockState state, CallbackInfoReturnable<Boolean> cir) {
+    private void creo$applyCropGrowBonemealEvent(World world, Random random, BlockPos pos, BlockState state, CallbackInfoReturnable<Boolean> cir) {
         int i = getAge(state) + getGrowthAmount(world);
         float f = getAvailableMoisture((CropBlock) (Object) this, world, pos);
         BlockEventImpl.applyCropGrowEvent(world, pos, state, withAge(i), i, f, cir);
     }
 
     @Inject(method = "randomTick", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/world/ServerWorld;setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)Z"), cancellable = true)
-    private void creo_applyCropGrowRandomEvent(BlockState state, ServerWorld world, BlockPos pos, Random random, CallbackInfo ci, @Local int i, @Local float f) {
+    private void creo$applyCropGrowRandomEvent(BlockState state, ServerWorld world, BlockPos pos, Random random, CallbackInfo ci, @Local int i, @Local float f) {
         BlockEventImpl.applyCropGrowRandomEvent(world, pos, state, withAge(i), i, f, ci);
     }
 }

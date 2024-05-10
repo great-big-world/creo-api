@@ -13,6 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.context.LootContextParameterSet;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.structure.StructureStart;
@@ -39,8 +40,8 @@ public final class EntityEventImpl {
             cir.cancel();
     }
 
-    public static void applyMobInitializeEvent(ServerWorldAccess world, MobEntity mob, LocalDifficulty difficulty, SpawnReason spawnReason, EntityData entityData, NbtCompound entityNbt, CallbackInfoReturnable<EntityData> cir) {
-        EntityData result = MobEntityEvents.INITIALIZE.invoker().onInitialize(world, mob, difficulty, spawnReason, entityData, entityNbt);
+    public static void applyMobInitializeEvent(ServerWorldAccess world, MobEntity mob, LocalDifficulty difficulty, SpawnReason spawnReason, EntityData entityData, CallbackInfoReturnable<EntityData> cir) {
+        EntityData result = MobEntityEvents.INITIALIZE.invoker().onInitialize(world, mob, difficulty, spawnReason, entityData);
 
         if (result != null)
             cir.setReturnValue(result);
@@ -74,8 +75,8 @@ public final class EntityEventImpl {
             ci.cancel();
     }
 
-    public static void applyLivingDropLootEvent(LivingEntity livingEntity, Identifier identifier, LootTable lootTable, DamageSource damageSource, LootContextParameterSet lootContextParameterSet, boolean causedByPlayer, CallbackInfo ci) {
-        boolean result = LivingEntityEvents.DROP_LOOT.invoker().onDropLoot(livingEntity, identifier, lootTable, damageSource, lootContextParameterSet, causedByPlayer);
+    public static void applyLivingDropLootEvent(LivingEntity livingEntity, RegistryKey<LootTable> lootTableKey, LootTable lootTable, DamageSource damageSource, LootContextParameterSet lootContextParameterSet, boolean causedByPlayer, CallbackInfo ci) {
+        boolean result = LivingEntityEvents.DROP_LOOT.invoker().onDropLoot(livingEntity, lootTableKey, lootTable, damageSource, lootContextParameterSet, causedByPlayer);
 
         if (!result)
             ci.cancel();

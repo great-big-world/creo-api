@@ -6,6 +6,7 @@ import dev.creoii.creoapi.impl.event.WorldEventImpl;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.particle.ParticleEffect;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.world.World;
@@ -20,22 +21,22 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(ServerWorld.class)
 public class ServerWorldMixin {
     @Inject(method = "spawnEntity", at = @At("HEAD"), cancellable = true)
-    private void creo_entitySpawnCallback(Entity entity, CallbackInfoReturnable<Boolean> cir) {
+    private void creo$entitySpawnCallback(Entity entity, CallbackInfoReturnable<Boolean> cir) {
         EntityEventImpl.applyEntitySpawnEvent((ServerWorld) (Object) this, entity, cir);
     }
 
     @Inject(method = "createExplosion", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/explosion/Explosion;shouldDestroy()Z"), cancellable = true)
-    private void creo_cancelWorldExplodeEvent(Entity entity, DamageSource damageSource, ExplosionBehavior behavior, double x, double y, double z, float power, boolean createFire, World.ExplosionSourceType explosionSourceType, ParticleEffect particle, ParticleEffect emitterParticle, SoundEvent soundEvent, CallbackInfoReturnable<Explosion> cir, @Local Explosion explosion) {
+    private void creo$cancelWorldExplodeEvent(Entity entity, DamageSource damageSource, ExplosionBehavior behavior, double x, double y, double z, float power, boolean createFire, World.ExplosionSourceType explosionSourceType, ParticleEffect particle, ParticleEffect emitterParticle, RegistryEntry<SoundEvent> soundEvent, CallbackInfoReturnable<Explosion> cir, @Local Explosion explosion) {
         WorldEventImpl.cancelWorldExplodeEvent(explosion, cir);
     }
 
     @Inject(method = "setWeather", at = @At("HEAD"), cancellable = true)
-    private void creo_applyWeatherEventSet(int clearDuration, int rainDuration, boolean raining, boolean thundering, CallbackInfo ci) {
+    private void creo$applyWeatherEventSet(int clearDuration, int rainDuration, boolean raining, boolean thundering, CallbackInfo ci) {
         WorldEventImpl.applyWorldWeatherEvent((ServerWorld) (Object) this, clearDuration, rainDuration, rainDuration, raining, thundering, ci);
     }
 
     @Inject(method = "resetWeather", at = @At("HEAD"), cancellable = true)
-    private void creo_applyWeatherEventReSet(CallbackInfo ci) {
+    private void creo$applyWeatherEventReSet(CallbackInfo ci) {
         WorldEventImpl.applyWorldWeatherEvent((ServerWorld) (Object) this, 0, 0, 0, false, false, ci);
     }
 }

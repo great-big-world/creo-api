@@ -18,7 +18,7 @@ public class ProjectileEntityMixin {
         BlockTagImpl.applyProjectilesIgnore((ProjectileEntity) (Object) this, hitResult, ci);
     }
 
-    @Inject(method = "canHit", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "canHit(Lnet/minecraft/entity/Entity;)Z", at = @At("HEAD"), cancellable = true)
     private void creo$projectilesIgnoreEntities(Entity entity, CallbackInfoReturnable<Boolean> cir) {
         EntityTypeTagImpl.applyProjectilesIgnore(entity, cir);
     }

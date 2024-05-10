@@ -43,7 +43,7 @@
     "entity.ZoglinEntityMixin",
     "entity.ZombieVillagerEntityMixin",
     "entity.goal.EatGrassGoalMixin",
-    "item.ArmorMaterialsAccessor",
+    "item.ArmorMaterialAccessor",
     "item.MilkBucketItemMixin",
     "item.ShearsItemMixin",
     "item.ToolMaterialsAccessor",
