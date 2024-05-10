@@ -22,7 +22,6 @@ mutable field net/minecraft/entity/EntityType spawnGroup Lnet/minecraft/entity/S
 mutable field net/minecraft/entity/EntityType summonable Z
 mutable field net/minecraft/entity/EntityType fireImmune Z
 mutable field net/minecraft/entity/EntityType spawnableFarFromPlayer Z
-mutable field net/minecraft/entity/EntityType lootTableId Lnet/minecraft/util/Identifier;
 mutable field net/minecraft/entity/EntityType dimensions Lnet/minecraft/entity/EntityDimensions;
 mutable field net/minecraft/entity/effect/StatusEffect category Lnet/minecraft/entity/effect/StatusEffectCategory;
 mutable field net/minecraft/entity/effect/StatusEffect color I
