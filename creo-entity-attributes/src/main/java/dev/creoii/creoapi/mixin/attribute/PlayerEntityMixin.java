@@ -11,10 +11,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(PlayerEntity.class)
 public class PlayerEntityMixin {
-    @Inject(method = "createPlayerAttributes", at = @At("RETURN"), cancellable = true)
+    @Inject(method = "createPlayerAttributes", at = @At("RETURN"))
     private static void creo$playerAttributes(CallbackInfoReturnable<DefaultAttributeContainer.Builder> cir) {
-        BlockCooldownAttributeImpl.addAttributes(cir);
-        MovementSpeedAttributeImpl.addPlayerAttributes(cir);
+        BlockCooldownAttributeImpl.addAttributes(cir.getReturnValue());
+        MovementSpeedAttributeImpl.addPlayerAttributes(cir.getReturnValue());
     }
 
     @Inject(method = "getOffGroundSpeed", at = @At(value = "RETURN", ordinal = 0), cancellable = true)

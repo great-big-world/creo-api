@@ -22,8 +22,8 @@ public abstract class LivingEntityMixin extends Entity {
 
     @Inject(method = "createLivingAttributes", at = @At("RETURN"))
     private static void creo$createNewAttributes(CallbackInfoReturnable<DefaultAttributeContainer.Builder> cir) {
-        MaxAirAttributeImpl.addAttribute(cir);
-        MovementSpeedAttributeImpl.addLivingAttributes(cir);
+        MaxAirAttributeImpl.addAttribute(cir.getReturnValue());
+        MovementSpeedAttributeImpl.addLivingAttributes(cir.getReturnValue());
     }
 
     @Inject(method = "swimUpward", at = @At("HEAD"), cancellable = true)

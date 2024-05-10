@@ -6,7 +6,8 @@
   "mixins": [
     "EntityMixin",
     "LivingEntityMixin",
-    "PlayerEntityMixin"
+    "PlayerEntityMixin",
+    "client.ClientPlayerInteractionManagerMixin"
   ],
   "client": [
     "client.ClientPlayerEntityMixin",
