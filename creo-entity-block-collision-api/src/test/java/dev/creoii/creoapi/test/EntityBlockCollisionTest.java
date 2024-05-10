@@ -9,9 +9,7 @@ public class EntityBlockCollisionTest implements ModInitializer {
     @Override
     public void onInitialize() {
         EntityBlockCollisionRegistry.register(EntityType.PLAYER, context -> {
-            if (context.state().isOf(Blocks.STONE))
-                return false;
-            return (context.entity().isDescending() && context.entity().verticalCollision) || context.entity().horizontalCollision;
+            return !context.state().isOf(Blocks.STONE);
         });
     }
 }
