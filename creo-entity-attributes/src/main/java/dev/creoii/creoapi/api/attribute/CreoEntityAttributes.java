@@ -10,7 +10,6 @@ import net.minecraft.util.Identifier;
 
 public class CreoEntityAttributes implements ModInitializer {
     private static final String NAMESPACE = "creo";
-
     /**
      * Controls movement speed while swimming.
      */

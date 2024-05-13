@@ -13,11 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @ApiStatus.Internal
 public final class MovementSpeedAttributeImpl {
     public static void addLivingAttributes(DefaultAttributeContainer.Builder builder) {
-        builder.add(CreoEntityAttributes.GENERIC_SWIMMING_SPEED);
-    }
-
-    public static void addPlayerAttributes(DefaultAttributeContainer.Builder builder) {
-        builder.add(EntityAttributes.GENERIC_FLYING_SPEED, .05d).add(CreoEntityAttributes.GENERIC_CLIMBING_SPEED, .2d).add(CreoEntityAttributes.GENERIC_SWIMMING_SPEED);
+        builder.add(CreoEntityAttributes.GENERIC_SWIMMING_SPEED).add(EntityAttributes.GENERIC_FLYING_SPEED, .05d).add(CreoEntityAttributes.GENERIC_CLIMBING_SPEED, .2d).add(CreoEntityAttributes.GENERIC_SWIMMING_SPEED);
     }
 
     public static float applySwimSpeed(LivingEntity livingEntity) {

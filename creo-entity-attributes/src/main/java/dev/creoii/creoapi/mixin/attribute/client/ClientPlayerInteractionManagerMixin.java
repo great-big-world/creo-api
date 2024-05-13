@@ -15,6 +15,6 @@ public class ClientPlayerInteractionManagerMixin {
 
     @ModifyConstant(method = "updateBlockBreakingProgress", constant = @Constant(intValue = 5))
     private int creo$applyBlockBreakSpeed(int constant) {
-        return BlockCooldownAttributeImpl.applyBlockBreakSpeed(client);
+        return BlockCooldownAttributeImpl.applyBlockBreakCooldown(client);
     }
 }

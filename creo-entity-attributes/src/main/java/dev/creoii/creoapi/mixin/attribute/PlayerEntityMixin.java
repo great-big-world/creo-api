@@ -14,7 +14,6 @@ public class PlayerEntityMixin {
     @Inject(method = "createPlayerAttributes", at = @At("RETURN"))
     private static void creo$playerAttributes(CallbackInfoReturnable<DefaultAttributeContainer.Builder> cir) {
         BlockCooldownAttributeImpl.addAttributes(cir.getReturnValue());
-        MovementSpeedAttributeImpl.addPlayerAttributes(cir.getReturnValue());
     }
 
     @Inject(method = "getOffGroundSpeed", at = @At(value = "RETURN", ordinal = 0), cancellable = true)

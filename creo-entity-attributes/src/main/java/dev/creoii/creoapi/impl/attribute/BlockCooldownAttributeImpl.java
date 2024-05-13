@@ -13,13 +13,13 @@ public final class BlockCooldownAttributeImpl {
         builder.add(CreoEntityAttributes.PLACE_COOLDOWN).add(CreoEntityAttributes.BREAK_COOLDOWN);
     }
 
-    public static void applyBlockPlaceSpeed(MinecraftClient client, ItemStack stack) {
+    public static void applyBlockPlaceCooldown(MinecraftClient client, ItemStack stack) {
         if (stack.getItem() instanceof BlockItem && client.player != null) {
             client.itemUseCooldown = (int) client.player.getAttributeValue(CreoEntityAttributes.PLACE_COOLDOWN);
         }
     }
 
-    public static int applyBlockBreakSpeed(MinecraftClient client) {
+    public static int applyBlockBreakCooldown(MinecraftClient client) {
         if (client.player != null) {
             return (int) client.player.getAttributeValue(CreoEntityAttributes.BREAK_COOLDOWN);
         }
