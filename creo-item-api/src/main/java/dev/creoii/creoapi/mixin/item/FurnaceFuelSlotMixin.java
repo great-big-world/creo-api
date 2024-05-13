@@ -17,7 +17,7 @@ public abstract class FurnaceFuelSlotMixin extends Slot {
     }
 
     @Inject(method = "canInsert", at = @At("HEAD"), cancellable = true)
-    private void creo_doNotInsertRestrictedFuel(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
+    private void creo$doNotInsertRestrictedFuel(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
         RequiredFuelsImpl.applyFurnaceFuelSlot(stack, inventory, cir);
     }
 }
