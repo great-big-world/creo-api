@@ -21,6 +21,7 @@
     "block.entity.BrewingStandBlockEntityMixin",
     "block.entity.ConduitBlockEntityMixin",
     "block.entity.HopperBlockEntityMixin",
+    "compat.FarmlandBlockMixin",
     "enchantment.EnchantmentMixin",
     "entity.AllayEntityMixin",
     "entity.CreeperEntityMixin",
@@ -55,5 +56,6 @@
   "injectors": {
     "defaultRequire": 1,
     "maxShiftBy": 2
-  }
+  },
+  "plugin": "dev.creoii.creoapi.api.tag.util.CreoConventionTagsMixinPlugin"
 }

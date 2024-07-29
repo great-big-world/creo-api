@@ -8,7 +8,9 @@ import net.minecraft.component.type.ToolComponent;
 import net.minecraft.entity.mob.RavagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
@@ -17,6 +19,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
+import net.minecraft.world.chunk.Chunk;
 import org.jetbrains.annotations.ApiStatus;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -58,6 +61,28 @@ public final class BlockTagImpl {
     public static void applyKeepsFarmlandMoist(WorldView world, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
         if (world.getBlockState(pos).isIn(CreoBlockTags.KEEPS_FARMLAND_MOIST))
             cir.setReturnValue(true);
+    }
+
+    public static boolean applyKeepsFarmlandMoistOverwrite(WorldView world, BlockPos pos) {
+        int posX = pos.getX();
+        int posY = pos.getY();
+        int posZ = pos.getZ();
+
+        for (int dz = -4; dz <= 4; ++dz) {
+            int z = dz + posZ;
+            for (int dx = -4; dx <= 4; ++dx) {
+                int x = posX + dx;
+                for (int dy = 0; dy <= 1; ++dy) {
+                    Chunk chunk = world.getChunk(x >> 4, z >> 4);
+                    BlockPos blockPos = new BlockPos(x, dy + posY, z);
+                    FluidState fluid = chunk.getBlockState(blockPos).getFluidState();
+                    if (fluid.isIn(FluidTags.WATER) || chunk.getBlockState(blockPos).isIn(CreoBlockTags.KEEPS_FARMLAND_MOIST)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     public static void applyKeepsCoralAlive(BlockView world, BlockPos pos, Direction direction, CallbackInfoReturnable<Boolean> cir) {
