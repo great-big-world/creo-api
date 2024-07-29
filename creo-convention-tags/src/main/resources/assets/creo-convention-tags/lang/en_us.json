@@ -1,0 +1,34 @@
+{
+  "tag.block.c.beacon_beam_ignores": "Beacon Beam Ignores",
+  "tag.block.c.cactus_plantable_on": "Cactus Plantable On",
+  "tag.block.c.chorus_plant_plantable_on": "Chorus Plant Plantable On",
+  "tag.block.c.cocoa_beans_plantable_on": "Cocoa Beans Plantable On",
+  "tag.block.c.conduit_frame_base_blocks": "Conduit Frame Base Blocks",
+  "tag.block.c.nether_wart_plantable_on": "Nether Wart Plantable On",
+  "tag.block.c.ravager_breakable": "Ravager Breakable",
+  "tag.block.c.shears_less_efficient": "Shears Less Efficient",
+  "tag.block.c.shears_very_efficient": "Shears Very Efficient",
+  "tag.block.c.signal_fire_base_blocks": "Signal Fire Base Blocks",
+  "tag.block.c.wither_rose_plantable_on": "Wither Rose Plantable On",
+
+  "tag.enchantment.c.grindstone_ignores": "Grindstone Ignores",
+
+  "tag.entity_type.c.avoids_traps": "Avoids Traps",
+  "tag.entity_type.c.collidable": "Collidable",
+  "tag.entity_type.c.fox_prey": "Fox Prey",
+  "tag.entity_type.c.scares_creepers": "Scares Creepers",
+  "tag.entity_type.c.warden_ignores": "Warden Ignores",
+  "tag.entity_type.c.wolf_prey": "Wolf Prey",
+  "tag.entity_type.c.zoglin_ignores": "Zoglin Ignores",
+
+  "tag.item.c.blocks_enderman_stare": "Blocks Enderman Stare",
+  "tag.item.c.brewing_fuel": "Brewing Fuel",
+  "tag.item.c.charges_respawn_anchor": "Charges Respawn Anchors",
+  "tag.item.c.disables_shield": "Disables Shields",
+  "tag.item.c.duplicates_allays": "Duplicates Allays",
+  "tag.item.c.enchanting_fuel": "Enchanting Fuel",
+  "tag.item.c.fuels_furnace_minecarts": "Fuels Furnace Minecarts",
+  "tag.item.c.repairs_iron_golems": "Repairs Iron Golems",
+
+  "tag.mob_effect.c.cures_zombie_villagers": "Cures Zombie Villagers"
+}

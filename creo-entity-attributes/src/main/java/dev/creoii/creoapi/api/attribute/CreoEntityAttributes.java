@@ -13,23 +13,23 @@ public class CreoEntityAttributes implements ModInitializer {
     /**
      * Controls movement speed while swimming.
      */
-    public static final RegistryEntry<EntityAttribute> GENERIC_SWIMMING_SPEED = register(new Identifier(NAMESPACE, "generic.swimming_speed"), new ClampedEntityAttribute("attribute.name.generic.swimming_speed", .02d, 0d, 256d).setTracked(true));
+    public static final RegistryEntry<EntityAttribute> GENERIC_SWIMMING_SPEED = register(Identifier.of(NAMESPACE, "generic.swimming_speed"), new ClampedEntityAttribute("attribute.name.generic.swimming_speed", .02d, 0d, 256d).setTracked(true));
     /**
      * Controls movement speed while climbing.
      */
-    public static final RegistryEntry<EntityAttribute> GENERIC_CLIMBING_SPEED = register(new Identifier(NAMESPACE, "generic.climbing_speed"), new ClampedEntityAttribute("attribute.name.generic.climbing_speed", .2d, 0d, 256d).setTracked(true));
+    public static final RegistryEntry<EntityAttribute> GENERIC_CLIMBING_SPEED = register(Identifier.of(NAMESPACE, "generic.climbing_speed"), new ClampedEntityAttribute("attribute.name.generic.climbing_speed", .2d, 0d, 256d).setTracked(true));
     /**
      * Controls maximum air while drowning.
      */
-    public static final RegistryEntry<EntityAttribute> GENERIC_MAX_AIR = register(new Identifier(NAMESPACE, "generic.max_air"), new ClampedEntityAttribute("attribute.name.generic.max_air", 30d, 0d, 1024d).setTracked(true));
+    public static final RegistryEntry<EntityAttribute> GENERIC_MAX_AIR = register(Identifier.of(NAMESPACE, "generic.max_air"), new ClampedEntityAttribute("attribute.name.generic.max_air", 30d, 0d, 1024d).setTracked(true));
     /**
      * Controls the block placing cooldown.
      */
-    public static final RegistryEntry<EntityAttribute> PLACE_COOLDOWN = register(new Identifier(NAMESPACE, "player.place_cooldown"), new ClampedEntityAttribute("attribute.name.player.place_cooldown", 4d, 0d, 1024d).setTracked(true));
+    public static final RegistryEntry<EntityAttribute> PLACE_COOLDOWN = register(Identifier.of(NAMESPACE, "player.place_cooldown"), new ClampedEntityAttribute("attribute.name.player.place_cooldown", 4d, 0d, 1024d).setTracked(true));
     /**
      * Controls the block breaking cooldown.
      */
-    public static final RegistryEntry<EntityAttribute> BREAK_COOLDOWN = register(new Identifier(NAMESPACE, "player.break_cooldown"), new ClampedEntityAttribute("attribute.name.player.break_cooldown", 5d, 0d, 1024d).setTracked(true));
+    public static final RegistryEntry<EntityAttribute> BREAK_COOLDOWN = register(Identifier.of(NAMESPACE, "player.break_cooldown"), new ClampedEntityAttribute("attribute.name.player.break_cooldown", 5d, 0d, 1024d).setTracked(true));
 
     @Override
     public void onInitialize() {

@@ -21,7 +21,6 @@
     "block.entity.BrewingStandBlockEntityMixin",
     "block.entity.ConduitBlockEntityMixin",
     "block.entity.HopperBlockEntityMixin",
-    "enchantment.EnchantmentMixin",
     "entity.AllayEntityMixin",
     "entity.CreeperEntityMixin",
     "entity.DolphinEntityMixin",

@@ -6,6 +6,7 @@ import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 
 public final class CreoEntityTypeTags {
+    /*
     public static final TagKey<EntityType<?>> NO_CLIPPING_ENTITIES = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "no_clipping_entities"));
     public static final TagKey<EntityType<?>> CACTUS_IMMUNE = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "damage_immune/cactus"));
     public static final TagKey<EntityType<?>> SWEET_BERRY_BUSH_IMMUNE = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "damage_immune/sweet_berry_bush"));
@@ -23,55 +24,56 @@ public final class CreoEntityTypeTags {
     public static final TagKey<EntityType<?>> FALL_IMMUNE = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "damage_immune/fall"));
     public static final TagKey<EntityType<?>> OUT_OF_WORLD_IMMUNE = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "damage_immune/out_of_world"));
     public static final TagKey<EntityType<?>> GENERIC_IMMUNE = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "damage_immune/generic"));
+    */
     /**
      * Entities that are ignored by Zoglins.
      */
-    public static final TagKey<EntityType<?>> ZOGLIN_IGNORES = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "zoglin_ignores"));
+    public static final TagKey<EntityType<?>> ZOGLIN_IGNORES = TagKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(CreoConventionTags.COMMON_NAMESPACE, "zoglin_ignores"));
     /**
      * Entities that do not activate traps such as Pressure Plates.
      */
-    public static final TagKey<EntityType<?>> AVOIDS_TRAPS = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "avoids_traps"));
+    public static final TagKey<EntityType<?>> AVOIDS_TRAPS = TagKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(CreoConventionTags.COMMON_NAMESPACE, "avoids_traps"));
     /**
      * Entities which projectiles ignore collision with.
      */
-    public static final TagKey<EntityType<?>> PROJECTILES_IGNORE = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "projectiles_ignore"));
-    public static final TagKey<EntityType<?>> WALKS_ON_WATER = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "walks_on_water"));
-    public static final TagKey<EntityType<?>> WALKS_ON_LAVA = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "walks_on_lava"));
+    public static final TagKey<EntityType<?>> PROJECTILES_IGNORE = TagKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(CreoConventionTags.COMMON_NAMESPACE, "projectiles_ignore"));
+    public static final TagKey<EntityType<?>> WALKS_ON_WATER = TagKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(CreoConventionTags.COMMON_NAMESPACE, "walks_on_water"));
+    public static final TagKey<EntityType<?>> WALKS_ON_LAVA = TagKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(CreoConventionTags.COMMON_NAMESPACE, "walks_on_lava"));
     /**
      * Entities which can be stood on like Boats.
      */
-    public static final TagKey<EntityType<?>> COLLIDABLE = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "collidable"));
+    public static final TagKey<EntityType<?>> COLLIDABLE = TagKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(CreoConventionTags.COMMON_NAMESPACE, "collidable"));
     /**
      * Entities which are ignored by the Warden.
      */
-    public static final TagKey<EntityType<?>> WARDEN_IGNORES = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "warden_ignores"));
+    public static final TagKey<EntityType<?>> WARDEN_IGNORES = TagKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(CreoConventionTags.COMMON_NAMESPACE, "warden_ignores"));
     /**
      * Entities which Creepers run away from.
      */
-    public static final TagKey<EntityType<?>> SCARES_CREEPERS = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "scares_creepers"));
+    public static final TagKey<EntityType<?>> SCARES_CREEPERS = TagKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(CreoConventionTags.COMMON_NAMESPACE, "scares_creepers"));
     /**
      * Entities which Wolves attack.
      * @since 0.2.1
      */
-    public static final TagKey<EntityType<?>> WOLF_PREY = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "wolf_prey"));
+    public static final TagKey<EntityType<?>> WOLF_PREY = TagKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(CreoConventionTags.COMMON_NAMESPACE, "wolf_prey"));
     /**
      * Entities which Foxes attack.
      * @since 0.2.1
      */
-    public static final TagKey<EntityType<?>> FOX_PREY = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "fox_prey"));
-    public static final TagKey<EntityType<?>> GLINTED = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "glinted"));
-    public static final TagKey<EntityType<?>> ARTHROPOD = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "arthropod"));
-    public static final TagKey<EntityType<?>> AQUATIC = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "aquatic"));
-    public static final TagKey<EntityType<?>> ILLAGERS = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "illagers"));
+    public static final TagKey<EntityType<?>> FOX_PREY = TagKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(CreoConventionTags.COMMON_NAMESPACE, "fox_prey"));
+    public static final TagKey<EntityType<?>> GLINTED = TagKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(CreoConventionTags.COMMON_NAMESPACE, "glinted"));
+    public static final TagKey<EntityType<?>> ARTHROPOD = TagKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(CreoConventionTags.COMMON_NAMESPACE, "arthropod"));
+    public static final TagKey<EntityType<?>> AQUATIC = TagKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(CreoConventionTags.COMMON_NAMESPACE, "aquatic"));
+    public static final TagKey<EntityType<?>> ILLAGERS = TagKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(CreoConventionTags.COMMON_NAMESPACE, "illagers"));
     /**
      * Entities which do not activate Tripwires.
      */
-    public static final TagKey<EntityType<?>> TRIPWIRE_IGNORES = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "tripwire_ignores"));
-    public static final TagKey<EntityType<?>> MILKABLE = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "milkable"));
+    public static final TagKey<EntityType<?>> TRIPWIRE_IGNORES = TagKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(CreoConventionTags.COMMON_NAMESPACE, "tripwire_ignores"));
+    public static final TagKey<EntityType<?>> MILKABLE = TagKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(CreoConventionTags.COMMON_NAMESPACE, "milkable"));
     /**
      * Entities which cannot be hooked by a Fishing Rod.
      */
-    public static final TagKey<EntityType<?>> FISHING_ROD_CANNOT_HOOK = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "fishing_rod_cannot_hook"));
+    public static final TagKey<EntityType<?>> FISHING_ROD_CANNOT_HOOK = TagKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(CreoConventionTags.COMMON_NAMESPACE, "fishing_rod_cannot_hook"));
 
-    public static final TagKey<EntityType<?>> BOSSES = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(CreoConventionTags.COMMON_NAMESPACE, "bosses"));
+    public static final TagKey<EntityType<?>> BOSSES = TagKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(CreoConventionTags.COMMON_NAMESPACE, "bosses"));
 }

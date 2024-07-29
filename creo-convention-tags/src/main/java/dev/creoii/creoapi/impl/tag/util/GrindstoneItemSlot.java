@@ -55,7 +55,7 @@ public class GrindstoneItemSlot extends Slot {
     private int getExperience(ItemStack stack) {
         int i = 0;
         ItemEnchantmentsComponent itemEnchantmentsComponent = EnchantmentHelper.getEnchantments(stack);
-        for (Object2IntMap.Entry<RegistryEntry<Enchantment>> entry : itemEnchantmentsComponent.getEnchantmentsMap()) {
+        for (Object2IntMap.Entry<RegistryEntry<Enchantment>> entry : itemEnchantmentsComponent.getEnchantmentEntries()) {
             Enchantment enchantment = entry.getKey().value();
             int j = entry.getIntValue();
             if (TagUtil.isIn(CreoEnchantmentTags.GRINDSTONE_IGNORES, enchantment))
