@@ -49,10 +49,8 @@ public final class BlockImpl {
         if (optionalPos.isPresent()) {
             BlockPos pos = optionalPos.get();
             BlockState state = entity.getWorld().getBlockState(pos);
-            if (state.getBlock() instanceof CreoBlock creoBlock) {
-                if (creoBlock.canEntityCollideAdjacent(entity, state, pos)) {
-                    creoBlock.onAdjacentEntityCollision(entity, state, pos);
-                }
+            if (((CreoBlock) state.getBlock()).canEntityCollideAdjacent(entity, state, pos)) {
+                ((CreoBlock) state.getBlock()).onAdjacentEntityCollision(entity, state, pos);
             }
         }
     }
