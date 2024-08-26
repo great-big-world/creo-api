@@ -8,26 +8,26 @@ import java.util.Set;
 public final class Shaders {
     private static final String NAMESPACE = "minecraft";
     private static final Set<Identifier> SHADERS = Sets.newHashSet();
-    public static final Identifier ANTIALIAS = register(new Identifier(NAMESPACE, "post/antialias"));//
-    public static final Identifier ART = register(new Identifier(NAMESPACE, "post/art"));//
-    public static final Identifier BITS = register(new Identifier(NAMESPACE, "post/bits"));//
-    public static final Identifier BLOBS = register(new Identifier(NAMESPACE, "post/blobs"));//
-    public static final Identifier BLOBS2 = register(new Identifier(NAMESPACE, "post/blobs2"));//
-    public static final Identifier BUMPY = register(new Identifier(NAMESPACE, "post/bumpy"));//
-    public static final Identifier COLOR_CONVOLVE = register(new Identifier(NAMESPACE, "post/color_convolve"));//
-    public static final Identifier CREEPER = register(new Identifier("post/creeper"));//
-    public static final Identifier DECONVERGE = register(new Identifier(NAMESPACE, "post/deconverge"));//
-    public static final Identifier DESATURATE = register(new Identifier(NAMESPACE, "post/desaturate"));//
-    public static final Identifier FLIP = register(new Identifier(NAMESPACE, "post/flip"));//
-    public static final Identifier GREEN = register(new Identifier(NAMESPACE, "post/green"));//
-    public static final Identifier INVERT = register(new Identifier("post/invert"));//
-    public static final Identifier NOTCH = register(new Identifier(NAMESPACE, "post/notch"));//
-    public static final Identifier PENCIL = register(new Identifier(NAMESPACE, "post/pencil"));//
-    public static final Identifier PHOSPHOR = register(new Identifier(NAMESPACE, "post/phosphor"));//
-    public static final Identifier SCAN_PINCUSHION = register(new Identifier(NAMESPACE, "post/scan_pincushion"));//
-    public static final Identifier SOBEL = register(new Identifier(NAMESPACE, "post/sobel"));//
-    public static final Identifier SPIDER = register(new Identifier("post/spider"));//
-    public static final Identifier WOBBLE = register(new Identifier(NAMESPACE, "post/wobble"));//
+    public static final Identifier ANTIALIAS = register(Identifier.of(NAMESPACE, "post/antialias"));//
+    public static final Identifier ART = register(Identifier.of(NAMESPACE, "post/art"));//
+    public static final Identifier BITS = register(Identifier.of(NAMESPACE, "post/bits"));//
+    public static final Identifier BLOBS = register(Identifier.of(NAMESPACE, "post/blobs"));//
+    public static final Identifier BLOBS2 = register(Identifier.of(NAMESPACE, "post/blobs2"));//
+    public static final Identifier BUMPY = register(Identifier.of(NAMESPACE, "post/bumpy"));//
+    public static final Identifier COLOR_CONVOLVE = register(Identifier.of(NAMESPACE, "post/color_convolve"));//
+    public static final Identifier CREEPER = register(Identifier.of("post/creeper"));//
+    public static final Identifier DECONVERGE = register(Identifier.of(NAMESPACE, "post/deconverge"));//
+    public static final Identifier DESATURATE = register(Identifier.of(NAMESPACE, "post/desaturate"));//
+    public static final Identifier FLIP = register(Identifier.of(NAMESPACE, "post/flip"));//
+    public static final Identifier GREEN = register(Identifier.of(NAMESPACE, "post/green"));//
+    public static final Identifier INVERT = register(Identifier.of("post/invert"));//
+    public static final Identifier NOTCH = register(Identifier.of(NAMESPACE, "post/notch"));//
+    public static final Identifier PENCIL = register(Identifier.of(NAMESPACE, "post/pencil"));//
+    public static final Identifier PHOSPHOR = register(Identifier.of(NAMESPACE, "post/phosphor"));//
+    public static final Identifier SCAN_PINCUSHION = register(Identifier.of(NAMESPACE, "post/scan_pincushion"));//
+    public static final Identifier SOBEL = register(Identifier.of(NAMESPACE, "post/sobel"));//
+    public static final Identifier SPIDER = register(Identifier.of("post/spider"));//
+    public static final Identifier WOBBLE = register(Identifier.of(NAMESPACE, "post/wobble"));//
 
     private static Identifier register(Identifier id) {
         if (SHADERS.add(id)) {

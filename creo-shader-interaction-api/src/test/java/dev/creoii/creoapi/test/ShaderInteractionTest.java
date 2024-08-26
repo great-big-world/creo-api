@@ -23,8 +23,8 @@ public class ShaderInteractionTest implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        final Block shaderBlock = Registry.register(Registries.BLOCK, new Identifier("test", "shader_block"), new ShaderBlock());
-        Registry.register(Registries.ITEM, new Identifier("test", "shader_block"), new BlockItem(shaderBlock, new Item.Settings()));
+        final Block shaderBlock = Registry.register(Registries.BLOCK, Identifier.of("test", "shader_block"), new ShaderBlock());
+        Registry.register(Registries.ITEM, Identifier.of("test", "shader_block"), new BlockItem(shaderBlock, new Item.Settings()));
     }
 
     public static class ShaderBlock extends Block {

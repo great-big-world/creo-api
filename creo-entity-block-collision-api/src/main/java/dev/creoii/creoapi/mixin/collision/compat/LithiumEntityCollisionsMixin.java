@@ -16,7 +16,7 @@ import java.util.List;
 @Mixin(LithiumEntityCollisions.class)
 public class LithiumEntityCollisionsMixin {
     @Inject(method = "getBlockCollisions(Lnet/minecraft/world/World;Lnet/minecraft/entity/Entity;Lnet/minecraft/util/math/Box;)Ljava/util/List;", at = @At("HEAD"), cancellable = true)
-    private static void creo_lithiumCollisionCompat(World world, Entity entity, Box box, CallbackInfoReturnable<List<VoxelShape>> cir) {
+    private static void creo$lithiumCollisionCompat(World world, Entity entity, Box box, CallbackInfoReturnable<List<VoxelShape>> cir) {
         EntityBlockCollisionImpl.applyEntityBlockCollisionLithium(world, entity, box, cir);
     }
 }
