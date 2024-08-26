@@ -18,10 +18,10 @@ public class RegistryLoaderMixin {
     @Shadow @Final @Mutable public static List<RegistryLoader.Entry<?>> DYNAMIC_REGISTRIES;
 
     @Inject(method = "<clinit>", at = @At("TAIL"))
-    private static void creo_addFastNoiseSettingsRegistry(CallbackInfo ci) {
+    private static void creo$addFastNoiseSettingsRegistry(CallbackInfo ci) {
         DYNAMIC_REGISTRIES = new ImmutableList.Builder<RegistryLoader.Entry<?>>()
                 .addAll(DYNAMIC_REGISTRIES)
-                .add(new RegistryLoader.Entry<>(FastNoiseParameters.REGISTRY_KEY, FastNoiseParameters.CODEC))
+                .add(new RegistryLoader.Entry<>(FastNoiseParameters.REGISTRY_KEY, FastNoiseParameters.CODEC, false))
                 .build();
     }
 }

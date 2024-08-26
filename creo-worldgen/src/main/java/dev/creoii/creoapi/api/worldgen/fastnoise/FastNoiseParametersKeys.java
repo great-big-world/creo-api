@@ -23,6 +23,6 @@ public final class FastNoiseParametersKeys {
     public static final RegistryKey<FastNoiseParameters> ZONES = of("zones");
 
     private static RegistryKey<FastNoiseParameters> of(String id) {
-        return RegistryKey.of(FastNoiseParameters.REGISTRY_KEY, new Identifier(CreoWorldgen.NAMESPACE, id));
+        return RegistryKey.of(FastNoiseParameters.REGISTRY_KEY, Identifier.of(CreoWorldgen.NAMESPACE, id));
     }
 }

@@ -29,10 +29,10 @@ public final class CreoStructurePlacementTypes {
     public static final StructurePlacementType<DensityFunctionStructurePlacement> DENSITY_FUNCTION = () -> DensityFunctionStructurePlacement.CODEC;
 
     static void register() {
-        Registry.register(Registries.STRUCTURE_PLACEMENT, new Identifier(CreoWorldgen.NAMESPACE, "fixed"), FIXED);
-        Registry.register(Registries.STRUCTURE_PLACEMENT, new Identifier(CreoWorldgen.NAMESPACE, "distance_from_pos"), DISTANCE_FROM_POS);
-        Registry.register(Registries.STRUCTURE_PLACEMENT, new Identifier(CreoWorldgen.NAMESPACE, "noise"), NOISE);
-        Registry.register(Registries.STRUCTURE_PLACEMENT, new Identifier(CreoWorldgen.NAMESPACE, "fast_noise"), FAST_NOISE);
-        Registry.register(Registries.STRUCTURE_PLACEMENT, new Identifier(CreoWorldgen.NAMESPACE, "density_function"), DENSITY_FUNCTION);
+        Registry.register(Registries.STRUCTURE_PLACEMENT, Identifier.of(CreoWorldgen.NAMESPACE, "fixed"), FIXED);
+        Registry.register(Registries.STRUCTURE_PLACEMENT, Identifier.of(CreoWorldgen.NAMESPACE, "distance_from_pos"), DISTANCE_FROM_POS);
+        Registry.register(Registries.STRUCTURE_PLACEMENT, Identifier.of(CreoWorldgen.NAMESPACE, "noise"), NOISE);
+        Registry.register(Registries.STRUCTURE_PLACEMENT, Identifier.of(CreoWorldgen.NAMESPACE, "fast_noise"), FAST_NOISE);
+        Registry.register(Registries.STRUCTURE_PLACEMENT, Identifier.of(CreoWorldgen.NAMESPACE, "density_function"), DENSITY_FUNCTION);
     }
 }

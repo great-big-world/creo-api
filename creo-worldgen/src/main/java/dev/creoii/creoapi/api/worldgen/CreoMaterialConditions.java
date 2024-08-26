@@ -17,10 +17,10 @@ import net.minecraft.world.gen.surfacebuilder.MaterialRules;
 
 public final class CreoMaterialConditions {
     static void register() {
-        Registry.register(Registries.MATERIAL_CONDITION, new Identifier(CreoWorldgen.NAMESPACE, "steep"), SteepMaterialCondition.CODEC_HOLDER.codec());
-        Registry.register(Registries.MATERIAL_CONDITION, new Identifier(CreoWorldgen.NAMESPACE, "density_function"), DensityFunctionMaterialCondition.CODEC_HOLDER.codec());
-        Registry.register(Registries.MATERIAL_CONDITION, new Identifier(CreoWorldgen.NAMESPACE, "fast_noise"), FastNoiseMaterialCondition.CODEC_HOLDER.codec());
-        Registry.register(Registries.MATERIAL_CONDITION, new Identifier(CreoWorldgen.NAMESPACE, "exposed"), ExposedMaterialCondition.CODEC_HOLDER.codec());
+        Registry.register(Registries.MATERIAL_CONDITION, Identifier.of(CreoWorldgen.NAMESPACE, "steep"), SteepMaterialCondition.CODEC_HOLDER.codec());
+        Registry.register(Registries.MATERIAL_CONDITION, Identifier.of(CreoWorldgen.NAMESPACE, "density_function"), DensityFunctionMaterialCondition.CODEC_HOLDER.codec());
+        Registry.register(Registries.MATERIAL_CONDITION, Identifier.of(CreoWorldgen.NAMESPACE, "fast_noise"), FastNoiseMaterialCondition.CODEC_HOLDER.codec());
+        Registry.register(Registries.MATERIAL_CONDITION, Identifier.of(CreoWorldgen.NAMESPACE, "exposed"), ExposedMaterialCondition.CODEC_HOLDER.codec());
     }
 
     public static MaterialRules.MaterialCondition steep(int minSteepness, int maxSteepness) {

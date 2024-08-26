@@ -77,21 +77,21 @@ public final class CreoPlacementModifierTypes {
     public static final PlacementModifierType<RandomPlacementModifier> RANDOM = () -> RandomPlacementModifier.CODEC;
 
     static void register() {
-        Registry.register(Registries.PLACEMENT_MODIFIER_TYPE, new Identifier(CreoWorldgen.NAMESPACE, "noise"), NOISE);
-        Registry.register(Registries.PLACEMENT_MODIFIER_TYPE, new Identifier(CreoWorldgen.NAMESPACE, "noise_count"), NOISE_COUNT);
-        Registry.register(Registries.PLACEMENT_MODIFIER_TYPE, new Identifier(CreoWorldgen.NAMESPACE, "fast_noise"), FAST_NOISE);
-        Registry.register(Registries.PLACEMENT_MODIFIER_TYPE, new Identifier(CreoWorldgen.NAMESPACE, "steep"), STEEP);
-        Registry.register(Registries.PLACEMENT_MODIFIER_TYPE, new Identifier(CreoWorldgen.NAMESPACE, "offset"), OFFSET);
-        Registry.register(Registries.PLACEMENT_MODIFIER_TYPE, new Identifier(CreoWorldgen.NAMESPACE, "density_function"), DENSITY_FUNCTION);
-        Registry.register(Registries.PLACEMENT_MODIFIER_TYPE, new Identifier(CreoWorldgen.NAMESPACE, "density_function_count"), DENSITY_FUNCTION_COUNT);
-        Registry.register(Registries.PLACEMENT_MODIFIER_TYPE, new Identifier(CreoWorldgen.NAMESPACE, "near_structure"), NEAR_STRUCTURE);
-        Registry.register(Registries.PLACEMENT_MODIFIER_TYPE, new Identifier(CreoWorldgen.NAMESPACE, "within_structure"), WITHIN_STRUCTURE);
-        Registry.register(Registries.PLACEMENT_MODIFIER_TYPE, new Identifier(CreoWorldgen.NAMESPACE, "sky_visible"), SKY_VISIBLE);
-        Registry.register(Registries.PLACEMENT_MODIFIER_TYPE, new Identifier(CreoWorldgen.NAMESPACE, "distance_from_zero"), DISTANCE_FROM_ZERO);
-        Registry.register(Registries.PLACEMENT_MODIFIER_TYPE, new Identifier(CreoWorldgen.NAMESPACE, "height_filter"), HEIGHT_FILTER);
-        Registry.register(Registries.PLACEMENT_MODIFIER_TYPE, new Identifier(CreoWorldgen.NAMESPACE, "not"), NOT);
-        Registry.register(Registries.PLACEMENT_MODIFIER_TYPE, new Identifier(CreoWorldgen.NAMESPACE, "any_of"), ANY_OF);
-        Registry.register(Registries.PLACEMENT_MODIFIER_TYPE, new Identifier(CreoWorldgen.NAMESPACE, "all_of"), ALL_OF);
-        Registry.register(Registries.PLACEMENT_MODIFIER_TYPE, new Identifier(CreoWorldgen.NAMESPACE, "random"), RANDOM);
+        Registry.register(Registries.PLACEMENT_MODIFIER_TYPE, Identifier.of(CreoWorldgen.NAMESPACE, "noise"), NOISE);
+        Registry.register(Registries.PLACEMENT_MODIFIER_TYPE, Identifier.of(CreoWorldgen.NAMESPACE, "noise_count"), NOISE_COUNT);
+        Registry.register(Registries.PLACEMENT_MODIFIER_TYPE, Identifier.of(CreoWorldgen.NAMESPACE, "fast_noise"), FAST_NOISE);
+        Registry.register(Registries.PLACEMENT_MODIFIER_TYPE, Identifier.of(CreoWorldgen.NAMESPACE, "steep"), STEEP);
+        Registry.register(Registries.PLACEMENT_MODIFIER_TYPE, Identifier.of(CreoWorldgen.NAMESPACE, "offset"), OFFSET);
+        Registry.register(Registries.PLACEMENT_MODIFIER_TYPE, Identifier.of(CreoWorldgen.NAMESPACE, "density_function"), DENSITY_FUNCTION);
+        Registry.register(Registries.PLACEMENT_MODIFIER_TYPE, Identifier.of(CreoWorldgen.NAMESPACE, "density_function_count"), DENSITY_FUNCTION_COUNT);
+        Registry.register(Registries.PLACEMENT_MODIFIER_TYPE, Identifier.of(CreoWorldgen.NAMESPACE, "near_structure"), NEAR_STRUCTURE);
+        Registry.register(Registries.PLACEMENT_MODIFIER_TYPE, Identifier.of(CreoWorldgen.NAMESPACE, "within_structure"), WITHIN_STRUCTURE);
+        Registry.register(Registries.PLACEMENT_MODIFIER_TYPE, Identifier.of(CreoWorldgen.NAMESPACE, "sky_visible"), SKY_VISIBLE);
+        Registry.register(Registries.PLACEMENT_MODIFIER_TYPE, Identifier.of(CreoWorldgen.NAMESPACE, "distance_from_zero"), DISTANCE_FROM_ZERO);
+        Registry.register(Registries.PLACEMENT_MODIFIER_TYPE, Identifier.of(CreoWorldgen.NAMESPACE, "height_filter"), HEIGHT_FILTER);
+        Registry.register(Registries.PLACEMENT_MODIFIER_TYPE, Identifier.of(CreoWorldgen.NAMESPACE, "not"), NOT);
+        Registry.register(Registries.PLACEMENT_MODIFIER_TYPE, Identifier.of(CreoWorldgen.NAMESPACE, "any_of"), ANY_OF);
+        Registry.register(Registries.PLACEMENT_MODIFIER_TYPE, Identifier.of(CreoWorldgen.NAMESPACE, "all_of"), ALL_OF);
+        Registry.register(Registries.PLACEMENT_MODIFIER_TYPE, Identifier.of(CreoWorldgen.NAMESPACE, "random"), RANDOM);
     }
 }

@@ -53,18 +53,18 @@ public final class CreoFeatures {
     public static final Feature<GiantLogFeatureConfig> GIANT_LOG = new GiantLogFeature(GiantLogFeatureConfig.CODEC);
 
     public static void register() {
-        Registry.register(Registries.FEATURE, new Identifier(CreoWorldgen.NAMESPACE, "composite"), COMPOSITE);
-        Registry.register(Registries.FEATURE, new Identifier(CreoWorldgen.NAMESPACE, "structure"), STRUCTURE);
-        Registry.register(Registries.FEATURE, new Identifier(CreoWorldgen.NAMESPACE, "pool"), POOL);
-        Registry.register(Registries.FEATURE, new Identifier(CreoWorldgen.NAMESPACE, "crater"), CRATER);
-        Registry.register(Registries.FEATURE, new Identifier(CreoWorldgen.NAMESPACE, "pillar"), PILLAR);
-        Registry.register(Registries.FEATURE, new Identifier(CreoWorldgen.NAMESPACE, "rock"), ROCK);
-        Registry.register(Registries.FEATURE, new Identifier(CreoWorldgen.NAMESPACE, "spike"), SPIKE);
-        Registry.register(Registries.FEATURE, new Identifier(CreoWorldgen.NAMESPACE, "fancy_spike"), FANCY_SPIKE);
-        Registry.register(Registries.FEATURE, new Identifier(CreoWorldgen.NAMESPACE, "blob_spread"), BLOB_SPREAD);
-        Registry.register(Registries.FEATURE, new Identifier(CreoWorldgen.NAMESPACE, "coral_claw"), CORAL_CLAW);
-        Registry.register(Registries.FEATURE, new Identifier(CreoWorldgen.NAMESPACE, "coral_mushroom"), CORAL_MUSHROOM);
-        Registry.register(Registries.FEATURE, new Identifier(CreoWorldgen.NAMESPACE, "coral_tree"), CORAL_TREE);
-        Registry.register(Registries.FEATURE, new Identifier(CreoWorldgen.NAMESPACE, "giant_log"), GIANT_LOG);
+        Registry.register(Registries.FEATURE, Identifier.of(CreoWorldgen.NAMESPACE, "composite"), COMPOSITE);
+        Registry.register(Registries.FEATURE, Identifier.of(CreoWorldgen.NAMESPACE, "structure"), STRUCTURE);
+        Registry.register(Registries.FEATURE, Identifier.of(CreoWorldgen.NAMESPACE, "pool"), POOL);
+        Registry.register(Registries.FEATURE, Identifier.of(CreoWorldgen.NAMESPACE, "crater"), CRATER);
+        Registry.register(Registries.FEATURE, Identifier.of(CreoWorldgen.NAMESPACE, "pillar"), PILLAR);
+        Registry.register(Registries.FEATURE, Identifier.of(CreoWorldgen.NAMESPACE, "rock"), ROCK);
+        Registry.register(Registries.FEATURE, Identifier.of(CreoWorldgen.NAMESPACE, "spike"), SPIKE);
+        Registry.register(Registries.FEATURE, Identifier.of(CreoWorldgen.NAMESPACE, "fancy_spike"), FANCY_SPIKE);
+        Registry.register(Registries.FEATURE, Identifier.of(CreoWorldgen.NAMESPACE, "blob_spread"), BLOB_SPREAD);
+        Registry.register(Registries.FEATURE, Identifier.of(CreoWorldgen.NAMESPACE, "coral_claw"), CORAL_CLAW);
+        Registry.register(Registries.FEATURE, Identifier.of(CreoWorldgen.NAMESPACE, "coral_mushroom"), CORAL_MUSHROOM);
+        Registry.register(Registries.FEATURE, Identifier.of(CreoWorldgen.NAMESPACE, "coral_tree"), CORAL_TREE);
+        Registry.register(Registries.FEATURE, Identifier.of(CreoWorldgen.NAMESPACE, "giant_log"), GIANT_LOG);
     }
 }

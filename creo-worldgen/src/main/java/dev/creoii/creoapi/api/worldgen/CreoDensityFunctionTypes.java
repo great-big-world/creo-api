@@ -7,6 +7,6 @@ import net.minecraft.util.Identifier;
 
 public final class CreoDensityFunctionTypes {
     static void register() {
-        Registry.register(Registries.DENSITY_FUNCTION_TYPE, new Identifier(CreoWorldgen.NAMESPACE, "fast_noise"), FastNoiseDensityFunction.CODEC);
+        Registry.register(Registries.DENSITY_FUNCTION_TYPE, Identifier.of(CreoWorldgen.NAMESPACE, "fast_noise"), FastNoiseDensityFunction.CODEC);
     }
 }
