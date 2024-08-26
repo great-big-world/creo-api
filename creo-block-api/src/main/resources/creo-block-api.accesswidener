@@ -1,3 +1,2 @@
 accessWidener v2 named
-accessible class net/minecraft/client/render/chunk/ChunkBuilder$BuiltChunk$RebuildTask
-accessible class net/minecraft/client/render/chunk/ChunkBuilder$BuiltChunk$RebuildTask$RenderData
+accessible method net/minecraft/client/render/chunk/SectionBuilder beginBufferBuilding (Ljava/util/Map;Lnet/minecraft/client/render/chunk/BlockBufferAllocatorStorage;Lnet/minecraft/client/render/RenderLayer;)Lnet/minecraft/client/render/BufferBuilder;

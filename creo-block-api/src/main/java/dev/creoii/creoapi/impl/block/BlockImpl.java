@@ -4,10 +4,12 @@ import dev.creoii.creoapi.api.block.CreoBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.render.BufferBuilder;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.RenderLayers;
 import net.minecraft.client.render.block.BlockRenderManager;
-import net.minecraft.client.render.chunk.BlockBufferBuilderStorage;
+import net.minecraft.client.render.chunk.BlockBufferAllocatorStorage;
 import net.minecraft.client.render.chunk.ChunkRendererRegion;
+import net.minecraft.client.render.chunk.SectionBuilder;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;
 import net.minecraft.fluid.FluidState;
@@ -20,6 +22,7 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.ServerWorldAccess;
 import org.jetbrains.annotations.ApiStatus;
 
+import java.util.Map;
 import java.util.Optional;
 
 @ApiStatus.Internal
@@ -57,12 +60,12 @@ public final class BlockImpl {
         }
     }
 
-    public static void applyRenderOverlayState(BlockState blockState, BlockPos pos, Random random, BlockBufferBuilderStorage storage, BlockRenderManager blockRenderManager, ChunkRendererRegion chunkRendererRegion, MatrixStack matrixStack) {
+    public static void applyRenderOverlayState(SectionBuilder sectionBuilder, Map<RenderLayer, BufferBuilder> map, BlockBufferAllocatorStorage allocatorStorage, BlockRenderManager blockRenderManager, BlockState blockState, BlockPos pos, ChunkRendererRegion renderRegion, MatrixStack matrixStack, Random random) {
         if (blockState.getBlock() instanceof CreoBlock creoBlock) {
-            BlockState state = creoBlock.getOverlayState(blockState, pos, random);
-            BufferBuilder bufferBuilder = storage.get(RenderLayers.getBlockLayer(state));
-            if (bufferBuilder.isBuilding() && state != Blocks.AIR.getDefaultState()) {
-                blockRenderManager.renderBlock(state, pos, chunkRendererRegion, matrixStack, bufferBuilder, true, random);
+            BlockState overlayState = creoBlock.getOverlayState(blockState, pos, random);
+            BufferBuilder bufferBuilder = sectionBuilder.beginBufferBuilding(map, allocatorStorage, RenderLayers.getBlockLayer(overlayState));
+            if (overlayState != Blocks.AIR.getDefaultState()) {
+                blockRenderManager.renderBlock(overlayState, pos, renderRegion, matrixStack, bufferBuilder, true, random);
             }
         }
     }

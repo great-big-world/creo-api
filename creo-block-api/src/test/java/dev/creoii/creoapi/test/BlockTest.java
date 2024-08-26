@@ -30,10 +30,10 @@ public class BlockTest implements ModInitializer, ClientModInitializer {
 
     @Override
     public void onInitialize() {
-        Registry.register(Registries.BLOCK, new Identifier("test", "test"), new TestBlock());
-        Registry.register(Registries.BLOCK, new Identifier("test", "spreadable"), new TestSpreadableBlock());
-        Registry.register(Registries.BLOCK, new Identifier("test", "adjacent_collider"), new TestColliderBlock());
-        Registry.register(Registries.BLOCK, new Identifier("test", "overlay"), TEST_OVERLAY);
+        Registry.register(Registries.BLOCK, Identifier.of("test", "test"), new TestBlock());
+        Registry.register(Registries.BLOCK, Identifier.of("test", "spreadable"), new TestSpreadableBlock());
+        Registry.register(Registries.BLOCK, Identifier.of("test", "adjacent_collider"), new TestColliderBlock());
+        Registry.register(Registries.BLOCK, Identifier.of("test", "overlay"), TEST_OVERLAY);
     }
 
     @Override

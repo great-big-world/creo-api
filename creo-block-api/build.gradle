@@ -12,5 +12,5 @@ loom {
 }
 
 dependencies {
-    modCompileOnly "maven.modrinth:sodium:mc$project.minecraft_version-0.5.11"
+    modCompileOnly "maven.modrinth:sodium:mc1.21-0.5.11"
 }
