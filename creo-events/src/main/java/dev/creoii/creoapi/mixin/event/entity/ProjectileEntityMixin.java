@@ -13,12 +13,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(ProjectileEntity.class)
 public class ProjectileEntityMixin {
     @Inject(method = "<init>", at = @At("TAIL"))
-    private void creo_applyProjectFireEvent(EntityType<? extends ProjectileEntity> entityType, World world, CallbackInfo ci) {
+    private void creo$applyProjectFireEvent(EntityType<? extends ProjectileEntity> entityType, World world, CallbackInfo ci) {
         EntityEventImpl.applyProjectileFireEvent((ProjectileEntity) (Object) this);
     }
 
     @Inject(method = "onCollision", at = @At("HEAD"), cancellable = true)
-    private void creo_applyProjectileImpactEvent(HitResult hitResult, CallbackInfo ci) {
+    private void creo$applyProjectileImpactEvent(HitResult hitResult, CallbackInfo ci) {
         EntityEventImpl.applyProjectileImpactEvent((ProjectileEntity) (Object) this, hitResult, ci);
     }
 }

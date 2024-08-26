@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(ServerPlayerEntity.class)
 public class ServerPlayerEntityMixin {
     @Inject(method = "trySleep", at = @At("RETURN"), cancellable = true)
-    private void creo_applySleepSleepEvent(BlockPos pos, CallbackInfoReturnable<Either<PlayerEntity.SleepFailureReason, Unit>> cir) {
+    private void creo$applySleepSleepEvent(BlockPos pos, CallbackInfoReturnable<Either<PlayerEntity.SleepFailureReason, Unit>> cir) {
         MiscEventImpl.applySleepSleepEvent((ServerPlayerEntity) (Object) this, pos, cir.getReturnValue(), cir);
     }
 }

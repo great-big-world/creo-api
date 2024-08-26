@@ -16,12 +16,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(FishingRodItem.class)
 public class FishingRodItemMixin {
     @Inject(method = "use", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/projectile/FishingBobberEntity;use(Lnet/minecraft/item/ItemStack;)I"), cancellable = true)
-    private void creo_applyFishingRodCatchEvent(World world, PlayerEntity user, Hand hand, CallbackInfoReturnable<TypedActionResult<ItemStack>> cir, @Local ItemStack itemStack) {
+    private void creo$applyFishingRodCatchEvent(World world, PlayerEntity user, Hand hand, CallbackInfoReturnable<TypedActionResult<ItemStack>> cir, @Local ItemStack itemStack) {
         MiscEventImpl.applyFishingRodCatchEvent(world, user, hand, itemStack, cir);
     }
 
     @Inject(method = "use", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;spawnEntity(Lnet/minecraft/entity/Entity;)Z"), cancellable = true)
-    private void creo_applyFishingRodCastEvent(World world, PlayerEntity user, Hand hand, CallbackInfoReturnable<TypedActionResult<ItemStack>> cir, @Local ItemStack itemStack, @Local(ordinal = 0) int i, @Local(ordinal = 1) int j) {
+    private void creo$applyFishingRodCastEvent(World world, PlayerEntity user, Hand hand, CallbackInfoReturnable<TypedActionResult<ItemStack>> cir, @Local ItemStack itemStack, @Local(ordinal = 0) int i, @Local(ordinal = 1) int j) {
         MiscEventImpl.applyFishingRodCastEvent(world, user, hand, itemStack, i, j, cir);
     }
 }

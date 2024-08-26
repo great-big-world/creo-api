@@ -20,7 +20,7 @@ public class ServerPlayerInteractionManagerMixin {
     @Shadow @Final protected ServerPlayerEntity player;
 
     @Inject(method = "tryBreakBlock", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/Block;onBreak(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Lnet/minecraft/entity/player/PlayerEntity;)Lnet/minecraft/block/BlockState;"), cancellable = true)
-    private void creo_applyBlockBreakEvent(BlockPos pos, CallbackInfoReturnable<Boolean> cir, @Local BlockState blockState) {
+    private void creo$applyBlockBreakEvent(BlockPos pos, CallbackInfoReturnable<Boolean> cir, @Local BlockState blockState) {
         BlockEventImpl.applyBlockBreakEvent(world, player, blockState, pos, cir);
     }
 }

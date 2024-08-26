@@ -11,12 +11,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(PlayerEntity.class)
 public class PlayerEntityMixin {
     @Inject(method = "addExperienceLevels", at = @At("HEAD"), cancellable = true)
-    private void creo_applyPlayerLevelUpEvent(int levels, CallbackInfo ci) {
+    private void creo$applyPlayerLevelUpEvent(int levels, CallbackInfo ci) {
         EntityEventImpl.applyPlayerLevelUpEvent((PlayerEntity) (Object) this, levels, ci);
     }
 
     @Inject(method = "wakeUp(ZZ)V", at = @At("HEAD"), cancellable = true)
-    private void creo_applySleepWakeUpEvent(boolean skipSleepTimer, boolean updateSleepingPlayers, CallbackInfo ci) {
+    private void creo$applySleepWakeUpEvent(boolean skipSleepTimer, boolean updateSleepingPlayers, CallbackInfo ci) {
         MiscEventImpl.applySleepWakeUpEvent((PlayerEntity) (Object) this, skipSleepTimer, updateSleepingPlayers, ci);
     }
 }

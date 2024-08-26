@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(PassiveEntity.class)
 public class PassiveEntityMixin {
     @Inject(method = "setBreedingAge", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/passive/PassiveEntity;onGrowUp()V"), cancellable = true)
-    private void creo_applyAnimalGrowUpEvent(int age, CallbackInfo ci) {
+    private void creo$applyAnimalGrowUpEvent(int age, CallbackInfo ci) {
         EntityEventImpl.applyAnimalGrowUpEvent((PassiveEntity) (Object) this, age, ci);
     }
 }

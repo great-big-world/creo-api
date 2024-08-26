@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(CollisionView.class)
 public interface CollisionViewMixin {
     @Inject(method = "getBlockCollisions", at = @At("HEAD"), cancellable = true)
-    private void creo_entityBlockCollisions(@Nullable Entity entity, Box box, CallbackInfoReturnable<Iterable<VoxelShape>> cir) {
+    private void creo$entityBlockCollisions(@Nullable Entity entity, Box box, CallbackInfoReturnable<Iterable<VoxelShape>> cir) {
         EntityBlockCollisionImpl.applyEntityBlockCollision((CollisionView) this, entity, box, cir);
     }
 }

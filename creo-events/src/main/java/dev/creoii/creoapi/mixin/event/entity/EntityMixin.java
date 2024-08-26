@@ -23,7 +23,7 @@ public abstract class EntityMixin {
     @Shadow public abstract ChunkPos getChunkPos();
 
     @Inject(method = "tick", at = @At("TAIL"))
-    private void creo_enterStructureEvent(CallbackInfo ci) {
+    private void creo$enterStructureEvent(CallbackInfo ci) {
         EntityEventImpl.applyWithinStructureEvent(world, (Entity) (Object) this, getBlockPos(), getChunkPos());
     }
 

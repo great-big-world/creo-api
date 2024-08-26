@@ -16,17 +16,17 @@ public class LanguageMixin implements LocaleAwareLanguage {
     private String creo_langCode;
 
     @WrapWithCondition(method = "load(Ljava/io/InputStream;Ljava/util/function/BiConsumer;)V", at = @At(value = "INVOKE", target = "Ljava/util/function/BiConsumer;accept(Ljava/lang/Object;Ljava/lang/Object;)V"))
-    private static boolean creo_applyTranslationLoadEvent(BiConsumer<String, String> entryConsumer, Object key, Object value) {
-        String langCode = Language.getInstance() == null ? Language.DEFAULT_LANGUAGE : ((LocaleAwareLanguage) Language.getInstance()).creo_getLangCode();
+    private static boolean creo$applyTranslationLoadEvent(BiConsumer<String, String> entryConsumer, Object key, Object value) {
+        String langCode = Language.getInstance() == null ? Language.DEFAULT_LANGUAGE : ((LocaleAwareLanguage) Language.getInstance()).creo$getLangCode();
         return MiscEventImpl.applyLanguageTranslationLoadEvent(langCode, entryConsumer, (String) key, (String) value);
     }
 
     @Override
-    public String creo_getLangCode() {
+    public String creo$getLangCode() {
         return creo_langCode;
     }
 
-    public void creo_setLangCode(String langCode) {
+    public void creo$setLangCode(String langCode) {
         creo_langCode = langCode;
     }
 }
