@@ -18,7 +18,7 @@ public abstract class WorldChunkMixin {
     @Shadow @Final World world;
 
     @Inject(method = "setBlockState", at = @At("HEAD"), cancellable = true)
-    private void creo_applyBlockChangeEvent(BlockPos pos, BlockState state, boolean moved, CallbackInfoReturnable<BlockState> cir) {
+    private void creo$applyBlockChangeEvent(BlockPos pos, BlockState state, boolean moved, CallbackInfoReturnable<BlockState> cir) {
         BlockEventImpl.applyBlockChangeEvent(world, pos, state, getBlockState(pos), moved, cir);
     }
 }

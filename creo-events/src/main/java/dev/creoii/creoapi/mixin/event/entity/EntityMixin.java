@@ -23,7 +23,7 @@ public abstract class EntityMixin {
     @Shadow public abstract ChunkPos getChunkPos();
 
     @Inject(method = "tick", at = @At("TAIL"))
-    private void creo_enterStructureEvent(CallbackInfo ci) {
+    private void creo$enterStructureEvent(CallbackInfo ci) {
         EntityEventImpl.applyWithinStructureEvent(world, (Entity) (Object) this, getBlockPos(), getChunkPos());
     }
 
@@ -32,8 +32,8 @@ public abstract class EntityMixin {
         EntityEventImpl.applyEntityStruckByLightningEvent(world, (Entity) (Object) this, lightning);
     }
 
-    @Inject(method = "moveToWorld", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/EntityType;create(Lnet/minecraft/world/World;)Lnet/minecraft/entity/Entity;", shift = At.Shift.BY, by = 2, ordinal = 0))
+    /*@Inject(method = "moveToWorld", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/EntityType;create(Lnet/minecraft/world/World;)Lnet/minecraft/entity/Entity;", shift = At.Shift.BY, by = 2, ordinal = 0))
     private void creo$changeDimensionEvent(ServerWorld destination, CallbackInfoReturnable<Entity> cir, @Local TeleportTarget teleportTarget, @Local(ordinal = 1) Entity entity) {
         EntityEventImpl.applyEntityChangeDimensionEvent(world, destination, (Entity) (Object) this, entity, teleportTarget, cir);
-    }
+    }*/
 }

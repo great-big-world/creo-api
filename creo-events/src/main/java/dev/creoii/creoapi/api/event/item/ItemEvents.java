@@ -7,6 +7,7 @@ import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -76,7 +77,7 @@ public final class ItemEvents {
          * @param enchantment the enchantment being added
          * @param level the enchantment level
          */
-        boolean onEnchant(ItemStack stack, Enchantment enchantment, int level);
+        boolean onEnchant(ItemStack stack, RegistryEntry<Enchantment> enchantment, int level);
     }
 
     @FunctionalInterface

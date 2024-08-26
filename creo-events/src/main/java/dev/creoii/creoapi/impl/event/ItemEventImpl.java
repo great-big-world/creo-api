@@ -6,6 +6,7 @@ import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Nullable;
@@ -17,7 +18,7 @@ public final class ItemEventImpl {
         ItemEvents.CRAFT.invoker().onCraft(world, stack, player, amount);
     }
 
-    public static void applyItemEnchantEvent(ItemStack stack, Enchantment enchantment, int level, CallbackInfo ci) {
+    public static void applyItemEnchantEvent(ItemStack stack, RegistryEntry<Enchantment> enchantment, int level, CallbackInfo ci) {
         boolean result = ItemEvents.ENCHANT.invoker().onEnchant(stack, enchantment, level);
         if (!result)
             ci.cancel();

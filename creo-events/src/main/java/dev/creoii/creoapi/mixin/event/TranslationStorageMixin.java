@@ -15,8 +15,8 @@ import java.util.Map;
 @Mixin(TranslationStorage.class)
 public class TranslationStorageMixin {
     @Inject(method = "load(Ljava/lang/String;Ljava/util/List;Ljava/util/Map;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/Language;load(Ljava/io/InputStream;Ljava/util/function/BiConsumer;)V"))
-    private static void creo_applyLocaleAwareLanguage(String langCode, List<Resource> resourceRefs, Map<String, String> translations, CallbackInfo ci) {
+    private static void creo$applyLocaleAwareLanguage(String langCode, List<Resource> resourceRefs, Map<String, String> translations, CallbackInfo ci) {
         if (Language.getInstance() != null)
-            ((LocaleAwareLanguage) Language.getInstance()).creo_setLangCode(langCode);
+            ((LocaleAwareLanguage) Language.getInstance()).creo$setLangCode(langCode);
     }
 }

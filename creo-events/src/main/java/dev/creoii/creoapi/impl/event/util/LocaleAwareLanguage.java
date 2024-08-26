@@ -1,7 +1,7 @@
 package dev.creoii.creoapi.impl.event.util;
 
 public interface LocaleAwareLanguage {
-    String creo_getLangCode();
+    String creo$getLangCode();
 
-    void creo_setLangCode(String langCode);
+    void creo$setLangCode(String langCode);
 }

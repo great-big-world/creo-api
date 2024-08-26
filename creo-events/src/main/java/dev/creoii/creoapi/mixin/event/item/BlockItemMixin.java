@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(BlockItem.class)
 public abstract class BlockItemMixin {
     @Inject(method = "place(Lnet/minecraft/item/ItemPlacementContext;)Lnet/minecraft/util/ActionResult;", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/BlockItem;placeFromNbt(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/world/World;Lnet/minecraft/item/ItemStack;Lnet/minecraft/block/BlockState;)Lnet/minecraft/block/BlockState;"))
-    private void creo_applyBlockPlaceEvent(ItemPlacementContext context, CallbackInfoReturnable<ActionResult> cir) {
+    private void creo$applyBlockPlaceEvent(ItemPlacementContext context, CallbackInfoReturnable<ActionResult> cir) {
         BlockEventImpl.applyBlockPlaceEvent(context.getWorld().getBlockState(context.getBlockPos()), context, cir);
     }
 }

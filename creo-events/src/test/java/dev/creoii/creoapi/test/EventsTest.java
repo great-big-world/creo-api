@@ -186,7 +186,7 @@ public class EventsTest implements ModInitializer {
             ItemEvents.ENCHANT.register((stack, enchantment, level) -> {
                 System.out.println("Item Enchant:");
                 System.out.println("    stack=" + stack.getItem().getTranslationKey());
-                System.out.println("    enchantment=" + enchantment.getTranslationKey());
+                System.out.println("    enchantment=" + enchantment.getKey().get().getValue().toString());
                 System.out.println("    level=" + level);
 
                 return enchantment != Enchantments.MENDING;
@@ -316,7 +316,7 @@ public class EventsTest implements ModInitializer {
                 System.out.println("    destination=" + destination.getDimensionEntry().toString());
                 System.out.println("    entity=" + entity.getType().getTranslationKey());
                 System.out.println("    copy=" + copy.getType().getTranslationKey());
-                System.out.println("    teleportTarget=" + teleportTarget.position.toString());
+                System.out.println("    teleportTarget=" + teleportTarget.pos().toString());
 
                 // limit player to only the Overworld & Nether
                 return destination.getDimensionEntry().getKey().get() == DimensionTypes.THE_NETHER || destination.getDimensionEntry().getKey().get() == DimensionTypes.OVERWORLD;
@@ -455,7 +455,7 @@ public class EventsTest implements ModInitializer {
 
         if (testRecipeLoadEvent) {
             RecipeEvents.LOAD_RECIPE.register((builder, recipeEntry) -> {
-                if (recipeEntry.id().equals(new Identifier("minecraft:oak_planks"))) {
+                if (recipeEntry.id().equals(Identifier.of("minecraft:oak_planks"))) {
                     System.out.println("removed oak planks recipe");
                     return false;
                 }

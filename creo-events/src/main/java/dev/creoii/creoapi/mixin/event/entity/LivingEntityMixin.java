@@ -2,6 +2,7 @@ package dev.creoii.creoapi.mixin.event.entity;
 
 import com.llamalad7.mixinextras.sugar.Local;
 import dev.creoii.creoapi.impl.event.EntityEventImpl;
+import net.minecraft.component.type.FoodComponent;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
@@ -30,7 +31,7 @@ public class LivingEntityMixin {
     }
 
     @Inject(method = "eatFood", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;playSound(Lnet/minecraft/entity/player/PlayerEntity;DDDLnet/minecraft/sound/SoundEvent;Lnet/minecraft/sound/SoundCategory;FF)V"), cancellable = true)
-    private void creo$livingDropLootCallback(World world, ItemStack stack, CallbackInfoReturnable<ItemStack> cir) {
+    private void creo$livingDropLootCallback(World world, ItemStack stack, FoodComponent foodComponent, CallbackInfoReturnable<ItemStack> cir) {
         EntityEventImpl.applyLivingEatFoodEvent(world, (LivingEntity) (Object) this, stack, cir);
     }
 }
