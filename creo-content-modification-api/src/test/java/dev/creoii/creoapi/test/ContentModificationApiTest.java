@@ -5,7 +5,7 @@ import dev.creoii.creoapi.api.modification.StatusEffectModification;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.MapColor;
-import net.minecraft.block.enums.Instrument;
+import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.effect.StatusEffects;
@@ -111,7 +111,7 @@ public class ContentModificationApiTest implements ModInitializer {
 
         LOGGER.info("INSTRUMENT");
         LOGGER.info(String.valueOf(Blocks.GOLD_BLOCK.getDefaultState().getInstrument()));
-        BlockModification.INSTANCE.setInstrument(Blocks.GOLD_BLOCK, Instrument.DRAGON);
+        BlockModification.INSTANCE.setInstrument(Blocks.GOLD_BLOCK, NoteBlockInstrument.DRAGON);
         LOGGER.info(String.valueOf(Blocks.GOLD_BLOCK.getDefaultState().getInstrument()));
         LOGGER.info("pass");
 

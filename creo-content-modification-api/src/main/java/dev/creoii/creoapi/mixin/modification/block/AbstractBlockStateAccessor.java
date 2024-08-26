@@ -2,7 +2,7 @@ package dev.creoii.creoapi.mixin.modification.block;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.MapColor;
-import net.minecraft.block.enums.Instrument;
+import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.block.piston.PistonBehavior;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
@@ -34,7 +34,7 @@ public interface AbstractBlockStateAccessor {
     void setPistonBehavior(PistonBehavior pistonBehavior);
 
     @Accessor("instrument")
-    void setInstrument(Instrument instrument);
+    void setInstrument(NoteBlockInstrument instrument);
 
     @Accessor("replaceable")
     void setReplaceable(boolean replaceable);

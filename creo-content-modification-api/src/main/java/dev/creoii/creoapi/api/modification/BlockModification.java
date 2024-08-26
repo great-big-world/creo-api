@@ -4,7 +4,7 @@ import dev.creoii.creoapi.impl.modification.BlockModificationImpl;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.MapColor;
-import net.minecraft.block.enums.Instrument;
+import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.loot.LootTable;
 import net.minecraft.registry.RegistryKey;
@@ -205,18 +205,18 @@ public interface BlockModification {
     void setPistonBehavior(BlockState state, PistonBehavior pistonBehavior);
 
     /**
-     * Set a new {@link Instrument} for the block.
+     * Set a new {@link NoteBlockInstrument} for the block.
      * @param block a block
      * @param instrument the new Instrument
      */
-    void setInstrument(Block block, Instrument instrument);
+    void setInstrument(Block block, NoteBlockInstrument instrument);
 
     /**
-     * Set a new {@link Instrument} for the blockstate.
+     * Set a new {@link NoteBlockInstrument} for the blockstate.
      * @param state a blockstate
      * @param instrument the new Instrument
      */
-    void setInstrument(BlockState state, Instrument instrument);
+    void setInstrument(BlockState state, NoteBlockInstrument instrument);
 
     /**
      * Set whether the block has block break particles.

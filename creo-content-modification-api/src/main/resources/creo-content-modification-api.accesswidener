@@ -15,7 +15,7 @@ mutable field net/minecraft/block/AbstractBlock$AbstractBlockState pistonBehavio
 mutable field net/minecraft/block/AbstractBlock$AbstractBlockState toolRequired Z
 mutable field net/minecraft/block/AbstractBlock$AbstractBlockState opaque Z
 mutable field net/minecraft/block/AbstractBlock$AbstractBlockState blockBreakParticles Z
-mutable field net/minecraft/block/AbstractBlock$AbstractBlockState instrument Lnet/minecraft/block/enums/Instrument;
+mutable field net/minecraft/block/AbstractBlock$AbstractBlockState instrument Lnet/minecraft/block/enums/NoteBlockInstrument;
 mutable field net/minecraft/block/AbstractBlock$AbstractBlockState replaceable Z
 mutable field net/minecraft/block/AbstractBlock$AbstractBlockState burnable Z
 mutable field net/minecraft/entity/EntityType spawnGroup Lnet/minecraft/entity/SpawnGroup;

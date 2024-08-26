@@ -7,7 +7,7 @@ import dev.creoii.creoapi.mixin.modification.block.BlockSettingsAccessor;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.MapColor;
-import net.minecraft.block.enums.Instrument;
+import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.loot.LootTable;
 import net.minecraft.registry.RegistryKey;
@@ -169,14 +169,14 @@ public class BlockModificationImpl implements BlockModification {
     }
 
     @Override
-    public void setInstrument(Block block, Instrument instrument) {
+    public void setInstrument(Block block, NoteBlockInstrument instrument) {
         block.getStateManager().getStates().forEach(state -> {
             setInstrument(state, instrument);
         });
     }
 
     @Override
-    public void setInstrument(BlockState state, Instrument instrument) {
+    public void setInstrument(BlockState state, NoteBlockInstrument instrument) {
         ((AbstractBlockStateAccessor) state).setInstrument(instrument);
     }
 
