@@ -15,7 +15,7 @@ public class CreoItemApi implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        CreoDataComponentTypes.register();
+        CreoComponentTypes.register();
         PayloadTypeRegistry.playC2S().register(CreoItemImpl.ItemAttack.PACKET_ID, CreoItemImpl.ItemAttack.PACKET_CODEC);
         PayloadTypeRegistry.playC2S().register(CreoItemImpl.AttackThroughBlock.PACKET_ID, CreoItemImpl.AttackThroughBlock.PACKET_CODEC);
 

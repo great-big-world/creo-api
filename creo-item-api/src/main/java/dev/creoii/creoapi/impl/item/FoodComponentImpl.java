@@ -1,7 +1,7 @@
 package dev.creoii.creoapi.impl.item;
 
 import dev.creoii.creoapi.api.item.CreoFoodComponent;
-import dev.creoii.creoapi.api.item.CreoDataComponentTypes;
+import dev.creoii.creoapi.api.item.CreoComponentTypes;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.component.type.FoodComponent;
 import net.minecraft.entity.LivingEntity;
@@ -17,17 +17,31 @@ import org.jetbrains.annotations.ApiStatus;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import java.util.Iterator;
+import java.util.List;
+
 @ApiStatus.Internal
 public final class FoodComponentImpl {
     public static void eatCreoFoodComponentItem(ItemStack stack, World world, LivingEntity user, CallbackInfoReturnable<ItemStack> cir) {
-        if (stack.contains(CreoDataComponentTypes.FOOD)) {
-            cir.setReturnValue(user.eatFood(world, stack));
+        if (stack.contains(CreoComponentTypes.FOOD)) {
+            CreoFoodComponent creoFoodComponent = stack.get(CreoComponentTypes.FOOD);
+            world.playSound(null, user.getX(), user.getY(), user.getZ(), user.getEatSound(stack), SoundCategory.NEUTRAL, 1f, 1f + (world.random.nextFloat() - world.random.nextFloat()) * .4f);
+            if (!user.getWorld().isClient()) {
+                List<FoodComponent.StatusEffectEntry> list = creoFoodComponent.effects();
+                for (FoodComponent.StatusEffectEntry statusEffectEntry : list) {
+                    if (user.getRandom().nextFloat() < statusEffectEntry.probability())
+                        user.addStatusEffect(statusEffectEntry.effect());
+                }
+            }
+            stack.decrementUnlessCreative(1, user);
+            user.emitGameEvent(GameEvent.EAT);
+            cir.setReturnValue(stack);
         }
     }
 
     public static void eatCreoFoodComponentPlayer(PlayerEntity user, Hand hand, CallbackInfoReturnable<TypedActionResult<ItemStack>> cir) {
         ItemStack stack = user.getStackInHand(hand);
-        CreoFoodComponent foodComponent = stack.get(CreoDataComponentTypes.FOOD);
+        CreoFoodComponent foodComponent = stack.get(CreoComponentTypes.FOOD);
         if (foodComponent != null) {
             if (user.canConsume(foodComponent.canAlwaysEat())) {
                 user.setCurrentHand(hand);
@@ -38,8 +52,7 @@ public final class FoodComponentImpl {
         }
     }
 
-    public static void eatCreoFoodComponent(HungerManager manager, ItemStack stack, CallbackInfo ci) {
-        CreoFoodComponent foodComponent = stack.get(CreoDataComponentTypes.FOOD);
+    public static void eatCreoFoodComponent(HungerManager manager, FoodComponent foodComponent, CallbackInfo ci) {
         if (foodComponent != null) {
             manager.addInternal(foodComponent.nutrition(), foodComponent.saturation());
             ci.cancel();
@@ -47,14 +60,14 @@ public final class FoodComponentImpl {
     }
 
     public static void applyFoodEatSpeed(ItemStack stack, CallbackInfoReturnable<Integer> cir) {
-        CreoFoodComponent foodComponent = stack.get(CreoDataComponentTypes.FOOD);
+        CreoFoodComponent foodComponent = stack.get(CreoComponentTypes.FOOD);
         if (foodComponent != null) {
             cir.setReturnValue(foodComponent.getEatTicks());
         }
     }
 
     public static boolean applyFoodSprintEdibles(ClientPlayerEntity player) {
-        CreoFoodComponent foodComponent = player.getActiveItem().get(CreoDataComponentTypes.FOOD);
+        CreoFoodComponent foodComponent = player.getActiveItem().get(CreoComponentTypes.FOOD);
         if (foodComponent != null) {
             return player.isUsingItem() ? !foodComponent.canSprintEat() : player.isUsingItem();
         }
@@ -62,7 +75,7 @@ public final class FoodComponentImpl {
     }
 
     public static void applyFoodEatLiving(World world, LivingEntity living, ItemStack stack, CallbackInfoReturnable<ItemStack> cir) {
-        CreoFoodComponent foodComponent = stack.get(CreoDataComponentTypes.FOOD);
+        CreoFoodComponent foodComponent = stack.get(CreoComponentTypes.FOOD);
         if (foodComponent != null) {
             world.playSound(null, living.getX(), living.getY(), living.getZ(), living.getEatSound(stack), SoundCategory.NEUTRAL, 1f, 1f + (world.random.nextFloat() - world.random.nextFloat()) * .4f);
             applyFoodEffects(living, foodComponent);

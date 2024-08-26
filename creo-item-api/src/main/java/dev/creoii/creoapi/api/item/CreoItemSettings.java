@@ -45,7 +45,7 @@ public class CreoItemSettings extends Item.Settings {
     }
 
     public Item.Settings food(CreoFoodComponent foodComponent) {
-        component(CreoDataComponentTypes.FOOD, foodComponent);
+        component(CreoComponentTypes.FOOD, foodComponent);
         return this;
     }
 

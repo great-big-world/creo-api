@@ -3,6 +3,8 @@ package dev.creoii.creoapi.mixin.item;
 import dev.creoii.creoapi.impl.item.RequiredFuelsImpl;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.recipe.AbstractCookingRecipe;
+import net.minecraft.recipe.input.SingleStackRecipeInput;
 import net.minecraft.screen.AbstractFurnaceScreenHandler;
 import net.minecraft.screen.AbstractRecipeScreenHandler;
 import net.minecraft.screen.ScreenHandlerType;
@@ -16,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(AbstractFurnaceScreenHandler.class)
-public abstract class AbstractFurnaceScreenHandlerMixin extends AbstractRecipeScreenHandler<Inventory> {
+public abstract class AbstractFurnaceScreenHandlerMixin extends AbstractRecipeScreenHandler<SingleStackRecipeInput, AbstractCookingRecipe> {
     @Shadow @Final private Inventory inventory;
 
     public AbstractFurnaceScreenHandlerMixin(ScreenHandlerType<?> screenHandlerType, int i) {

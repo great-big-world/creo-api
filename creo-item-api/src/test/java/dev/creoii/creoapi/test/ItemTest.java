@@ -23,7 +23,7 @@ import net.minecraft.util.math.Vec3d;
 public class ItemTest implements ModInitializer {
     @Override
     public void onInitialize() {
-        Registry.register(Registries.ITEM, new Identifier("test", "test_item"), new Item(
+        Registry.register(Registries.ITEM, Identifier.of("test", "test_item"), new Item(
                 new CreoItemSettings()
                         .pickupDelay(25)
                         .despawnTime(2000)
@@ -35,7 +35,7 @@ public class ItemTest implements ModInitializer {
                         .clickPickup()
                         .requiredFuels(ItemTags.COALS)
         ));
-        Registry.register(Registries.ITEM, new Identifier("test", "xray"), new XrayItem(new CreoItemSettings()));
+        Registry.register(Registries.ITEM, Identifier.of("test", "xray"), new XrayItem(new CreoItemSettings()));
 
         ItemEvents.CLICK_PICKUP.register((itemEntity, player) -> {
             System.out.println("clickpickup event: " + player.getWorld().isClient);
@@ -51,10 +51,10 @@ public class ItemTest implements ModInitializer {
         Item sprintEdibleFood = new Item(new CreoItemSettings().food(new CreoFoodComponent.Builder().canAlwaysEat().canSprintEat().build()));
         Item healsHealthFood = new Item(new CreoItemSettings().food(new CreoFoodComponent.Builder().nutrition(2).canAlwaysEat().healsHealth().build()));
 
-        Registry.register(Registries.ITEM, new Identifier("test", "slow_food"), slowFood);
-        Registry.register(Registries.ITEM, new Identifier("test", "fast_food"), fastFood);
-        Registry.register(Registries.ITEM, new Identifier("test", "sprint_food"), sprintEdibleFood);
-        Registry.register(Registries.ITEM, new Identifier("test", "heals_health"), healsHealthFood);
+        Registry.register(Registries.ITEM, Identifier.of("test", "slow_food"), slowFood);
+        Registry.register(Registries.ITEM, Identifier.of("test", "fast_food"), fastFood);
+        Registry.register(Registries.ITEM, Identifier.of("test", "sprint_food"), sprintEdibleFood);
+        Registry.register(Registries.ITEM, Identifier.of("test", "heals_health"), healsHealthFood);
     }
 
     private static class XrayItem extends Item implements CreoItem {

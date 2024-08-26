@@ -2,7 +2,7 @@ package dev.creoii.creoapi.mixin.item;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.sugar.Local;
-import dev.creoii.creoapi.api.item.CreoDataComponentTypes;
+import dev.creoii.creoapi.api.item.CreoComponentTypes;
 import dev.creoii.creoapi.impl.item.FoodComponentImpl;
 import dev.creoii.creoapi.impl.item.util.AccessibleItem;
 import net.minecraft.entity.LivingEntity;
@@ -34,7 +34,7 @@ public abstract class ItemMixin implements AccessibleItem {
     }
 
     @Inject(method = "getMaxUseTime", at = @At(value = "HEAD"), cancellable = true)
-    private void creo$applyFoodEatTimes(ItemStack stack, CallbackInfoReturnable<Integer> cir) {
+    private void creo$applyFoodEatTimes(ItemStack stack, LivingEntity user, CallbackInfoReturnable<Integer> cir) {
         FoodComponentImpl.applyFoodEatSpeed(stack, cir);
     }
 
@@ -48,8 +48,8 @@ public abstract class ItemMixin implements AccessibleItem {
         FoodComponentImpl.eatCreoFoodComponentPlayer(user, hand, cir);
     }
 
-    @ModifyExpressionValue(method = "getUseAction", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;contains(Lnet/minecraft/component/DataComponentType;)Z"))
+    @ModifyExpressionValue(method = "getUseAction", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;contains(Lnet/minecraft/component/ComponentType;)Z"))
     private boolean creo$creoFoodComponentUseAction(boolean original, @Local(argsOnly = true) ItemStack stack) {
-        return original || stack.contains(CreoDataComponentTypes.FOOD);
+        return original || stack.contains(CreoComponentTypes.FOOD);
     }
 }

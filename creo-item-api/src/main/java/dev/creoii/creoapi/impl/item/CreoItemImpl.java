@@ -47,7 +47,7 @@ public final class CreoItemImpl {
     }
 
     public record AttackThroughBlock(int entityId) implements CustomPayload {
-        public static final CustomPayload.Id<AttackThroughBlock> PACKET_ID = new CustomPayload.Id<>(new Identifier(CreoItemApi.NAMESPACE, "attack_through_block"));
+        public static final CustomPayload.Id<AttackThroughBlock> PACKET_ID = new CustomPayload.Id<>(Identifier.of(CreoItemApi.NAMESPACE, "attack_through_block"));
         public static final PacketCodec<RegistryByteBuf, AttackThroughBlock> PACKET_CODEC = PacketCodec.of(AttackThroughBlock::write, AttackThroughBlock::new);
 
         public AttackThroughBlock(RegistryByteBuf buf) {
@@ -65,7 +65,7 @@ public final class CreoItemImpl {
     }
 
     public record ItemAttack(int hitResultType, Vec3d pos) implements CustomPayload {
-        public static final CustomPayload.Id<ItemAttack> PACKET_ID = new CustomPayload.Id<>(new Identifier(CreoItemApi.NAMESPACE, "item_attack"));
+        public static final CustomPayload.Id<ItemAttack> PACKET_ID = new CustomPayload.Id<>(Identifier.of(CreoItemApi.NAMESPACE, "item_attack"));
         public static final PacketCodec<RegistryByteBuf, ItemAttack> PACKET_CODEC = PacketCodec.of(ItemAttack::write, ItemAttack::new);
 
         public ItemAttack(RegistryByteBuf buf) {
