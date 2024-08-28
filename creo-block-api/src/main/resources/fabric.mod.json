@@ -15,7 +15,14 @@
   "license": "All-Rights-Reserved",
   "icon": "assets/creo-block-api/icon.png",
   "environment": "*",
-  "entrypoints": {},
+  "entrypoints": {
+    "main": [
+      "dev.creoii.creoapi.api.block.CreoBlockApi"
+    ],
+    "client": [
+      "dev.creoii.creoapi.api.block.client.CreoBlockApiClient"
+    ]
+  },
   "accessWidener": "creo-block-api.accesswidener",
   "mixins": [
     "creo-block-api.mixins.json"
