@@ -6,6 +6,5 @@ public class CreoBlockApi implements ModInitializer {
     public static final String NAMESPACE = "creo_api";
 
     @Override
-    public void onInitialize() {
-    }
+    public void onInitialize() {}
 }

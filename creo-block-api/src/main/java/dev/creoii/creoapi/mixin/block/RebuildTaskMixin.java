@@ -2,7 +2,7 @@ package dev.creoii.creoapi.mixin.block;
 
 import com.llamalad7.mixinextras.sugar.Local;
 import com.mojang.blaze3d.systems.VertexSorter;
-import dev.creoii.creoapi.impl.block.BlockImpl;
+import dev.creoii.creoapi.impl.block.BlockImplClient;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.render.BufferBuilder;
 import net.minecraft.client.render.RenderLayer;
@@ -29,6 +29,6 @@ public class RebuildTaskMixin {
 
     @Inject(method = "build", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/block/BlockRenderManager;renderBlock(Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/world/BlockRenderView;Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumer;ZLnet/minecraft/util/math/random/Random;)V"))
     private void gbw$renderOverlayState(ChunkSectionPos sectionPos, ChunkRendererRegion renderRegion, VertexSorter vertexSorter, BlockBufferAllocatorStorage allocatorStorage, CallbackInfoReturnable<SectionBuilder.RenderData> cir, @Local Map<RenderLayer, BufferBuilder> map, @Local BlockState blockState, @Local(ordinal = 2) BlockPos blockPos3, @Local MatrixStack matrixStack, @Local Random random) {
-        BlockImpl.applyRenderOverlayState((SectionBuilder) (Object) this, map, allocatorStorage, blockRenderManager, blockState, blockPos3, renderRegion, matrixStack, random);
+        BlockImplClient.applyRenderOverlayState((SectionBuilder) (Object) this, map, allocatorStorage, blockRenderManager, blockState, blockPos3, renderRegion, matrixStack, random);
     }
 }
