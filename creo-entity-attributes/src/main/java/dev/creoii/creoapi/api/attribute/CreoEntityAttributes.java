@@ -32,8 +32,7 @@ public class CreoEntityAttributes implements ModInitializer {
     public static final RegistryEntry<EntityAttribute> BREAK_COOLDOWN = register(new Identifier(NAMESPACE, "player.break_cooldown"), new ClampedEntityAttribute("attribute.name.player.break_cooldown", 5d, 0d, 1024d).setTracked(true));
 
     @Override
-    public void onInitialize() {
-    }
+    public void onInitialize() {}
 
     private static RegistryEntry<EntityAttribute> register(Identifier id, EntityAttribute attribute) {
         return Registry.registerReference(Registries.ATTRIBUTE, id, attribute);

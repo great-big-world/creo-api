@@ -4,19 +4,12 @@ import dev.creoii.creoapi.api.block.CreoBlock;
 import dev.creoii.creoapi.api.block.CreoBlockApi;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.client.render.BufferBuilder;
-import net.minecraft.client.render.RenderLayers;
-import net.minecraft.client.render.block.BlockRenderManager;
-import net.minecraft.client.render.chunk.BlockBufferBuilderStorage;
-import net.minecraft.client.render.chunk.ChunkRendererRegion;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.network.packet.CustomPayload;
-import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.structure.StructurePlacementData;
 import net.minecraft.structure.StructureTemplate;
 import net.minecraft.util.Identifier;
@@ -41,9 +34,9 @@ public final class BlockImpl {
 
                 if (state.getBlock() instanceof CreoBlock creoBlock) {
                     double distance = blockHitResult.squaredDistanceTo(entity);
-                    if (entity instanceof ServerPlayerEntity serverPlayer) {
+                    ((ServerWorld) entity.getWorld()).getPlayers().forEach(serverPlayer -> {
                         ServerPlayNetworking.send(serverPlayer, new LookAtBlock(entity.getId(), blockHitResult, distance));
-                    }
+                    });
                     creoBlock.onLookedAt(entity.getWorld(), state, blockHitResult, entity, distance);
                 }
             }
@@ -56,30 +49,19 @@ public final class BlockImpl {
         }
     }
 
-    public static void applyCollideAdjacent(ServerPlayerEntity serverPlayer) {
-        if (!serverPlayer.getWorld().isClient) {
-            Optional<BlockPos> optionalPos = BlockPos.findClosest(serverPlayer.getBlockPos(), (int) (serverPlayer.getWidth() + .5f), (int) (serverPlayer.getHeight() + .5f), pos -> {
-                return serverPlayer.getWorld().getBlockState(pos).getBlock() instanceof CreoBlock;
+    public static void applyCollideAdjacent(Entity entity) {
+        if (!entity.getWorld().isClient) {
+            Optional<BlockPos> optionalPos = BlockPos.findClosest(entity.getBlockPos(), (int) (entity.getWidth() + .5f), (int) (entity.getHeight() + .5f), pos -> {
+                return entity.getWorld().getBlockState(pos).getBlock() instanceof CreoBlock;
             });
             if (optionalPos.isPresent()) {
                 BlockPos pos = optionalPos.get();
-                BlockState state = serverPlayer.getWorld().getBlockState(pos);
+                BlockState state = entity.getWorld().getBlockState(pos);
                 if (state.getBlock() instanceof CreoBlock creoBlock) {
-                    ServerPlayNetworking.send(serverPlayer, new CollideAdjacent(serverPlayer.getId(), pos));
-                    if (creoBlock.canEntityCollideAdjacent(serverPlayer, state, pos)) {
-                        creoBlock.onAdjacentEntityCollision(serverPlayer, state, pos);
+                    if (creoBlock.canEntityCollideAdjacent(entity, state, pos)) {
+                        creoBlock.onAdjacentEntityCollision(entity, state, pos);
                     }
                 }
-            }
-        }
-    }
-
-    public static void applyRenderOverlayState(BlockState blockState, BlockPos pos, Random random, BlockBufferBuilderStorage storage, BlockRenderManager blockRenderManager, ChunkRendererRegion chunkRendererRegion, MatrixStack matrixStack) {
-        if (blockState.getBlock() instanceof CreoBlock creoBlock) {
-            BlockState state = creoBlock.getOverlayState(blockState, pos, random);
-            BufferBuilder bufferBuilder = storage.get(RenderLayers.getBlockLayer(state));
-            if (bufferBuilder.isBuilding() && state != Blocks.AIR.getDefaultState()) {
-                blockRenderManager.renderBlock(state, pos, chunkRendererRegion, matrixStack, bufferBuilder, true, random);
             }
         }
     }
@@ -96,25 +78,6 @@ public final class BlockImpl {
             buf.writeVarInt(entityId);
             buf.writeBlockHitResult(hitResult);
             buf.writeDouble(distance);
-        }
-
-        @Override
-        public Id<? extends CustomPayload> getId() {
-            return PACKET_ID;
-        }
-    }
-
-    public record CollideAdjacent(int entityId, BlockPos pos) implements CustomPayload {
-        public static final CustomPayload.Id<CollideAdjacent> PACKET_ID = new CustomPayload.Id<>(Identifier.of(CreoBlockApi.NAMESPACE, "collide_adjacent"));
-        public static final PacketCodec<RegistryByteBuf, CollideAdjacent> PACKET_CODEC = PacketCodec.of(CollideAdjacent::write, CollideAdjacent::new);
-
-        public CollideAdjacent(RegistryByteBuf buf) {
-            this(buf.readVarInt(), buf.readBlockPos());
-        }
-
-        public void write(RegistryByteBuf buf) {
-            buf.writeVarInt(entityId);
-            buf.writeBlockPos(pos);
         }
 
         @Override
