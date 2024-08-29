@@ -150,9 +150,9 @@ allprojects {
 
     remapJar {
         afterEvaluate {
-            subprojects.each {
+            /*subprojects.each {
                 nestedJars.from project("$it.path").tasks.getByName('remapJar')
-            }
+            }*/
         }
         destinationDirectory = file("$rootDir/build/libs/$minecraft_version/$mod_version")
     }
@@ -166,9 +166,9 @@ allprojects {
     }
 
     artifacts {
-        dev remapJar
+        /*dev remapJar
         dev javadocJar
-        dev sourcesJar
+        dev sourcesJar*/
     }
 
     signing {
@@ -182,6 +182,19 @@ subprojects {
 
     base {
         archivesName = project.name
+    }
+
+    Project sub = it
+    tasks.withType(ProcessResources).configureEach {
+        inputs.property "version", (sub.version + "+" + minecraft_version)
+        inputs.property "loader_version", loader_version
+        inputs.property "minecraft_version", minecraft_version
+
+        filesMatching("fabric.mod.json") {
+            expand "version": (sub.version + "+" + minecraft_version),
+                    "loader_version": loader_version,
+                    "minecraft_version": minecraft_version
+        }
     }
 
     apply plugin: 'java-library'
