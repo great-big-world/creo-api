@@ -7,10 +7,10 @@
   "mixins": [
     "AbstractBlockMixin",
     "EntityMixin",
-    "StructureTemplateMixin",
-    "compat.ChunkBuilderMeshingTaskMixin"
+    "StructureTemplateMixin"
   ],
   "client": [
+    "compat.ChunkBuilderMeshingTaskMixin",
     "RebuildTaskMixin"
   ],
   "injectors": {

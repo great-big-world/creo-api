@@ -20,11 +20,11 @@ public class CreoItemApi implements ModInitializer {
         PayloadTypeRegistry.playC2S().register(CreoItemImpl.AttackThroughBlock.PACKET_ID, CreoItemImpl.AttackThroughBlock.PACKET_CODEC);
 
         ServerPlayNetworking.registerGlobalReceiver(CreoItemImpl.AttackThroughBlock.PACKET_ID, (payload, context) -> {
-            ServerPlayerEntity serverPlayer = context.player();
-            if (serverPlayer.getServer() != null) {
-                int entityId = payload.entityId();
-                ItemStack stack = serverPlayer.getStackInHand(serverPlayer.getActiveHand());
-                serverPlayer.getServer().execute(() -> {
+            int entityId = payload.entityId();
+            context.server().execute(() -> {
+                ServerPlayerEntity serverPlayer = context.player();
+                if (serverPlayer.getServer() != null) {
+                    ItemStack stack = serverPlayer.getStackInHand(serverPlayer.getActiveHand());
                     if (stack.getItem() instanceof CreoItem creoItem) {
                         Entity entity = serverPlayer.getWorld().getEntityById(entityId);
                         if (entity != null && creoItem.canAttackThroughBlock(serverPlayer, stack, entity)) {
@@ -33,22 +33,22 @@ public class CreoItemApi implements ModInitializer {
                             creoItem.onAttackThroughBlock(serverPlayer, stack, entity);
                         }
                     }
-                });
-            }
+                }
+            });
         });
 
         ServerPlayNetworking.registerGlobalReceiver(CreoItemImpl.ItemAttack.PACKET_ID, (payload, context) -> {
-            ServerPlayerEntity serverPlayer = context.player();
-            if (serverPlayer.getServer() != null) {
-                int hitResult = payload.hitResultType();
-                Vec3d pos = payload.pos();
-                ItemStack stack = serverPlayer.getStackInHand(serverPlayer.getActiveHand());
-                serverPlayer.getServer().execute(() -> {
+            int hitResult = payload.hitResultType();
+            Vec3d pos = payload.pos();
+            context.server().execute(() -> {
+                ServerPlayerEntity serverPlayer = context.player();
+                if (serverPlayer != null) {
+                    ItemStack stack = serverPlayer.getStackInHand(serverPlayer.getActiveHand());
                     if (stack.getItem() instanceof CreoItem creoItem) {
                         creoItem.onAttack(serverPlayer, stack, hitResult == -1 ? null : HitResult.Type.values()[hitResult], pos);
                     }
-                });
-            }
+                }
+            });
         });
     }
 }

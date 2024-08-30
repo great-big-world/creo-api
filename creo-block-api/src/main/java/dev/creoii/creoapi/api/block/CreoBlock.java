@@ -1,5 +1,7 @@
 package dev.creoii.creoapi.api.block;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
@@ -72,6 +74,7 @@ public interface CreoBlock {
      * @return the block to render as an overlay to the block
      * @since 0.2.2
      */
+    @Environment(EnvType.CLIENT)
     default BlockState getOverlayState(BlockState state, BlockPos pos, Random random) {
         return Blocks.AIR.getDefaultState();
     }

@@ -12,18 +12,19 @@ public class CreoBlockApiClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         ClientPlayNetworking.registerGlobalReceiver(BlockImpl.LookAtBlock.PACKET_ID, (payload, context) -> {
-            ClientWorld world = context.client().world;
-            if (world != null) {
-                BlockHitResult hitResult = payload.hitResult();
-                double distance = payload.distance();
-                Entity entity = world.getEntityById(payload.entityId());
-                BlockState state = world.getBlockState(hitResult.getBlockPos());
-                context.client().execute(() -> {
+            int entityId = payload.entityId();
+            BlockHitResult hitResult = payload.hitResult();
+            double distance = payload.distance();
+            context.client().execute(() -> {
+                ClientWorld world = context.client().world;
+                if (world != null) {
+                    BlockState state = world.getBlockState(hitResult.getBlockPos());
                     if (state.getBlock() instanceof CreoBlock creoBlock) {
+                        Entity entity = world.getEntityById(entityId);
                         creoBlock.onLookedAt(world, state, hitResult, entity, distance);
                     }
-                });
-            }
+                }
+            });
         });
     }
 }
