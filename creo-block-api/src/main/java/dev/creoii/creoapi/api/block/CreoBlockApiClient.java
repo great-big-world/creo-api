@@ -3,7 +3,6 @@ package dev.creoii.creoapi.api.block;
 import dev.creoii.creoapi.impl.block.BlockImpl;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
-import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
@@ -12,8 +11,6 @@ import net.minecraft.util.hit.BlockHitResult;
 public class CreoBlockApiClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
-        PayloadTypeRegistry.playS2C().register(BlockImpl.LookAtBlock.PACKET_ID, BlockImpl.LookAtBlock.PACKET_CODEC);
-
         ClientPlayNetworking.registerGlobalReceiver(BlockImpl.LookAtBlock.PACKET_ID, (payload, context) -> {
             ClientWorld world = context.client().world;
             if (world != null) {
