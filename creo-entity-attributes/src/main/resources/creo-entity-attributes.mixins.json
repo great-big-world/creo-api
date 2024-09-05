@@ -6,11 +6,11 @@
   "mixins": [
     "EntityMixin",
     "LivingEntityMixin",
-    "PlayerEntityMixin",
-    "client.ClientPlayerInteractionManagerMixin"
+    "PlayerEntityMixin"
   ],
   "client": [
     "client.ClientPlayerEntityMixin",
+    "client.ClientPlayerInteractionManagerMixin",
     "client.MinecraftClientMixin"
   ],
   "injectors": {
