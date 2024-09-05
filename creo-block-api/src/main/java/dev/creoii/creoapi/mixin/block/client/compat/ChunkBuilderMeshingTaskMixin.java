@@ -1,4 +1,4 @@
-package dev.creoii.creoapi.mixin.block.compat;
+package dev.creoii.creoapi.mixin.block.client.compat;
 
 import com.llamalad7.mixinextras.sugar.Local;
 import dev.creoii.creoapi.impl.block.compat.SodiumBlockImpl;

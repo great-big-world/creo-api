@@ -1,4 +1,4 @@
-package dev.creoii.creoapi.mixin.event;
+package dev.creoii.creoapi.mixin.event.client;
 
 import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
 import dev.creoii.creoapi.impl.event.MiscEventImpl;

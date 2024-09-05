@@ -1,4 +1,4 @@
-package dev.creoii.creoapi.mixin.item;
+package dev.creoii.creoapi.mixin.item.client;
 
 import dev.creoii.creoapi.impl.item.CreoItemImpl;
 import net.minecraft.client.MinecraftClient;

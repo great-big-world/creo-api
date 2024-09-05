@@ -1,4 +1,4 @@
-package dev.creoii.creoapi.mixin.block;
+package dev.creoii.creoapi.mixin.block.client;
 
 import com.llamalad7.mixinextras.sugar.Local;
 import dev.creoii.creoapi.impl.block.BlockImplClient;

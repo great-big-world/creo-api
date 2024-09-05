@@ -1,4 +1,4 @@
-package dev.creoii.creoapi.mixin.event;
+package dev.creoii.creoapi.mixin.event.client;
 
 import dev.creoii.creoapi.impl.event.util.LocaleAwareLanguage;
 import net.minecraft.client.resource.language.TranslationStorage;
