@@ -21,7 +21,7 @@ public class CreoBlockApiMixinPlugin implements IMixinConfigPlugin {
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        if ("dev.creoii.greatbigworld.floraandfauna.mixin.compat.sodium.ChunkBuilderMeshingTaskMixin".equals(mixinClassName)) {
+        if ("dev.creoii.greatbigworld.floraandfauna.mixin.client.compat.ChunkBuilderMeshingTaskMixin".equals(mixinClassName)) {
             return FabricLoader.getInstance().isModLoaded("sodium");
         }
         return true;
