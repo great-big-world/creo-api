@@ -1,7 +1,7 @@
 package dev.creoii.creoapi.mixin.attribute.client;
 
 import com.llamalad7.mixinextras.sugar.Local;
-import dev.creoii.creoapi.impl.attribute.BlockCooldownAttributeImpl;
+import dev.creoii.creoapi.impl.attribute.BlockCooldownAttributeClientImpl;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
@@ -13,6 +13,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MinecraftClientMixin {
     @Inject(method = "doItemUse", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isItemEnabled(Lnet/minecraft/resource/featuretoggle/FeatureSet;)Z"))
     private void creo$applyBlockPlaceSpeed(CallbackInfo ci, @Local ItemStack itemStack) {
-        BlockCooldownAttributeImpl.applyBlockPlaceCooldown((MinecraftClient) (Object) this, itemStack);
+        BlockCooldownAttributeClientImpl.applyBlockPlaceCooldown((MinecraftClient) (Object) this, itemStack);
     }
 }

@@ -2,7 +2,6 @@ package dev.creoii.creoapi.impl.item;
 
 import dev.creoii.creoapi.api.item.CreoFoodComponent;
 import dev.creoii.creoapi.api.item.CreoDataComponentTypes;
-import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.component.type.FoodComponent;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.HungerManager;
@@ -51,14 +50,6 @@ public final class FoodComponentImpl {
         if (foodComponent != null) {
             cir.setReturnValue(foodComponent.getEatTicks());
         }
-    }
-
-    public static boolean applyFoodSprintEdibles(ClientPlayerEntity player) {
-        CreoFoodComponent foodComponent = player.getActiveItem().get(CreoDataComponentTypes.FOOD);
-        if (foodComponent != null) {
-            return player.isUsingItem() ? !foodComponent.canSprintEat() : player.isUsingItem();
-        }
-        return player.isUsingItem();
     }
 
     public static void applyFoodEatLiving(World world, LivingEntity living, ItemStack stack, CallbackInfoReturnable<ItemStack> cir) {

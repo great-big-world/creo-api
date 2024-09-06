@@ -3,6 +3,8 @@ package dev.creoii.creoapi.impl.item;
 import dev.creoii.creoapi.api.item.CreoItem;
 import dev.creoii.creoapi.api.item.CreoItemApi;
 import dev.creoii.creoapi.api.item.ItemEvents;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.projectile.ProjectileUtil;
@@ -16,6 +18,7 @@ import net.minecraft.util.math.Vec3d;
 import org.jetbrains.annotations.ApiStatus;
 
 @ApiStatus.Internal
+@Environment(EnvType.CLIENT)
 public final class CreoItemImpl {
     public static void applyAttackThroughBlockClient(MinecraftClient client) {
         if (client.player != null && client.getCameraEntity() != null) {

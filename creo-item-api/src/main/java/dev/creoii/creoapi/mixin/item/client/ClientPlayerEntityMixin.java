@@ -1,6 +1,6 @@
 package dev.creoii.creoapi.mixin.item.client;
 
-import dev.creoii.creoapi.impl.item.FoodComponentImpl;
+import dev.creoii.creoapi.impl.item.FoodComponentClientImpl;
 import net.minecraft.client.network.ClientPlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -10,11 +10,11 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 public class ClientPlayerEntityMixin {
     @Redirect(method = "canStartSprinting", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/ClientPlayerEntity;isUsingItem()Z"))
     private boolean creo$applySprintEdibles(ClientPlayerEntity instance) {
-        return FoodComponentImpl.applyFoodSprintEdibles(instance);
+        return FoodComponentClientImpl.applyFoodSprintEdibles(instance);
     }
 
     @Redirect(method = "tickMovement", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/ClientPlayerEntity;isUsingItem()Z"))
     private boolean creo$applySprintEdiblesMovement(ClientPlayerEntity instance) {
-        return FoodComponentImpl.applyFoodSprintEdibles(instance);
+        return FoodComponentClientImpl.applyFoodSprintEdibles(instance);
     }
 }

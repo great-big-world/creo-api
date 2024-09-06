@@ -1,7 +1,6 @@
 package dev.creoii.creoapi.impl.attribute;
 
 import dev.creoii.creoapi.api.attribute.CreoEntityAttributes;
-import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -30,11 +29,6 @@ public final class MovementSpeedAttributeImpl {
             float speed = (float) player.getAttributeValue(EntityAttributes.GENERIC_FLYING_SPEED);
             cir.setReturnValue(player.isSprinting() ? speed * 2f : speed);
         }
-    }
-
-    public static void applySpectatorFlyingSpeed(ClientPlayerEntity player) {
-        if (!player.isSpectator())
-            player.getAbilities().setFlySpeed((float) player.getAttributeValue(EntityAttributes.GENERIC_FLYING_SPEED));
     }
 
     public static double applyClimbingSpeed(LivingEntity livingEntity) {

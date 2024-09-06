@@ -1,6 +1,6 @@
 package dev.creoii.creoapi.mixin.attribute.client;
 
-import dev.creoii.creoapi.impl.attribute.BlockCooldownAttributeImpl;
+import dev.creoii.creoapi.impl.attribute.BlockCooldownAttributeClientImpl;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerInteractionManager;
 import org.spongepowered.asm.mixin.Final;
@@ -15,6 +15,6 @@ public class ClientPlayerInteractionManagerMixin {
 
     @ModifyConstant(method = "updateBlockBreakingProgress", constant = @Constant(intValue = 5))
     private int creo$applyBlockBreakSpeed(int constant) {
-        return BlockCooldownAttributeImpl.applyBlockBreakCooldown(client);
+        return BlockCooldownAttributeClientImpl.applyBlockBreakCooldown(client);
     }
 }
