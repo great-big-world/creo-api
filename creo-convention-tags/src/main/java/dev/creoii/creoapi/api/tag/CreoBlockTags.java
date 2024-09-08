@@ -5,6 +5,9 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 
+/**
+ * TODO: CATS_SIT_ON
+ */
 public final class CreoBlockTags {
     /**
      * Blocks that can be broken by a Ravager.

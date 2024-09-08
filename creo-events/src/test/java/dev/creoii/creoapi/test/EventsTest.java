@@ -129,8 +129,6 @@ public class EventsTest implements ModInitializer {
                 System.out.println("Living Eat Food:");
                 System.out.println("    living=" + livingEntity.getType().getTranslationKey());
                 System.out.println("    food=" + stack.getTranslationKey());
-
-                return stack;
             });
         }
 

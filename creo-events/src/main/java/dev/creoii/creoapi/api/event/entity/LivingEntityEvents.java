@@ -52,10 +52,8 @@ public final class LivingEntityEvents {
     public static final Event<EatFood> EAT_FOOD = EventFactory.createArrayBacked(EatFood.class,
             listeners -> (world, livingEntity, stack) -> {
                 for (EatFood event : listeners) {
-                    return event.onEatFood(world, livingEntity, stack);
+                    event.onEatFood(world, livingEntity, stack);
                 }
-
-                return stack;
             }
     );
 
@@ -100,6 +98,6 @@ public final class LivingEntityEvents {
          * @param livingEntity the living entity
          * @param stack the itemstack being eaten
          */
-        ItemStack onEatFood(World world, LivingEntity livingEntity, ItemStack stack);
+        void onEatFood(World world, LivingEntity livingEntity, ItemStack stack);
     }
 }

@@ -12,14 +12,12 @@ import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.context.LootContextParameterSet;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.structure.StructureStart;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
@@ -82,8 +80,8 @@ public final class EntityEventImpl {
             ci.cancel();
     }
 
-    public static void applyLivingEatFoodEvent(World world, LivingEntity livingEntity, ItemStack stack, CallbackInfoReturnable<ItemStack> cir) {
-        cir.setReturnValue(LivingEntityEvents.EAT_FOOD.invoker().onEatFood(world, livingEntity, stack));
+    public static void applyLivingEatFoodEvent(World world, LivingEntity livingEntity, ItemStack stack) {
+        LivingEntityEvents.EAT_FOOD.invoker().onEatFood(world, livingEntity, stack);
     }
 
     public static void applyPlayerLevelUpEvent(PlayerEntity playerEntity, int levels, CallbackInfo ci) {

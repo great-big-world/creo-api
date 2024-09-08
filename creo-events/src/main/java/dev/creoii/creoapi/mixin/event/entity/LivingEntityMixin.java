@@ -9,7 +9,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.context.LootContextParameterSet;
 import net.minecraft.registry.RegistryKey;
-import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -31,6 +30,6 @@ public class LivingEntityMixin {
 
     @Inject(method = "eatFood", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;playSound(Lnet/minecraft/entity/player/PlayerEntity;DDDLnet/minecraft/sound/SoundEvent;Lnet/minecraft/sound/SoundCategory;FF)V"), cancellable = true)
     private void creo$livingDropLootCallback(World world, ItemStack stack, CallbackInfoReturnable<ItemStack> cir) {
-        EntityEventImpl.applyLivingEatFoodEvent(world, (LivingEntity) (Object) this, stack, cir);
+        EntityEventImpl.applyLivingEatFoodEvent(world, (LivingEntity) (Object) this, stack);
     }
 }
